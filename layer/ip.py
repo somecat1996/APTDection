@@ -38,7 +38,7 @@ import struct
 from random import randint
 
 from utils.utils import checksum
-from layer import layer
+from layer.layer import layer
 
 
 class IP(layer):
@@ -179,5 +179,5 @@ if __name__ == '__main__':
     ipConfig['options'] = 'aa'
     ip = IP(ipConfig)
     packet = ip.pack()
-    print packet.encode('hex')
-    print ip.unpack(packet).pack().encode('hex')
+    print(packet.encode('hex'))
+    print(ip.unpack(packet).pack().encode('hex'))

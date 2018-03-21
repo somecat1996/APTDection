@@ -5,7 +5,7 @@ import socket
 import struct
 
 from utils.utils import checksum
-from layer import layer
+from layer.layer import layer
 
 
 class TCP(layer):
@@ -121,4 +121,4 @@ if __name__ == '__main__':
     tcpConfig['payload'] = ''
 
     tcp = TCP(tcpConfig)
-    print tcp.pack()
+    print(tcp.pack())

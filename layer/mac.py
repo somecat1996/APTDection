@@ -5,7 +5,7 @@ import socket
 import struct
 
 from utils.utils import checksum, parseMac
-from layer import layer
+from layer.layer import layer
 
 
 class ETHER(layer):
@@ -67,5 +67,5 @@ if __name__ == '__main__':
         "type": 36864
     })
     packet = mac.pack()
-    print packet.encode('hex')
-    print mac.unpack(packet).pack().encode('hex')
+    print(packet.encode('hex'))
+    print(mac.unpack(packet).pack().encode('hex'))

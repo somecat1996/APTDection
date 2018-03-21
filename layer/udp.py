@@ -5,7 +5,7 @@ import socket
 import struct
 
 from utils.utils import checksum
-from layer import layer
+from layer.layer import layer
 
 
 class UDP(layer):
@@ -53,4 +53,4 @@ if __name__ == '__main__':
     udpConfig['dstp'] = 1234
     udpConfig['payload'] = ''
     udp = UDP(udpConfig)
-    print udp.pack()
+    print(udp.pack())

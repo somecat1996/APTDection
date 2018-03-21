@@ -4,7 +4,7 @@
 import socket
 import struct
 
-from layer import layer
+from layer.layer import layer
 
 
 class VLAN(layer):

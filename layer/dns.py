@@ -4,7 +4,7 @@
 import socket
 import struct
 
-from layer import layer
+from layer.layer import layer
 from packets.buffer import Buffer
 from utils.utils import md5
 
@@ -138,9 +138,9 @@ class DNSRR(DNSBase):
             # return rr
             rr.rname = rname
             rtype, rclass, ttl, rdlength = data.unpack("!HHIH")
-            print rdlength
+            print(rdlength)
             if rtype == cls.QTYPE.OPT:
-                print rdlength
+                print(rdlength)
                 options = []
                 optionBuffer = Buffer(data.get(rdlength))
                 while optionBuffer.remaining() > 4:
@@ -161,7 +161,7 @@ class DNSRR(DNSBase):
             rr.rdata = rdata
             return rr
         except Exception as e:
-            print e
+            print(e)
             return None
 
 

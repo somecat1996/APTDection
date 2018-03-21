@@ -45,7 +45,7 @@ def hexdump(src, length=16, show=True):
                       (i, length*(digits + 1), hexa, text))
 
     if show:
-        print b'\n'.join(result)
+        print(b'\n'.join(result))
     else:
         return b'\n'.join(result)
 
