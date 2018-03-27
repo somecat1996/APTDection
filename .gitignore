@@ -216,3 +216,11 @@ $RECYCLE.BIN/
 
 
 # End of https://www.gitignore.io/api/macos,python,windows,pycharm
+
+
+
+# Ignore pcap
+*.pcap
+
+# Ignore /httpdump/
+httpdump2/*
