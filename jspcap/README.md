@@ -29,14 +29,7 @@ test = jspcap.Extractor(fin='in.pcap', nofile=True, auto=False)
 
 for frame in extractor:
     # check if this frame contains HTTP
-    if 'HTTP/1.0' in frame:
-        flag = 'HTTP/1.0'
-    elif 'HTTP/1.1' in frame:
-        flag = 'HTTP/1.1'
-    else:
-        flag = None
-
-    if flag:
+    if jspcap.HTTP in frame:
         # print frame number & its protocols chain
         print(f'{frame.name}: {frame.protochain}')
 
@@ -58,7 +51,7 @@ for frame in extractor:
         #     # other fields
         #     ...
         # )
-        http = frame[flag]
+        http = frame[jspcap.HTTP]
 
         # fetch HTTP type (request/response)
         http_type = http.receipt    # or http['receipt']
