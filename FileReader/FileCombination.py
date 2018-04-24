@@ -5,23 +5,25 @@ import os
 
 
 def write(payload, label, path):
+    print(payload, label)
     if len(payload) > 28 ** 2:
         payload = payload[:28 ** 2]
     # else:
     #     payload += (28 ** 2 - len(payload)) * b"\x00"
-    writefile = open(path, 'a', newline='')
+    writefile = open(path, 'ab')
     csv_writer = csv.writer(writefile, dialect='excel')
-    csv_writer.writerow([payload, label])
+    csv_writer.writerow([payload, bytes([label])])
+    writefile.close()
 
 
 def read(path):
     file = sniff(offline=path)
-    payload = ''
+    payload = b''
     for packet in file:
-            try:
-                payload += packet[payload]
-            except:
-                pass
+        try:
+            payload += packet[TCP].load
+        except:
+            pass
     return payload
 
 
@@ -38,17 +40,54 @@ class FileCombination:
         files = [x for x in os.listdir(path)]
         print(files)
         for file in files:
-            payload = read(path + file)
+            already = []
             packets = sniff(offline=path + file)
+            payload = b''
+            for packet in packets:
+                try:
+                    payload += packet[TCP].load
+                except:
+                    pass
             label = 0
             for packet in packets:
                 try:
-                    if self.LabelByMyself(packet):
-                        label = 1
+                    src = "http://" + packet[IP].src
+                    dst = "http://" + packet[IP].dst
                 except:
-                    print("connect failed")
-                time.sleep(30)
-            write(payload, label, outpath + file + "Single.csv")
+                    continue
+                if src not in already:
+                    fail = 1
+                    while fail:
+                        fail = 0
+                        try:
+                            src_label = self.scanner.label(src)
+                        except:
+                            print("连接失败，等待60秒重连")
+                            fail = 1
+                            time.sleep(60)
+                    if src_label:
+                        print("IP address " + src + " is malicious")
+                        label = 1
+                        already.append(src)
+                    else:
+                        already.append(src)
+                    if dst not in already:
+                        fail = 1
+                        while fail:
+                            fail = 0
+                            try:
+                                src_label = self.scanner.label(dst)
+                            except:
+                                print("连接失败，等待60秒重连")
+                                fail = 1
+                                time.sleep(60)
+                        if src_label:
+                            print("IP address " + dst + " is malicious")
+                            label = 1
+                            already.append(dst)
+                        else:
+                            already.append(dst)
+            write(payload, label, outpath + file + "-Single.csv")
 
     def ManagerReader(self, ManagerList):
         for i in ManagerList:
