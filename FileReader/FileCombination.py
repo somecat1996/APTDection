@@ -1,8 +1,12 @@
 from scapy.all import *
-import csv
 from .VirusTotal import *
 import os
 
+'''
+>>> from APTDection.FileReader.FileCombination import *
+>>> a = FileCombination()
+>>> a.SingleFolderOperator("./pkt2flow/stream/user_click2/pkt2flow.out/tcp_nosyn/", "./files/")
+'''
 
 def write(payload, path):
     if len(payload) > 28 ** 2:
@@ -38,6 +42,7 @@ class FileCombination:
         files = [x for x in os.listdir(path)]
         print(files)
         for file in files:
+            print("open " + file)
             already = []
             packets = sniff(offline=path + file)
             payload = b''

@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="b9fab451-4e2e-4d78-8e53-8e573f9683e8" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FileReader/FileCombination.py" afterPath="$PROJECT_DIR$/FileReader/FileCombination.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FileReader/VirusTotal.py" afterPath="$PROJECT_DIR$/FileReader/VirusTotal.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -25,8 +24,8 @@
       <file leaf-file-name="FileCombination.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/FileReader/FileCombination.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="12" column="28" lean-forward="true" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
+            <state relative-caret-position="160">
+              <caret line="44" column="33" lean-forward="true" selection-start-line="44" selection-start-column="33" selection-end-line="44" selection-end-column="33" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -928,8 +927,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/FileReader/FileCombination.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="12" column="28" lean-forward="true" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
+        <state relative-caret-position="160">
+          <caret line="44" column="33" lean-forward="true" selection-start-line="44" selection-start-column="33" selection-end-line="44" selection-end-column="33" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
