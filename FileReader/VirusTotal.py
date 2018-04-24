@@ -31,7 +31,7 @@ class virustotal:
         response = requests.get(url, params=params)
         # print(response.json())
         print(response.json()['positives'], "个工具检测为positive")
-        if response.json()['positives'] > 1:
+        if response.json()['positives'] > 0:
             return 1
         else:
             return 0

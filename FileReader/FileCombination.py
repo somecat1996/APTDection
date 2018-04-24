@@ -4,14 +4,13 @@ from .VirusTotal import *
 import os
 
 
-def write(payload, label, path):
+def write(payload, path):
     if len(payload) > 28 ** 2:
         payload = payload[:28 ** 2]
     # else:
     #     payload += (28 ** 2 - len(payload)) * b"\x00"
-    writefile = open(path, 'a')
-    csv_writer = csv.writer(writefile, dialect='excel')
-    csv_writer.writerow([payload, label])
+    writefile = open(path, 'wb')
+    writefile.write(payload)
     writefile.close()
 
 
@@ -87,7 +86,7 @@ class FileCombination:
                         else:
                             already.append(dst)
             print(label, file)
-            write(payload, label, outpath + file + "-Single.csv")
+            write(payload, outpath + file + "-Single-" + str(label))
 
     def ManagerReader(self, ManagerList):
         for i in ManagerList:
