@@ -35,11 +35,11 @@ class FileCombination:
         self.scanner = virustotal()
 
     def SingleFolderOperator(self, path, outpath):
-        files = [path + x for x in os.listdir(path)]
+        files = [x for x in os.listdir(path)]
         print(files)
         for file in files:
-            payload = read(file)
-            packets = sniff(offline=file)
+            payload = read(path + file)
+            packets = sniff(offline=path + file)
             label = 0
             for packet in packets:
                 try:
@@ -48,7 +48,7 @@ class FileCombination:
                 except:
                     print("connect failed")
                 time.sleep(15)
-            write(payload, label, outpath + "Single.csv")
+            write(payload, label, outpath + file + "Single.csv")
 
     def ManagerReader(self, ManagerList):
         for i in ManagerList:
