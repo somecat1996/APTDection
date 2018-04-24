@@ -86,6 +86,7 @@ class FileCombination:
                             already.append(dst)
                         else:
                             already.append(dst)
+            print(label, file)
             write(payload, label, outpath + file + "-Single.csv")
 
     def ManagerReader(self, ManagerList):
