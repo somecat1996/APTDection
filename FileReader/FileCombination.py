@@ -47,7 +47,7 @@ class FileCombination:
                         label = 1
                 except:
                     print("connect failed")
-                time.sleep(15)
+                time.sleep(30)
             write(payload, label, outpath + file + "Single.csv")
 
     def ManagerReader(self, ManagerList):
