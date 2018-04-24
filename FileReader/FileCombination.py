@@ -40,8 +40,12 @@ class FileCombination:
 
     def SingleFolderOperator(self, path, outpath):
         files = [x for x in os.listdir(path)]
+        alreadyfiles = [x for x in os.listdir(outpath)]
         print(files)
         for file in files:
+            if file + "-Single-1" in alreadyfiles or file + "-Single-0" in alreadyfiles:
+                print(file + "already exists")
+                continue
             print("open " + file)
             already = []
             packets = sniff(offline=path + file)
