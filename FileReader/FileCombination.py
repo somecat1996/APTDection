@@ -75,12 +75,12 @@ class FileCombination:
                         while fail:
                             fail = 0
                             try:
-                                src_label = self.scanner.label(dst)
+                                dst_label = self.scanner.label(dst)
                             except:
                                 print("连接失败，等待60秒重连")
                                 fail = 1
                                 time.sleep(60)
-                        if src_label:
+                        if dst_label:
                             print("IP address " + dst + " is malicious")
                             label = 1
                             already.append(dst)
