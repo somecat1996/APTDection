@@ -4,22 +4,22 @@ from .VirusTotal import *
 import os
 
 
-def write(payload, lable, path):
+def write(payload, label, path):
     if len(payload) > 28 ** 2:
         payload = payload[:28 ** 2]
-    else:
-        payload += (28 ** 2 - len(payload)) * b"\x00"
+    # else:
+    #     payload += (28 ** 2 - len(payload)) * b"\x00"
     writefile = open(path, 'a', newline='')
     csv_writer = csv.writer(writefile, dialect='excel')
-    csv_writer.writerow([payload, lable])
+    csv_writer.writerow([payload, label])
 
 
 def read(path):
-    file = sniff(offine=path)
+    file = sniff(offline=path)
     payload = ''
     for packet in file:
             try:
-                payload += packet.payload
+                payload += packet[payload]
             except:
                 pass
     return payload
@@ -35,14 +35,19 @@ class FileCombination:
         self.scanner = virustotal()
 
     def SingleFolderOperator(self, path, outpath):
-        files = [path + x for x in os.listdir(path) if os.path.isdir(path + x)]
+        files = [path + x for x in os.listdir(path)]
+        print(files)
         for file in files:
-            payload = read(path)
+            payload = read(file)
             packets = sniff(offline=file)
             label = 0
             for packet in packets:
-                if self.LabelByMyself(packet):
-                    label = 1
+                try:
+                    if self.LabelByMyself(packet):
+                        label = 1
+                except:
+                    print("connect failed")
+                time.sleep(15)
             write(payload, label, outpath + "Single.csv")
 
     def ManagerReader(self, ManagerList):
@@ -71,8 +76,11 @@ class FileCombination:
             write(payload, item[1], path + "PhoneApp.csv")
 
     def LabelByMyself(self, packet):
-        src = packet.src
-        dst = packet.dst
+        try:
+            src = "http://" + packet[IP].src
+            dst = "http://" + packet[IP].dst
+        except:
+            return 0
         lable = 0
         if self.scanner.label(src):
             print("IP address %s is malicious") % src

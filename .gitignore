@@ -224,3 +224,4 @@ $RECYCLE.BIN/
 
 # Ignore /httpdump/
 httpdump2/*
+*.csv
