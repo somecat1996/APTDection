@@ -10,9 +10,9 @@ def write(payload, label, path):
         payload = payload[:28 ** 2]
     # else:
     #     payload += (28 ** 2 - len(payload)) * b"\x00"
-    writefile = open(path, 'ab')
+    writefile = open(path, 'a')
     csv_writer = csv.writer(writefile, dialect='excel')
-    csv_writer.writerow([payload, bytes([label])])
+    csv_writer.writerow([payload, label])
     writefile.close()
 
 
