@@ -5,7 +5,6 @@ import os
 
 
 def write(payload, label, path):
-    print(payload, label)
     if len(payload) > 28 ** 2:
         payload = payload[:28 ** 2]
     # else:
