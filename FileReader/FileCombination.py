@@ -1,8 +1,14 @@
 from scapy.all import *
 import csv
+from .VirusTotal import *
+import os
 
 
 def write(payload, lable, path):
+    if len(payload) > 28 ** 2:
+        payload = payload[:28 ** 2]
+    else:
+        payload += (28 ** 2 - len(payload)) * b"\x00"
     writefile = open(path, 'a', newline='')
     csv_writer = csv.writer(writefile, dialect='excel')
     csv_writer.writerow([payload, lable])
@@ -26,6 +32,18 @@ class FileCombination:
         self.PhoneBrowserFileList = []
         self.PhoneAppFileList = []
         self.OutputPath = None
+        self.scanner = virustotal()
+
+    def SingleFolderOperator(self, path, outpath):
+        files = [path + x for x in os.listdir(path) if os.path.isdir(path + x)]
+        for file in files:
+            payload = read(path)
+            packets = sniff(offline=file)
+            label = 0
+            for packet in packets:
+                if self.LabelByMyself(packet):
+                    label = 1
+            write(payload, label, outpath + "Single.csv")
 
     def ManagerReader(self, ManagerList):
         for i in ManagerList:
@@ -51,3 +69,16 @@ class FileCombination:
         for item in self.PhoneAppFileList:
             payload = read(item[0])
             write(payload, item[1], path + "PhoneApp.csv")
+
+    def LabelByMyself(self, packet):
+        src = packet.src
+        dst = packet.dst
+        lable = 0
+        if self.scanner.label(src):
+            print("IP address %s is malicious") % src
+            lable = 1
+        if self.scanner.label(dst):
+            print("IP address %s is malicious") % dst
+            lable = 1
+        return lable
+

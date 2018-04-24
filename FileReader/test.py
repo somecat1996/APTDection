@@ -11,6 +11,8 @@ print(col1, col2, col3)
 # features = tf.concat([col1, col2, col3], axis=0)
 
 with tf.Session() as sess:
+    sess.run(key)
+    print(key)
     # Start populating the filename queue.
     coord = tf.train.Coordinator()
     threads = tf.train.start_queue_runners(coord=coord)

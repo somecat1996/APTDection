@@ -44,7 +44,7 @@ LEARNING_RATE = 0.001
 
 def NeutralNetwork(features, labels, mode):
     # 重置输入形状
-    input_layer = tf.reshape(features["x"], INPUTSHAPE)
+    input_layer = tf.reshape(features["packet"], INPUTSHAPE)
 
     # 第一层卷积层，创建FILTER1_NUM个形状为FILTER1_SHAPE的滤波器
     # 采用默认步长(1, 1)，卷积结果填充为与输入相同大小
