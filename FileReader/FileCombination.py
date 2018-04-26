@@ -1,5 +1,5 @@
 from scapy.all import *
-from .VirusTotal import *
+from .DataLabeler import *
 import os
 
 '''
@@ -36,7 +36,8 @@ class FileCombination:
         self.PhoneBrowserFileList = []
         self.PhoneAppFileList = []
         self.OutputPath = None
-        self.scanner = virustotal()
+        self.scanner = Datalabler()
+        self.scanner.setThreadNum(20)
 
     def SingleFolderOperator(self, path, outpath):
         files = [x for x in os.listdir(path)]
@@ -47,53 +48,21 @@ class FileCombination:
                 print(file + "already exists")
                 continue
             print("open " + file)
-            already = []
             packets = sniff(offline=path + file)
+            url = set()
             payload = b''
             for packet in packets:
                 try:
                     payload += packet[TCP].load
+                    url.add("http://" + packet[IP].src)
+                    url.add("http://" + packet[IP].dst)
                 except:
                     pass
             label = 0
-            for packet in packets:
-                try:
-                    src = "http://" + packet[IP].src
-                    dst = "http://" + packet[IP].dst
-                except:
-                    continue
-                if src not in already:
-                    fail = 1
-                    while fail:
-                        fail = 0
-                        try:
-                            src_label = self.scanner.label(src)
-                        except:
-                            print("连接失败，等待60秒重连")
-                            fail = 1
-                            time.sleep(60)
-                    if src_label:
-                        print("IP address " + src + " is malicious")
-                        label = 1
-                        already.append(src)
-                    else:
-                        already.append(src)
-                    if dst not in already:
-                        fail = 1
-                        while fail:
-                            fail = 0
-                            try:
-                                dst_label = self.scanner.label(dst)
-                            except:
-                                print("连接失败，等待60秒重连")
-                                fail = 1
-                                time.sleep(60)
-                        if dst_label:
-                            print("IP address " + dst + " is malicious")
-                            label = 1
-                            already.append(dst)
-                        else:
-                            already.append(dst)
+            results = self.scanner.lable(urls)
+            for i in results:
+                if i['malicous'] > 2:
+                    label = 1
             print(label, file)
             write(payload, outpath + file + "-Single-" + str(label))
 
