@@ -2,43 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b9fab451-4e2e-4d78-8e53-8e573f9683e8" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DataPath/192.168.0.105_33241_122.193.207.64_80_1522140822.pcap-Single-0" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DataPath/192.168.0.105_33490_182.254.42.87_80_1522140962.pcap-Single-0" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DataPath/192.168.0.105_33623_111.230.3.67_80_1522140981.pcap-Single-0" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DataPath/192.168.0.105_33684_111.230.3.67_80_1522140989.pcap-Single-0" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DataPath/192.168.0.105_33750_120.92.32.253_80_1522140999.pcap-Single-1" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DataPath/192.168.0.105_33770_120.92.32.253_80_1522141003.pcap-Single-1" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DataPath/192.168.0.105_33972_58.211.137.72_80_1522141093.pcap-Single-0" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DataPath/192.168.0.105_34061_180.149.134.224_80_1522141133.pcap-Single-0" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DataPath/192.168.0.105_34171_120.55.248.48_80_1522141183.pcap-Single-0" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DataPath/192.168.0.105_34249_120.92.75.29_80_1522141193.pcap-Single-0" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DataPath/192.168.0.105_34339_175.6.228.138_80_1522141211.pcap-Single-0" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DataPath/192.168.0.105_34393_120.55.248.48_80_1522141239.pcap-Single-0" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DataPath/192.168.0.105_34447_120.92.75.29_80_1522141241.pcap-Single-0" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DataPath/192.168.0.105_34450_120.92.75.29_80_1522141241.pcap-Single-0" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DataPath/192.168.0.105_34457_120.92.75.29_80_1522141244.pcap-Single-0" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DataPath/192.168.0.105_34497_124.112.127.41_80_1522141284.pcap-Single-0" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DataPath/192.168.0.105_34506_120.55.248.48_80_1522141284.pcap-Single-0" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DataPath/192.168.0.105_34632_120.92.75.29_80_1522141309.pcap-Single-0" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DataPath/192.168.0.105_34653_120.55.248.48_80_1522141324.pcap-Single-0" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DataPath/192.168.0.105_34822_115.25.217.43_80_1522141345.pcap-Single-0" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DataPath/192.168.0.105_34859_120.92.32.150_80_1522141347.pcap-Single-1" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DataPath/192.168.0.105_34871_120.92.32.150_80_1522141349.pcap-Single-1" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DataPath/192.168.0.105_34911_111.230.3.67_80_1522141360.pcap-Single-0" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DataPath/192.168.0.105_35069_122.193.207.64_80_1522141542.pcap-Single-0" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DataPath/192.168.0.105_35223_111.230.3.67_80_1522141667.pcap-Single-0" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DataPath/192.168.0.105_35271_111.230.3.67_80_1522141678.pcap-Single-0" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DataPath/192.168.0.105_35288_111.230.3.67_80_1522141681.pcap-Single-0" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DataPath/192.168.0.105_35313_120.92.32.253_80_1522141688.pcap-Single-1" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DataPath/nice.pcap-Single-1" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Training.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Training_v2.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CNN/InputData.py" afterPath="$PROJECT_DIR$/CNN/InputData.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CNN/Training.py" afterPath="$PROJECT_DIR$/CNN/Training.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CNN/Training_v2.py" afterPath="$PROJECT_DIR$/CNN/Training_v2.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test2.py" afterPath="$PROJECT_DIR$/test2.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FileReader/FileCombination.new.py" afterPath="$PROJECT_DIR$/FileReader/FileCombination.new.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -73,14 +37,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Training_v2.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Training_v2.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Training_v2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="32">
-              <caret line="48" column="11" lean-forward="false" selection-start-line="48" selection-start-column="11" selection-end-line="48" selection-end-column="11" />
+            <state relative-caret-position="384">
+              <caret line="59" column="56" lean-forward="true" selection-start-line="59" selection-start-column="56" selection-end-line="59" selection-end-column="56" />
               <folding>
                 <element signature="e#17#28#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FileCombination.new.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/FileReader/FileCombination.new.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="256">
+              <caret line="22" column="28" lean-forward="true" selection-start-line="22" selection-start-column="28" selection-end-line="22" selection-end-column="28" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -144,6 +118,7 @@
         <option value="$PROJECT_DIR$/CNN/Training_v2.py" />
         <option value="$PROJECT_DIR$/Training_v2.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/FileReader/FileCombination.new.py" />
       </list>
     </option>
   </component>
@@ -600,13 +575,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Graph/ContentType.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="64">
-          <caret line="2" column="24" lean-forward="false" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Graph/Node.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="640">
@@ -865,6 +833,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="928">
           <caret line="33" column="43" lean-forward="false" selection-start-line="33" selection-start-column="43" selection-end-line="33" selection-end-column="43" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -947,11 +916,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Training_v2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="32">
-          <caret line="48" column="11" lean-forward="false" selection-start-line="48" selection-start-column="11" selection-end-line="48" selection-end-column="11" />
+        <state relative-caret-position="384">
+          <caret line="59" column="56" lean-forward="true" selection-start-line="59" selection-start-column="56" selection-end-line="59" selection-end-column="56" />
           <folding>
             <element signature="e#17#28#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FileReader/FileCombination.new.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="22" column="28" lean-forward="true" selection-start-line="22" selection-start-column="28" selection-end-line="22" selection-end-column="28" />
+          <folding />
         </state>
       </provider>
     </entry>

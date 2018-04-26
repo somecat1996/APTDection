@@ -15,8 +15,8 @@ import jspcap
 
 
 def write(payload, path):
-    if len(payload) > 28 ** 2:
-        payload = payload[:28 ** 2]
+    if len(payload) > 1024:
+        payload = payload[:1024]
     # else:
     #     payload += (28 ** 2 - len(payload)) * b"\x00"
     writefile = open(path, 'wb')
