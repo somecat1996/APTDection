@@ -25,7 +25,7 @@ class virustotal:
             "Opera/9.80 (Macintosh; Intel Mac OS X 10.6.8; U; fr) Presto/2.9.168 Version/11.52",
         ]
         self.ip = []
-        f = open("proxies.txt", "r")
+        f = open("./proxies.txt", "r")
         line = f.readline()
         count = 0
         while line:
