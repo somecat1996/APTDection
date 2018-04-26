@@ -59,7 +59,7 @@ class FileCombination:
                 except:
                     pass
             label = 0
-            results = self.scanner.lable(urls)
+            results = self.scanner.lable(url)
             for i in results:
                 if i['malicous'] > 2:
                     label = 1
