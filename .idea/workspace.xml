@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b9fab451-4e2e-4d78-8e53-8e573f9683e8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FileReader/FileCombination.new.py" afterPath="$PROJECT_DIR$/FileReader/FileCombination.new.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FileReader/FileCombination.py" afterPath="$PROJECT_DIR$/FileReader/FileCombination.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -49,12 +49,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FileCombination.new.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="FileCombination.new.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/FileReader/FileCombination.new.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="256">
               <caret line="22" column="28" lean-forward="true" selection-start-line="22" selection-start-column="28" selection-end-line="22" selection-end-column="28" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FileCombination.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/FileReader/FileCombination.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="320">
+              <caret line="16" column="28" lean-forward="true" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
+              <folding>
+                <element signature="e#0#23#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -110,7 +122,6 @@
         <option value="$PROJECT_DIR$/FileReader/test.py" />
         <option value="$PROJECT_DIR$/nice.pcap-Single.csv" />
         <option value="$PROJECT_DIR$/FileReader/VirusTotal.py" />
-        <option value="$PROJECT_DIR$/FileReader/FileCombination.py" />
         <option value="$PROJECT_DIR$/test2.py" />
         <option value="$PROJECT_DIR$/CNN/Training.py" />
         <option value="$PROJECT_DIR$/CNN/InputData.py" />
@@ -119,6 +130,7 @@
         <option value="$PROJECT_DIR$/Training_v2.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/FileReader/FileCombination.new.py" />
+        <option value="$PROJECT_DIR$/FileReader/FileCombination.py" />
       </list>
     </option>
   </component>
@@ -540,7 +552,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="754" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30484116" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -790,6 +802,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="337">
           <caret line="746" column="0" lean-forward="false" selection-start-line="746" selection-start-column="0" selection-end-line="746" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -889,13 +902,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/FileReader/FileCombination.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2568">
-          <caret line="46" column="29" lean-forward="false" selection-start-line="46" selection-start-column="29" selection-end-line="46" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/CNN/cnn_example.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6944">
@@ -929,6 +935,16 @@
         <state relative-caret-position="256">
           <caret line="22" column="28" lean-forward="true" selection-start-line="22" selection-start-column="28" selection-end-line="22" selection-end-column="28" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FileReader/FileCombination.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="16" column="28" lean-forward="true" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
