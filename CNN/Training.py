@@ -1,13 +1,13 @@
-from .NeutralNetwork import *
-from .InputData import *
 import tensorflow as tf
+from .NeutralNetwork import *
+
 
 tf.logging.set_verbosity(tf.logging.INFO)
-DataPath = "./DataPath/"
+DataPath = "../DataPath/"
 TrainRate = 0.8
-ModelPath = "./ModelPath/"
+ModelPath = "../ModelPath/"
 
-def main():
+def main(unused):
     packets_train, labels_train, packets_eval, labels_eval = ReadData(DataPath, TrainRate)
     classifier = tf.estimator.Estimator(
         model_fn=NeutralNetwork,

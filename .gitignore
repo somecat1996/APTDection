@@ -228,3 +228,5 @@ httpdump2/*
 
 testfile/*
 output/*
+DataPath/*
+ModelPath/*
