@@ -1,5 +1,5 @@
-from VirusTotal3 import virustotal
-from VirusTotalThread import ViruTotalThread
+from FileReader.VirusTotal3 import virustotal
+from FileReader.VirusTotalThread import ViruTotalThread
 from queue import Queue
 
 
