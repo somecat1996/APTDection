@@ -1,12 +1,18 @@
-from scapy.all import *
+# -*- coding: utf-8 -*-
+
+
+# from scapy.all import *
 from .VirusTotal import *
 import os
+import jspcap
 
-'''
+
+"""
 >>> from APTDection.FileReader.FileCombination import *
 >>> a = FileCombination()
 >>> a.SingleFolderOperator("./pkt2flow/stream/user_click2/pkt2flow.out/tcp_nosyn/", "./files/")
-'''
+"""
+
 
 def write(payload, path):
     if len(payload) > 28 ** 2:
@@ -19,13 +25,16 @@ def write(payload, path):
 
 
 def read(path):
-    file = sniff(offline=path)
+    # file = sniff(offline=path)
+    file = jspcap.Extractor(fin=path, nofile=True, auto=False, store=False)
     payload = b''
     for packet in file:
-        try:
-            payload += packet[TCP].load
-        except:
-            pass
+        # try:
+        #     payload += packet[TCP].load
+        # except:
+        #     pass
+        if jspcap.HTTP in packet:
+            payload += packet[jspcap.HTTP].raw.body
     return payload
 
 
@@ -48,20 +57,26 @@ class FileCombination:
                 continue
             print("open " + file)
             already = []
-            packets = sniff(offline=path + file)
+            # packets = sniff(offline=path + file)
+            packets = jspcap.Extractor(fin=path + file, nofile=False).frame
             payload = b''
             for packet in packets:
-                try:
-                    payload += packet[TCP].load
-                except:
-                    pass
+                # try:
+                #     payload += packet[TCP].load
+                # except:
+                #     pass
+                if jspcap.HTTP in packet:
+                    payload += packet[jspcap.HTTP].raw.body
             label = 0
             for packet in packets:
-                try:
-                    src = "http://" + packet[IP].src
-                    dst = "http://" + packet[IP].dst
-                except:
-                    continue
+                # try:
+                #     src = "http://" + packet[IP].src
+                #     dst = "http://" + packet[IP].dst
+                # except:
+                #     continue
+                if jspcap.IP in packet:
+                    src = 'http://' + packet[jspcap.IP].src
+                    dst = 'http://' + packet[jspcap.IP].dst
                 if src not in already:
                     fail = 1
                     while fail:
