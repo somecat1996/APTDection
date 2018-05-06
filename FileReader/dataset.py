@@ -1,15 +1,17 @@
 # -*- coding: utf-8 -*-
 
 
+import json
 import jspcap
 import os
 import pathlib
+import pprint
 import re
 import shutil
 import sys
 
-from Webgraphic.webgraphic import *
-from StreamManager.StreamManager3 import *
+from webgraphic import *
+from StreamManager3 import *
 
 
 FLOW_DICT = {
@@ -22,13 +24,13 @@ FLOW_DICT = {
 
 
 def make_steam(name):
-    pathlib.Path(f'./stream/{name}').mkdir(parents=True, exists_ok=True)
+    pathlib.Path(f'./stream/{name}').mkdir(parents=True, exist_ok=True)
     # shutil.copy(f'{name}.pcap', f'./stream/{name}/{name}.pcap')
 
     builder = webgraphic()
     builder.read_in(f'./stream/{name}/{name}.pcap')
     IPS = builder.GetIPS()
-    # print(IPS)
+    print('\n', IPS, '\n')
 
     stream = StreamManager(f'{name}.pcap')
     stream.generate()
@@ -46,28 +48,44 @@ def make_steam(name):
 
 def make_dataset(name, stream):
     for kind, group in FLOW_DICT.items():
-        pathlib.Path(f'./dataset/{name}/{kind}/0').mkdir(parents=True, exists_ok=True) # safe
-        pathlib.Path(f'./dataset/{name}/{kind}/1').mkdir(parents=True, exists_ok=True) # malicious
-        for file in group(stream).values():
-            label = int(file['malicious'] >= 1 or file['suspicious'] >= 1)
-            dataset = re.sub('\.pcap', '.dat', file)
-            loads(f'./stream/{name}/tmp/{file}', f"./dataset/{name}/{kind}/{label}/{dataset}")
+        pathlib.Path(f'./dataset/{name}/{kind}/0').mkdir(parents=True, exist_ok=True) # safe
+        pathlib.Path(f'./dataset/{name}/{kind}/1').mkdir(parents=True, exist_ok=True) # malicious
+        with open(f'./dataset/{name}/{kind}/stream.json', 'w') as file:
+            json.dump(group(stream), file)
+        for files in group(stream).values():
+            for file in files:
+                pprint.pprint(file)
+                label = int(file['malicious'] >= 1 or file['suspicious'] >= 1)
+                dataset = re.sub('\.pcap', '.dat', file['filename'])
+                loads(f'./stream/{name}/tmp/{file["filename"]}', f"./dataset/{name}/{kind}/{label}/{dataset}")
 
 
 def loads(fin, fout):
-    extractor = jspcap.Extractor(fin=fin, store=False, auto=False, nofile=True)
+    print(f'Extracting file {fin} & dumping to {fout}')
+    extractor = jspcap.Extractor(fin=fin, store=False, verbose=True, auto=False, nofile=True)
     for packet in extractor:
-        if jspcap.HTTP in packet:
-            http = frame[jspcap.HTTP]
-            if http.body and 'text' in http.header['Content-Type']:
-                dumps(fout, http.raw.body)
+        tcp = packet[jspcap.TCP]
+        dumps(fout, tcp.raw or b'')
+    #     if jspcap.HTTP in packet:
+    #         http = packet[jspcap.HTTP]
+    #         if http.body and 'text' in http.header['Content-Type']:
+    #             dumps(fout, http.raw.body)
+    print()
 
 
 def dumps(name, byte):
+    # print(f'Writing to file {name}')
     with open(name, 'ab') as file:
         file.write(byte)
 
-
-if __name__ == '__mian__':
+def main():
     name = os.path.splitext(sys.argv[1])[0]
-    sys.exit(make_steam(name))
+    # name = input('File name: ')
+    # name = os.path.splitext(name)[0]
+    # print(name)
+    stream = make_steam(name)
+    make_dataset(name, stream)
+
+main()
+# if __name__ == '__mian__':
+#     main()
