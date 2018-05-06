@@ -8,8 +8,8 @@ import re
 import shutil
 import sys
 
-from webgraphic import *
-from StreamManager3 import *
+from Webgraphic.webgraphic import *
+from StreamManager.StreamManager3 import *
 
 
 FLOW_DICT = {
