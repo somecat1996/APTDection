@@ -10,14 +10,14 @@ def ReadData(path, trainrate=0.8):
     for file in files:
         packet = []
         payload = open(path+file, 'rb').read()
-        if len(payload) < 784:
-            payload += (784 - len(payload)) * b'\x00'
+        if len(payload) < 1024:
+            payload += (1024 - len(payload)) * b'\x00'
         for i in payload:
             packet.append(i)
         packets.append(packet)
         labels.append(int(file[-1]))
-    packets = np.asarray(packets)
-    labels = np.asarray(labels)
+    packets = np.asarray(packets, np.float32)
+    labels = np.asarray(labels, np.int32)
     shuffle = np.arange(len(packets))
     np.random.shuffle(shuffle)
     packets = packets[shuffle]
@@ -29,41 +29,41 @@ def ReadData(path, trainrate=0.8):
     packets_eval = packets[s:]
     labels_eval = labels[s:]
 
-    packets_train = tf.cast(packets_train, tf.string)
-    labels_train = tf.cast(labels_train, tf.int32)
-    packets_eval = tf.cast(packets_eval, tf.string)
-    labels_eval = tf.cast(labels_eval, tf.int32)
+    # packets_train = tf.cast(packets_train, tf.string)
+    # labels_train = tf.cast(labels_train, tf.int32)
+    # packets_eval = tf.cast(packets_eval, tf.string)
+    # labels_eval = tf.cast(labels_eval, tf.int32)
 
     return packets_train, labels_train, packets_eval, labels_eval
 
 
 # 输入为[批大小，宽度，高度，深度]
 # -1代表自动处理当前大小
-INPUTSHAPE = [-1, 28, 28, 1]  # 输入形状
+INPUTSHAPE = [-1, 32, 32, 1]  # 输入形状
 
-# 第一层卷积层输入形状为[批大小，28，28，1]
-# 第一层卷积层输出形状为[批大小，28，28，32]
+# 第一层卷积层输入形状为[批大小，32，32，1]
+# 第一层卷积层输出形状为[批大小，32，32，32]
 FILTER1_NUM = 32  # 第一层滤波器数量
 FILTER1_SHAPE = [5, 5]  # 第一层滤波器形状
 
-# 第一层池化层输入形状为[批大小，28，28，32]
-# 第一层池化层输出形状为[批大小，14，14，32]
+# 第一层池化层输入形状为[批大小，32，32，32]
+# 第一层池化层输出形状为[批大小，16，16，32]
 POOL1_SHAPE = [2, 2]  # 第一层池化层形状
 POOL1_STRIDE = 2  # 第一层池化层步长
 
-# 第二层卷积层输入形状为[批大小，14，14，32]
-# 第二层卷积层输出形状为[批大小，14，14，64]
+# 第二层卷积层输入形状为[批大小，16，16，32]
+# 第二层卷积层输出形状为[批大小，16，16，64]
 FILTER2_NUM = 64  # 第二层滤波器数量
 FILTER2_SHAPE = [5, 5]  # 第二层滤波器形状
 
-# 第二层池化层输入形状为[批大小，14，14，64]
-# 第二层池化层输出形状为[批大小，7，7，64]
+# 第二层池化层输入形状为[批大小，16，16，64]
+# 第二层池化层输出形状为[批大小，8，8，64]
 POOL2_SHAPE = [2, 2]  # 第二层池化层形状
 POOL2_STRIDE = 2  # 第二层池化层步长
 
-# 展平前输入形状为[批大小，7，7，64]
-# 展平后形状为[批大小，7*7*64]
-FLAT_SHAPE = [-1, 7 * 7 * 64]  # 展平后形状
+# 展平前输入形状为[批大小，8，8，64]
+# 展平后形状为[批大小，8*8*64]
+FLAT_SHAPE = [-1, 8 * 8 * 64]  # 展平后形状
 
 # 全连接层输入形状为[批大小，7*7*64]
 # 全连接层输出个数为[批大小，1024]
@@ -177,11 +177,11 @@ def NeutralNetwork(features, labels, mode):
 tf.logging.set_verbosity(tf.logging.INFO)
 DataPath = "./DataPath/"
 TrainRate = 0.8
-ModelPath = "./ModelPath/"
+ModelPath = "./ModelPath2/"
 
 def main(unused):
     packets_train, labels_train, packets_eval, labels_eval = ReadData(DataPath, TrainRate)
-    print(packets_train, labels_train, packets_eval, labels_eval)
+
     classifier = tf.estimator.Estimator(
         model_fn=NeutralNetwork,
         model_dir=ModelPath)
