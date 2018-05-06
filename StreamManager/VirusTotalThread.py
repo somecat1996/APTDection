@@ -17,7 +17,7 @@ class ViruTotalThread(threading.Thread):
             result=self.scanner.label(url)
             if not result:
                 print("网络有问题，线程关闭。")
-                #self.que.put(url,timeout=5)
+                self.que.put(url,timeout=5)
                 return False
             self.que_result.put({"url":url,"malicious":result['malicious'],"suspicious":result['suspicious']})
             self.counter = self.counter - 1

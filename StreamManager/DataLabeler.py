@@ -1,5 +1,5 @@
-from VirusTotal3 import virustotal
-from VirusTotalThread import ViruTotalThread
+from StreamManager.VirusTotal3 import virustotal
+from StreamManager.VirusTotalThread import ViruTotalThread
 from queue import Queue
 
 class Datalabler:
