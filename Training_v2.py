@@ -26,6 +26,8 @@ def read_img(path):
         payload = open(path + file, 'rb').read()
         if len(payload) < 1024:
             payload += (1024 - len(payload)) * b'\x00'
+        elif len(payload) > 1024:
+            payload = payload[:1025]
         for i in range(h):
             tmp = []
             for j in range(w):
@@ -189,6 +191,7 @@ for epoch in range(n_epoch):
         n_batch += 1
     print("   validation loss: ", np.sum(val_loss) / n_batch)
     print("   validation acc: ", np.sum(val_acc) / n_batch)
+    saver.save(sess, model_path+"my-model", global_step=n_batch)
 saver.save(sess, model_path)
 sess.close()
 cate = [path + x for x in os.listdir(path) if os.path.isdir(path + x)]
