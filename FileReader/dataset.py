@@ -50,7 +50,7 @@ def make_dataset(name, stream):
         pathlib.Path(f'./dataset/{name}/{kind}/1').mkdir(parents=True, exists_ok=True) # malicious
         for file in group(stream).values():
             label = int(file['malicious'] >= 1 or file['suspicious'] >= 1)
-            loads(f'./stream/{name}/tmp/{file}', f'./dataset/{name}/{kind}/{label}/{re.sub('\.pcap', '.dat', file)}')
+            loads(f'./stream/{name}/tmp/{file}', f"./dataset/{name}/{kind}/{label}/{re.sub('\.pcap', '.dat', file)}")
 
 
 def loads(fin, fout):
