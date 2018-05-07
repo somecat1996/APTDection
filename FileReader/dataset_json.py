@@ -23,7 +23,7 @@ def make_dataset(name):
     for kind in FLOW_DICT:
         pathlib.Path(f'./dataset/{name}/{kind}/0').mkdir(parents=True, exist_ok=True) # safe
         pathlib.Path(f'./dataset/{name}/{kind}/1').mkdir(parents=True, exist_ok=True) # malicious
-        with open(f'./dataset/{name}/{kind}/stream.json', 'r') as file:
+        with open(f'./dataset/{name}/{kind}.stream.json', 'r') as file:
             group = json.load(file)
         for files in group.values():
             for file in files:
@@ -35,7 +35,7 @@ def make_dataset(name):
 
 def loads(fin, fout):
     print(f'Extracting file {fin} & dumping to {fout}')
-    extractor = jspcap.Extractor(fin=fin, store=False, verbose=True, auto=False, nofile=True)
+    extractor = jspcap.Extractor(fin=fin, store=False, auto=False, nofile=True)
     for packet in extractor:
         tcp = packet[jspcap.TCP]
         dumps(fout, tcp.raw or b'')

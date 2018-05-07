@@ -46,12 +46,17 @@ def make_steam(name):
     return stream
 
 
-def make_dataset(name, stream):
+def make_record(name, stream):
     for kind, group in FLOW_DICT.items():
         pathlib.Path(f'./dataset/{name}/{kind}/0').mkdir(parents=True, exist_ok=True) # safe
         pathlib.Path(f'./dataset/{name}/{kind}/1').mkdir(parents=True, exist_ok=True) # malicious
         with open(f'./dataset/{name}/{kind}/stream.json', 'w') as file:
             json.dump(group(stream), file)
+
+
+def make_dataset(name, stream):
+    make_record(name, stream)
+    for kind, group in FLOW_DICT.items():
         for files in group(stream).values():
             for file in files:
                 pprint.pprint(file)
