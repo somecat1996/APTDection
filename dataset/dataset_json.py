@@ -6,30 +6,22 @@ import jspcap
 import os
 import pathlib
 import pprint
-import re
 import sys
 
 
-FLOW_DICT = {
-    'Browser_PC',
-    'Backgroud_PC',
-    'Browser_Phone',
-    'Backgroud_Phone',
-    'Suspicious',
-}
-
-
 def make_dataset(name):
-    for kind in FLOW_DICT:
+    with open(f'./dataset/{name}/stream.json', 'r') as file:
+        labels = json.load(file)
+    
+    for kind, group in labels.items():
         pathlib.Path(f'./dataset/{name}/{kind}/0').mkdir(parents=True, exist_ok=True) # safe
         pathlib.Path(f'./dataset/{name}/{kind}/1').mkdir(parents=True, exist_ok=True) # malicious
-        with open(f'./dataset/{name}/{kind}.stream.json', 'r') as file:
-            group = json.load(file)
+        
         for files in group.values():
             for file in files:
                 pprint.pprint(file)
                 label = int(file['malicious'] >= 1 or file['suspicious'] >= 1)
-                dataset = re.sub('\.pcap', '.dat', file['filename'])
+                dataset = file['filename'].replace('pcap', 'dat')
                 loads(f'./stream/{name}/tmp/{file["filename"]}', f"./dataset/{name}/{kind}/{label}/{dataset}")
 
 

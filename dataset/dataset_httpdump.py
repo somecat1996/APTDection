@@ -6,7 +6,6 @@ import jspcap
 import os
 import pathlib
 import pprint
-import re
 import shutil
 import sys
 
@@ -23,16 +22,17 @@ FLOW_DICT = {
 }
 
 
-def make_steam(name):
-    pathlib.Path(f'./stream/{name}').mkdir(parents=True, exist_ok=True)
-    # shutil.copy(f'{name}.pcap', f'./stream/{name}/{name}.pcap')
+def make_steam(name, count):
+    print(f'Labeling for {name}.pcap{count}')
+    pathlib.Path(f'./stream/{name}_{count}/tmp').mkdir(parents=True, exist_ok=True)
+    shutil.copy(f'../httpdump/{name}.pcap{count}', f'./stream/{name}_{count}/{name}_{count}.pcap')
 
     builder = webgraphic()
-    builder.read_in(f'./stream/{name}/{name}.pcap')
+    builder.read_in(f'./stream/{name}_{count}/{name}_{count}.pcap')
     IPS = builder.GetIPS()
     print('\n', IPS, '\n')
 
-    stream = StreamManager(f'{name}.pcap')
+    stream = StreamManager(f'{name}_{count}.pcap')
     stream.generate()
     stream.classify(IPS)
     stream.LableAndGroup()
@@ -47,11 +47,14 @@ def make_steam(name):
 
 
 def make_record(name, stream):
+    JSON = dict()
     for kind, group in FLOW_DICT.items():
         pathlib.Path(f'./dataset/{name}/{kind}/0').mkdir(parents=True, exist_ok=True) # safe
         pathlib.Path(f'./dataset/{name}/{kind}/1').mkdir(parents=True, exist_ok=True) # malicious
-        with open(f'./dataset/{name}/{kind}/stream.json', 'w') as file:
-            json.dump(group(stream), file)
+        JSON[kind] = group(stream)
+
+    with open(f'./dataset/{name}/stream.json', 'w') as file:
+        json.dump(JSON, file)
 
 
 def make_dataset(name, stream):
@@ -61,7 +64,7 @@ def make_dataset(name, stream):
             for file in files:
                 pprint.pprint(file)
                 label = int(file['malicious'] >= 1 or file['suspicious'] >= 1)
-                dataset = re.sub('\.pcap', '.dat', file['filename'])
+                dataset = file['filename'].replace('pcap', 'dat')
                 loads(f'./stream/{name}/tmp/{file["filename"]}', f"./dataset/{name}/{kind}/{label}/{dataset}")
 
 
@@ -83,14 +86,21 @@ def dumps(name, byte):
     with open(name, 'ab') as file:
         file.write(byte)
 
-def main():
-    name = os.path.splitext(sys.argv[1])[0]
+def main(index):
+    count = str(index).rjust(3, '0')
+    name = 'wanyong80'
     # name = input('File name: ')
     # name = os.path.splitext(name)[0]
     # print(name)
-    stream = make_steam(name)
+    stream = make_steam(name, count)
+
+    # count = ext[-3:]
+    name = f'wanyong80_{count}'
     make_dataset(name, stream)
 
-main()
+for i in range(21):
+    main(i)
+for i in range(31, 40):
+    main(i)
 # if __name__ == '__mian__':
 #     main()
