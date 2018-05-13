@@ -29,16 +29,18 @@ index = {
     },
 }
 
-for path in os.listdir('./dataset'):
-    for kind in index:
-        for root, _, files in os.walk(f'./dataset/{path}/{kind}/1'):
+for path in os.listdir('./cmp'):
+    for kind in index.keys():
+        for root, _, files in os.walk(f'./cmp/{path}/{kind}/1'):
             for file in files:
+                print(f'{root}/{file}', os.path.getsize(f'{root}/{file}'))
                 if os.path.getsize(f'{root}/{file}'):
-                    index[kind][1].append(f'{root}/{file}')
-        for root, _, files in os.walk(f'./dataset/{path}/{kind}/0'):
+                    index[kind][1].append(os.path.abspath(f'{root}/{file}'))
+        for root, _, files in os.walk(f'./cmp/{path}/{kind}/0'):
             for file in files:
+                print(f'{root}/{file}', os.path.getsize(f'{root}/{file}'))
                 if os.path.getsize(f'{root}/{file}'):
-                    index[kind][0].append(f'{root}/{file}')
+                    index[kind][0].append(os.path.abspath(f'{root}/{file}'))
 
-with open('./dataset/index.json', 'w') as index_file:
-    json.dump(index, index_file)
+    with open(f'./cmp/{path}/index.json', 'w') as index_file:
+        json.dump(index, index_file)

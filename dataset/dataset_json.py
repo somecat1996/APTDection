@@ -30,7 +30,7 @@ def loads(fin, fout):
     extractor = jspcap.Extractor(fin=fin, store=False, auto=False, nofile=True)
     for packet in extractor:
         tcp = packet[jspcap.TCP]
-        dumps(fout, tcp.raw or b'')
+        dumps(fout, tcp.packet.payload or b'')
     #     if jspcap.HTTP in packet:
     #         http = packet[jspcap.HTTP]
     #         if http.body and 'text' in http.header['Content-Type']:

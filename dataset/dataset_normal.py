@@ -10,11 +10,14 @@ import pprint
 import sys
 
 
-def make_dataset():
-    with open(f'./stream.json', 'r') as file:
+def make_dataset(name):
+    count = 0
+    with open(f'../pkt2flow/dataset/{name}/stream.json', 'r') as file:
         labels = json.load(file)
 
     for kind, group in labels.items():
+        if kind != 'Backgroud_PC':
+            continue
         pathlib.Path(f'./cmp/tcppayload/{kind}/0').mkdir(parents=True, exist_ok=True) # safe
         pathlib.Path(f'./cmp/tcppayload/{kind}/1').mkdir(parents=True, exist_ok=True) # malicious
         pathlib.Path(f'./cmp/reassembly/{kind}/0').mkdir(parents=True, exist_ok=True) # safe
@@ -26,11 +29,13 @@ def make_dataset():
 
         for files in group.values():
             for file in files:
-                # pprint.pprint(file)
-                # label = int(file['malicious'] >= 1 or file['suspicious'] >= 1)
-                label = 1
-                dataset = file.replace('.cap', '.dat')
-                loads(f'./newDataSet/{file}', f'{kind}/{label}/{dataset}')
+                if count == 50:
+                    return
+                pprint.pprint(file)
+                label = int(file['malicious'] >= 1 or file['suspicious'] >= 1)
+                dataset = file["filename"].replace('.pcap', '.dat')
+                loads(f'../pkt2flow/stream/{name}/tmp/{file["filename"]}', f'{kind}/{label}/{dataset}')
+                count += 1
 
 
 def loads(fin, fout):
@@ -67,12 +72,12 @@ def dumps(name, byte):
 
 
 def main():
-    # name = os.path.splitext(sys.argv[1])[0]
+    name = os.path.splitext(sys.argv[1])[0]
     # name = input('File name: ')
     # name = os.path.splitext(name)[0]
     # print(name)
     # stream = make_steam(name)
-    make_dataset()
+    make_dataset(name)
 
 
 main()
