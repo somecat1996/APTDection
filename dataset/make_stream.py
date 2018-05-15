@@ -31,8 +31,8 @@ index = {
 
 for root, _, files in os.walk(f'./newDataSet'):
     for i, file in enumerate(files):
-        if i <= 500: continue
-        if i == 550: break
+        if i == 2000: break
+        # if i == 550: break
         index['Backgroud_PC'][1].append(file)
 # for path in os.listdir('./dataset'):
 #     for kind in index:

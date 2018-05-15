@@ -23,6 +23,8 @@ def make_dataset():
         pathlib.Path(f'./cmp/httppacket/{kind}/1').mkdir(parents=True, exist_ok=True) # malicious
         pathlib.Path(f'./cmp/httpv1body/{kind}/0').mkdir(parents=True, exist_ok=True) # safe
         pathlib.Path(f'./cmp/httpv1body/{kind}/1').mkdir(parents=True, exist_ok=True) # malicious
+        pathlib.Path(f'./cmp/httpheader/{kind}/0').mkdir(parents=True, exist_ok=True) # safe
+        pathlib.Path(f'./cmp/httpheader/{kind}/1').mkdir(parents=True, exist_ok=True) # malicious
 
         for files in group.values():
             for file in files:
@@ -38,6 +40,7 @@ def loads(fin, fout):
     fout2 = f'./cmp/reassembly/{fout}'
     fout3 = f'./cmp/httppacket/{fout}'
     fout4 = f'./cmp/httpv1body/{fout}'
+    fout5 = f'./cmp/httpheader/{fout}'
     print(f'\nExtracting file {fin} & dumping to ./cmp/*/{fout}')
     extractor = jspcap.Extractor(fin=fin, store=False, tcp=True, verbose=True, nofile=True, strict=True, extension=False, auto=False)
     for packet in extractor:
@@ -56,6 +59,7 @@ def loads(fin, fout):
                 dumps(fout2, packet.info.raw.packet or b'')
                 dumps(fout3, packet.info.raw.packet or b'')
                 dumps(fout4, packet.info.raw.body or b'')
+                dumps(fout5, packet.info.raw.header or b'')
             else:
                 dumps(fout2, packet.info or b'')
 
