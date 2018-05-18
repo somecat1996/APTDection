@@ -4,18 +4,23 @@
 # NB: fingerprint algorithms are not inclued yet
 
 
+import datetime
 import json
-import jspcap
+import multiprocessing as mp
 import os
 import pathlib
+import time
 import shutil
+import signal
+import sys
 
+import jspcap
 
 from StreamManager3 import *
 from webgraphic import *
 
 
-__all__ = ['prepare']
+__all__ = ['dataset']
 
 
 FLOW_DICT = {
@@ -27,11 +32,17 @@ FLOW_DICT = {
 }
 
 
-def prepare(path, *, mode):
-    """Prepare dataset for CNN.
+_worker_alive = True
+_worker_count = 0
+_worker_mode = 0
+_worker_pool = list()
+
+
+def dataset(*args, mode):
+    """Cook dataset for CNN.
 
     Positional arguments:
-        * path -- str, dataset source path
+        * path -- str, absolute source path
 
     Keyword arguments:
         * mode -- int, preparation mode
@@ -40,7 +51,31 @@ def prepare(path, *, mode):
             |--> 2 -- stage 2, no labeling & do fingerprints
 
     """
-    # extract name
+    signal.signal(signal.SIGUSR1, make_worker)
+    global _worker_pool, _worker_mode
+    _worker_pool = list(args)
+    _worker_mode = int(mode)
+    make_worker()
+
+    while _worker_alive:
+        time.sleep(datetime.datetime.now().second)
+    return make_index()
+
+
+def prepare(path, *, mode):
+    """Prepare dataset for CNN.
+
+    Positional arguments:
+        * path -- str, absolute source path
+
+    Keyword arguments:
+        * mode -- int, preparation mode
+            |--> 0 -- stage 0, do labeling & no fingerprints
+            |--> 1 -- stage 1, do labeling & do fingerprints
+            |--> 2 -- stage 2, no labeling & do fingerprints
+
+    """
+    extract name
     root, file = os.path.split(path)
     name, ext = os.path.splitext(file)
 
@@ -50,11 +85,27 @@ def prepare(path, *, mode):
 
     # make files
     sdict = make_steam(name, mode=mode)         # make stream
+    os.kill(os.getppid(), signal.SIGUSR1)       # send signal
     index = make_dataset(name, labels=sdict)    # make dataset
 
     # aftermath
     os.remove(f'./stream/{name}/{name}.pcap')
     return index
+
+
+def make_worker(signum=None, stack=None):
+    global _worker_count, _worker_alive
+    if _worker_count >= len(_worker_pool):
+        return
+
+    proc = mp.Process(target=prepare, args=(_worker_pool[_worker_count],),
+                kwargs={'mode': _worker_mode})
+    proc.start()
+
+    _worker_count += 1
+    if _worker_count >= len(_worker_pool):
+        proc.join()
+        _worker_alive = False
 
 
 def make_steam(name, *, mode):
