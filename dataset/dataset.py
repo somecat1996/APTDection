@@ -50,6 +50,9 @@ def dataset(*args, mode):
             |--> 1 -- stage 1, do labeling & do fingerprints
             |--> 2 -- stage 2, no labeling & do fingerprints
 
+    Returns:
+        * dict -- dataset index
+
     """
     signal.signal(signal.SIGUSR1, make_worker)
     global _worker_pool, _worker_mode
@@ -74,12 +77,17 @@ def prepare(path, *, mode):
             |--> 1 -- stage 1, do labeling & do fingerprints
             |--> 2 -- stage 2, no labeling & do fingerprints
 
+    Returns:
+        * dict -- dataset index
+
     """
-    extract name
+    # extract name
     root, file = os.path.split(path)
     name, ext = os.path.splitext(file)
 
     # duplicate PCAP file
+    if pathlib.Path(f'./stream/{name}').exists():
+        name = f'{name}_{int(time.time())}'
     pathlib.Path(f'./stream/{name}').mkdir(parents=True, exist_ok=True)
     shutil.copy(path, f'./stream/{name}/{name}.pcap')
 
@@ -89,7 +97,8 @@ def prepare(path, *, mode):
     index = make_dataset(name, labels=sdict)    # make dataset
 
     # aftermath
-    os.remove(f'./stream/{name}/{name}.pcap')
+    if path != f'./stream/{name}/{name}.pcap'
+        os.remove(f'./stream/{name}/{name}.pcap')
     return index
 
 
@@ -119,6 +128,9 @@ def make_steam(name, *, mode):
             |--> 0 -- stage 0, do labeling & no fingerprints
             |--> 1 -- stage 1, do labeling & do fingerprints
             |--> 2 -- stage 2, no labeling & do fingerprints
+
+    Returns:
+        * dict -- dataset labels
 
     """
     # Web Graphic
@@ -155,6 +167,12 @@ def make_dataset(name, *, labels=None):
 
     Positional arguments:
         * name -- str, dataset source name
+
+    Keyword arguments:
+        * labels -- dict, dataset labels
+
+    Returns:
+        * dict -- dataset index
 
     """
     # load JSON file
@@ -228,3 +246,9 @@ def make_index():
     with open('./dataset/index.json', 'w') as index_file:
         json.dump(index, index_file)
     return index
+
+
+if __name__ == '__main__':
+    modec = int(sys.argv[1])
+    paths = sys.argv[2:]
+    dataset(*paths, mode=modec)
