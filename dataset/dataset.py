@@ -16,8 +16,8 @@ import sys
 
 import jspcap
 
-from StreamManager3 import *
-from webgraphic import *
+from MaliciousApplicationDetector.StreamManager.StreamManager4 import *
+from MaliciousApplicationDetector.webgraphic.webgraphic import *
 
 
 __all__ = ['dataset']
@@ -97,7 +97,7 @@ def prepare(path, *, mode):
     index = make_dataset(name, labels=sdict)    # make dataset
 
     # aftermath
-    if path != f'./stream/{name}/{name}.pcap'
+    if path != f'./stream/{name}/{name}.pcap':
         os.remove(f'./stream/{name}/{name}.pcap')
     return index
 

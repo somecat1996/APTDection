@@ -1,6 +1,7 @@
 import requests
 import random
 import time
+import os
 from urllib import parse
 class virustotal:
     def __init__(self):
@@ -23,7 +24,8 @@ class virustotal:
     "Opera/9.80 (Macintosh; Intel Mac OS X 10.6.8; U; fr) Presto/2.9.168 Version/11.52",
 ]
         self.ip=[]
-        f=open("proxies3.txt","rb")
+        path=os.getcwd()
+        f=open("/home/ubuntu/MaliciousApplicationDetector/DataLabeler/proxies3.txt","rb")
         line=f.readline()
         count=0
         while line:
