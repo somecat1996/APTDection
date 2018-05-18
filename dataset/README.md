@@ -15,8 +15,9 @@ dataset.dataset(*args, mode)
 
  - Keyword arguments:
     * `mode` -- `int`, preparation mode
-    	| MODE | DESCRIPTION | LABELING | FINGERPRINTS |
-    	| :--: | :---------: | :------: | :----------: |
+    
+        | MODE | DESCRIPTION | LABELING | FINGERPRINTS |
+        | :--: | :---------: | :------: | :----------: |
         | `0`  |   stage 0   |   True   |    False     |
         | `1`  |   stage 1   |   True   |     True     |
         | `2`  |   stage 2   |  False   |     True     |
