@@ -219,5 +219,8 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+DataPath/*
+DataPath2/*
+
 
 # End of https://www.gitignore.io/api/macos,python,windows,pycharm
