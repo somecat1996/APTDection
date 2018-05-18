@@ -1,0 +1,24 @@
+{
+	ip+ua : [ 
+				{
+					filename: str,
+					type : int,
+					ismalicious: bool,
+				},
+				... 
+			],
+	...
+}
+
+{
+	type : {
+				0 : [filename, ...],
+				1 : [filename, ...],
+			},
+	...
+}
+
+
+1. 初始训练阶段
+2. 迁移学习阶段
+3. 反馈学习阶段
