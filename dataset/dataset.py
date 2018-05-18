@@ -1,65 +1,179 @@
 # -*- coding: utf-8 -*-
 
 
+# NB: fingerprint algorithms are not inclued yet
+
+
 import json
 import jspcap
 import os
 import pathlib
-import pprint
 import shutil
-import sys
 
 
-def make_dataset(name):
-    shutil.copy(f'../pkt2flow/dataset/{name}/stream.json', f'../pkt2flow/stream/{name}/stream.json')
-    with open(f'../pkt2flow/stream/{name}/stream.json', 'r') as file:
-        labels = json.load(file)
+from StreamManager3 import *
+from webgraphic import *
+
+
+__all__ = ['prepare']
+
+
+FLOW_DICT = {
+    'Browser_PC' : lambda stream: stream.GetBrowserGroup_PC(),
+    'Background_PC' : lambda stream: stream.GetBackgroudGroup_PC(),
+    'Browser_Phone' : lambda stream: stream.GetBrowserGroup_Phone(),
+    'Background_Phone' : lambda stream: stream.GetBackgroudGroup_Phone(),
+    'Suspicious' : lambda stream: stream.GetSuspicious(),
+}
+
+
+def prepare(path, *, mode):
+    """Prepare dataset for CNN.
+
+    Positional arguments:
+        * path -- str, dataset source path
+
+    Keyword arguments:
+        * mode -- int, preparation mode
+            |--> 0 -- stage 0, do labeling & no fingerprints
+            |--> 1 -- stage 1, do labeling & do fingerprints
+            |--> 2 -- stage 2, no labeling & do fingerprints
+
+    """
+    # extract name
+    root, file = os.path.split(path)
+    name, ext = os.path.splitext(file)
+
+    # duplicate PCAP file
+    pathlib.Path(f'./stream/{name}').mkdir(parents=True, exist_ok=True)
+    shutil.copy(path, f'./stream/{name}/{name}.pcap')
+
+    # make files
+    sdict = make_steam(name, mode=mode)         # make stream
+    index = make_dataset(name, labels=sdict)    # make dataset
+
+    # aftermath
+    os.remove(f'./stream/{name}/{name}.pcap')
+    return index
+
+
+def make_steam(name, *, mode):
+    """Extract TCP streams.
+
+    Positional arguments:
+        * name -- str, dataset source name
+
+    Keyword arguments:
+        * mode -- int, preparation mode
+            |--> 0 -- stage 0, do labeling & no fingerprints
+            |--> 1 -- stage 1, do labeling & do fingerprints
+            |--> 2 -- stage 2, no labeling & do fingerprints
+
+    """
+    # Web Graphic
+    builder = webgraphic()
+    builder.read_in(f'./stream/{name}/{name}.pcap')
+    IPS = builder.GetIPS()
+
+    # Stream Manager
+    stream = StreamManager(f'{name}.pcap')
+    stream.generate()
+    stream.classify(IPS)
+    if mode == 2:   # do lebeling
+        stream.Group()
+    else:           # no labeling
+        stream.labelGroups()
+
+    # dump stream.json
+    return make_record(name, stream)
+
+
+def make_record(name, stream):
+    """Dump steam.json."""
+    record = dict()
+    for kind, group in FLOW_DICT.items():
+        record[kind] = group(stream)
+
+    with open(f'./stream/{name}/stream.json', 'w') as json_file:
+        json.dump(record, json_file)
+    return record
+
+
+def make_dataset(name, *, labels=None):
+    """Make dataset.
+
+    Positional arguments:
+        * name -- str, dataset source name
+
+    """
+    # load JSON file
+    if labels is None:
+        with open(f'./stream/{name}/strea.json', 'r') as file:
+            labels = json.load(file)
     
     for kind, group in labels.items():
-        pathlib.Path(f'../dataset/{name}/{kind}/0').mkdir(parents=True, exist_ok=True) # safe
-        pathlib.Path(f'../dataset/{name}/{kind}/1').mkdir(parents=True, exist_ok=True) # malicious
+        # only make dataset for type Background PC
+        if kind != 'Background_PC':     continue
+
+        # make directory
+        pathlib.Path(f'./dataset/{name}/{kind}/0').mkdir(parents=True, exist_ok=True) # safe
+        pathlib.Path(f'./dataset/{name}/{kind}/1').mkdir(parents=True, exist_ok=True) # malicious
         
+        # enumerate files
         for files in group.values():
             for file in files:
-                pprint.pprint(file)
-                label = int(file['malicious'] >= 1 or file['suspicious'] >= 1)
-                dataset = file['filename'].replace('pcap', 'dat')
-                loads(f'../pkt2flow/stream/{name}/tmp/{file["filename"]}', f"../dataset/{name}/{kind}/{label}/{dataset}")
+                label = int(file['ismalicious'])
+                srcfile = file["filename"]
+                dataset = file['filename'].replace('.pcap', '.dat')
+                loads(f'./stream{name}/tmp/{srcfile}', f"./dataset/{name}/{kind}/{label}/{dataset}")
+
+    # dump index.json
+    return make_index()
 
 
 def loads(fin, fout):
-    print(f'Extracting file {fin} & dumping to {fout}')
+    """Extract PCAP file."""
+    # empty existing file
     os.system(f'> {fout}')
 
-    extractor = jspcap.Extractor(fin=fin, store=False, tcp=True, verbose=True, nofile=True, strict=True, extension=False)
-    # for packet in extractor:
-    #     tcp = packet[jspcap.TCP]
-    #     dumps(fout, tcp.packet.payload or b'')
-    #     if jspcap.HTTP in packet:
-    #         http = packet[jspcap.HTTP]
-    #         if http.body and 'text' in http.header['Content-Type']:
-    #             dumps(fout, http.raw.body)
+    # extraction procedure
+    extractor = jspcap.extract(fin=fin, store=False, nofile=True, 
+                                tcp=True, strict=True, extension=False)
+
+    # fetch reassembly
     for reassembly in extractor.reassembly.tcp:
         for packet in reassembly.packets:
             if jspcap.HTTP in packet.protochain:
                 dumps(fout, packet.info.raw.header or b'')
-    print()
 
 
 def dumps(name, byte):
-    # print(f'Writing to file {name}')
+    """Dump dataset."""
     with open(name, 'ab') as file:
         file.write(byte)
 
-def main():
-    name = os.path.splitext(sys.argv[1])[0]
-    # name = input('File name: ')
-    # name = os.path.splitext(name)[0]
-    # print(name)
-    # stream = make_steam(name)
-    make_dataset(name)
-    print(f'Dataset readdy at ../dataset/{name}.')
 
-main()
-# if __name__ == '__mian__':
-#     main()
+def make_index():
+    """Dump index.json."""
+    index = {
+        'Browser_PC' : {0: list(), 1: list()},
+        'Background_PC' : {0: list(), 1: list()},
+        'Browser_Phone' : {0: list(), 1: list()},
+        'Background_Phone' : {0: list(), 1: list()},
+        'Suspicious' : {0: list(), 1: list()},
+    }
+
+    for path in os.listdir('./dataset'):
+        for kind in index:
+            for root, _, files in os.walk(f'./dataset/{path}/{kind}/1'):
+                for file in files:
+                    if os.path.getsize(f'{root}/{file}'):
+                        index[kind][1].append(f'{root}/{file}')
+            for root, _, files in os.walk(f'./dataset/{path}/{kind}/0'):
+                for file in files:
+                    if os.path.getsize(f'{root}/{file}'):
+                        index[kind][0].append(f'{root}/{file}')
+
+    with open('./dataset/index.json', 'w') as index_file:
+        json.dump(index, index_file)
+    return index
