@@ -34,7 +34,7 @@ dataset.dataset(*args, mode)
 ### JSON Interface
 
 ```python
-dataset.make_dataset(name, *, labels=None, overwrite=True)
+dataset.make_dataset(name, *, labels=None, overwrite=True, fingerprint=False)
 ```
 
 ##### Make dataset.
@@ -45,6 +45,7 @@ dataset.make_dataset(name, *, labels=None, overwrite=True)
  - Keyword arguments:
     * `labels` -- `dict`, dataset labels
     * `overwrite` -- `bool`, if overwrite existing files
+    * `fingerprint` -- `bool`, if generate and/or update fingerprints
 
  - Returns:
     * `dict` -- dataset index
