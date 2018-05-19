@@ -1,6 +1,6 @@
 from scapy.all import *
 import re
-from LevenshteinDistance import *
+from fingerprints.LevenshteinDistance import *
 
 class Fingerprint():
     """
