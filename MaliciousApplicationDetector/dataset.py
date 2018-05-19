@@ -4,11 +4,12 @@
 # NB: fingerprint algorithms are not inclued yet
 
 
-import datetime
+import datetime as dt
 import json
 import multiprocessing as mp
 import os
 import pathlib
+import random
 import time
 import shutil
 import signal
@@ -32,10 +33,10 @@ FLOW_DICT = {
 }
 
 
-_worker_alive = True
+_worker_alive = list()
 _worker_count = 0
 _worker_mode = 0
-_worker_pool = list()
+_worker_pool = tuple()
 
 
 def dataset(*args, mode):
@@ -54,39 +55,37 @@ def dataset(*args, mode):
         * dict -- dataset index
 
     """
+    global _worker_alive, _worker_pool, _worker_mode
+
+    # set signal handler
     signal.signal(signal.SIGUSR1, make_worker)
-    global _worker_pool, _worker_mode
-    _worker_pool = list(args)
+
+    # initialise macros
+    _worker_alive = mp.Array('I', [ True for _ in args ])
+    _worker_pool = tuple(args)
     _worker_mode = int(mode)
+
+    # start process
     make_worker()
 
-    while _worker_alive:
-        time.sleep(datetime.datetime.now().second)
+    # check status
+    while any(_worker_alive):
+        time.sleep(random.randint(0, dt.datetime.now().second))
+
+    # dump index.json
     return make_index()
 
 
-def prepare(path, *, mode):
-    """Prepare dataset for CNN.
+def worker(path, *, mode, _count=0):
+    """Prepare dataset for CNN."""
+    global _worker_alive
 
-    Positional arguments:
-        * path -- str, absolute source path
-
-    Keyword arguments:
-        * mode -- int, preparation mode
-            |--> 0 -- stage 0, do labeling & no fingerprints
-            |--> 1 -- stage 1, do labeling & do fingerprints
-            |--> 2 -- stage 2, no labeling & do fingerprints
-
-    Returns:
-        * dict -- dataset index
-
-    """
     # extract name
     root, file = os.path.split(path)
     name, ext = os.path.splitext(file)
 
     # duplicate PCAP file
-    if pathlib.Path(f'./stream/{name}').exists():
+    while pathlib.Path(f'./stream/{name}').exists():
         name = f'{name}_{int(time.time())}'
     pathlib.Path(f'./stream/{name}').mkdir(parents=True, exist_ok=True)
     shutil.copy(path, f'./stream/{name}/{name}.pcap')
@@ -99,22 +98,25 @@ def prepare(path, *, mode):
     # aftermath
     if path != f'./stream/{name}/{name}.pcap':
         os.remove(f'./stream/{name}/{name}.pcap')
-    return index
+
+    # update status
+    _worker_alive[_count] = False
 
 
 def make_worker(signum=None, stack=None):
+    """Create process."""
     global _worker_count, _worker_alive
+
+    # check boundary
     if _worker_count >= len(_worker_pool):
         return
 
-    proc = mp.Process(target=prepare, args=(_worker_pool[_worker_count],),
-                kwargs={'mode': _worker_mode})
-    proc.start()
-
+    # create process
+    mp.Process(target=worker, args=(_worker_pool[_worker_count],),
+                kwargs={'mode': _worker_mode, '_count': _worker_count}).start()
+    
+    # ascend count
     _worker_count += 1
-    if _worker_count >= len(_worker_pool):
-        proc.join()
-        _worker_alive = False
 
 
 def make_steam(name, *, mode):
@@ -162,7 +164,7 @@ def make_record(name, stream):
     return record
 
 
-def make_dataset(name, *, labels=None):
+def make_dataset(name, *, labels=None, overwrite=True):
     """Make dataset.
 
     Positional arguments:
@@ -170,6 +172,7 @@ def make_dataset(name, *, labels=None):
 
     Keyword arguments:
         * labels -- dict, dataset labels
+        * overwrite -- bool, if overwrite existing files
 
     Returns:
         * dict -- dataset index
@@ -194,16 +197,18 @@ def make_dataset(name, *, labels=None):
                 label = int(file['ismalicious'])
                 srcfile = file["filename"]
                 dataset = file['filename'].replace('.pcap', '.dat')
-                loads(f'./stream{name}/tmp/{srcfile}', f"./dataset/{name}/{kind}/{label}/{dataset}")
+                loads(f'./stream{name}/tmp/{srcfile}', f"./dataset/{name}/{kind}/{label}/{dataset}", remove=overwrite)
 
     # dump index.json
     return make_index()
 
 
-def loads(fin, fout):
+def loads(fin, fout, *, remove):
     """Extract PCAP file."""
-    # empty existing file
-    os.system(f'> {fout}')
+    # check if file exists
+    if pathlib.Path(fout).exists():
+        if remove:  os.remove(fout)
+        else:       return
 
     # extraction procedure
     extractor = jspcap.extract(fin=fin, store=False, nofile=True, 
