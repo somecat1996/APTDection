@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
 
 
-# NB: fingerprint algorithms are not inclued yet
-
-
 import datetime as dt
 import json
 import multiprocessing as mp
@@ -17,6 +14,7 @@ import sys
 
 import jspcap
 
+from fingerprints.fingerprintsManager import *
 from StreamManager.StreamManager4 import *
 from webgraphic.webgraphic import *
 
@@ -114,7 +112,7 @@ def make_worker(signum=None, stack=None):
     # create process
     mp.Process(target=worker, args=(_worker_pool[_worker_count],),
                 kwargs={'mode': _worker_mode, '_count': _worker_count}).start()
-    
+
     # ascend count
     _worker_count += 1
 
@@ -150,21 +148,34 @@ def make_steam(name, *, mode):
         stream.labelGroups()
 
     # dump stream.json
-    return make_record(name, stream)
+    return make_record(name, stream, mode=mode)
 
 
-def make_record(name, stream):
+def make_record(name, stream, *, mode):
     """Dump steam.json."""
+    # load labels
     record = dict()
     for kind, group in FLOW_DICT.items():
         record[kind] = group(stream)
 
+    # make fingerprints
+    for label in record.values():
+        make_fingerprint(name, label, mode=mode)
+
+    # dump stream.json
     with open(f'./stream/{name}/stream.json', 'w') as json_file:
         json.dump(record, json_file)
     return record
 
 
-def make_dataset(name, *, labels=None, overwrite=True):
+def make_fingerprint(name, label, *, mode):
+    """Make fingerprint."""
+    if mode != 0:
+        fp = fingerprintManager()
+        fp.GenerateAndUpdate(f'./stream/{name}/tmp', label)
+
+
+def make_dataset(name, *, labels=None, overwrite=True, fingerprint=False):
     """Make dataset.
 
     Positional arguments:
@@ -173,6 +184,7 @@ def make_dataset(name, *, labels=None, overwrite=True):
     Keyword arguments:
         * labels -- dict, dataset labels
         * overwrite -- bool, if overwrite existing files
+        * fingerprint -- bool, if generate and/or update fingerprints
 
     Returns:
         * dict -- dataset index
@@ -182,15 +194,19 @@ def make_dataset(name, *, labels=None, overwrite=True):
     if labels is None:
         with open(f'./stream/{name}/strea.json', 'r') as file:
             labels = json.load(file)
-    
+
     for kind, group in labels.items():
         # only make dataset for type Background PC
         if kind != 'Background_PC':     continue
 
+        # make fingerprints
+        if fingerprint:
+            make_fingerprint(name, group, mode=-1)
+
         # make directory
         pathlib.Path(f'./dataset/{name}/{kind}/0').mkdir(parents=True, exist_ok=True) # safe
         pathlib.Path(f'./dataset/{name}/{kind}/1').mkdir(parents=True, exist_ok=True) # malicious
-        
+
         # enumerate files
         for files in group.values():
             for file in files:
@@ -211,7 +227,7 @@ def loads(fin, fout, *, remove):
         else:       return
 
     # extraction procedure
-    extractor = jspcap.extract(fin=fin, store=False, nofile=True, 
+    extractor = jspcap.extract(fin=fin, store=False, nofile=True,
                                 tcp=True, strict=True, extension=False)
 
     # fetch reassembly
@@ -229,6 +245,7 @@ def dumps(name, byte):
 
 def make_index():
     """Dump index.json."""
+    # initialise index
     index = {
         'Browser_PC' : {0: list(), 1: list()},
         'Background_PC' : {0: list(), 1: list()},
@@ -237,6 +254,7 @@ def make_index():
         'Suspicious' : {0: list(), 1: list()},
     }
 
+    # walk dataset
     for path in os.listdir('./dataset'):
         for kind in index:
             for root, _, files in os.walk(f'./dataset/{path}/{kind}/1'):
@@ -248,6 +266,7 @@ def make_index():
                     if os.path.getsize(f'{root}/{file}'):
                         index[kind][0].append(f'{root}/{file}')
 
+    # dump index.json
     with open('./dataset/index.json', 'w') as index_file:
         json.dump(index, index_file)
     return index
