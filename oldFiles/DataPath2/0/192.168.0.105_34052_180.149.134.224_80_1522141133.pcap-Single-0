@@ -1,9 +1,0 @@
-GET /public/aj_relationship.php?fuid=2152064750&callback=STK_15221411336055 HTTP/1.1
-Host: widget.weibo.com
-Connection: keep-alive
-User-Agent: Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36
-Accept: */*
-Referer: http://mcar.cc/thread-30926-1-1.html
-Accept-Encoding: gzip, deflate
-Accept-Language: zh-CN,zh;q=0.9
-Cookie: SINAGLOBAL=5843300588894.636.1489841736866; SUB=_2AkMvqKvZf8NxqwJRmP4TzmrmbIx2zgnEieKZ9FoCJRMxHRl-yT83qhYDtRBdp1yh0-L0wDulT-ZJkslXhWFJfQ..; SUBP=0033WrSXqPxfM72-Ws9jqgMF55529P9D9W52iBFfkR.MOKRgI5aoeqDs; UM_distinctid=1624637c3087d-00554627843c0d-7e5b6107-100200-1624637c309608; ULV=1522112751575:20:4:1:596825475704.1392.1522112751526:1521596482755; _s_tentry=mcar.cc; UOR=book.51cto.com,widget.weibo
