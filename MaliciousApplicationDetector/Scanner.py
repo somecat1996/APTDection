@@ -6,10 +6,10 @@ import json
 import sys
 
 
-# global DataPath
-# global ModelPath
-# global mode
-# global T
+global DataPath
+global ModelPath
+global mode
+global T
 
 DataPath = "./DataPath/"
 ModelPath = "./ModelPath/"
@@ -458,6 +458,6 @@ while 1:
             tmp = sys.stdin.readline().strip()
         DataModel = tmp
     elif UserInput == 's':
-        print("Data Path: %s") % DataPath
-        print("Model Path: %s") % ModelPath
-        print("Type: %s") % T
+        print("Data Path: "+DataPath)
+        print("Model Path: "+ModelPath)
+        print("Type: "+T)

@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b9fab451-4e2e-4d78-8e53-8e573f9683e8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaliciousApplicationDetector/Scanner.py" afterPath="$PROJECT_DIR$/MaliciousApplicationDetector/Scanner.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -54,15 +53,15 @@
       <file leaf-file-name="Scanner.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MaliciousApplicationDetector/Scanner.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="2" selection-end-line="11" selection-end-column="10" />
+            <state relative-caret-position="326">
+              <caret line="462" column="24" lean-forward="false" selection-start-line="462" selection-start-column="24" selection-end-line="462" selection-end-column="24" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
-                <element signature="e#1160#1238#0" expanded="false" />
-                <element signature="e#1276#2205#0" expanded="false" />
-                <element signature="e#2256#4548#0" expanded="false" />
-                <element signature="e#4600#6877#0" expanded="false" />
-                <element signature="e#6928#9631#0" expanded="false" />
+                <element signature="e#1152#1230#0" expanded="false" />
+                <element signature="e#1268#2197#0" expanded="false" />
+                <element signature="e#2248#4540#0" expanded="false" />
+                <element signature="e#4592#6869#0" expanded="false" />
+                <element signature="e#6920#9623#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -933,15 +932,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MaliciousApplicationDetector/Scanner.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="2" selection-end-line="11" selection-end-column="10" />
+        <state relative-caret-position="326">
+          <caret line="462" column="24" lean-forward="false" selection-start-line="462" selection-start-column="24" selection-end-line="462" selection-end-column="24" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
-            <element signature="e#1160#1238#0" expanded="false" />
-            <element signature="e#1276#2205#0" expanded="false" />
-            <element signature="e#2256#4548#0" expanded="false" />
-            <element signature="e#4600#6877#0" expanded="false" />
-            <element signature="e#6928#9631#0" expanded="false" />
+            <element signature="e#1152#1230#0" expanded="false" />
+            <element signature="e#1268#2197#0" expanded="false" />
+            <element signature="e#2248#4540#0" expanded="false" />
+            <element signature="e#4592#6869#0" expanded="false" />
+            <element signature="e#6920#9623#0" expanded="false" />
           </folding>
         </state>
       </provider>
