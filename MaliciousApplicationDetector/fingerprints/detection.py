@@ -1,5 +1,5 @@
 import glob
-from fingerprint import FingerprintManager
+from fingerprints.fingerprint import FingerprintManager
 
 class DetectionModule():
     """

@@ -1,5 +1,5 @@
-from fingerprint import *
-from detection import *
+from fingerprints.fingerprint import *
+from fingerprints.detection import *
 
 f=open("../stream/test3/test3.txt","r")
 line=f.readline()
