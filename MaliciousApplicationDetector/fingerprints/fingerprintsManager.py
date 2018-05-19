@@ -1,16 +1,25 @@
-from fingerprint import *
-from detection import *
+from fingerprints.fingerprint import *
+from fingerprints.detection import *
+import pickle
+import os
 
 class fingerprintManager:
     def __init__(self):
+        self.filepath="./fingerprints/fingerprints"
         self.fingerprints={}
         self.detector=DetectionModule()
+        if os.path.exists(self.filepath):
+            with open(self.filepath,"r") as f:
+                self.fingerprints=pickle.load(f)
+        f.close()
 
     def GenerateAndUpdate(self,stream_path,groups):
         Gen=FingerprintGenerator(stream_path)
         fingerprints=Gen.genrate(groups)
         self.add_update(fingerprints)
-
+        with open(self.filepath,"w") as f:
+            pickle.dump(self.fingerprints,f)
+        f.close()
 
 
     def Identify(self,stream_path,groups):
@@ -31,7 +40,7 @@ class fingerprintManager:
 
 
     def add_update(self,newfingerprints):
-        print("updating fingerprints ......")
+        print("Updating fingerprints ......")
         for app in newfingerprints:
             flag=False
             for old_app in self.fingerprints:
