@@ -1,0 +1,10 @@
+GET /forum.php?mod=ajax&action=forumchecknew&fid=129&time=1522141756&inajax=yes HTTP/1.1
+Host: mcar.cc
+Connection: keep-alive
+User-Agent: Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36
+X-Requested-With: XMLHttpRequest
+Accept: */*
+Referer: http://mcar.cc/forum-oumeijuji-1.html
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: __cfduid=d1b448dde8ad291d4293d8be023d887ca1498275951; bdshare_firstime=1510991862045; BRFN_2132_visitedfid=129D121; BRFN_2132_saltkey=mrPzt265; BRFN_2132_lastvisit=1522038111; BRFN_2132_st_t=0%7C1522141756%7C804981d8475ceedba9490d8d3359f784; BRFN_2132_forum_lastvisit=D_129_1522141756; BRFN_2132_sendmail=1; Hm_lvt_0b784c51f644f59deba6e333b56c5c72=1522040928,1522113995,

@@ -1,0 +1,6 @@
+GET /cpro/exp/closead/img/bg_rb.png HTTP/1.1
+Host: cpro.baidustatic.com
+Connection: keep-alive
+User-Agent: Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36
+Accept: image/webp,image/apng,image/*,*/*;q=0.8
+Referer: http://pos.baidu.com/s?hei=200&wid=680&di=u3374178&ltu=http%3A%2F%2Fwww.jb51.net%2Farticle%2F69111.htm&dc=3&pcs=1349x662&ari=2&col=zh-CN&ps=915x159&cpl=4&exps=111000&ant=0&chi=1&cec=GBK&drs=1&dtm=HTML_POST&dis=0&cdo=-1&ccd=24&pss=1349x3251&psr=1366x768&par=1366x728&cja=false&cce=true&cmi=5&tcn=1522140927&cfv=0&ti=Python%E5%86%99%E5%85%A5CSV%E6%96%87%E4%BB%B6%E7%9A%84%E6%96%B9%E6%B3%95_python_%E8%84%9A%E6%9C%AC%E4%B9%8B%E5%AE%B6&pis=-1x-1&tlm=1522140926&ltr=http%3A%2F%2Fwww.jb51.net%2Farticle%2F136789.htm&d
