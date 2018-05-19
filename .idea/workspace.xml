@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="b9fab451-4e2e-4d78-8e53-8e573f9683e8" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaliciousApplicationDetector/fingerprints/fingerprint.py" afterPath="$PROJECT_DIR$/MaliciousApplicationDetector/fingerprints/fingerprint.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaliciousApplicationDetector/Scanner.py" afterPath="$PROJECT_DIR$/MaliciousApplicationDetector/Scanner.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -51,39 +51,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Scanner.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Scanner.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MaliciousApplicationDetector/Scanner.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="651">
-              <caret line="461" column="43" lean-forward="false" selection-start-line="461" selection-start-column="43" selection-end-line="461" selection-end-column="43" />
+            <state relative-caret-position="54">
+              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="2" selection-end-line="11" selection-end-column="10" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
-                <element signature="e#1152#1230#0" expanded="false" />
-                <element signature="e#1268#2197#0" expanded="false" />
-                <element signature="e#2248#4540#0" expanded="false" />
-                <element signature="e#4592#6869#0" expanded="false" />
-                <element signature="e#6920#9623#0" expanded="false" />
+                <element signature="e#1160#1238#0" expanded="false" />
+                <element signature="e#1276#2205#0" expanded="false" />
+                <element signature="e#2256#4548#0" expanded="false" />
+                <element signature="e#4600#6877#0" expanded="false" />
+                <element signature="e#6928#9631#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fingerprint.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/MaliciousApplicationDetector/fingerprints/fingerprint.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="23" lean-forward="true" selection-start-line="0" selection-start-column="23" selection-end-line="0" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Predict_3.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Predict_3.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6289">
-              <caret line="259" column="41" lean-forward="false" selection-start-line="259" selection-start-column="41" selection-end-line="262" selection-end-column="60" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -156,8 +136,10 @@
         <option value="$PROJECT_DIR$/MaliciousApplicationDetector/test.py" />
         <option value="$PROJECT_DIR$/MaliciousApplicationDetector/testrun.py" />
         <option value="$PROJECT_DIR$/Scanner.py" />
-        <option value="$PROJECT_DIR$/MaliciousApplicationDetector/Scanner.py" />
         <option value="$PROJECT_DIR$/MaliciousApplicationDetector/fingerprints/fingerprint.py" />
+        <option value="$PROJECT_DIR$/MaliciousApplicationDetector/fingerprints/detection.py" />
+        <option value="$PROJECT_DIR$/MaliciousApplicationDetector/fingerprints/test_fingerprint.py" />
+        <option value="$PROJECT_DIR$/MaliciousApplicationDetector/Scanner.py" />
       </list>
     </option>
   </component>
@@ -596,27 +578,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/oldFiles/nice.pcap-Single.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/oldFiles/DataPath/nice.pcap-Single-1">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="8" column="42" lean-forward="false" selection-start-line="8" selection-start-column="42" selection-end-line="8" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CNN/InputData.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="15" column="30" lean-forward="true" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/CNN/NeutralNetwork.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="215">
@@ -926,18 +887,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MaliciousApplicationDetector/Scanner.py">
+    <entry file="file://$PROJECT_DIR$/MaliciousApplicationDetector/fingerprints/detection.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="651">
-          <caret line="461" column="43" lean-forward="false" selection-start-line="461" selection-start-column="43" selection-end-line="461" selection-end-column="43" />
+        <state relative-caret-position="96">
+          <caret line="3" column="24" lean-forward="true" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="24" />
           <folding>
-            <element signature="e#0#21#0" expanded="true" />
-            <element signature="e#1152#1230#0" expanded="false" />
-            <element signature="e#1268#2197#0" expanded="false" />
-            <element signature="e#2248#4540#0" expanded="false" />
-            <element signature="e#4592#6869#0" expanded="false" />
-            <element signature="e#6920#9623#0" expanded="false" />
+            <element signature="e#0#11#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MaliciousApplicationDetector/fingerprints/fingerprint.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="23" lean-forward="true" selection-start-line="0" selection-start-column="23" selection-end-line="0" selection-end-column="23" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -949,11 +913,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MaliciousApplicationDetector/fingerprints/fingerprint.py">
+    <entry file="file://$PROJECT_DIR$/MaliciousApplicationDetector/fingerprints/LevenshteinDistance.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="23" lean-forward="true" selection-start-line="0" selection-start-column="23" selection-end-line="0" selection-end-column="23" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MaliciousApplicationDetector/fingerprints/test_fingerprint.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-492">
+          <caret line="1" column="36" lean-forward="true" selection-start-line="1" selection-start-column="36" selection-end-line="1" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MaliciousApplicationDetector/Scanner.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="2" selection-end-line="11" selection-end-column="10" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#1160#1238#0" expanded="false" />
+            <element signature="e#1276#2205#0" expanded="false" />
+            <element signature="e#2256#4548#0" expanded="false" />
+            <element signature="e#4600#6877#0" expanded="false" />
+            <element signature="e#6928#9631#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

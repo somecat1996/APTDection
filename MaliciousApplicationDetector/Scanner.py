@@ -6,10 +6,10 @@ import json
 import sys
 
 
-global DataPath
-global ModelPath
-global mode
-global T
+# global DataPath
+# global ModelPath
+# global mode
+# global T
 
 DataPath = "./DataPath/"
 ModelPath = "./ModelPath/"
