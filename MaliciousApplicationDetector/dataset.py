@@ -256,13 +256,14 @@ def make_dataset(name, labels=None, *, mode, overwrite=True, fingerprint=False):
 
 def loads(fin, fout, *, remove):
     """Extract PCAP file."""
+    print(f'Extracting {fin} & dumping to {fout}...')
     # check if file exists
     if pathlib.Path(fout).exists():
         if remove:  os.remove(fout)
         else:       return
 
     # extraction procedure
-    extractor = jspcap.extract(fin=fin, store=False, nofile=True,
+    extractor = jspcap.extract(fin=fin, store=False, nofile=True, verbose=True,
                                 tcp=True, strict=True, extension=False)
 
     # fetch reassembly
