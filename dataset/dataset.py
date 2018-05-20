@@ -167,9 +167,8 @@ def make_steam(name, *, mode):
     stream = StreamManager(make_path(f'stream/{name}/{name}.pcap'))
     stream.generate()
     stream.classify(IPS)
-    if mode == 2:   # no lebeling
-        stream.Group()
-    else:           # do labeling
+    stream.Group()
+    if mode != 2:
         stream.labelGroups()
     print(f'Finished labeling for {name}...')
 
