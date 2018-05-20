@@ -343,6 +343,7 @@ def main(unused):
     elif mode == "retrain":
         files = [os.path.join(DataPath, x) for x in os.listdir(DataPath) if os.path.isfile(DataPath + x)]
         index = dataset(*files, mode=1)
+        print(index)
         packets_train, labels_train = ReadTrainData2(index, T)
         tensors_to_log = {"probabilities": "softmax_tensor"}
         logging_hook = tf.train.LoggingTensorHook(
