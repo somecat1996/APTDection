@@ -113,7 +113,7 @@ def worker(path, *, mode, _count=0):
     # print(f'[{time.time()}] Worker B_{_count} @ {path} done')
 
     # update status
-    if mode == 2:   _worker_num -= 1
+    if mode == 2:   _worker_num.value -= 1
     _worker_alive[_count] = False
 
 
@@ -131,7 +131,7 @@ def make_worker(signum=None, stack=None):
         return
 
     # wait process
-    while int(_worker_num) >= _worker_max:
+    while _worker_num.value >= _worker_max:
         time.sleep(random.randint(0, dt.datetime.now().second))
 
     # create process
@@ -140,7 +140,7 @@ def make_worker(signum=None, stack=None):
 
     # ascend count
     _worker_count += 1
-    if _worker_mode == 2:   _worker_num += 1
+    if _worker_mode == 2:   _worker_num.value += 1
 
 
 def make_steam(name, *, mode):
