@@ -6,9 +6,8 @@ from DataLabeler.DataLabeler import Datalabler
 class StreamManager:
     def __init__(self, path):
         root, file = os.path.split(path)
-        name, ext = os.path.splitext(file)
         self.filename = file
-        self.datapath = root + name
+        self.datapath = root
         self.browser_groups_PC = {}
         self.backgroud_groups_PC = {}
         self.browser_groups_Phone = {}
