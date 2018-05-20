@@ -457,7 +457,7 @@ while 1:
         DataPath = tmp
     elif UserInput == 'mm':
         print("Input an exit folder.")
-        DataModel = sys.stdin.readline().strip()
+        ModelPath = sys.stdin.readline().strip()
     elif UserInput == 's':
         print("Data Path: "+DataPath)
         print("Model Path: "+ModelPath)
