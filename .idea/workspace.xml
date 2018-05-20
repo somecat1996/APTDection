@@ -31,11 +31,11 @@
       <file leaf-file-name="Training.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MaliciousApplicationDetector/Training.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="326">
-              <caret line="370" column="50" lean-forward="false" selection-start-line="370" selection-start-column="50" selection-end-line="370" selection-end-column="50" />
+            <state relative-caret-position="294">
+              <caret line="221" column="45" lean-forward="false" selection-start-line="221" selection-start-column="45" selection-end-line="221" selection-end-column="45" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
-                <element signature="e#6240#8913#0" expanded="false" />
+                <element signature="e#6200#8873#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -1100,11 +1100,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MaliciousApplicationDetector/Training.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="370" column="50" lean-forward="false" selection-start-line="370" selection-start-column="50" selection-end-line="370" selection-end-column="50" />
+        <state relative-caret-position="294">
+          <caret line="221" column="45" lean-forward="false" selection-start-line="221" selection-start-column="45" selection-end-line="221" selection-end-column="45" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
-            <element signature="e#6240#8913#0" expanded="false" />
+            <element signature="e#6200#8873#0" expanded="false" />
           </folding>
         </state>
       </provider>
