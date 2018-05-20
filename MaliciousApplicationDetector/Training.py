@@ -357,13 +357,14 @@ def main(unused):
             shuffle=True)
         classifier.train(
             input_fn=train_input_fn,
-            steps=10000,
+            steps=2000,
             hooks=[logging_hook])
 
     # Used for system operating
     elif mode == "predict":
         files = [os.path.join(DataPath, x) for x in os.listdir(DataPath) if os.path.isfile(DataPath + x)]
         index = dataset(*files, mode=2)
+        print(index)
         isMalicious = index["is_malicious"]
         packets, names = ReadPredictData(index, T)
         predict_input_fn = tf.estimator.inputs.numpy_input_fn(
