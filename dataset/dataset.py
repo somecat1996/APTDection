@@ -39,7 +39,7 @@ _worker_count = 0
 _worker_pool = tuple()
 _worker_mode = 0
 _worker_max = mp.cpu_count()
-_worker_num = 0
+_worker_num = mp.Value('I', 0)
 
 
 def dataset(*args, mode):
