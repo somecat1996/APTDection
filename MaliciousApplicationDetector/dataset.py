@@ -304,11 +304,12 @@ def make_index(*, fp=None):
     # retrieve report
     if pathlib.Path(make_path('dataset/index.json')).exists():
         with open(make_path('dataset/index.json'), 'r') as file:
-            fp = json.load(file).get('is_malicious')
+            fpold = json.load(file).get('is_malicious', list())
 
     # fingerprint report
-    if fp is not None:
-        index['is_malicious'] = fp
+    if fp is not None:  fp += fpold
+    index['is_malicious'] = fp
+    print(index)
 
     # dump index.json
     with open(make_path('dataset/index.json'), 'w') as index_file:
