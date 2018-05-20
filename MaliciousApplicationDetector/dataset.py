@@ -38,6 +38,8 @@ _worker_alive = list()
 _worker_count = 0
 _worker_mode = 0
 _worker_pool = tuple()
+_worker_max = mp.cpu_count()
+_worker_num = 0
 
 
 def dataset(*args, mode):
@@ -80,7 +82,7 @@ def dataset(*args, mode):
 
 def worker(path, *, mode, _count=0):
     """Prepare dataset for CNN."""
-    global _worker_alive
+    global _worker_alive, _worker_num
     print(f'Worker No.{_count+1} @mode_{mode} on {path}')
 
     # extract name
@@ -95,8 +97,7 @@ def worker(path, *, mode, _count=0):
 
     # make files
     sdict = make_steam(name, mode=mode)             # make stream
-    if mode != 2:
-        os.kill(os.getppid(), signal.SIGUSR1)       # send signal
+    os.kill(os.getppid(), signal.SIGUSR1)           # send signal
     index = make_dataset(name, sdict, mode=mode)    # make dataset
 
     # aftermath
@@ -104,11 +105,8 @@ def worker(path, *, mode, _count=0):
         os.remove(make_path(f'stream/{name}/{name}.pcap'))
 
     # update status
+    if mode == 2:   _worker_num -= 1
     _worker_alive[_count] = False
-
-    # send signal
-    if mode == 2:
-        os.kill(os.getppid(), signal.SIGUSR1)
 
 
 def make_path(path):
@@ -118,11 +116,15 @@ def make_path(path):
 
 def make_worker(signum=None, stack=None):
     """Create process."""
-    global _worker_count, _worker_alive
+    global _worker_count, _worker_alive, _worker_num
 
     # check boundary
     if _worker_count >= len(_worker_pool):
         return
+
+    # wait process
+    while _worker_num >= _worker_max:
+        time.sleep(random.randint(0, dt.datetime.now().second))
 
     # create process
     mp.Process(target=worker, args=(_worker_pool[_worker_count],),
@@ -130,6 +132,7 @@ def make_worker(signum=None, stack=None):
 
     # ascend count
     _worker_count += 1
+    if _worker_mode == 2:   _worker_num += 1
 
 
 def make_steam(name, *, mode):
@@ -241,7 +244,9 @@ def make_dataset(name, labels=None, *, mode, overwrite=True, fingerprint=False):
             group_keys = fpreport['new_app']
 
         # enumerate files
+        print('keys:', list(group_keys))
         for ipua in group_keys:
+            print('group:', group[ipua])
             for file in group[ipua]:
                 label = int(file['is_malicious'])
                 srcfile = file["filename"]
