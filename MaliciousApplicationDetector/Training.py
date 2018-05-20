@@ -373,7 +373,6 @@ def main(unused):
             num_epochs=1,
             shuffle=False)
         predictions = list(classifier.predict(input_fn=predict_input_fn))
-        print(predictions)
         predicted_classes = [p["classes"] for p in predictions]
         print("detected by fingerprint:")
         for i in isMalicious:
@@ -381,7 +380,7 @@ def main(unused):
         print("detected by CNN: ")
         for i in range(len(predicted_classes)):
             if predicted_classes[i] == 1:
-                print(names[1])
+                print(names[i])
 
     # Used for evaluating our system
     elif mode == "evaluate":
