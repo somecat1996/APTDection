@@ -302,7 +302,7 @@ def make_index(*, fp=None):
                         index[kind]['0'].append(f'{root}/{file}')
 
     # retrieve report
-    if pathlib.Path(make_path('dataset/index.json')).exists()
+    if pathlib.Path(make_path('dataset/index.json')).exists():
         with open(make_path('dataset/index.json'), 'r') as file:
             fp = json.load(file).get('is_malicious')
 
