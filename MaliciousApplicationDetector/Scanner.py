@@ -3,6 +3,10 @@ import sys
 import subprocess
 
 
+srcPath = sys.argv[0]
+path = os.path.abspath(srcPath)
+path = os.path.split(path)[0]
+
 DataPath = "/home/ubuntu/mkdat/cmp/httpheader/"
 ModelPath = "/home/ubuntu/ModelPath/Backgroud_PC_Model_20180515_httpheader/"
 mode = "train"
@@ -44,8 +48,8 @@ while 1:
         # tf.app.run()
     elif UserInput == 'e':
         mode = "evaluate"
-        print(os.getcwd())
-        # subprocess.run(["python3", "./", DataPath, ModelPath, mode, T])
+        print(path)
+        # subprocess.run(["python3", path+"Training.py", DataPath, ModelPath, mode, T])
         # tf.app.run()
     elif UserInput == 'p':
         mode = "pretict"
