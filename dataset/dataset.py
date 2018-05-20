@@ -94,7 +94,7 @@ def worker(path, *, mode, _count=0):
     # duplicate PCAP file
     while pathlib.Path(make_path(f'stream/{name}')).exists():
         name = f'{name}_{int(time.time())}'
-    pathlib.Path(make_path(f'stream/{name}')).mkdir(parents=True, exist_ok=True)
+    pathlib.Path(make_path(f'stream/{name}/tmp')).mkdir(parents=True, exist_ok=True)
     shutil.copy(path, make_path(f'stream/{name}/{name}.pcap'))
 
     # make files
@@ -321,6 +321,12 @@ def make_index(*, fp=None):
 
 
 if __name__ == '__main__':
-    modec = int(sys.argv[1])
-    paths = sys.argv[2:]
-    dataset(*paths, mode=modec)
+    tflag = int(sys.argv[1])
+    modec = int(sys.argv[2])
+    paths = sys.argv[3:]
+    if tflag:
+        sys.exit(dataset(*paths, mode=modec))
+    for path in paths:
+        root, file = os.path.split(path)
+        name, ext = os.path.splitext(file)
+        make_dataset(name, mode=modec)

@@ -1,4 +1,6 @@
 
+MaliciousApplicationDetector/dataset/
+MaliciousApplicationDetector/stream/
 deprecated/
 *.cap
 *.pcap
