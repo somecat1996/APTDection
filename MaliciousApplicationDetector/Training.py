@@ -220,7 +220,6 @@ def ReadPredictData(index, T):
         packets.append(packet)
         names.append(file)
     packets = np.asarray(packets, np.float32)
-    names = np.asarray(names, np.int32)
     return packets, names
 
 
