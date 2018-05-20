@@ -3,7 +3,7 @@ import sys
 import subprocess
 
 
-srcPath = sys.argv[0]
+srcPath = __file__
 path = os.path.abspath(srcPath)
 path = os.path.split(path)[0]
 
@@ -48,9 +48,7 @@ while 1:
         # tf.app.run()
     elif UserInput == 'e':
         mode = "evaluate"
-        print(path)
-        # subprocess.run(["python3", path+"Training.py", DataPath, ModelPath, mode, T])
-        # tf.app.run()
+        subprocess.run(["python3", os.path.join(path, "Training.py"), DataPath, ModelPath, mode, T])
     elif UserInput == 'p':
         mode = "pretict"
         # tf.app.run()
