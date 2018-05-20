@@ -224,6 +224,7 @@ def make_dataset(name, labels=None, *, mode, overwrite=True, fingerprint=False):
     fplist = list()
     for kind, group in labels.items():
         # only make dataset for type Background PC
+        print(kind, group)
         if kind != 'Background_PC':     continue
 
         # make directory
