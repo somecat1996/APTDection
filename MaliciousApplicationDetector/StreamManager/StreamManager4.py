@@ -4,10 +4,11 @@ from scapy.all import *
 from DataLabeler.DataLabeler import Datalabler
 
 class StreamManager:
-    def __init__(self, filename):
-        self.filename = filename
-        path = os.getcwd()
-        self.datapath = path + "/stream/" + filename.strip('.pcap')
+    def __init__(self, path):
+        root, file = os.path.split(path)
+        name, ext = os.path.splitext(file)
+        self.filename = file
+        self.datapath = root + name
         self.browser_groups_PC = {}
         self.backgroud_groups_PC = {}
         self.browser_groups_Phone = {}

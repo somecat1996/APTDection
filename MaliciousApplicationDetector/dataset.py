@@ -156,7 +156,7 @@ def make_steam(name, *, mode):
     IPS = builder.GetIPS()
 
     # Stream Manager
-    stream = StreamManager(f'{name}.pcap')
+    stream = StreamManager(make_path(f'stream/{name}/{name}.pcap'))
     stream.generate()
     stream.classify(IPS)
     if mode == 2:   # no lebeling
