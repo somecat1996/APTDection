@@ -373,6 +373,7 @@ def main(unused):
             num_epochs=1,
             shuffle=False)
         predictions = list(classifier.predict(input_fn=predict_input_fn))
+        print(predictions)
         predicted_classes = [p["classes"] for p in predictions]
         print("detected by fingerprint:")
         for i in isMalicious:
