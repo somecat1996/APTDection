@@ -358,7 +358,7 @@ def main(unused):
             shuffle=True)
         classifier.train(
             input_fn=train_input_fn,
-            steps=2000,
+            steps=20,
             hooks=[logging_hook])
 
     # Used for system operating
