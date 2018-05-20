@@ -241,6 +241,7 @@ def make_dataset(name, labels=None, *, mode, overwrite=True, fingerprint=False):
         if mode == 2:
             fp = fingerprintManager()
             fpreport = fp.Identify(make_path(f'stream/{name}/tmp'), group)
+            print(fpreport)
             for ipua in fpreport['is_malicious']:
                 fplist += group[ipua]
             group_keys = fpreport['new_app']

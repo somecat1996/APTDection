@@ -9,7 +9,9 @@ path = os.path.abspath(srcPath)
 path = os.path.split(path)[0]
 
 DataPath = "/home/ubuntu/mkdat/cmp/httpheader/"
+# DataPath = "E:/code/python3/APTDection/oldFiles/pcap"
 ModelPath = "/home/ubuntu/ModelPath/Backgroud_PC_Model_20180515_httpheader/"
+# ModelPath = "E:/code/python3/APTDection/oldFiles/ModelPath"
 mode = "train"
 T = "Background_PC"
 
