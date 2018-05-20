@@ -47,26 +47,30 @@ while 1:
         mode = "train"
         log = os.path.join(LogPath, str(int(time.time()))+"train.log")
         command = ["python3", os.path.join(path, "Training.py"), DataPath, ModelPath, mode, T]
-        subprocess.run(command,
-                       stdout=open(log, 'wb'))
+        subprocess.run(command)
+        # subprocess.run(command,
+        #                stdout=open(log, 'wb'))
     elif UserInput == 'r':
         mode = "retrain"
         log = os.path.join(LogPath, str(int(time.time()))+"retrain.log")
         command = ["python3", os.path.join(path, "Training.py"), DataPath, ModelPath, mode, T]
-        subprocess.run(command,
-                       stdout=open(log, 'wb'))
+        subprocess.run(command)
+        # subprocess.run(command,
+        #                stdout=open(log, 'wb'))
     elif UserInput == 'e':
         mode = "evaluate"
         log = os.path.join(LogPath, str(int(time.time()))+"evaluate.log")
         command = ["python3", os.path.join(path, "Training.py"), DataPath, ModelPath, mode, T]
-        subprocess.run(command,
-                       stdout=open(log, 'wb'))
+        subprocess.run(command)
+        # subprocess.run(command,
+        #                stdout=open(log, 'wb'))
         subprocess.run(["cat", log])
     elif UserInput == 'p':
         mode = "pretict"
         log = os.path.join(LogPath, str(int(time.time()))+"pretict.log")
         command = ["python3", os.path.join(path, "Training.py"), DataPath, ModelPath, mode, T]
-        subprocess.run(command,
-                       stdout=open(log, 'wb'))
+        subprocess.run(command)
+        # subprocess.run(command,
+        #                stdout=open(log, 'wb'))
     else:
         print("unavailable")
