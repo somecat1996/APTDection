@@ -72,7 +72,7 @@ def dataset(*args, mode):
     # check status
     while any(_worker_alive):
         time.sleep(random.randint(0, dt.datetime.now().second))
-    print(f'Dataset ready @ {make_path(f'dataset')}')
+    print(f'Dataset ready @ {make_path(f"dataset")}')
 
     # dump index.json
     return make_index()
