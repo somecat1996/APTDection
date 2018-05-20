@@ -446,18 +446,35 @@ while 1:
     # s---status
     # md--modify data path
     # mm--modify model path
+    # q---quit
+    print("Input your command.")
     UserInput = sys.stdin.readline().strip()
     if UserInput == 'md':
         tmp = ''
         while not os.path.isdir(tmp):
+            print("Input an exit folder.")
             tmp = sys.stdin.readline().strip()
         DataPath = tmp
     elif UserInput == 'mm':
-        tmp = ''
-        while not os.path.isdir(tmp):
-            tmp = sys.stdin.readline().strip()
-        DataModel = tmp
+        print("Input an exit folder.")
+        DataModel = sys.stdin.readline().strip()
     elif UserInput == 's':
         print("Data Path: "+DataPath)
         print("Model Path: "+ModelPath)
         print("Type: "+T)
+    elif UserInput == 'q':
+        print("quitting")
+    elif UserInput == 't':
+        mode = "train"
+        tf.app.run()
+    elif UserInput == 'r':
+        mode = "retrain"
+        tf.app.run()
+    elif UserInput == 'e':
+        mode = "evaluate"
+        tf.app.run()
+    elif UserInput == 'p':
+        mode = "pretict"
+        tf.app.run()
+    else:
+        print("unavailable")
