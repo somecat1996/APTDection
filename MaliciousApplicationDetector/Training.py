@@ -92,7 +92,7 @@ def ReadEvaluateData(path, T):
     return packets_0, packets_1
 
 
-def ReadTrainData1(path, T, trainrate=0.8):
+def ReadTrainData1(path, T):
     files = ReadDictionary(path, T)
     packets_1 = []
     labels_1 = []
@@ -136,10 +136,8 @@ def ReadTrainData1(path, T, trainrate=0.8):
     packets_0 = packets_0[shuffle]
     labels_0 = labels_0[shuffle]
 
-    packets_train = np.asarray(list(packets_1[:n]) + list(packets_0[:n]))
-    labels_train = np.asarray(list(labels_1[:n]) + list(labels_0[:n]))
-    packets_eval = np.asarray(list(packets_1[n:]) + list(packets_0[n:]))
-    labels_eval = np.asarray(list(labels_1[n:]) + list(labels_0[n:]))
+    packets_train = np.asarray(list(packets_1) + list(packets_0))
+    labels_train = np.asarray(list(labels_1) + list(labels_0))
 
     packets_train = np.asarray(packets_train, np.float32)
     labels_train = np.asarray(labels_train, np.int32)
@@ -148,17 +146,10 @@ def ReadTrainData1(path, T, trainrate=0.8):
     packets_train = packets_train[shuffle]
     labels_train = labels_train[shuffle]
 
-    packets_eval = np.asarray(packets_eval, np.float32)
-    labels_eval = np.asarray(labels_eval, np.int32)
-    shuffle = np.arange(len(packets_eval))
-    np.random.shuffle(shuffle)
-    packets_eval = packets_eval[shuffle]
-    labels_eval = labels_eval[shuffle]
-
-    return packets_train, labels_train, packets_eval, labels_eval
+    return packets_train, labels_train
 
 
-def ReadTrainData2(index, T, trainrate=0.8):
+def ReadTrainData2(index, T):
     files = index[T]
     packets_1 = []
     labels_1 = []
@@ -202,10 +193,8 @@ def ReadTrainData2(index, T, trainrate=0.8):
     packets_0 = packets_0[shuffle]
     labels_0 = labels_0[shuffle]
 
-    packets_train = np.asarray(list(packets_1[:n]) + list(packets_0[:n]))
-    labels_train = np.asarray(list(labels_1[:n]) + list(labels_0[:n]))
-    packets_eval = np.asarray(list(packets_1[n:]) + list(packets_0[n:]))
-    labels_eval = np.asarray(list(labels_1[n:]) + list(labels_0[n:]))
+    packets_train = np.asarray(list(packets_1) + list(packets_0))
+    labels_train = np.asarray(list(labels_1) + list(labels_0))
 
     packets_train = np.asarray(packets_train, np.float32)
     labels_train = np.asarray(labels_train, np.int32)
@@ -214,14 +203,7 @@ def ReadTrainData2(index, T, trainrate=0.8):
     packets_train = packets_train[shuffle]
     labels_train = labels_train[shuffle]
 
-    packets_eval = np.asarray(packets_eval, np.float32)
-    labels_eval = np.asarray(labels_eval, np.int32)
-    shuffle = np.arange(len(packets_eval))
-    np.random.shuffle(shuffle)
-    packets_eval = packets_eval[shuffle]
-    labels_eval = labels_eval[shuffle]
-
-    return packets_train, labels_train, packets_eval, labels_eval
+    return packets_train, labels_train
 
 
 def ReadPredictData(index, T):
@@ -343,7 +325,7 @@ def main(unused):
 
     # Before this system is placed, used for training initial model
     if mode == "train":
-        packets_train, labels_train, packets_eval, labels_eval = ReadTrainData1(DataPath, T, TrainRate)
+        packets_train, labels_train = ReadTrainData1(DataPath, T)
         tensors_to_log = {"probabilities": "softmax_tensor"}
         logging_hook = tf.train.LoggingTensorHook(
             tensors=tensors_to_log,
@@ -354,23 +336,16 @@ def main(unused):
             batch_size=100,
             num_epochs=None,
             shuffle=True)
-        eval_input_fn = tf.estimator.inputs.numpy_input_fn(
-            x={"packet": packets_eval},
-            y=labels_eval,
-            num_epochs=1,
-            shuffle=False)
         classifier.train(
             input_fn=train_input_fn,
             steps=10000,
             hooks=[logging_hook])
-        eval_results = classifier.evaluate(input_fn=eval_input_fn)
-        print(eval_results)
 
     # When this system is placed, used for retaining model and fingerprinting.
     elif mode == "retrain":
         files = [os.path.join(DataPath, x) for x in os.listdir(DataPath) if os.path.isfile(DataPath + x)]
         index = dataset(*files, mode=1)
-        packets_train, labels_train, packets_eval, labels_eval = ReadTrainData2(index, T, TrainRate)
+        packets_train, labels_train = ReadTrainData2(index, T)
         tensors_to_log = {"probabilities": "softmax_tensor"}
         logging_hook = tf.train.LoggingTensorHook(
             tensors=tensors_to_log,
@@ -381,17 +356,10 @@ def main(unused):
             batch_size=100,
             num_epochs=None,
             shuffle=True)
-        eval_input_fn = tf.estimator.inputs.numpy_input_fn(
-            x={"packet": packets_eval},
-            y=labels_eval,
-            num_epochs=1,
-            shuffle=False)
         classifier.train(
             input_fn=train_input_fn,
             steps=10000,
             hooks=[logging_hook])
-        eval_results = classifier.evaluate(input_fn=eval_input_fn)
-        print(eval_results)
 
     # Used for system operating
     elif mode == "predict":
@@ -399,10 +367,6 @@ def main(unused):
         index = dataset(*files, mode=2)
         isMalicious = index["is_malicious"]
         packets, names = ReadPredictData(index, T)
-        tensors_to_log = {"probabilities": "softmax_tensor"}
-        logging_hook = tf.train.LoggingTensorHook(
-            tensors=tensors_to_log,
-            every_n_iter=50)
         predict_input_fn = tf.estimator.inputs.numpy_input_fn(
             x={"packet": packets},
             num_epochs=1,
@@ -432,26 +396,6 @@ def main(unused):
             shuffle=False)
         predictions_1 = list(classifier.predict(input_fn=predict_input_fn_1))
         predicted_classes_1 = [p["classes"] for p in predictions_1]
-        # print("New Samples, Class0 Predictions:    {}\n"
-        #       .format(predicted_classes_0))
-        # print("New Samples, Class1 Predictions:    {}\n"
-        #       .format(predicted_classes_1))
-        # tmp__classes_0 = [p["probabilities"] for p in predictions_0]
-        # tmp__classes_1 = [p["probabilities"] for p in predictions_1]
-        # probabilities_classes_0 = []
-        # probabilities_classes_1 = []
-        # for i in tmp__classes_0:
-        #     probabilities_classes_0.append([i[0], i[1]])
-        # for i in tmp__classes_1:
-        #     probabilities_classes_1.append([i[0], i[1]])
-        # file = open("probabilities.log", 'w')
-        # file.write(str(probabilities_classes_0)+'\n')
-        # file.write(str(probabilities_classes_1)+'\n')
-        # file.close()
-        # print("New Samples, Class0 Probabilities:    {}\n"
-        #       .format(probabilities_classes_0))
-        # print("New Samples, Class1 Probabilities:    {}\n"
-        #       .format(probabilities_classes_1))
         print("result:")
         print("negative samples: %d" % len(predicted_classes_0))
         print("prediction negative samples: %d" % sum(predicted_classes_0))
