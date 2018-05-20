@@ -309,6 +309,11 @@ def make_index(*, fp=None):
                     if os.path.getsize(f'{root}/{file}'):
                         index[kind]['0'].append(f'{root}/{file}')
 
+    # retrieve report
+    if pathlib.Path(make_path('dataset/index.json')).exists()
+        with open(make_path('dataset/index.json'), 'r') as file:
+            fp = json.load(file).get('is_malicious')
+
     # fingerprint report
     if fp is not None:
         index['is_malicious'] = fp
@@ -328,4 +333,5 @@ if __name__ == '__main__':
     for path in paths:
         root, file = os.path.split(path)
         name, ext = os.path.splitext(file)
-        make_dataset(name, mode=modec)
+        index = make_dataset(name, mode=modec)
+    sys.exit(make_index())
