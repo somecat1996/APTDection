@@ -7,32 +7,36 @@ import pathlib
 
 ROOT = pathlib.Path(__file__).absolute().parents[1] / 'dataset'
 
-
 class fingerprintManager:
     def __init__(self):
         self.filepath = os.path.join(ROOT, "fingerprints")
-        self.fingerprints = {}
-        self.detector = DetectionModule()
+        self.fingerprints={}
+        self.detector=DetectionModule()
         if os.path.exists(self.filepath):
-            with open(self.filepath, "rb") as f:
-                self.fingerprints = pickle.load(f)
+            with open(self.filepath,"r") as f:
+                self.fingerprints=pickle.load(f)
+            f.close()
 
-    def GenerateAndUpdate(self, stream_path, groups):
-        Gen = FingerprintGenerator(stream_path)
-        fingerprints = Gen.genrate(groups)
+    def GenerateAndUpdate(self,stream_path,groups):
+        Gen=FingerprintGenerator(stream_path)
+        fingerprints=Gen.genrate(groups)
         self.add_update(fingerprints)
-        with open(self.filepath, "wb") as f:
-            pickle.dump(self.fingerprints, f)
+        with open(self.filepath,"w") as f:
+            pickle.dump(self.fingerprints,f)
+        f.close()
 
-    def Identify(self, stream_path, groups):
-        Gen = FingerprintGenerator(stream_path)
-        fingerprints = Gen.genrate(groups)
-        result = {"is_malicious": [], "new_app": []}
+
+    def Identify(self,stream_path,groups):
+        Gen=FingerprintGenerator(stream_path)
+        fingerprints=Gen.genrate(groups)
+        result={"is_malicious":[],"new_app":[]}
         for app in fingerprints:
-            flag = False
+            flag=False
+            print(fingerprints[app])
             for old_app in self.fingerprints:
-                if self.detector.similarity_check(fingerprints[app], self.fingerprints[old_app]):
-                    flag = True
+                if self.detector.similarity_check(fingerprints[app],self.fingerprints[old_app]):
+                    print(self.fingerprints[old_app])
+                    flag=True
                     if self.fingerprints[old_app].is_malicious:
                         result["is_malicious"].append(app)
                     break
@@ -40,13 +44,15 @@ class fingerprintManager:
                 result["new_app"].append(app)
         return result
 
-    def add_update(self, newfingerprints):
+
+    def add_update(self,newfingerprints):
         print("Updating fingerprints ......")
         for app in newfingerprints:
-            flag = False
+            flag=False
             for old_app in self.fingerprints:
-                if self.detector.similarity_check(newfingerprints[app], self.fingerprints[old_app]):
-                    flag = True
+                if self.detector.similarity_check(newfingerprints[app],self.fingerprints[old_app]):
+                    flag=True
                     break
             if not flag:
-                self.fingerprints[app] = newfingerprints[app]
+                self.fingerprints[app]=newfingerprints[app]
+
