@@ -180,8 +180,9 @@ def make_record(name, stream, *, mode):
         print(kind, group(stream))
 
     # make fingerprints
-    for label in record.values():
-        make_fingerprint(name, label, mode=mode)
+    if mode == 1:
+        for label in record.values():
+            make_fingerprint(name, label, mode=mode)
 
     # dump stream.json
     with open(make_path(f'stream/{name}/stream.json'), 'w') as json_file:
@@ -191,7 +192,7 @@ def make_record(name, stream, *, mode):
 
 def make_fingerprint(name, label, *, mode):
     """Make fingerprint."""
-    if mode != 0:
+    if mode == 0:
         fp = fingerprintManager()
         fp.GenerateAndUpdate(make_path(f'stream/{name}/tmp'), label)
 

@@ -22,7 +22,6 @@ class fingerprintManager:
         self.add_update(fingerprints)
         with open(self.filepath,"wb") as f:
             pickle.dump(self.fingerprints,f)
-        f.close()
 
 
     def Identify(self,stream_path,groups):
