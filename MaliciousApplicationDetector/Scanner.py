@@ -42,15 +42,15 @@ while 1:
         sys.exit(0)
     elif UserInput == 't':
         mode = "train"
-        # tf.app.run()
+        subprocess.run(["python3", os.path.join(path, "Training.py"), DataPath, ModelPath, mode, T])
     elif UserInput == 'r':
         mode = "retrain"
-        # tf.app.run()
+        subprocess.run(["python3", os.path.join(path, "Training.py"), DataPath, ModelPath, mode, T])
     elif UserInput == 'e':
         mode = "evaluate"
         subprocess.run(["python3", os.path.join(path, "Training.py"), DataPath, ModelPath, mode, T])
     elif UserInput == 'p':
         mode = "pretict"
-        # tf.app.run()
+        subprocess.run(["python3", os.path.join(path, "Training.py"), DataPath, ModelPath, mode, T])
     else:
         print("unavailable")
