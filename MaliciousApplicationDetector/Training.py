@@ -176,7 +176,6 @@ def ReadTrainData2(index, T):
             packet.append(i)
         packets_0.append(packet)
         labels_0.append(0)
-    n = int(len(packets_1)*trainrate) + 1
 
     packets_1 = np.asarray(packets_1, np.float32)
     labels_1 = np.asarray(labels_1, np.int32)
