@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b9fab451-4e2e-4d78-8e53-8e573f9683e8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaliciousApplicationDetector/Scanner.py" afterPath="$PROJECT_DIR$/MaliciousApplicationDetector/Scanner.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaliciousApplicationDetector/Training.py" afterPath="$PROJECT_DIR$/MaliciousApplicationDetector/Training.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -31,8 +31,8 @@
       <file leaf-file-name="Training.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MaliciousApplicationDetector/Training.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="355" column="60" lean-forward="true" selection-start-line="355" selection-start-column="60" selection-end-line="355" selection-end-column="60" />
+            <state relative-caret-position="391">
+              <caret line="352" column="43" lean-forward="true" selection-start-line="352" selection-start-column="43" selection-end-line="352" selection-end-column="43" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -43,7 +43,7 @@
       <file leaf-file-name="Scanner.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MaliciousApplicationDetector/Scanner.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1664">
+            <state relative-caret-position="518">
               <caret line="52" column="24" lean-forward="true" selection-start-line="52" selection-start-column="24" selection-end-line="52" selection-end-column="24" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
@@ -122,8 +122,8 @@
         <option value="$PROJECT_DIR$/MaliciousApplicationDetector/fingerprints/fingerprint.py" />
         <option value="$PROJECT_DIR$/MaliciousApplicationDetector/fingerprints/detection.py" />
         <option value="$PROJECT_DIR$/MaliciousApplicationDetector/fingerprints/test_fingerprint.py" />
-        <option value="$PROJECT_DIR$/MaliciousApplicationDetector/Training.py" />
         <option value="$PROJECT_DIR$/MaliciousApplicationDetector/Scanner.py" />
+        <option value="$PROJECT_DIR$/MaliciousApplicationDetector/Training.py" />
       </list>
     </option>
   </component>
@@ -892,7 +892,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MaliciousApplicationDetector/Scanner.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1664">
+        <state relative-caret-position="518">
           <caret line="52" column="24" lean-forward="true" selection-start-line="52" selection-start-column="24" selection-end-line="52" selection-end-column="24" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
@@ -902,8 +902,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MaliciousApplicationDetector/Training.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="355" column="60" lean-forward="true" selection-start-line="355" selection-start-column="60" selection-end-line="355" selection-end-column="60" />
+        <state relative-caret-position="391">
+          <caret line="352" column="43" lean-forward="true" selection-start-line="352" selection-start-column="43" selection-end-line="352" selection-end-column="43" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>

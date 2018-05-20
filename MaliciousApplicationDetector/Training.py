@@ -350,7 +350,7 @@ def main(unused):
 
     # When this system is placed, used for retaining model and fingerprinting.
     elif mode == "retrain":
-        files = [x for x in os.listdir(DataPath) if os.path.isfile(DataPath + x)]
+        files = [os.path.join(DataPath, x) for x in os.listdir(DataPath) if os.path.isfile(DataPath + x)]
         index = dataset(*files, mode=1)
         packets_train, labels_train, packets_eval, labels_eval = ReadTrainData2(index, T, TrainRate)
         tensors_to_log = {"probabilities": "softmax_tensor"}
