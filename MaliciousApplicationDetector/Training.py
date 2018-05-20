@@ -224,6 +224,24 @@ def ReadTrainData2(index, T, trainrate=0.8):
     return packets_train, labels_train, packets_eval, labels_eval
 
 
+def ReadPredictData(index, T):
+    files = index[T]
+    packets = []
+    names = []
+    for file in files['0']:
+        packet = []
+        payload = open(file, 'rb').read()
+        if len(payload) < 1024:
+            payload += (1024 - len(payload)) * b'\x00'
+        elif len(payload) > 1024:
+            payload = payload[:1024]
+        for i in payload:
+            packet.append(i)
+        packets.append(packet)
+        names.append(file)
+    return packets, names
+
+
 def NeutralNetwork(features, labels, mode):
     # 重置输入形状
     input_layer = tf.reshape(features["packet"], INPUTSHAPE)
@@ -377,7 +395,27 @@ def main(unused):
 
     # Used for system operating
     elif mode == "predict":
-        pass
+        files = [os.path.join(DataPath, x) for x in os.listdir(DataPath) if os.path.isfile(DataPath + x)]
+        index = dataset(*files, mode=2)
+        isMalicious = index["is_malicious"]
+        packets, names = ReadPredictData(index, T)
+        tensors_to_log = {"probabilities": "softmax_tensor"}
+        logging_hook = tf.train.LoggingTensorHook(
+            tensors=tensors_to_log,
+            every_n_iter=50)
+        predict_input_fn = tf.estimator.inputs.numpy_input_fn(
+            x={"packet": packets},
+            num_epochs=1,
+            shuffle=False)
+        predictions = list(classifier.predict(input_fn=predict_input_fn))
+        predicted_classes = [p["classes"] for p in predictions]
+        print("detected by fingerprint:")
+        for i in isMalicious:
+            print(i)
+        print("detected by CNN: ")
+        for i in range(len(predicted_classes)):
+            if predicted_classes[i] == 1:
+                print(names[1])
 
     # Used for evaluating our system
     elif mode == "evaluate":
