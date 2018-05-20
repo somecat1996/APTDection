@@ -36,8 +36,8 @@ FLOW_DICT = {
 
 _worker_alive = list()
 _worker_count = 0
-_worker_mode = 0
 _worker_pool = tuple()
+_worker_mode = 0
 _worker_max = mp.cpu_count()
 _worker_num = 0
 
@@ -244,9 +244,7 @@ def make_dataset(name, labels=None, *, mode, overwrite=True, fingerprint=False):
             group_keys = fpreport['new_app']
 
         # enumerate files
-        print('keys:', list(group_keys))
         for ipua in group_keys:
-            print('group:', group[ipua])
             for file in group[ipua]:
                 label = int(file['is_malicious'])
                 srcfile = file["filename"]
@@ -261,14 +259,13 @@ def make_dataset(name, labels=None, *, mode, overwrite=True, fingerprint=False):
 
 def loads(fin, fout, *, remove):
     """Extract PCAP file."""
-    print(f'Extracting {fin} & dumping to {fout}...')
     # check if file exists
     if pathlib.Path(fout).exists():
         if remove:  os.remove(fout)
         else:       return
 
     # extraction procedure
-    extractor = jspcap.extract(fin=fin, store=False, nofile=True, verbose=True,
+    extractor = jspcap.extract(fin=fin, store=False, nofile=True,
                                 tcp=True, strict=True, extension=False)
 
     # fetch reassembly
@@ -320,6 +317,7 @@ def make_index(*, fp=None, retrieve=False):
             if os.path.splitext(item)[1] == '.fp':
                 with open(make_path(f'dataset/{item}'), 'r') as file:
                     fp += json.load(file)['is_malicious']
+                os.remove(make_path(f'dataset/{item}'))
         index['is_malicious'] = fp
 
     # dump index.json

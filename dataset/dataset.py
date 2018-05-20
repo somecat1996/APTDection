@@ -36,8 +36,8 @@ FLOW_DICT = {
 
 _worker_alive = list()
 _worker_count = 0
-_worker_mode = 0
 _worker_pool = tuple()
+_worker_mode = 0
 _worker_max = mp.cpu_count()
 _worker_num = 0
 
@@ -325,6 +325,7 @@ def make_index(*, fp=None, retrieve=False):
             if os.path.splitext(item)[1] == '.fp':
                 with open(make_path(f'dataset/{item}'), 'r') as file:
                     fp += json.load(file)['is_malicious']
+                os.remove(make_path(f'dataset/{item}'))
         index['is_malicious'] = fp
 
     # dump index.json
