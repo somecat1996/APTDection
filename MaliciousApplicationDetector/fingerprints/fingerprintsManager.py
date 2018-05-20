@@ -15,7 +15,6 @@ class fingerprintManager:
         if os.path.exists(self.filepath):
             with open(self.filepath,"rb") as f:
                 self.fingerprints=pickle.load(f)
-            f.close()
 
     def GenerateAndUpdate(self,stream_path,groups):
         Gen=FingerprintGenerator(stream_path)
