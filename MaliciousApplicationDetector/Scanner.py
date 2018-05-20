@@ -1,6 +1,7 @@
 import os
 import sys
 import subprocess
+import time
 
 
 srcPath = __file__
@@ -11,6 +12,8 @@ DataPath = "/home/ubuntu/mkdat/cmp/httpheader/"
 ModelPath = "/home/ubuntu/ModelPath/Backgroud_PC_Model_20180515_httpheader/"
 mode = "train"
 T = "Background_PC"
+
+LogPath = os.path.join(path, "logs")
 
 
 while 1:
@@ -42,15 +45,27 @@ while 1:
         sys.exit(0)
     elif UserInput == 't':
         mode = "train"
-        subprocess.run(["python3", os.path.join(path, "Training.py"), DataPath, ModelPath, mode, T])
+        log = os.path.join(LogPath, str(int(time.time()))+"train.log")
+        command = ["python3", os.path.join(path, "Training.py"), DataPath, ModelPath, mode, T]
+        subprocess.run(command,
+                       stdout=open(log, 'wb'))
     elif UserInput == 'r':
         mode = "retrain"
-        subprocess.run(["python3", os.path.join(path, "Training.py"), DataPath, ModelPath, mode, T])
+        log = os.path.join(LogPath, str(int(time.time()))+"retrain.log")
+        command = ["python3", os.path.join(path, "Training.py"), DataPath, ModelPath, mode, T]
+        subprocess.run(command,
+                       stdout=open(log, 'wb'))
     elif UserInput == 'e':
         mode = "evaluate"
-        subprocess.run(["python3", os.path.join(path, "Training.py"), DataPath, ModelPath, mode, T])
+        log = os.path.join(LogPath, str(int(time.time()))+"evaluate.log")
+        command = ["python3", os.path.join(path, "Training.py"), DataPath, ModelPath, mode, T]
+        subprocess.run(command,
+                       stdout=open(log, 'wb'))
     elif UserInput == 'p':
         mode = "pretict"
-        subprocess.run(["python3", os.path.join(path, "Training.py"), DataPath, ModelPath, mode, T])
+        log = os.path.join(LogPath, str(int(time.time()))+"pretict.log")
+        command = ["python3", os.path.join(path, "Training.py"), DataPath, ModelPath, mode, T]
+        subprocess.run(command,
+                       stdout=open(log, 'wb'))
     else:
         print("unavailable")
