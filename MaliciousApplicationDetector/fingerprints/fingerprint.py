@@ -229,7 +229,7 @@ class FingerprintGenerator():
             requests = []
             is_malicious = 0
             for x in stream_groups[key]:
-                if x["malicious"] != 0:
+                if x["is_malicious"] != 0:
                     is_malicious = 1
                 filename = self.datapath + '/' + x["filename"]
                 source = PcapReader(filename)
