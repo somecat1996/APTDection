@@ -219,6 +219,8 @@ def ReadPredictData(index, T):
             packet.append(i)
         packets.append(packet)
         names.append(file)
+    packets = np.asarray(packets, np.float32)
+    names = np.asarray(names, np.int32)
     return packets, names
 
 
@@ -367,8 +369,6 @@ def main(unused):
         print(index)
         isMalicious = index["is_malicious"]
         packets, names = ReadPredictData(index, T)
-        print(packets)
-        print(names)
         predict_input_fn = tf.estimator.inputs.numpy_input_fn(
             x={"packet": packets},
             num_epochs=1,
