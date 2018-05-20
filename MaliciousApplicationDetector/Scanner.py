@@ -11,10 +11,10 @@ global ModelPath
 global mode
 global T
 
-DataPath = "./DataPath/"
-ModelPath = "./ModelPath/"
+DataPath = "/home/ubuntu/mkdat/cmp/httpheader/"
+ModelPath = "/home/ubuntu/ModelPath/Backgroud_PC_Model_20180515_httpheader/"
 mode = "train"
-T = "Backgroud_pc"
+T = "Background_PC"
 
 TrainRate = 0.8
 
@@ -464,6 +464,7 @@ while 1:
         print("Type: "+T)
     elif UserInput == 'q':
         print("quitting")
+        sys.exit(0)
     elif UserInput == 't':
         mode = "train"
         tf.app.run()
