@@ -66,7 +66,7 @@ while 1:
         #                stdout=open(log, 'wb'))
         subprocess.run(["cat", log])
     elif UserInput == 'p':
-        mode = "pretict"
+        mode = "predict"
         log = os.path.join(LogPath, str(int(time.time()))+"pretict.log")
         command = ["python3", os.path.join(path, "Training.py"), DataPath, ModelPath, mode, T]
         subprocess.run(command)
