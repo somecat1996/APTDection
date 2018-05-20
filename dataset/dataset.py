@@ -75,7 +75,7 @@ def dataset(*args, mode):
     print(f'Dataset ready @ {make_path(f"dataset")}')
 
     # dump index.json
-    return make_index()
+    return make_index(retrieve=True)
 
 
 def worker(path, *, mode, _count=0):
@@ -286,7 +286,7 @@ def dumps(name, byte):
         file.write(byte)
 
 
-def make_index(*, fp=None):
+def make_index(*, fp=None, retrieve=False):
     """Dump index.json."""
     # initialise index
     index = {
@@ -309,13 +309,19 @@ def make_index(*, fp=None):
                     if os.path.getsize(f'{root}/{file}'):
                         index[kind]['0'].append(f'{root}/{file}')
 
-    # retrieve report
-    if pathlib.Path(make_path('dataset/index.json')).exists():
-        with open(make_path('dataset/index.json'), 'r') as file:
-            fp = json.load(file).get('is_malicious')
-
     # fingerprint report
     if fp is not None:
+        with open(make_path(f'dataset/{time.time()}_'
+                            f'{random.randint(0, dt.datetime.now().second)}.fp'), 'w') as file:
+            json.dump({'is_malicious': fp}, file)
+
+    # retrieve report
+    if retrieve:
+        fp = list()
+        for item in os.listdir(make_path(f'dataset')):
+            if os.path.splitext(item)[1] == '.fp':
+                with open(make_path(f'dataset/{item}'), 'r') as file:
+                    fp += json.load(file)['is_malicious']
         index['is_malicious'] = fp
 
     # dump index.json
@@ -334,4 +340,4 @@ if __name__ == '__main__':
         root, file = os.path.split(path)
         name, ext = os.path.splitext(file)
         index = make_dataset(name, mode=modec)
-    sys.exit(make_index())
+    sys.exit(make_index(retrieve=True))

@@ -303,7 +303,8 @@ def make_index(*, fp=None, retrieve=False):
 
     # fingerprint report
     if fp is not None:
-        with open(make_path(f'dataset/{time.time()}.fp'), 'w') as file:
+        with open(make_path(f'dataset/{time.time()}_'
+                            f'{random.randint(0, dt.datetime.now().second)}.fp'), 'w') as file:
             json.dump({'is_malicious': fp}, file)
 
     # retrieve report
@@ -314,7 +315,6 @@ def make_index(*, fp=None, retrieve=False):
                 with open(make_path(f'dataset/{item}'), 'r') as file:
                     fp += json.load(file)['is_malicious']
         index['is_malicious'] = fp
-
 
     # dump index.json
     with open(make_path('dataset/index.json'), 'w') as index_file:
