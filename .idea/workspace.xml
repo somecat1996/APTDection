@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b9fab451-4e2e-4d78-8e53-8e573f9683e8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaliciousApplicationDetector/fingerprints/fingerprint.py" afterPath="$PROJECT_DIR$/MaliciousApplicationDetector/fingerprints/fingerprint.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaliciousApplicationDetector/fingerprints/fingerprintsManager.py" afterPath="$PROJECT_DIR$/MaliciousApplicationDetector/fingerprints/fingerprintsManager.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaliciousApplicationDetector/dataset.py" afterPath="$PROJECT_DIR$/MaliciousApplicationDetector/dataset.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -55,37 +53,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dataset.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="dataset.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MaliciousApplicationDetector/dataset.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="736">
-              <caret line="270" column="79" lean-forward="true" selection-start-line="270" selection-start-column="79" selection-end-line="270" selection-end-column="79" />
-              <folding>
-                <marker date="1526821962575" expanded="true" signature="4498:4643" ph="..." />
-                <marker date="1526821962575" expanded="true" signature="6818:6855" ph="..." />
-                <marker date="1526821962575" expanded="true" signature="6818:7274" ph="..." />
-                <marker date="1526821962575" expanded="true" signature="6818:7382" ph="..." />
-                <marker date="1526821962575" expanded="true" signature="6914:7274" ph="..." />
-                <marker date="1526821962575" expanded="true" signature="6951:7274" ph="..." />
-                <marker date="1526821962575" expanded="true" signature="7417:8028" ph="..." />
-                <marker date="1526821962575" expanded="true" signature="7563:7626" ph="..." />
-                <marker date="1526821962575" expanded="true" signature="7878:8028" ph="..." />
-                <marker date="1526821962575" expanded="true" signature="7920:8028" ph="..." />
-                <marker date="1526821962575" expanded="true" signature="8053:8137" ph="..." />
-                <marker date="1526821962575" expanded="true" signature="8183:9877" ph="..." />
-                <marker date="1526821962575" expanded="true" signature="8247:8519" ph="..." />
-                <marker date="1526821962575" expanded="true" signature="8590:9099" ph="..." />
-                <marker date="1526821962575" expanded="true" signature="8617:9099" ph="..." />
-                <marker date="1526821962575" expanded="true" signature="8699:8858" ph="..." />
-                <marker date="1526821962575" expanded="true" signature="8734:8858" ph="..." />
-                <marker date="1526821962575" expanded="true" signature="8940:9099" ph="..." />
-                <marker date="1526821962575" expanded="true" signature="8975:9099" ph="..." />
-                <marker date="1526821962575" expanded="true" signature="9148:9348" ph="..." />
-                <marker date="1526821962575" expanded="true" signature="9177:9282" ph="'...'" />
-                <marker date="1526821962575" expanded="true" signature="9388:9733" ph="..." />
-                <marker date="1526821962575" expanded="true" signature="9463:9698" ph="..." />
-                <marker date="1526821962575" expanded="true" signature="9514:9698" ph="..." />
-              </folding>
+            <state relative-caret-position="5472">
+              <caret line="240" column="15" lean-forward="true" selection-start-line="240" selection-start-column="15" selection-end-line="245" selection-end-column="44" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -102,7 +75,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fingerprintsManager.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="fingerprintsManager.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MaliciousApplicationDetector/fingerprints/fingerprintsManager.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="128">
@@ -186,10 +159,10 @@
         <option value="$PROJECT_DIR$/dataset/dataset.py" />
         <option value="$PROJECT_DIR$/MaliciousApplicationDetector/StreamManager/StreamManager4.py" />
         <option value="$PROJECT_DIR$/MaliciousApplicationDetector/Scanner.py" />
-        <option value="$PROJECT_DIR$/MaliciousApplicationDetector/dataset.py" />
         <option value="$PROJECT_DIR$/MaliciousApplicationDetector/Training.py" />
         <option value="$PROJECT_DIR$/MaliciousApplicationDetector/fingerprints/fingerprint.py" />
         <option value="$PROJECT_DIR$/MaliciousApplicationDetector/fingerprints/fingerprintsManager.py" />
+        <option value="$PROJECT_DIR$/MaliciousApplicationDetector/dataset.py" />
       </list>
     </option>
   </component>
@@ -1041,39 +1014,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MaliciousApplicationDetector/dataset.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="736">
-          <caret line="270" column="79" lean-forward="true" selection-start-line="270" selection-start-column="79" selection-end-line="270" selection-end-column="79" />
-          <folding>
-            <marker date="1526821962575" expanded="true" signature="4498:4643" ph="..." />
-            <marker date="1526821962575" expanded="true" signature="6818:6855" ph="..." />
-            <marker date="1526821962575" expanded="true" signature="6818:7274" ph="..." />
-            <marker date="1526821962575" expanded="true" signature="6818:7382" ph="..." />
-            <marker date="1526821962575" expanded="true" signature="6914:7274" ph="..." />
-            <marker date="1526821962575" expanded="true" signature="6951:7274" ph="..." />
-            <marker date="1526821962575" expanded="true" signature="7417:8028" ph="..." />
-            <marker date="1526821962575" expanded="true" signature="7563:7626" ph="..." />
-            <marker date="1526821962575" expanded="true" signature="7878:8028" ph="..." />
-            <marker date="1526821962575" expanded="true" signature="7920:8028" ph="..." />
-            <marker date="1526821962575" expanded="true" signature="8053:8137" ph="..." />
-            <marker date="1526821962575" expanded="true" signature="8183:9877" ph="..." />
-            <marker date="1526821962575" expanded="true" signature="8247:8519" ph="..." />
-            <marker date="1526821962575" expanded="true" signature="8590:9099" ph="..." />
-            <marker date="1526821962575" expanded="true" signature="8617:9099" ph="..." />
-            <marker date="1526821962575" expanded="true" signature="8699:8858" ph="..." />
-            <marker date="1526821962575" expanded="true" signature="8734:8858" ph="..." />
-            <marker date="1526821962575" expanded="true" signature="8940:9099" ph="..." />
-            <marker date="1526821962575" expanded="true" signature="8975:9099" ph="..." />
-            <marker date="1526821962575" expanded="true" signature="9148:9348" ph="..." />
-            <marker date="1526821962575" expanded="true" signature="9177:9282" ph="'...'" />
-            <marker date="1526821962575" expanded="true" signature="9388:9733" ph="..." />
-            <marker date="1526821962575" expanded="true" signature="9463:9698" ph="..." />
-            <marker date="1526821962575" expanded="true" signature="9514:9698" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/MaliciousApplicationDetector/DataLabeler/VirusTotalThread.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
@@ -1144,6 +1084,14 @@
           <folding>
             <element signature="e#0#38#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MaliciousApplicationDetector/dataset.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5472">
+          <caret line="240" column="15" lean-forward="true" selection-start-line="240" selection-start-column="15" selection-end-line="245" selection-end-column="44" />
+          <folding />
         </state>
       </provider>
     </entry>
