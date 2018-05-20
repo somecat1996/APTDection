@@ -2,16 +2,15 @@ from fingerprints.fingerprint import *
 from fingerprints.detection import *
 import pickle
 import os
+import pathlib
 
 
-srcPath = __file__
-path = os.path.abspath(srcPath)
-path = os.path.split(path)[0]
+ROOT = pathlib.Path(__file__).absolute().parents[1] / 'dataset'
 
 
 class fingerprintManager:
     def __init__(self):
-        self.filepath = os.path.join(path, "fingerprints")
+        self.filepath = os.path.join(ROOT, "fingerprints")
         self.fingerprints = {}
         self.detector = DetectionModule()
         if os.path.exists(self.filepath):
@@ -24,7 +23,6 @@ class fingerprintManager:
         self.add_update(fingerprints)
         with open(self.filepath, "wb") as f:
             pickle.dump(self.fingerprints, f)
-        f.close()
 
     def Identify(self, stream_path, groups):
         Gen = FingerprintGenerator(stream_path)
