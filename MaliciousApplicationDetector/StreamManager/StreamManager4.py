@@ -20,13 +20,12 @@ class StreamManager:
         self.suspicious = []
 
     def generate(self):
-        back = os.path.dirname(os.path.realpath(__file__))
+        back = os.path.dirname(os.path.abspath(__file__))
         os.chdir(self.datapath)
         re = os.system("pkt2flow -xv -o ./tmp " + self.filename)
         print("执行命令")
         if re != 0:
-            print("流转化失败！")
-            return
+            raise RuntimeError("流转化失败！")
         os.chdir("./tmp")
         os.system("mv tcp_nosyn/* ./")
         os.system("rm -r tcp_nosyn/")
