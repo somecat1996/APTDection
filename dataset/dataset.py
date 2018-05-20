@@ -131,7 +131,7 @@ def make_worker(signum=None, stack=None):
         return
 
     # wait process
-    while _worker_num >= _worker_max:
+    while int(_worker_num) >= _worker_max:
         time.sleep(random.randint(0, dt.datetime.now().second))
 
     # create process
