@@ -64,7 +64,7 @@ while 1:
         subprocess.run(command)
         # subprocess.run(command,
         #                stdout=open(log, 'wb'))
-        subprocess.run(["cat", log])
+        # subprocess.run(["cat", log])
     elif UserInput == 'p':
         mode = "predict"
         log = os.path.join(LogPath, str(int(time.time()))+"pretict.log")
