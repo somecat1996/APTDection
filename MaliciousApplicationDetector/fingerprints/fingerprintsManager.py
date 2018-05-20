@@ -13,7 +13,7 @@ class fingerprintManager:
         self.fingerprints={}
         self.detector=DetectionModule()
         if os.path.exists(self.filepath):
-            with open(self.filepath,"r") as f:
+            with open(self.filepath,"rb") as f:
                 self.fingerprints=pickle.load(f)
             f.close()
 
@@ -21,7 +21,7 @@ class fingerprintManager:
         Gen=FingerprintGenerator(stream_path)
         fingerprints=Gen.genrate(groups)
         self.add_update(fingerprints)
-        with open(self.filepath,"w") as f:
+        with open(self.filepath,"wb") as f:
             pickle.dump(self.fingerprints,f)
         f.close()
 
