@@ -416,11 +416,11 @@ def main(unused):
         #       .format(probabilities_classes_1))
         print("result:")
         print("negative samples: %d" % len(predicted_classes_0))
-        print("prediction negative samples: %d" % len(predicted_classes_0)-sum(predicted_classes_0))
-        print("true negative rate: %f" % 1-sum(predicted_classes_0)/len(predicted_classes_0))
+        print("prediction negative samples: %d" % sum(predicted_classes_0))
+        print("true negative rate: %f" % (1-sum(predicted_classes_0)/len(predicted_classes_0)))
         print("positive samples: %d" % len(predicted_classes_1))
         print("prediction positive samples: %d" % sum(predicted_classes_1))
-        print("true positive rate: %f" % sum(predicted_classes_1)/len(predicted_classes_1))
+        print("true positive rate: %f" % (sum(predicted_classes_1)/len(predicted_classes_1)))
 
 
 tf.app.run()
