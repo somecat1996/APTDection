@@ -113,7 +113,8 @@ def worker(path, *, mode, _count=0):
                             _labeled=_worker_labeled)
         os.kill(os.getppid(), signal.SIGUSR1)           # send signal
         _signal_sent = True                             # sent signal
-        index = make_dataset(name, sdict, mode=mode)    # make dataset
+        index = make_dataset(name, sdict, mode=mode,    # make dataset
+                                fingerprint=_worker_labeled)
 
         # aftermath
         if path != make_path(f'stream/{name}/{name}.pcap'):
@@ -292,22 +293,24 @@ def make_dataset(name, labels=None, *, mode, overwrite=True, fingerprint=False):
 
 def loads(fin, fout, *, remove):
     """Extract PCAP file."""
-    print(f'Extracting {fin} & dumping to {fout}')
-
     # check if file exists
     if pathlib.Path(fout).exists():
         if remove:  os.remove(fout)
         else:       return
 
     # extraction procedure
+    print(f'Start extracting {fin}...')
     extractor = jspcap.extract(fin=fin, store=False, nofile=True,
                                 tcp=True, strict=True, extension=False)
+    print(f'Finished extracting {fin}...')
 
     # fetch reassembly
+    print(f'Start dumping to {fout}...')
     for reassembly in extractor.reassembly.tcp:
         for packet in reassembly.packets:
             if jspcap.HTTP in packet.protochain:
                 dumps(fout, packet.info.raw.header or b'')
+    print(f'Finished dumping to {fout}...')
 
 
 def dumps(name, byte):
