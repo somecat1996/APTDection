@@ -66,7 +66,7 @@ def dataset(*args, mode, labeled=False):
     signal.signal(signal.SIGUSR1, make_worker)
 
     # initialise macros
-    _worker_labeled = mp.Value('I', int(labeled))
+    _worker_labeled = bool(labeled)
     _worker_alive = mp.Array('I', [ True for _ in args ])
     _worker_pool = tuple(args)
     _worker_mode = int(mode)
@@ -92,31 +92,39 @@ def worker(path, *, mode, _count=0):
     # time.sleep(random.randint(0, dt.datetime.now().second))
     # print(f'[{time.time()}] Worker A_{_count} @ {path} done')
 
-    # extract name
-    root, file = os.path.split(path)
-    name, ext = os.path.splitext(file)
+    _signal_sent = False
+    try:
+        # extract name
+        root, file = os.path.split(path)
+        name, ext = os.path.splitext(file)
 
-    # duplicate PCAP file
-    while pathlib.Path(make_path(f'stream/{name}')).exists():
-        name = f'{name}_{int(time.time())}'
-    pathlib.Path(make_path(f'stream/{name}/tmp')).mkdir(parents=True, exist_ok=True)
-    shutil.copy(path, make_path(f'stream/{name}/{name}.pcap'))
+        # duplicate PCAP file
+        while pathlib.Path(make_path(f'stream/{name}')).exists():
+            name = f'{name}_{int(time.time())}'
+        pathlib.Path(make_path(f'stream/{name}/tmp')).mkdir(parents=True, exist_ok=True)
+        shutil.copy(path, make_path(f'stream/{name}/{name}.pcap'))
 
-    # make files
-    sdict = make_steam(name, mode=mode)             # make stream
-    os.kill(os.getppid(), signal.SIGUSR1)           # send signal
-    index = make_dataset(name, sdict, mode=mode)    # make dataset
+        # make files
+        sdict = make_steam(name, mode=mode,             # make stream
+                            _labeled=_worker_labeled)
+        os.kill(os.getppid(), signal.SIGUSR1)           # send signal
+        _signal_sent = True                             # sent signal
+        index = make_dataset(name, sdict, mode=mode)    # make dataset
 
-    # aftermath
-    if path != make_path(f'stream/{name}/{name}.pcap'):
-        os.remove(make_path(f'stream/{name}/{name}.pcap'))
+        # aftermath
+        if path != make_path(f'stream/{name}/{name}.pcap'):
+            os.remove(make_path(f'stream/{name}/{name}.pcap'))
+    except BaseException as error:
+        print(error)
+        if not _signal_sent:
+            os.kill(os.getppid(), signal.SIGUSR1)       # send signal
 
     # print(f'[{time.time()}] Worker B_{_count} @ {path} start')
     # time.sleep(random.randint(0, dt.datetime.now().second))
     # print(f'[{time.time()}] Worker B_{_count} @ {path} done')
 
     # update status
-    if _worker_labeled.value == 1 or mode == 2:
+    if _worker_labeled or mode == 2:
         _worker_num.value -= 1
     _worker_alive[_count] = False
 
@@ -144,11 +152,11 @@ def make_worker(signum=None, stack=None):
 
     # ascend count
     _worker_count += 1
-    if _worker_labeled.value == 1 or _worker_mode == 2:
+    if _worker_labeled or _worker_mode == 2:
         _worker_num.value += 1
 
 
-def make_steam(name, *, mode):
+def make_steam(name, *, mode, _labeled):
     """Extract TCP streams.
 
     Positional arguments:
@@ -159,16 +167,16 @@ def make_steam(name, *, mode):
             |--> 0 -- stage 0, do labeling & no fingerprints
             |--> 1 -- stage 1, do labeling & do fingerprints
             |--> 2 -- stage 2, no labeling & do fingerprints
+        * _labeled -- bool, if source already labeled
 
     Returns:
         * dict -- dataset labels
 
     """
-    global _worker_labeled
     print(f'Start labeling for {name}...')
 
     # already labeled
-    if _worker_labeled.value == 1:
+    if _labeled:
         print(f'Finished labeling for {name}...')
         return
 
