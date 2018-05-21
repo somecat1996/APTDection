@@ -41,7 +41,7 @@ ModelPath = ModelPath or defaultModel
 DataPath = DataPath or defaultData
 
 with open(os.path.join(path, "default"), "w") as default:
-    default.writelines([ModelPath, DataPath])
+    default.writelines([ModelPath+'\n', DataPath])
 
 command = ["python3", os.path.join(path, "Training.py"), DataPath, ModelPath, Mode, T]
 subprocess.run(command)
