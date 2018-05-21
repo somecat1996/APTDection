@@ -1,78 +1,51 @@
 import os
 import sys
 import subprocess
-import time
-
+import getopt
 
 srcPath = __file__
 path = os.path.abspath(srcPath)
 path = os.path.split(path)[0]
 
-DataPath = "/home/ubuntu/mkdat/cmp/httpheader/"
-# DataPath = "E:/code/python3/APTDection/oldFiles/pcap"
-ModelPath = "/home/ubuntu/ModelPath/Backgroud_PC_Model_20180515_httpheader/"
-# ModelPath = "E:/code/python3/APTDection/oldFiles/ModelPath"
-mode = "train"
+DataPath = ''
+ModelPath = ''
+Mode = ''
 T = "Background_PC"
 
-LogPath = os.path.join(path, "logs")
+options, args = getopt.getopt(sys.argv[1:], "trped:m:",
+                              ["train", "retrain", "predict", "evaluate", "datapath=", "modelpath="])
 
+for name, value in options:
+    if name in ("-t", "--train"):
+        Mode = "train"
+    if name in ("-r", "--retrain"):
+        Mode = "retrain"
+    if name in ("-p", "--predict"):
+        Mode = "predict"
+    if name in ("-e", "--evaluate"):
+        Mode = "evaluate"
+    if name in ("-d", "--datapath"):
+        DataPath = value
+    if name in ("-m", "--modelpath"):
+        ModelPath = value
 
-while 1:
-    # t---train
-    # r---retrain
-    # e---evaluate
-    # p---predict
-    # s---status
-    # md--modify data path
-    # mm--modify model path
-    # q---quit
-    print("Input your command.")
-    UserInput = sys.stdin.readline().strip()
-    if UserInput == 'md':
-        tmp = ''
-        while not os.path.isdir(tmp):
-            print("Input an exit folder.")
-            tmp = sys.stdin.readline().strip()
-        DataPath = tmp
-    elif UserInput == 'mm':
-        print("Input an exit folder.")
-        ModelPath = sys.stdin.readline().strip()
-    elif UserInput == 's':
-        print("Data Path: "+DataPath)
-        print("Model Path: "+ModelPath)
-        print("Type: "+T)
-    elif UserInput == 'q':
-        print("quitting")
-        sys.exit(0)
-    elif UserInput == 't':
-        mode = "train"
-        log = os.path.join(LogPath, str(int(time.time()))+"train.log")
-        command = ["python3", os.path.join(path, "Training.py"), DataPath, ModelPath, mode, T]
-        subprocess.run(command)
-        # subprocess.run(command,
-        #                stdout=open(log, 'wb'))
-    elif UserInput == 'r':
-        mode = "retrain"
-        log = os.path.join(LogPath, str(int(time.time()))+"retrain.log")
-        command = ["python3", os.path.join(path, "Training.py"), DataPath, ModelPath, mode, T]
-        subprocess.run(command)
-        # subprocess.run(command,
-        #                stdout=open(log, 'wb'))
-    elif UserInput == 'e':
-        mode = "evaluate"
-        log = os.path.join(LogPath, str(int(time.time()))+"evaluate.log")
-        command = ["python3", os.path.join(path, "Training.py"), DataPath, ModelPath, mode, T]
-        subprocess.run(command)
-        # subprocess.run(command,
-        #                stdout=open(log, 'wb'))
-        # subprocess.run(["cat", log])
-    elif UserInput == 'p':
-        mode = "predict"
-        log = os.path.join(LogPath, str(int(time.time()))+"pretict.log")
-        command = ["python3", os.path.join(path, "Training.py"), DataPath, ModelPath, mode, T]
-        subprocess.run(command)
-        # subprocess.run(command,
-        #                stdout=open(log, 'wb'))
-    else:
-        print("unavailable")
+if not Mode:
+    print("Unavailable operating mode. ")
+    exit(1)
+
+with open(os.path.join(path, "default"), "r") as default:
+    defaultModel = default.readline().strip()
+    defaultData = default.readline().strip()
+
+ModelPath = ModelPath or defaultModel
+DataPath = DataPath or defaultData
+
+with open(os.path.join(path, "default"), "w") as default:
+    default.writelines([ModelPath, DataPath])
+
+command = ["python3", os.path.join(path, "Training.py"), DataPath, ModelPath, Mode, T]
+subprocess.run(command)
+# LogPath = os.path.join(path, "logs")
+# log = os.path.join(LogPath, str(int(time.time())) + "-" + Mode + ".log")
+# subprocess.run(command,
+#                stdout=open(log, 'wb'))
