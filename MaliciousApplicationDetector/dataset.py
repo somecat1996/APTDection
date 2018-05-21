@@ -300,7 +300,7 @@ def loads(fin, fout, *, remove):
 
     # extraction procedure
     print(f'Start extracting {fin}...')
-    extractor = jspcap.extract(fin=fin, store=False, nofile=True,
+    extractor = jspcap.extract(fin=fin, store=False, nverbose=True,ofile=True, 
                                 tcp=True, strict=True, extension=False)
     print(f'Finished extracting {fin}...')
 
