@@ -311,23 +311,23 @@ class StreamManager:
         return tmp
 
     def GetBrowserGroup_PC(self):
-        print(self.browser_groups_PC)
+        # print(self.browser_groups_PC)
         return self.browser_groups_PC
 
     def GetBackgroudGroup_PC(self):
-        print(self.backgroud_groups_PC)
+        # print(self.backgroud_groups_PC)
         return self.backgroud_groups_PC
 
     def GetBrowserGroup_Phone(self):
-        print(self.browser_groups_Phone)
+        # print(self.browser_groups_Phone)
         return self.browser_groups_Phone
 
     def GetBackgroudGroup_Phone(self):
-        print(self.backgroud_groups_Phone)
+        # print(self.backgroud_groups_Phone)
         return self.backgroud_groups_Phone
 
     def GetSuspicious(self):
-        print(self.suspicious_group)
+        # print(self.suspicious_group)
         return self.suspicious_group
 
     def getIP(self, filename):
