@@ -196,7 +196,6 @@ def make_record(name, stream, *, mode):
     record = dict()
     for kind, group in FLOW_DICT.items():
         record[kind] = group(stream)
-        print(kind, group(stream))
 
     # make fingerprints
     for label in record.values():
@@ -244,7 +243,6 @@ def make_dataset(name, labels=None, *, mode, overwrite=True, fingerprint=False):
     fplist = list()
     for kind, group in labels.items():
         # only make dataset for type Background PC
-        print(kind, group)
         if kind != 'Background_PC':     continue
 
         # make directory
@@ -260,7 +258,6 @@ def make_dataset(name, labels=None, *, mode, overwrite=True, fingerprint=False):
         if mode == 2:
             fp = fingerprintManager()
             fpreport = fp.Identify(make_path(f'stream/{name}/tmp'), group)
-            print(fpreport)
             for ipua in fpreport['is_malicious']:
                 fplist += group[ipua]
             group_keys = fpreport['new_app']
