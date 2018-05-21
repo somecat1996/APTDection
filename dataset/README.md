@@ -5,7 +5,7 @@
 ### Multiprocessing Interface
 
 ```python
-dataset.dataset(*args, mode)
+dataset.dataset(*args, mode, labeled)
 ```
 
 ##### Cook dataset for CNN.
@@ -21,6 +21,8 @@ dataset.dataset(*args, mode)
         | `0`  |   stage 0   |   True   |    False     |
         | `1`  |   stage 1   |   True   |     True     |
         | `2`  |   stage 2   |  False   |     True     |
+
+    * `labeled`, `bool`, if source already labeled
 
  - Returns:
     * `dict` -- dataset index

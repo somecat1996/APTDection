@@ -34,6 +34,7 @@ FLOW_DICT = {
 }
 
 
+_worker_labeled = False
 _worker_alive = list()
 _worker_count = 0
 _worker_pool = tuple()
@@ -42,7 +43,7 @@ _worker_max = mp.cpu_count()
 _worker_num = mp.Value('I', 0)
 
 
-def dataset(*args, mode):
+def dataset(*args, mode, labeled=False):
     """Cook dataset for CNN.
 
     Positional arguments:
@@ -53,17 +54,19 @@ def dataset(*args, mode):
             |--> 0 -- stage 0, do labeling & no fingerprints
             |--> 1 -- stage 1, do labeling & do fingerprints
             |--> 2 -- stage 2, no labeling & do fingerprints
+        * labeled -- bool, if source already labeled
 
     Returns:
         * dict -- dataset index
 
     """
-    global _worker_alive, _worker_pool, _worker_mode
+    global _worker_labeled, _worker_alive, _worker_pool, _worker_mode
 
     # set signal handler
     signal.signal(signal.SIGUSR1, make_worker)
 
     # initialise macros
+    _worker_labeled = mp.Value('I', int(labeled))
     _worker_alive = mp.Array('I', [ True for _ in args ])
     _worker_pool = tuple(args)
     _worker_mode = int(mode)
@@ -82,7 +85,7 @@ def dataset(*args, mode):
 
 def worker(path, *, mode, _count=0):
     """Prepare dataset for CNN."""
-    global _worker_alive, _worker_num
+    global _worker_labeled, _worker_alive, _worker_num
     print(f'Worker No.{_count+1} @mode_{mode} on {path}')
 
     # print(f'[{time.time()}] Worker A_{_count} @ {path} start')
@@ -113,7 +116,8 @@ def worker(path, *, mode, _count=0):
     # print(f'[{time.time()}] Worker B_{_count} @ {path} done')
 
     # update status
-    if mode == 2:   _worker_num.value -= 1
+    if _worker_labeled.value == 1 or mode == 2:
+        _worker_num.value -= 1
     _worker_alive[_count] = False
 
 
@@ -124,7 +128,7 @@ def make_path(path):
 
 def make_worker(signum=None, stack=None):
     """Create process."""
-    global _worker_count, _worker_alive, _worker_num
+    global _worker_labeled, _worker_count, _worker_alive, _worker_num
 
     # check boundary
     if _worker_count >= len(_worker_pool):
@@ -140,7 +144,8 @@ def make_worker(signum=None, stack=None):
 
     # ascend count
     _worker_count += 1
-    if _worker_mode == 2:   _worker_num.value += 1
+    if _worker_labeled.value == 1 or _worker_mode == 2:
+        _worker_num.value += 1
 
 
 def make_steam(name, *, mode):
@@ -159,7 +164,13 @@ def make_steam(name, *, mode):
         * dict -- dataset labels
 
     """
+    global _worker_labeled
     print(f'Start labeling for {name}...')
+
+    # already labeled
+    if _worker_labeled.value == 1:
+        print(f'Finished labeling for {name}...')
+        return
 
     # Web Graphic
     builder = webgraphic()
@@ -185,6 +196,7 @@ def make_record(name, stream, *, mode):
     record = dict()
     for kind, group in FLOW_DICT.items():
         record[kind] = group(stream)
+        print(kind, group(stream))
 
     # make fingerprints
     for label in record.values():
@@ -198,7 +210,7 @@ def make_record(name, stream, *, mode):
 
 def make_fingerprint(name, label, *, mode):
     """Make fingerprint."""
-    if mode != 0:
+    if mode == 1:
         fp = fingerprintManager()
         fp.GenerateAndUpdate(make_path(f'stream/{name}/tmp'), label)
 
@@ -232,6 +244,7 @@ def make_dataset(name, labels=None, *, mode, overwrite=True, fingerprint=False):
     fplist = list()
     for kind, group in labels.items():
         # only make dataset for type Background PC
+        print(kind, group)
         if kind != 'Background_PC':     continue
 
         # make directory
@@ -247,6 +260,7 @@ def make_dataset(name, labels=None, *, mode, overwrite=True, fingerprint=False):
         if mode == 2:
             fp = fingerprintManager()
             fpreport = fp.Identify(make_path(f'stream/{name}/tmp'), group)
+            print(fpreport)
             for ipua in fpreport['is_malicious']:
                 fplist += group[ipua]
             group_keys = fpreport['new_app']
