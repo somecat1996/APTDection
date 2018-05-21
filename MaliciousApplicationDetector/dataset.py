@@ -14,9 +14,9 @@ import sys
 
 import jspcap
 
-from MaliciousApplicationDetector.fingerprints.fingerprintsManager import *
-from MaliciousApplicationDetector.StreamManager.StreamManager4 import *
-from MaliciousApplicationDetector.webgraphic.webgraphic import *
+from fingerprints.fingerprintsManager import *
+from StreamManager.StreamManager4 import *
+from webgraphic.webgraphic import *
 
 
 __all__ = ['dataset']
@@ -34,6 +34,7 @@ FLOW_DICT = {
 }
 
 
+_worker_chklist = list()
 _worker_labeled = False
 _worker_alive = list()
 _worker_count = 0
@@ -60,7 +61,7 @@ def dataset(*args, mode, labeled=False):
         * dict -- dataset index
 
     """
-    global _worker_labeled, _worker_alive, _worker_pool, _worker_mode
+    global _worker_chklist, _worker_labeled, _worker_alive, _worker_pool, _worker_mode
 
     # set signal handler
     signal.signal(signal.SIGUSR1, make_worker)
@@ -77,6 +78,9 @@ def dataset(*args, mode, labeled=False):
     # check status
     while any(_worker_alive):
         time.sleep(random.randint(0, dt.datetime.now().second))
+    chklist = [ proc.join() for proc in _worker_chklist ]
+    if len(chklist) != len(args):
+        raise RuntimeWarning(f'expected {len(agrs)} workers, but {len(chklist)} found')
     print(f'Dataset ready @ {make_path(f"dataset")}')
 
     # dump index.json
@@ -87,6 +91,10 @@ def worker(path, *, mode, _count=0):
     """Prepare dataset for CNN."""
     global _worker_labeled, _worker_alive, _worker_num
     print(f'Worker No.{_count+1} @mode_{mode} on {path}')
+
+    # print(f'[{time.time()}] Worker A_{_count} @ {path} start')
+    # time.sleep(random.randint(0, dt.datetime.now().second))
+    # print(f'[{time.time()}] Worker A_{_count} @ {path} done')
 
     _signal_sent = False
     try:
@@ -115,6 +123,10 @@ def worker(path, *, mode, _count=0):
         if not _signal_sent:
             os.kill(os.getppid(), signal.SIGUSR1)       # send signal
 
+    # print(f'[{time.time()}] Worker B_{_count} @ {path} start')
+    # time.sleep(random.randint(0, dt.datetime.now().second))
+    # print(f'[{time.time()}] Worker B_{_count} @ {path} done')
+
     # update status
     if _worker_labeled or mode == 2:
         _worker_num.value -= 1
@@ -128,7 +140,7 @@ def make_path(path):
 
 def make_worker(signum=None, stack=None):
     """Create process."""
-    global _worker_labeled, _worker_count, _worker_alive, _worker_num
+    global _worker_chklist, _worker_labeled, _worker_count, _worker_alive, _worker_num
 
     # check boundary
     if _worker_count >= len(_worker_pool):
@@ -139,8 +151,10 @@ def make_worker(signum=None, stack=None):
         time.sleep(random.randint(0, dt.datetime.now().second))
 
     # create process
-    mp.Process(target=worker, args=(_worker_pool[_worker_count],),
-                kwargs={'mode': _worker_mode, '_count': _worker_count}).start()
+    proc = mp.Process(target=worker, args=(_worker_pool[_worker_count],),
+                        kwargs={'mode': _worker_mode, '_count': _worker_count})
+    proc.start()
+    _worker_chklist.append(proc)
 
     # ascend count
     _worker_count += 1
