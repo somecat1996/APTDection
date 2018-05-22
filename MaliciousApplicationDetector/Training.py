@@ -394,10 +394,10 @@ def main(unused):
         print("checking...")
         group_dict = {}
         for i in names:
-            paths = pathlib.Path(i).parts
+            paths = pathlib.Path(i)
             # paths = os.path.splitext(i)[0].split("/")
-            group = paths[-4]
-            name = os.path.splitext(paths[-1])[1]
+            group = paths.parts[-4]
+            name = paths.stem
             if group not in group_dict:
                 group_dict[group] = {}
                 group_dict[group]["Background_PC"] = []
