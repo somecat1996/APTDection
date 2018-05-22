@@ -5,6 +5,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaliciousApplicationDetector/StreamManager/StreamManager4.py" afterPath="$PROJECT_DIR$/MaliciousApplicationDetector/StreamManager/StreamManager4.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaliciousApplicationDetector/Training.py" afterPath="$PROJECT_DIR$/MaliciousApplicationDetector/Training.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaliciousApplicationDetector/dataset.py" afterPath="$PROJECT_DIR$/MaliciousApplicationDetector/dataset.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -58,7 +59,51 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1712">
               <caret line="165" column="4" lean-forward="true" selection-start-line="165" selection-start-column="4" selection-end-line="165" selection-end-column="14" />
-              <folding />
+              <folding>
+                <marker date="1526967689884" expanded="true" signature="412:745" ph="..." />
+                <marker date="1526967689884" expanded="true" signature="981:2222" ph="..." />
+                <marker date="1526967689884" expanded="true" signature="986:1436" ph="&quot;&quot;&quot;Cook dataset for CNN....&quot;&quot;&quot;" />
+                <marker date="1526967689884" expanded="true" signature="2261:4076" ph="..." />
+                <marker date="1526967689884" expanded="true" signature="2415:2601" ph="..." />
+                <marker date="1526967689884" expanded="true" signature="2636:3606" ph="..." />
+                <marker date="1526967689884" expanded="true" signature="3641:3761" ph="..." />
+                <marker date="1526967689884" expanded="true" signature="3767:3974" ph="..." />
+                <marker date="1526967689884" expanded="true" signature="4099:4156" ph="..." />
+                <marker date="1526967689884" expanded="true" signature="4200:4866" ph="..." />
+                <marker date="1526967689884" expanded="true" signature="4909:5967" ph="..." />
+                <marker date="1526967689884" expanded="true" signature="4914:5364" ph="&quot;&quot;&quot;Extract TCP streams....&quot;&quot;&quot;" />
+                <marker date="1526967689884" expanded="true" signature="5447:5512" ph="..." />
+                <marker date="1526967689884" expanded="true" signature="6009:6414" ph="..." />
+                <marker date="1526967689884" expanded="true" signature="6460:6609" ph="..." />
+                <marker date="1526967689884" expanded="true" signature="6506:6609" ph="..." />
+                <marker date="1526967689884" expanded="true" signature="6692:8819" ph="..." />
+                <marker date="1526967689884" expanded="true" signature="6697:7253" ph="&quot;&quot;&quot;Make dataset....&quot;&quot;&quot;" />
+                <marker date="1526967689884" expanded="true" signature="7347:7457" ph="..." />
+                <marker date="1526967689884" expanded="true" signature="7517:8711" ph="..." />
+                <marker date="1526967689884" expanded="true" signature="8046:8292" ph="..." />
+                <marker date="1526967689884" expanded="true" signature="8351:8711" ph="..." />
+                <marker date="1526967689884" expanded="true" signature="8388:8711" ph="..." />
+                <marker date="1526967689884" expanded="true" signature="8854:9579" ph="..." />
+                <marker date="1526967689884" expanded="true" signature="8946:9009" ph="..." />
+                <marker date="1526967689884" expanded="true" signature="9385:9535" ph="..." />
+                <marker date="1526967689884" expanded="true" signature="9427:9535" ph="..." />
+                <marker date="1526967689884" expanded="true" signature="9604:9688" ph="..." />
+                <marker date="1526967689884" expanded="true" signature="9734:11428" ph="..." />
+                <marker date="1526967689884" expanded="true" signature="9798:10070" ph="..." />
+                <marker date="1526967689884" expanded="true" signature="10141:10650" ph="..." />
+                <marker date="1526967689884" expanded="true" signature="10168:10650" ph="..." />
+                <marker date="1526967689884" expanded="true" signature="10250:10409" ph="..." />
+                <marker date="1526967689884" expanded="true" signature="10285:10409" ph="..." />
+                <marker date="1526967689884" expanded="true" signature="10491:10650" ph="..." />
+                <marker date="1526967689884" expanded="true" signature="10526:10650" ph="..." />
+                <marker date="1526967689884" expanded="true" signature="10699:10899" ph="..." />
+                <marker date="1526967689884" expanded="true" signature="10728:10833" ph="'...'" />
+                <marker date="1526967689884" expanded="true" signature="10939:11284" ph="..." />
+                <marker date="1526967689884" expanded="true" signature="11014:11249" ph="..." />
+                <marker date="1526967689884" expanded="true" signature="11065:11249" ph="..." />
+                <marker date="1526967689884" expanded="true" signature="11457:11794" ph="..." />
+                <marker date="1526967689884" expanded="true" signature="11623:11754" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -66,9 +111,14 @@
       <file leaf-file-name="StreamManager4.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MaliciousApplicationDetector/StreamManager/StreamManager4.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7648">
-              <caret line="242" column="24" lean-forward="true" selection-start-line="242" selection-start-column="24" selection-end-line="242" selection-end-column="24" />
-              <folding />
+            <state relative-caret-position="7936">
+              <caret line="248" column="24" lean-forward="true" selection-start-line="248" selection-start-column="24" selection-end-line="248" selection-end-column="24" />
+              <folding>
+                <marker date="1526967689869" expanded="true" signature="12468:13280" ph="..." />
+                <marker date="1526967689869" expanded="true" signature="12547:12618" ph="..." />
+                <marker date="1526967689869" expanded="true" signature="12697:13216" ph="..." />
+                <marker date="1526967689869" expanded="true" signature="13062:13141" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -76,11 +126,10 @@
       <file leaf-file-name="Training.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MaliciousApplicationDetector/Training.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="456">
-              <caret line="411" column="64" lean-forward="true" selection-start-line="411" selection-start-column="64" selection-end-line="411" selection-end-column="64" />
+            <state relative-caret-position="230">
+              <caret line="409" column="44" lean-forward="true" selection-start-line="409" selection-start-column="44" selection-end-line="409" selection-end-column="44" />
               <folding>
-                <element signature="e#0#23#0" expanded="true" />
-                <element signature="e#6325#8998#0" expanded="false" />
+                <element signature="e#25#36#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1013,9 +1062,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MaliciousApplicationDetector/StreamManager/StreamManager4.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7648">
-          <caret line="242" column="24" lean-forward="true" selection-start-line="242" selection-start-column="24" selection-end-line="242" selection-end-column="24" />
-          <folding />
+        <state relative-caret-position="7936">
+          <caret line="248" column="24" lean-forward="true" selection-start-line="248" selection-start-column="24" selection-end-line="248" selection-end-column="24" />
+          <folding>
+            <marker date="1526967689869" expanded="true" signature="12468:13280" ph="..." />
+            <marker date="1526967689869" expanded="true" signature="12547:12618" ph="..." />
+            <marker date="1526967689869" expanded="true" signature="12697:13216" ph="..." />
+            <marker date="1526967689869" expanded="true" signature="13062:13141" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1023,17 +1077,60 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1712">
           <caret line="165" column="4" lean-forward="true" selection-start-line="165" selection-start-column="4" selection-end-line="165" selection-end-column="14" />
-          <folding />
+          <folding>
+            <marker date="1526967689884" expanded="true" signature="412:745" ph="..." />
+            <marker date="1526967689884" expanded="true" signature="981:2222" ph="..." />
+            <marker date="1526967689884" expanded="true" signature="986:1436" ph="&quot;&quot;&quot;Cook dataset for CNN....&quot;&quot;&quot;" />
+            <marker date="1526967689884" expanded="true" signature="2261:4076" ph="..." />
+            <marker date="1526967689884" expanded="true" signature="2415:2601" ph="..." />
+            <marker date="1526967689884" expanded="true" signature="2636:3606" ph="..." />
+            <marker date="1526967689884" expanded="true" signature="3641:3761" ph="..." />
+            <marker date="1526967689884" expanded="true" signature="3767:3974" ph="..." />
+            <marker date="1526967689884" expanded="true" signature="4099:4156" ph="..." />
+            <marker date="1526967689884" expanded="true" signature="4200:4866" ph="..." />
+            <marker date="1526967689884" expanded="true" signature="4909:5967" ph="..." />
+            <marker date="1526967689884" expanded="true" signature="4914:5364" ph="&quot;&quot;&quot;Extract TCP streams....&quot;&quot;&quot;" />
+            <marker date="1526967689884" expanded="true" signature="5447:5512" ph="..." />
+            <marker date="1526967689884" expanded="true" signature="6009:6414" ph="..." />
+            <marker date="1526967689884" expanded="true" signature="6460:6609" ph="..." />
+            <marker date="1526967689884" expanded="true" signature="6506:6609" ph="..." />
+            <marker date="1526967689884" expanded="true" signature="6692:8819" ph="..." />
+            <marker date="1526967689884" expanded="true" signature="6697:7253" ph="&quot;&quot;&quot;Make dataset....&quot;&quot;&quot;" />
+            <marker date="1526967689884" expanded="true" signature="7347:7457" ph="..." />
+            <marker date="1526967689884" expanded="true" signature="7517:8711" ph="..." />
+            <marker date="1526967689884" expanded="true" signature="8046:8292" ph="..." />
+            <marker date="1526967689884" expanded="true" signature="8351:8711" ph="..." />
+            <marker date="1526967689884" expanded="true" signature="8388:8711" ph="..." />
+            <marker date="1526967689884" expanded="true" signature="8854:9579" ph="..." />
+            <marker date="1526967689884" expanded="true" signature="8946:9009" ph="..." />
+            <marker date="1526967689884" expanded="true" signature="9385:9535" ph="..." />
+            <marker date="1526967689884" expanded="true" signature="9427:9535" ph="..." />
+            <marker date="1526967689884" expanded="true" signature="9604:9688" ph="..." />
+            <marker date="1526967689884" expanded="true" signature="9734:11428" ph="..." />
+            <marker date="1526967689884" expanded="true" signature="9798:10070" ph="..." />
+            <marker date="1526967689884" expanded="true" signature="10141:10650" ph="..." />
+            <marker date="1526967689884" expanded="true" signature="10168:10650" ph="..." />
+            <marker date="1526967689884" expanded="true" signature="10250:10409" ph="..." />
+            <marker date="1526967689884" expanded="true" signature="10285:10409" ph="..." />
+            <marker date="1526967689884" expanded="true" signature="10491:10650" ph="..." />
+            <marker date="1526967689884" expanded="true" signature="10526:10650" ph="..." />
+            <marker date="1526967689884" expanded="true" signature="10699:10899" ph="..." />
+            <marker date="1526967689884" expanded="true" signature="10728:10833" ph="'...'" />
+            <marker date="1526967689884" expanded="true" signature="10939:11284" ph="..." />
+            <marker date="1526967689884" expanded="true" signature="11014:11249" ph="..." />
+            <marker date="1526967689884" expanded="true" signature="11065:11249" ph="..." />
+            <marker date="1526967689884" expanded="true" signature="11457:11794" ph="..." />
+            <marker date="1526967689884" expanded="true" signature="11623:11754" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MaliciousApplicationDetector/Training.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="411" column="64" lean-forward="true" selection-start-line="411" selection-start-column="64" selection-end-line="411" selection-end-column="64" />
+        <state relative-caret-position="230">
+          <caret line="409" column="44" lean-forward="true" selection-start-line="409" selection-start-column="44" selection-end-line="409" selection-end-column="44" />
           <folding>
-            <element signature="e#0#23#0" expanded="true" />
-            <element signature="e#6325#8998#0" expanded="false" />
+            <element signature="e#25#36#0" expanded="true" />
           </folding>
         </state>
       </provider>

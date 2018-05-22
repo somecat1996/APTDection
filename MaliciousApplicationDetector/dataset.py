@@ -22,7 +22,7 @@ from webgraphic.webgraphic import *
 __all__ = ['dataset']
 
 
-ROOT = os.path.split(os.path.abspath(__file__))[0]
+ROOT = os.path.dirname(os.path.abspath(__file__))
 
 
 FLOW_DICT = {

@@ -1,14 +1,18 @@
-import tensorflow as tf
-import numpy as np
+# -*- coding: utf-8 -*-
+
 import json
-import sys
 import os
+import pathlib
+import sys
+
+import numpy as np
+import tensorflow as tf
+
 from StreamManager.StreamManager4 import *
 from dataset import *
 
-srcPath = __file__
-path = os.path.abspath(srcPath)
-path = os.path.split(path)[0]
+
+path = os.path.dirname(os.path.abspath(__file__))
 
 
 DataPath = sys.argv[1]
@@ -390,9 +394,10 @@ def main(unused):
         print("checking...")
         group_dict = {}
         for i in names:
-            paths = os.path.splitext(i)[0].split("/")
-            group = paths[-4]
-            name = paths[-1]
+            paths = pathlib.Path(i)
+            # paths = os.path.splitext(i)[0].split("/")
+            group = paths.parts[-4]
+            name = paths.stem
             if group not in group_dict:
                 group_dict[group] = {}
                 group_dict[group]["Background_PC"] = []
@@ -402,8 +407,9 @@ def main(unused):
             tmp_dict["filename"] = name + ".pcap"
             group_dict[group]["Background_PC"].append(tmp_dict)
         for i in group_dict:
-            stream_manager = StreamManager(os.path.join(path, "stream/"+i+"/"+i+".pcap"))
-            print(stream_manager.validate(group_dict[i]))
+            # stream_manager = StreamManager(os.path.join(path, "stream/"+i+"/"+i+".pcap"))
+            # print(stream_manager.validate(group_dict[i]))
+            print(StreamManager.validate(group_dict[i]))
 
 
     # Used for evaluating our system

@@ -1,7 +1,12 @@
+# -*- coding: utf-8 -*-
+
 import os
 import re
+
 from scapy.all import *
+
 from DataLabeler.DataLabeler import Datalabler
+
 
 class StreamManager:
     def __init__(self, path):
@@ -238,7 +243,8 @@ class StreamManager:
                         if x["malicious"] >= 1 or x["suspicious"] >= 2:
                             print("扫描命中！！！！")
 
-    def validate(self, dict):
+    @classmethod
+    def validate(cls, dict):
         targets = []
         for key in dict:
             for x in dict[key]:
@@ -250,7 +256,7 @@ class StreamManager:
         malicious_num = 0
         for i in range(len(targets)):
             filename = targets[i]["filename"]
-            url = self.GetUrl(filename)
+            url = cls.GetUrl(filename)
             if url == "none":
                 malicious_num += 1
             else:
@@ -367,8 +373,10 @@ class StreamManager:
             packet = source.read_packet()
         return useragent
 
-    def GetUrl(self, filename):
-        filepath = self.datapath + "/tmp/" + filename
+    @staticmethod
+    def GetUrl(filename):
+        datapath = os.path.dirname(__file__)
+        filepath = datapath + "/tmp/" + filename
         pattern1 = "/.*?HTTP"
         pattern2 = "/.*?\\?"
         pattern3 = "Host.*?\\\\r"
