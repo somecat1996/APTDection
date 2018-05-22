@@ -8,6 +8,7 @@ DataPath = sys.argv[1]
 ModelPath = sys.argv[2]
 mode = sys.argv[3]
 T = sys.argv[4]
+Step = sys.argv[5]
 
 # DataPath = "./dataset/"
 # # ModelPath = "./Backgroud_PC_model/"
@@ -68,7 +69,7 @@ def ReadPredictData(path, T):
     return packets_0, packets_1
 
 
-def ReadTrainData(path, T, trainrate=0.8):
+def ReadTrainData(path, T):
     files = ReadDictionary(path, T)
     packets_1 = []
     labels_1 = []
@@ -281,7 +282,7 @@ def main(unused):
         model_fn=NeutralNetwork,
         model_dir=ModelPath)
     if mode == "train":
-        packets_train, labels_train, packets_eval, labels_eval = ReadTrainData(DataPath, T, TrainRate)
+        packets_train, labels_train, packets_eval, labels_eval = ReadTrainData(DataPath, T)
         tensors_to_log = {"probabilities": "softmax_tensor"}
         logging_hook = tf.train.LoggingTensorHook(
             tensors=tensors_to_log,
@@ -297,13 +298,12 @@ def main(unused):
             y=labels_eval,
             num_epochs=1,
             shuffle=False)
-        for i in range(20000):
-            classifier.train(
-                input_fn=train_input_fn,
-                steps=1,
-                hooks=[logging_hook])
-            eval_results = classifier.evaluate(input_fn=eval_input_fn)
-            print(eval_results)
+        classifier.train(
+            input_fn=train_input_fn,
+            steps=Step,
+            hooks=[logging_hook])
+        eval_results = classifier.evaluate(input_fn=eval_input_fn)
+        print(eval_results)
     elif mode == "predict":
         packets_predict_0, packets_predict_1 = ReadPredictData(DataPath, T)
 
