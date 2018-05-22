@@ -1,14 +1,18 @@
-import tensorflow as tf
-import numpy as np
+# -*- coding: utf-8 -*-
+
 import json
-import sys
 import os
+import pathlib
+import sys
+
+import numpy as np
+import tensorflow as tf
+
 from StreamManager.StreamManager4 import *
 from dataset import *
 
-srcPath = __file__
-path = os.path.abspath(srcPath)
-path = os.path.split(path)[0]
+
+path = os.path.dirname(os.path.abspath(__file__))
 
 
 DataPath = sys.argv[1]
@@ -390,9 +394,10 @@ def main(unused):
         print("checking...")
         group_dict = {}
         for i in names:
-            paths = os.path.splitext(i)[0].split("/")
+            paths = pathlib.Path(i).parts
+            # paths = os.path.splitext(i)[0].split("/")
             group = paths[-4]
-            name = paths[-1]
+            name = os.path.splitext(paths[-1])[1]
             if group not in group_dict:
                 group_dict[group] = {}
                 group_dict[group]["Background_PC"] = []
