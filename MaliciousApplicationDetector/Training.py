@@ -8,8 +8,8 @@ import sys
 import numpy as np
 import tensorflow as tf
 
-from StreamManager.StreamManager4 import *
 from dataset import *
+from StreamManager.StreamManager4 import *
 
 
 path = os.path.dirname(os.path.abspath(__file__))
@@ -409,7 +409,7 @@ def main(unused):
         for i in group_dict:
             # stream_manager = StreamManager(os.path.join(path, "stream/"+i+"/"+i+".pcap"))
             # print(stream_manager.validate(group_dict[i]))
-            print(StreamManager.validate(group_dict[i]))
+            print(StreamManager.validate(group_dict[i], root=os.path.join(path, "stream/"+i)))
 
 
     # Used for evaluating our system

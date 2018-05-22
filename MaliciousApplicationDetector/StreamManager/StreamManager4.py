@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import os
-import pathlib
 import re
 
 from scapy.all import *
@@ -245,7 +244,8 @@ class StreamManager:
                             print("扫描命中！！！！")
 
     @classmethod
-    def validate(cls, dict):
+    def validate(cls, dict, *, root):
+        cls.datapath = root
         targets = []
         for key in dict:
             for x in dict[key]:
@@ -257,7 +257,7 @@ class StreamManager:
         malicious_num = 0
         for i in range(len(targets)):
             filename = targets[i]["filename"]
-            url = cls.GetUrl(filename)
+            url = cls.GetUrl(cls, filename)
             if url == "none":
                 malicious_num += 1
             else:
@@ -374,10 +374,8 @@ class StreamManager:
             packet = source.read_packet()
         return useragent
 
-    @staticmethod
-    def GetUrl(filename):
-        datapath = pathlib.Path(__file__).parents[1]
-        filepath = datapath + "/tmp/" + filename
+    def GetUrl(self, filename):
+        filepath = self.datapath + "/tmp/" + filename
         pattern1 = "/.*?HTTP"
         pattern2 = "/.*?\\?"
         pattern3 = "Host.*?\\\\r"
