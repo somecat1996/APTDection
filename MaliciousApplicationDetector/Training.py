@@ -3,7 +3,12 @@ import numpy as np
 import json
 import sys
 import os
+from StreamManager.StreamManager4 import *
 from dataset import *
+
+srcPath = __file__
+path = os.path.abspath(srcPath)
+path = os.path.split(path)[0]
 
 
 DataPath = sys.argv[1]
@@ -382,6 +387,24 @@ def main(unused):
         for i in range(len(predicted_classes)):
             if predicted_classes[i] == 1:
                 print(names[i])
+        print("checking...")
+        group_dict = {}
+        for i in names:
+            paths = os.path.splitext(i)[0].split("/")
+            group = paths[-4]
+            name = paths[-1]
+            if group not in group_dict:
+                group_dict[group] = {}
+                group_dict[group]["Background_PC"] = []
+            tmp_dict = {}
+            tmp_dict["is_malicious"] = 1
+            tmp_dict["type"] = 0
+            tmp_dict["filename"] = name + ".pcap"
+            group_dict[group]["Background_PC"].append(tmp_dict)
+        for i in group_dict:
+            stream_manager = StreamManager(os.path.join(path, "stream/"+i+"/"+i+".pcap"))
+            print(stream_manager.validate(group_dict[i]))
+
 
     # Used for evaluating our system
     elif mode == "evaluate":

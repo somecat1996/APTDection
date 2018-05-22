@@ -235,7 +235,7 @@ class StreamManager:
                     for index in range(len(target_groups[keys[i]])):
                         target_groups[keys[i]][index]["is_malicious"] += x["malicious"]
                         target_groups[keys[i]][index]["is_malicious"] += x["suspicious"]
-                        if x["malicious"] != 0 or x["suspicious"] != 0:
+                        if x["malicious"] >= 1 or x["suspicious"] >= 2:
                             print("扫描命中！！！！")
 
     def validate(self, dict):
