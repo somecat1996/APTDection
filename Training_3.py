@@ -62,10 +62,7 @@ def ReadPredictData(path, T):
             payload = payload[:1024]
         for i in payload:
             packet.append(i)
-        if ReadCheck(file):
-            packets_1.append(packet)
-        else:
-            packets_0.append(packet)
+        packets_1.append(packet)
     packets_0 = np.asarray(packets_0, np.float32)
     packets_1 = np.asarray(packets_1, np.float32)
     return packets_0, packets_1

@@ -346,7 +346,7 @@ def main(unused):
             shuffle=True)
         classifier.train(
             input_fn=train_input_fn,
-            steps=10000,
+            steps=20000,
             hooks=[logging_hook])
 
     # When this system is placed, used for retaining model and fingerprinting.
