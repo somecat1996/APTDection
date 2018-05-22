@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import os
+import pathlib
 import re
 
 from scapy.all import *
@@ -375,7 +376,7 @@ class StreamManager:
 
     @staticmethod
     def GetUrl(filename):
-        datapath = os.path.dirname(__file__)
+        datapath = pathlib.Path(__file__).parents[1]
         filepath = datapath + "/tmp/" + filename
         pattern1 = "/.*?HTTP"
         pattern2 = "/.*?\\?"
