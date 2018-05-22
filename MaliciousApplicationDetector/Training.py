@@ -407,8 +407,9 @@ def main(unused):
             tmp_dict["filename"] = name + ".pcap"
             group_dict[group]["Background_PC"].append(tmp_dict)
         for i in group_dict:
-            stream_manager = StreamManager(os.path.join(path, "stream/"+i+"/"+i+".pcap"))
-            print(stream_manager.validate(group_dict[i]))
+            # stream_manager = StreamManager(os.path.join(path, "stream/"+i+"/"+i+".pcap"))
+            # print(stream_manager.validate(group_dict[i]))
+            print(StreamManager.validate(group_dict[i]))
 
 
     # Used for evaluating our system
