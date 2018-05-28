@@ -406,10 +406,10 @@ def main(unused):
             tmp_dict["type"] = 0
             tmp_dict["filename"] = name + ".pcap"
             group_dict[group]["Background_PC"].append(tmp_dict)
+        val = []
         for i in group_dict:
-            # stream_manager = StreamManager(os.path.join(path, "stream/"+i+"/"+i+".pcap"))
-            # print(stream_manager.validate(group_dict[i]))
-            print(StreamManager.validate(group_dict[i], root=os.path.join(path, "stream/"+i)))
+            val += StreamManager.validate(group_dict[i], root=os.path.join(path, "stream/"+i))
+        print(val)
 
 
     # Used for evaluating our system
