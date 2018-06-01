@@ -425,7 +425,7 @@ def main(unused):
                 os.mkdir(retrainPath)
             val += StreamManager.validate(group_dict[i], root=streamPath)
             for j in val:
-                shutil.copy(os.path.join(streamPath, j), retrainPath)
+                shutil.copy(os.path.join(streamPath, "tmp/"+j), retrainPath)
         print(val)
         print(len(val)/sum(predicted_classes))
 
