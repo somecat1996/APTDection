@@ -4,6 +4,7 @@ import json
 import os
 import pathlib
 import sys
+import shutil
 
 import numpy as np
 import tensorflow as tf
@@ -383,17 +384,27 @@ def main(unused):
             shuffle=False)
         predictions = list(classifier.predict(input_fn=predict_input_fn))
         predicted_classes = [p["classes"] for p in predictions]
-        print(predicted_classes)
         print("detected by fingerprint:")
         for i in isMalicious:
             print(i)
         print("detected by CNN: ")
+        Malicious = []
         for i in range(len(predicted_classes)):
             if predicted_classes[i] == 1:
-                print(names[i])
+                paths = pathlib.Path(names[i])
+                group = paths.parts[-4]
+                name = paths.stem
+                groupPath = os.path.join(path, "stream/"+group)
+                stream = json.load(open(os.path.join(groupPath, "stream.json"), 'r'))["Background_PC"]
+                for ua in stream:
+                    for file in stream[ua]:
+                        if name in file["filename"]:
+                            print(ua)
+                print(name)
+                Malicious.append(names[i])
         print("checking...")
         group_dict = {}
-        for i in names:
+        for i in Malicious:
             paths = pathlib.Path(i)
             # paths = os.path.splitext(i)[0].split("/")
             group = paths.parts[-4]
@@ -408,8 +419,15 @@ def main(unused):
             group_dict[group]["Background_PC"].append(tmp_dict)
         val = []
         for i in group_dict:
-            val += StreamManager.validate(group_dict[i], root=os.path.join(path, "stream/"+i))
+            streamPath = os.path.join(path, "stream/"+i)
+            retrainPath = os.path.join(path, "retrain/")
+            if not os.path.exists(retrainPath):
+                os.mkdir(retrainPath)
+            val += StreamManager.validate(group_dict[i], root=streamPath)
+            for j in val:
+                shutil.copy(os.path.join(streamPath, j), retrainPath)
         print(val)
+        print(len(val)/sum(predicted_classes))
 
 
     # Used for evaluating our system
