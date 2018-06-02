@@ -5,6 +5,7 @@ import os
 import pathlib
 import sys
 import shutil
+import time
 
 import numpy as np
 import tensorflow as tf
@@ -373,6 +374,7 @@ def main(unused):
 
     # Used for system operating
     elif mode == "predict":
+        start = time.clock()
         files = [os.path.join(DataPath, x) for x in os.listdir(DataPath) if os.path.isfile(DataPath + x)]
         index = dataset(*files, mode=2)
         print(index)
@@ -428,6 +430,8 @@ def main(unused):
                 shutil.copy(os.path.join(streamPath, "tmp/"+j), retrainPath)
         print(val)
         print(len(val)/sum(predicted_classes))
+        end = time.clock()
+        print('Running time: %s Seconds' % (end - start))
 
 
     # Used for evaluating our system
