@@ -270,12 +270,12 @@ def make_dataset(name, labels=None, *, mode, overwrite=True, fingerprint=False):
 
         # identify figerprints
         group_keys = group.keys()
-        # if mode == 2:
-        #     fp = fingerprintManager()
-        #     fpreport = fp.Identify(make_path(f'stream/{name}/tmp'), group)
-        #     for ipua in fpreport['is_malicious']:
-        #         fplist += group[ipua]
-        #     group_keys = fpreport['new_app']
+        if mode == 2:
+            fp = fingerprintManager()
+            fpreport = fp.Identify(make_path(f'stream/{name}/tmp'), group)
+            for ipua in fpreport['is_malicious']:
+                fplist += group[ipua]
+            group_keys = fpreport['new_app']
 
         # enumerate files
         for ipua in group_keys:
