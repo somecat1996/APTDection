@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b9fab451-4e2e-4d78-8e53-8e573f9683e8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaliciousApplicationDetector/Training.py" afterPath="$PROJECT_DIR$/MaliciousApplicationDetector/Training.py" />
-    </list>
+    <list default="true" id="b9fab451-4e2e-4d78-8e53-8e573f9683e8" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -71,9 +68,9 @@
         <entry file="file://$PROJECT_DIR$/MaliciousApplicationDetector/dataset.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="500">
-              <caret line="277" column="41" lean-forward="true" selection-start-line="272" selection-start-column="17" selection-end-line="277" selection-end-column="41" />
+              <caret line="277" column="39" lean-forward="true" selection-start-line="272" selection-start-column="15" selection-end-line="277" selection-end-column="39" />
               <folding>
-                <marker date="1527951435101" expanded="true" signature="8048:8304" ph="..." />
+                <marker date="1527951490795" expanded="true" signature="8033:8319" ph="..." />
               </folding>
             </state>
           </provider>
@@ -993,9 +990,9 @@
     <entry file="file://$PROJECT_DIR$/MaliciousApplicationDetector/dataset.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="500">
-          <caret line="277" column="41" lean-forward="true" selection-start-line="272" selection-start-column="17" selection-end-line="277" selection-end-column="41" />
+          <caret line="277" column="39" lean-forward="true" selection-start-line="272" selection-start-column="15" selection-end-line="277" selection-end-column="39" />
           <folding>
-            <marker date="1527951435101" expanded="true" signature="8048:8304" ph="..." />
+            <marker date="1527951490795" expanded="true" signature="8033:8319" ph="..." />
           </folding>
         </state>
       </provider>
