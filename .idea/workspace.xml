@@ -4,7 +4,6 @@
     <list default="true" id="b9fab451-4e2e-4d78-8e53-8e573f9683e8" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaliciousApplicationDetector/Training.py" afterPath="$PROJECT_DIR$/MaliciousApplicationDetector/Training.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaliciousApplicationDetector/dataset.py" afterPath="$PROJECT_DIR$/MaliciousApplicationDetector/dataset.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -37,7 +36,7 @@
       <file leaf-file-name="Scanner.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MaliciousApplicationDetector/Scanner.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
+            <state relative-caret-position="448">
               <caret line="14" column="55" lean-forward="false" selection-start-line="14" selection-start-column="55" selection-end-line="14" selection-end-column="55" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
@@ -49,8 +48,8 @@
       <file leaf-file-name="Training.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MaliciousApplicationDetector/Training.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="433" column="8" lean-forward="false" selection-start-line="433" selection-start-column="8" selection-end-line="433" selection-end-column="8" />
+            <state relative-caret-position="352">
+              <caret line="434" column="17" lean-forward="false" selection-start-line="434" selection-start-column="17" selection-end-line="434" selection-end-column="17" />
               <folding>
                 <element signature="e#25#36#0" expanded="true" />
               </folding>
@@ -61,7 +60,7 @@
       <file leaf-file-name="StreamManager4.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MaliciousApplicationDetector/StreamManager/StreamManager4.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="500">
+            <state relative-caret-position="7680">
               <caret line="245" column="16" lean-forward="false" selection-start-line="245" selection-start-column="16" selection-end-line="245" selection-end-column="16" />
               <folding />
             </state>
@@ -71,9 +70,11 @@
       <file leaf-file-name="dataset.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MaliciousApplicationDetector/dataset.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="272" column="19" lean-forward="false" selection-start-line="272" selection-start-column="19" selection-end-line="277" selection-end-column="46" />
-              <folding />
+            <state relative-caret-position="500">
+              <caret line="277" column="41" lean-forward="true" selection-start-line="272" selection-start-column="17" selection-end-line="277" selection-end-column="41" />
+              <folding>
+                <marker date="1527951435101" expanded="true" signature="8048:8304" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -236,6 +237,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -296,8 +299,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -622,7 +623,7 @@
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25113463" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2624811" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -963,7 +964,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MaliciousApplicationDetector/StreamManager/StreamManager4.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
+        <state relative-caret-position="7680">
           <caret line="245" column="16" lean-forward="false" selection-start-line="245" selection-start-column="16" selection-end-line="245" selection-end-column="16" />
           <folding />
         </state>
@@ -971,7 +972,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MaliciousApplicationDetector/Scanner.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
+        <state relative-caret-position="448">
           <caret line="14" column="55" lean-forward="false" selection-start-line="14" selection-start-column="55" selection-end-line="14" selection-end-column="55" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
@@ -981,8 +982,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MaliciousApplicationDetector/Training.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="433" column="8" lean-forward="false" selection-start-line="433" selection-start-column="8" selection-end-line="433" selection-end-column="8" />
+        <state relative-caret-position="352">
+          <caret line="434" column="17" lean-forward="false" selection-start-line="434" selection-start-column="17" selection-end-line="434" selection-end-column="17" />
           <folding>
             <element signature="e#25#36#0" expanded="true" />
           </folding>
@@ -991,9 +992,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MaliciousApplicationDetector/dataset.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="272" column="19" lean-forward="false" selection-start-line="272" selection-start-column="19" selection-end-line="277" selection-end-column="46" />
-          <folding />
+        <state relative-caret-position="500">
+          <caret line="277" column="41" lean-forward="true" selection-start-line="272" selection-start-column="17" selection-end-line="277" selection-end-column="41" />
+          <folding>
+            <marker date="1527951435101" expanded="true" signature="8048:8304" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
