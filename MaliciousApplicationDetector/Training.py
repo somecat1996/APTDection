@@ -374,7 +374,7 @@ def main(unused):
 
     # Used for system operating
     elif mode == "predict":
-        start = time.clock()
+        start = time.time()
         print(start)
         files = [os.path.join(DataPath, x) for x in os.listdir(DataPath) if os.path.isfile(DataPath + x)]
         index = dataset(*files, mode=2)
@@ -431,7 +431,7 @@ def main(unused):
                 shutil.copy(os.path.join(streamPath, "0/"+j), retrainPath)
         print(val)
         print(len(val)/sum(predicted_classes))
-        end = time.clock()
+        end = time.time()
         print(end)
         print('Running time: %s Seconds' % (end - start))
 
