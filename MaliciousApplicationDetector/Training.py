@@ -422,13 +422,14 @@ def main(unused):
             group_dict[group]["Background_PC"].append(tmp_dict)
         val = []
         for i in group_dict:
-            streamPath = os.path.join(path, "dataset/"+i)
+            streamPath = os.path.join(path, "stream/"+i)
+            datasetPath = os.path.join(path, "dataset/"+i)
             retrainPath = os.path.join(path, "retrain/")
             if not os.path.exists(retrainPath):
                 os.mkdir(retrainPath)
             val += StreamManager.validate(group_dict[i], root=streamPath)
             for j in val:
-                shutil.copy(os.path.join(streamPath, "Background_PC/0/"+j), retrainPath)
+                shutil.copy(os.path.join(datasetPath, "Background_PC/0/"+j), retrainPath)
         print(val)
         print(len(val)/sum(predicted_classes))
         end = time.time()
