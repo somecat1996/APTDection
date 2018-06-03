@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b9fab451-4e2e-4d78-8e53-8e573f9683e8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaliciousApplicationDetector/dataset.py" afterPath="$PROJECT_DIR$/MaliciousApplicationDetector/dataset.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MaliciousApplicationDetector/Training.py" afterPath="$PROJECT_DIR$/MaliciousApplicationDetector/Training.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -44,11 +45,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Training.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Training.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MaliciousApplicationDetector/Training.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="454">
-              <caret line="430" column="25" lean-forward="true" selection-start-line="430" selection-start-column="25" selection-end-line="430" selection-end-column="25" />
+            <state relative-caret-position="390">
+              <caret line="431" column="84" lean-forward="false" selection-start-line="431" selection-start-column="84" selection-end-line="431" selection-end-column="84" />
               <folding>
                 <element signature="e#25#36#0" expanded="true" />
               </folding>
@@ -66,7 +67,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dataset.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="dataset.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MaliciousApplicationDetector/dataset.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="160">
@@ -199,8 +200,8 @@
         <option value="$PROJECT_DIR$/print2.py" />
         <option value="$PROJECT_DIR$/compare.py" />
         <option value="$PROJECT_DIR$/print3.py" />
-        <option value="$PROJECT_DIR$/MaliciousApplicationDetector/Training.py" />
         <option value="$PROJECT_DIR$/MaliciousApplicationDetector/dataset.py" />
+        <option value="$PROJECT_DIR$/MaliciousApplicationDetector/Training.py" />
       </list>
     </option>
   </component>
@@ -617,7 +618,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="754" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2700454" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -977,21 +978,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MaliciousApplicationDetector/Training.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="454">
-          <caret line="430" column="25" lean-forward="true" selection-start-line="430" selection-start-column="25" selection-end-line="430" selection-end-column="25" />
-          <folding>
-            <element signature="e#25#36#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/MaliciousApplicationDetector/dataset.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
           <caret line="272" column="21" lean-forward="false" selection-start-line="272" selection-start-column="21" selection-end-line="277" selection-end-column="46" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MaliciousApplicationDetector/Training.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="431" column="84" lean-forward="false" selection-start-line="431" selection-start-column="84" selection-end-line="431" selection-end-column="84" />
+          <folding>
+            <element signature="e#25#36#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -429,7 +429,7 @@ def main(unused):
                 os.mkdir(retrainPath)
             val += StreamManager.validate(group_dict[i], root=streamPath)
             for j in val:
-                shutil.copy(os.path.join(datasetPath, "Background_PC/0/"+j), retrainPath)
+                shutil.copy(os.path.join(datasetPath, "Background_PC/0/"+j[:-4]+"dat"), retrainPath)
         print(val)
         print(len(val)/sum(predicted_classes))
         end = time.time()
