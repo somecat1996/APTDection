@@ -424,7 +424,7 @@ def main(unused):
         for i in group_dict:
             streamPath = os.path.join(path, "stream/"+i)
             datasetPath = os.path.join(path, "dataset/"+i)
-            retrainPath = os.path.join(path, "retrain/")
+            retrainPath = os.path.join(path, "retrain/Backgroud_PC/0")
             if not os.path.exists(retrainPath):
                 os.mkdir(retrainPath)
             val += StreamManager.validate(group_dict[i], root=streamPath)
