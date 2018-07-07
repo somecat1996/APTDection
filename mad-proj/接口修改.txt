@@ -1,0 +1,23 @@
+以下是接口改变后，对于你们那边在使用时不透明的改变
+
+Webgraphic:
+	输入变为readin(sniffed对象数组)，例：
+			builder=webgraphic()
+			builder.read_in(sniffed对象数组)   原来是builder.read_in(pcap文件路径)
+
+StreamManager:
+	创建时参数变为：
+			stream=StreamManager(pcapkt对象，sniffed对象列表)
+			原来是stream=StreamManager("user.pcap")，然后之前需要stream.generate()			产生流文件，现在这个去掉了
+	然后里面分出的类型从原来的5种变成了三种，直接把原来的手机和PC的两种浏览器	流量过滤了，剩下：backgroud_PC、backgroud_Phone、suspicious (type类型编号还是	分别保留了原来对应的2,4,5 )
+
+	然后原来的字典结构变化：从原来的{“filename”: , “type”: ,”is_malicious”}
+					——>变成 {“label”: pcapkit的那个label,  ”type”: ,  “index”:,   									“internal_ip”: , “external_ip”: ,  “UA”:,}
+	
+FingerprintsManager:
+	GenerateAndUpdate(self,sniffedPackets,groups) 第一个参数变成了sniffed对象数组（原来这个参数是流文件路径）
+	Identify(self,sniffedPackets,groups)变化同上
+
+
+其他未作说明的用法不用改变
+	
