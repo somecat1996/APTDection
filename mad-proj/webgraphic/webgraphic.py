@@ -7,13 +7,14 @@ import os
 class PacketWrapper:
     def __init__(self,sniffedList):
         self.PacketList=sniffedList
+        self.x=self.f()
 
     def read_packet(self):
-        return self.f().__next__()
+        return self.x.__next__()
 
     def f(self):
         for i in range(len(self.PacketList)+1):
-            if i==self.PacketList:
+            if i==len(self.PacketList):
                 yield None
             else:
                 yield self.PacketList[i]
@@ -42,7 +43,7 @@ class webgraphic:
         for x in keywords:
             tmp+=(x+"|")
         self.FromPhone=".*("+tmp+"Android).*"
-        print(self.FromPhone)
+        #print(self.FromPhone)
 
         keywords2=["\\.html","\\.css","\\.aspx","\\.asp","\\.js"]
         tmp=""
@@ -122,7 +123,7 @@ class webgraphic:
                 continue
             if re.match(self.ptr, s):
                 timestamp=packet.time
-                print("time:  ",timestamp)
+                #print("time:  ",timestamp)
                 ip=[packet[IP].src,packet[IP].dst]
                 ip.sort()
 
@@ -140,7 +141,7 @@ class webgraphic:
                     uri = re.sub("Host: ","",re.findall(self.exptr, s)[0].strip("\\r")) + tmp_u
                     host = re.sub("Host: ","",re.findall(self.exptr, s)[0].strip("\\r"))
                     host=re.sub("/.*","",host)
-                    print(uri)
+                    # print(uri)
                 except:
                     packet = self.source.read_packet()
                     print("无效包，跳过")
@@ -197,23 +198,23 @@ class webgraphic:
                 try:
                     ref=re.findall(self.reptr,s)[0].strip("\\r").strip("Referer: ").strip("http://")
                     ref=ref.strip("s://")
-                    print("-----------------------------------------------------")
-                    print(timestamp)
-                    print(ref)
-                    print("------"+s)
+                    #print("-----------------------------------------------------")
+                    #print(timestamp)
+                    #print(ref)
+                    #print("------"+s)
                 except:
                     ref=0
 
                 #if no referer,then set the new request as a new group\
                 if not ref:
-                    print("unmatch!!!!   "+uri)
-                    print("host id   "+ host)
-                    print("包的内容为："+s)
+                    #print("unmatch!!!!   "+uri)
+                    #print("host id   "+ host)
+                    #print("包的内容为："+s)
                     no_referer+=1
 
 
                     flag=False
-                    print("尝试规则4")
+                    #print("尝试规则4")
                     for k in range(len(self.tmp_mem)-1):
                         if(len(self.tmp_mem) - 2 - k)<0:
                             break
@@ -225,9 +226,9 @@ class webgraphic:
                             continue
                         index = len(self.tmp_mem) - 2 - k
                         if self.IsSimilar(domain_tmp,host) and not self.groups[self.tmp_index[index]].is_alone() and self.groups[self.tmp_index[index]].is_PC()==is_PC:
-                            print("使用规则4连接")
-                            print(domain_tmp)
-                            print(host)
+                            #print("使用规则4连接")
+                            #print(domain_tmp)
+                            #print(host)
                             self.groups[self.tmp_index[index]].add(s, timestamp, packet_tmp.time,ip)
                             self.tmp_index.append(self.tmp_index[index])
                             flag = True
@@ -242,9 +243,9 @@ class webgraphic:
                             flag=True
                             break
                             '''
-                    print("尝试规则3")
+                    # print("尝试规则3")
                     if (re.match(self.HeadContent, uri) or is_PC==2)and not flag:
-                        print("内容决定为头结点")
+                        # print("内容决定为头结点")
                         self.groups.append(group(s, timestamp, ip, is_PC))
                         self.groups[-1].set_not_alone()
                         self.tmp_index.append(len(self.groups) - 1)
@@ -258,8 +259,8 @@ class webgraphic:
                 #if there is a referer,then add the new request to that group
                 else:
                     fflag=False
-                    print("---------------------------------")
-                    print(len(self.tmp_mem))
+                    #print("---------------------------------")
+                    #print(len(self.tmp_mem))
                     for k in range(len(self.tmp_mem)-1):
                         packet_tmp=self.tmp_mem[len(self.tmp_mem)-2-k]
                         s_tmp=str(packet_tmp[Raw].load)
@@ -273,31 +274,31 @@ class webgraphic:
                         except:
                             continue
                         uri_tmp=uri_tmp.strip("http://")
-                        print("searching.....",uri_tmp)
+                        #print("searching.....",uri_tmp)
                         if uri_tmp==ref:
-                            print("hit88888888")
+                            #print("hit88888888")
                             fflag=True
                             index=len(self.tmp_mem)-2-k
                             parent_id=packet_tmp.time
                             try:
                                 self.groups[self.tmp_index[index]].add(s,timestamp,parent_id,ip)
                             except:
-                                print(index)
-                                print(len(self.tmp_index))
+                                #print(index)
+                                #print(len(self.tmp_index))
                                 exit(-1)
                             self.tmp_index.append(self.tmp_index[index])
                             break
 
-                    print("-----------------------------------------------------")
+                    #print("-----------------------------------------------------")
                     ffflag=False
                     if not fflag:
-                        print("尝试规则2：")
+                        #print("尝试规则2：")
                         ref_domain_rule = ".*?/"
                         try:
                             ref_domain = re.findall(ref_domain_rule, ref)[0].strip("/")
                         except:
                             ref_domain = ref
-                        print("ref_domain为："+ref_domain)
+                        #print("ref_domain为："+ref_domain)
                         for k in range(len(self.tmp_mem)-1):
                             packet_tmp = self.tmp_mem[len(self.tmp_mem) - 2 - k]
                             s_tmp = str(packet_tmp[Raw].load)
@@ -307,12 +308,12 @@ class webgraphic:
                                 continue
                             index=len(self.tmp_mem) - 2 - k
                             if (self.IsSimilar(domain_tmp,ref_domain) or self.IsSimilar(self.groups[self.tmp_index[index]].ref_domain,ref_domain))and not self.groups[self.tmp_index[index]].is_alone() and self.groups[self.tmp_index[index]].is_PC()==is_PC:
-                                print("使用规则2连接")
-                                print(index)
-                                print(s_tmp)
-                                print(s)
-                                print("tmp_mem长度",len(self.tmp_mem))
-                                print("tmp_index长度",len(self.tmp_index))
+                                #print("使用规则2连接")
+                                #print(index)
+                                #print(s_tmp)
+                                #print(s)
+                                #print("tmp_mem长度",len(self.tmp_mem))
+                                #print("tmp_index长度",len(self.tmp_index))
                                 self.groups[self.tmp_index[index]].add(s, timestamp, packet_tmp.time,ip)
                                 self.tmp_index.append(self.tmp_index[index])
                                 ffflag = True
@@ -328,7 +329,7 @@ class webgraphic:
                                 break
                                 '''
                         if not ffflag:
-                            print("孤独，成立新组！")
+                            #print("孤独，成立新组！")
                             self.groups.append(group(s,timestamp,ip,is_PC))
                             self.groups[-1].set_not_alone()
                             self.groups[-1].set_ref_domain(ref_domain)
@@ -413,8 +414,8 @@ class webgraphic:
                 else:
                     content_type="None"
                 if re.findall(ptr_ResLenth,http):
-                    print(re.findall(ptr_ResLenth,http)[0].strip("Content-Length: ").strip("\\r"))
-                    print(http)
+                    #print(re.findall(ptr_ResLenth,http)[0].strip("Content-Length: ").strip("\\r"))
+                    #print(http)
                     response_lenth=int(re.findall(ptr_ResLenth,http)[0].strip("Content-Length: ").strip("\\r"))
                 else:
                     response_lenth=0

@@ -110,7 +110,8 @@ def start_worker():
 def make_sniff():
     """Load data or sniff packets."""
     if MODE == 3:
-        return scapy.all.sniff(timeout=TIMEOUT)
+        return scapy.all.sniff(offline='/Users/jarryshaw/Documents/GitHub/PyPCAPKit/sample/http10.cap')
+        # return scapy.all.sniff(timeout=TIMEOUT)
         # return scapy.all.sniff(timeout=TIMEOUT, iface=IFACE)
 
     sniffed = list()
@@ -171,6 +172,10 @@ def make_group(sniffed, index, fp, *, path):
     if MODE != 3:
         for label in record.values():
             fp.GenerateAndUpdate(sniffed, label)
+
+    # dump record
+    with open(f'{path}/record.json', 'w') as file:
+        json.dump(record, file)
 
     return record
 
