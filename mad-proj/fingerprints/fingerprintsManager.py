@@ -5,13 +5,12 @@ import os
 
 class fingerprintManager:
     def __init__(self):
-        self.filepath="/home/ubuntu/MaliciousApplicationDetector/fingerprints/fingerprints"
+        self.filepath="/usr/local/mad/fingerprint.pickle"
         self.fingerprints={}
         self.detector=DetectionModule()
         if os.path.exists(self.filepath):
-            with open(self.filepath,"r") as f:
+            with open(self.filepath,"rb") as f:
                 self.fingerprints=pickle.load(f)
-            f.close()
 
     def GenerateAndUpdate(self,sniffedPackets,groups):
         Gen=FingerprintGenerator(sniffedPackets)

@@ -9,10 +9,11 @@ import json
 import multiprocessing
 import os
 import pathlib
+import shlex
 import signal
 import subprocess
+import sys
 
-import pcapkit
 import pcapkit.all
 import scapy.all
 
@@ -21,11 +22,13 @@ from StreamManager.StreamManager4 import *
 from webgraphic.webgraphic import *
 
 
+ROOT = os.path.dirname(os.path.abspath(__file__))
+                    # file root path
 MODE = 3            # 1-initialisation; 2-migeration; 3-prediction; 4-adaptation
-PATH = NotImplemented
+PATH = '/'          # path of original data
 IFACE = 'eth0'      # sniff interface
 # TIMEOUT = 1000      # sniff timeout
-TIMEOUT = 15      # sniff timeout
+TIMEOUT = 15        # sniff timeout
 RETRAIN = False     # retrain flag
 
 
@@ -38,7 +41,7 @@ FLOW_DICT = {
 }
 
 
-def main(*, iface=None, mode=None):
+def main(*, iface=None, mode=None, path=None):
     """Main interface for MAD."""
     signal.signal(signal.SIGUSR1, make_worker)
     signal.signal(signal.SIGUSR2, retrain_cnn)
@@ -50,6 +53,10 @@ def main(*, iface=None, mode=None):
     if mode is not None:
         global MODE
         MODE = mode
+
+    if mode != 3:
+        global PATH
+        PATH = path
 
     make_worker()
 
@@ -71,16 +78,32 @@ def retrain_cnn(*args):
 
 def make_worker(*args):
     """Create child process."""
-    proc = multiprocessing.Process(target=start_worker)
-    proc.start()
+    if MODE == 3:
+        return multiprocessing.Process(target=start_worker).start()
+
+    # do initialisation or migration first
+    # then, keep on with prediction (if need)
+    start_worker()
+    if MODE == 2:
+        global MODE
+        MODE = 3
+        return make_worker()
 
 
 def start_worker():
     """Start child process."""
+    # above all, create directory for new dataset
+    # and initialise fingerprint manager
     path = pathlib.Path(f'/usr/local/mad/dataset/{dt.datetime.now().isoformat()}')
     path.mkdir(parents=True, exist_ok=True)
     fp = fingerprintManager()
+
     print(f'New process start @ {path}')
+
+    # write a log file to inform state of running
+    # the back-end of webpage shall check this file
+    with open('/usr/local/mad/state.log', 'at', 1) as file:
+        file.write(f'0 start@{path}\n')
 
     # first, we sniff packets using Scapy
     # or load data from an existing PCAP file
@@ -104,19 +127,30 @@ def start_worker():
 
     # and now, time for the neural network
     # reports should be placed in a certain directory
-    # run_cnn(...)
+    run_cnn(path=path)
+
+    # afterwards, write a log file to record state of accomplish
+    # the back-end of webpage shall check this file periodically
+    with open('/usr/local/mad/state.log', 'at', 1) as file:
+        file.write(f'0 stop@{path}\n')
 
 
 def make_sniff():
     """Load data or sniff packets."""
     if MODE == 3:
-        return scapy.all.sniff(offline='/Users/jarryshaw/Documents/GitHub/PyPCAPKit/sample/http10.cap')
-        # return scapy.all.sniff(timeout=TIMEOUT)
+        return scapy.all.sniff(offline='../../PyPCAPKit/sample/http3.pcap')
+        return scapy.all.sniff(timeout=TIMEOUT)
         # return scapy.all.sniff(timeout=TIMEOUT, iface=IFACE)
+
+    if pathlib.Path(PATH).is_file():
+        return scapy.all.sniff(offline=PATH)
 
     sniffed = list()
     for file in os.listdir(PATH):
-        sniffed.extend(scapy.all.sniff(offline=f'{PATH}/{file}'))
+        try:
+            sniffed.extend(scapy.all.sniff(offline=f'{PATH}/{file}'))
+        except scapy.error.Scapy_Exception as error:
+            print('Error:', error)
     return sniffed
 
 
@@ -224,9 +258,15 @@ def make_dataset(sniffed, labels, fp, *, path):
 
     # fingerprint report
     with open(f'{path}/fingerprint.json', 'w') as file:
-        json.dump(dict(is_malicious=fplist), file)
+        json.dump(fpreport, file)
+
+
+def run_cnn(*, path):
+    """Create subprocess to run CNN model."""
+    cmd = [sys.executable, shlex.quote(os.path.join(ROOT, 'Training.py')),
+            path, '/usr/local/mad/model', MODE, 'Background_PC']
+    subprocess.run(cmd)
 
 
 if __name__ == '__main__':
-    import sys
     sys.exit(start_worker())
