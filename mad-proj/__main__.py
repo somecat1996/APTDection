@@ -1,15 +1,30 @@
 # -*- coding: utf-8 -*-
+"""MAD -- Malicious Application Detector
 
-
-import argparse
+/usr/local/mad
+    |-- dataset                                 # where all dataset go
+    |   |-- YYYY-MM-DDTHH:MM:SS.US              # dataset named after ISO timestamp
+    |   |   |-- fingerprint.json                # fingerprint filter report
+    |   |   |-- index.json                      # TCP flow index record
+    |   |   |-- record.json                     # WebGraphic group record
+    |   |   |-- Background_PC                   # where Background_PC dataset files go
+    |   |       |-- 0                           # clean ones
+    |   |       |   |-- IP_PORT-IP_PORT-TS.dat  # dataset file
+    |   |       |   |-- ...
+    |   |       |-- 1                           # malicious ones
+    |   |       |   |-- IP_PORT-IP_PORT-TS.dat  # dataset file
+    |   |       |   |-- ...
+    |   |-- ...
+    |-- model                                   # where CNN model go
+    |-- retrain                                 # where CNN retrain dataset go
+    |-- mad.log                                 # log file for RPC
+"""
 import collections
-import configparser
 import datetime as dt
 import json
 import multiprocessing
 import os
 import pathlib
-import shlex
 import signal
 import subprocess
 import sys
@@ -62,7 +77,7 @@ def main(*, iface=None, mode=None, path=None):
 
 
 def retrain_cnn(*args):
-    """Run retrain process."""
+    """Retrain the CNN model."""
     # if already under retrain do nothing
     global RETRAIN
     if RETRAIN:     return
@@ -73,7 +88,10 @@ def retrain_cnn(*args):
     MODE = 4
 
     # start retrain
-    run_retrain(...)
+    multiprocessing.Process(
+        target=run_cnn,
+        kwargs={'path': '/usr/local/mad/retrain'},
+    ).start()
 
 
 def make_worker(*args):
@@ -102,7 +120,7 @@ def start_worker():
 
     # write a log file to inform state of running
     # the back-end of webpage shall check this file
-    with open('/usr/local/mad/state.log', 'at', 1) as file:
+    with open('/usr/local/mad/mad.log', 'at', 1) as file:
         file.write(f'0 start@{path}\n')
 
     # first, we sniff packets using Scapy
@@ -131,7 +149,7 @@ def start_worker():
 
     # afterwards, write a log file to record state of accomplish
     # the back-end of webpage shall check this file periodically
-    with open('/usr/local/mad/state.log', 'at', 1) as file:
+    with open('/usr/local/mad/mad.log', 'at', 1) as file:
         file.write(f'0 stop@{path}\n')
 
 
@@ -263,8 +281,8 @@ def make_dataset(sniffed, labels, fp, *, path):
 
 def run_cnn(*, path):
     """Create subprocess to run CNN model."""
-    cmd = [sys.executable, shlex.quote(os.path.join(ROOT, 'Training.py')),
-            path, '/usr/local/mad/model', MODE, 'Background_PC']
+    cmd = [sys.executable, os.path.join(ROOT, 'Training.py'),
+            path, '/usr/local/mad/model', MODE, 'Background_PC', os.getppid()]
     subprocess.run(cmd)
 
 

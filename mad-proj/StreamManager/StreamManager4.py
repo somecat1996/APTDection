@@ -197,7 +197,8 @@ class StreamManager:
                             print("扫描命中！！！！")
 
 
-    def validate(self,dict):
+    @staticmethod
+    def validate(dict):
         targets=[]
         for key in dict:
             for x in dict[key]:
@@ -209,7 +210,8 @@ class StreamManager:
         malicious_num=0
         for i in range(len(targets)):
             index=targets[i]["index"]
-            url=self.GetUrl(index)
+            # url=self.GetUrl(index)
+            url=re.sub("https://", "", targets[i]["host"])
             if url=="none":
                 malicious_num+=1
             else:
