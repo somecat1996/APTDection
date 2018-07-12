@@ -4,11 +4,13 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-scapy = "*"
 pypcapkit = "*"
+tensorflow = "*"
 requests = "*"
+scapy = "*"
+flask = "*"
 
 [dev-packages]
 
 [requires]
-python_version = "3.7"
+python_version = "3.6"
