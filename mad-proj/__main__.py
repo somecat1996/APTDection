@@ -162,7 +162,8 @@ def start_worker():
 def make_sniff():
     """Load data or sniff packets."""
     if MODE == 3:
-        return scapy.all.sniff(offline='/home/ubuntu/baiwei-sniffer-pcap/e5fef8c4-fc9d-4d8b-8b84-68c66162215c.cap')
+        return scapy.all.sniff(offline='../../PyPCAPKit/sample/http.pcap')
+        # return scapy.all.sniff(offline='/home/ubuntu/baiwei-sniffer-pcap/e5fef8c4-fc9d-4d8b-8b84-68c66162215c.cap')
         # return scapy.all.sniff(timeout=TIMEOUT, iface=IFACE)
 
     if pathlib.Path(PATH).is_file():
@@ -193,7 +194,7 @@ def make_flow(sniffed, *, path):
             host = analysis.info.header.get('Host', str())
             uri = analysis.info.header.request.target
             url = host + uri
-            return utl
+            return url
 
     # Analysis
     index = list()
@@ -283,7 +284,7 @@ def make_dataset(sniffed, labels, fp, *, path):
                 for number in file['index']:
                     flag, data = pcapkit.scapy_tcp_reassmbly(sniffed[number], count=number)
                     if flag:    reassembly(data)
-                
+
                 # dump dataset
                 for packet in reassembly.packets:
                     if pcapkit.protocols.application.httpv1.HTTPv1 in packet.protochain:
