@@ -7,8 +7,6 @@ deprecated/
 *.json
 *.tar.gz
 
-!webpage/*
-
 # Created by https://www.gitignore.io/api/macos,python,windows,pycharm
 
 ### macOS ###
@@ -116,7 +114,6 @@ __pycache__/
 .Python
 build/
 develop-eggs/
-dist/
 downloads/
 eggs/
 .eggs/
