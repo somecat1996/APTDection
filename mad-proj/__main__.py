@@ -35,6 +35,7 @@ import signal
 import subprocess
 import sys
 
+import chardet
 import pcapkit.all
 import scapy.all
 
@@ -187,13 +188,25 @@ def make_flow(sniffed, *, path):
         if flag:    traceflow(data)
     traceindex = traceflow.index
 
+    def decode(byte):
+        """Try to decode bytes content."""
+        if isinstance(byte, bytes):
+            charset = chardet.detect(byte)['encoding']
+            if charset:
+                try:
+                    return byte.decode(charset)
+                except Exception:
+                    pass
+            return str(byte)[2:-1]
+        return byte
+
     def get_url(analysis):
         """Make URL of HTTP request."""
         if analysis.info.receipt == 'request':
-            host = analysis.info.header.get('Host', bytes())
-            uri = analysis.info.header.request.target
+            host = decode(analysis.info.header.get('Host', bytes()))
+            uri = decode(analysis.info.header.request.target)
             url = host + uri
-            return str(url)
+            return url
 
     # Analysis
     index = list()

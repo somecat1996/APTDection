@@ -9,6 +9,7 @@ tensorflow = "*"
 requests = "*"
 scapy = "*"
 flask = "*"
+chardet = "*"
 
 [dev-packages]
 
