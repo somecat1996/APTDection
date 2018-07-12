@@ -27,7 +27,7 @@ class webgraphic:
         self.twd_size=10.0    #the size of the time window
         self.filetered_ip=[]
         self.source = 0
-        self.ptr = ".*(GET|POST|HEAD).*HTTP.*" #判断是否为GET/POST/HEAD包
+        self.ptr = ".*(GET|POST|HEAD|PUT|DELETE|TRACE|CONNECT|OPTIONS).*HTTP.*" #判断是否为GET/POST/HEAD包
         self.exptr = "Host.*?\\\\r" #匹配取出domain
         self.reptr = "Referer.*?\\\\r"  #匹配取出referer
         self.urptr = "/.*?\\?"    #匹配取出uri(不带参数)
@@ -334,7 +334,8 @@ class webgraphic:
                             self.groups[-1].set_not_alone()
                             self.groups[-1].set_ref_domain(ref_domain)
                             self.tmp_index.append(len(self.groups) - 1)
-
+            # else:
+                # print('未匹配到http有效字段，跳过！')
             packet = self.source.read_packet()
         '''
         for x in self.groups:
@@ -347,7 +348,7 @@ class webgraphic:
         print("共读入",total_num,"个包")
         print("过滤掉的安全域名的包有:",filtered_num,"个")
         print("ua为空的有",empty,"个")
-        print(float(empty)/total_num)
+        # print(float(empty)/total_num)
         print("没referer的包共有"+str(no_referer)+"个")
         print("tmp_mem:",len(self.tmp_mem))
         print("tmp_index:", len(self.tmp_index))

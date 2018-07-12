@@ -22,7 +22,7 @@
     |   |-- ...
     |-- retrain/                                # where CNN retrain dataset go
     |   |-- ...
-    |-- mad.log                                 # log file for RPC
+    |-- mad.log                                 # log file for RPC (0-start; 1-stop; 2-retrain)
 
 """
 import collections
@@ -127,7 +127,7 @@ def start_worker():
     # write a log file to inform state of running
     # the back-end of webpage shall check this file
     with open('/usr/local/mad/mad.log', 'at', 1) as file:
-        file.write(f'0 start@{path}\n')
+        file.write(f'0 {dt.datetime.now().isoformat()} {path}\n')
 
     # first, we sniff packets using Scapy
     # or load data from an existing PCAP file
@@ -156,15 +156,13 @@ def start_worker():
     # afterwards, write a log file to record state of accomplish
     # the back-end of webpage shall check this file periodically
     with open('/usr/local/mad/mad.log', 'at', 1) as file:
-        file.write(f'0 stop@{path}\n')
+        file.write(f'1 {dt.datetime.now().isoformat()} {path}\n')
 
 
 def make_sniff():
     """Load data or sniff packets."""
     if MODE == 3:
-        return scapy.all.sniff(offline='../../PyPCAPKit/sample/http.pcap')
-        # return scapy.all.sniff(offline='/home/ubuntu/baiwei-sniffer-pcap/e5fef8c4-fc9d-4d8b-8b84-68c66162215c.cap')
-        # return scapy.all.sniff(timeout=TIMEOUT, iface=IFACE)
+        return scapy.all.sniff(timeout=TIMEOUT, iface=IFACE)
 
     if pathlib.Path(PATH).is_file():
         return scapy.all.sniff(offline=PATH)

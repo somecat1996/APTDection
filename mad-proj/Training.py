@@ -10,8 +10,8 @@ import time
 import numpy as np
 import tensorflow as tf
 
-from StreamManager.StreamManager4 import *
 from useragents.useragents import parse
+from StreamManager.StreamManager4 import *
 
 
 path = os.path.dirname(os.path.abspath(__file__))
