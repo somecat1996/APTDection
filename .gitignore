@@ -7,6 +7,8 @@ deprecated/
 *.json
 *.tar.gz
 
+!webpage/*
+
 # Created by https://www.gitignore.io/api/macos,python,windows,pycharm
 
 ### macOS ###
