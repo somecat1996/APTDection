@@ -114,6 +114,7 @@ __pycache__/
 .Python
 build/
 develop-eggs/
+dist/
 downloads/
 eggs/
 .eggs/
@@ -228,3 +229,5 @@ MaliciousApplicationDetector/Model/*
 MaliciousApplicationDetector.zip
 
 # End of https://www.gitignore.io/api/macos,python,windows,pycharm
+
+!webpage/*
