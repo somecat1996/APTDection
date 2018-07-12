@@ -5,7 +5,7 @@
 from flask import Flask, render_template
 
 # create the application object
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='/img', static_folder='verndors', template_folder='pages')
 
 # use decorators to link the function to a url
 @app.route('/')
