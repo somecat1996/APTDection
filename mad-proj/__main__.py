@@ -162,7 +162,8 @@ def start_worker():
 def make_sniff():
     """Load data or sniff packets."""
     if MODE == 3:
-        return scapy.all.sniff(timeout=TIMEOUT, iface=IFACE)
+        return scapy.all.sniff(offline='../../PyPCAPKit/sample/http3.pcap')
+        # return scapy.all.sniff(timeout=TIMEOUT, iface=IFACE)
 
     if pathlib.Path(PATH).is_file():
         return scapy.all.sniff(offline=PATH)
@@ -189,10 +190,10 @@ def make_flow(sniffed, *, path):
     def get_url(analysis):
         """Make URL of HTTP request."""
         if analysis.info.receipt == 'request':
-            host = analysis.info.header.get('Host', str())
+            host = analysis.info.header.get('Host', bytes())
             uri = analysis.info.header.request.target
             url = host + uri
-            return url
+            return str(url)
 
     # Analysis
     index = list()
