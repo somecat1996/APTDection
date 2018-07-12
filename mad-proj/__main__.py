@@ -102,6 +102,7 @@ def retrain_cnn(*args):
 
 def make_worker(*args):
     """Create child process."""
+    global MODE
     if MODE == 3:
         return multiprocessing.Process(target=start_worker).start()
 
@@ -109,7 +110,6 @@ def make_worker(*args):
     # then, keep on with prediction (if need)
     start_worker()
     if MODE == 2:
-        global MODE
         MODE = 3
         return make_worker()
 
