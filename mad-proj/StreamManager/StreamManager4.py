@@ -1,3 +1,4 @@
+import collections
 import os
 import re
 # from scapy.all import *
@@ -211,7 +212,8 @@ class StreamManager:
         for i in range(len(targets)):
             index=targets[i]["index"]
             # url=self.GetUrl(index)
-            url=re.sub("https://", "", targets[i]["url"])
+            tmp=collections.Counter(targets[i]["url"]).most_common(1)[0][0]
+            url=re.sub("http://", "", tmp)
             if url=="none":
                 malicious_num+=1
             else:

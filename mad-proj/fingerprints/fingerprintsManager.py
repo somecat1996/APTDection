@@ -5,24 +5,24 @@ import os
 
 class fingerprintManager:
     def __init__(self):
-        self.filepath="/usr/local/mad/fingerprints.pickle"
+        self.filepath="/usr/local/mad/fingerprint.pickle"
         self.fingerprints={}
         self.detector=DetectionModule()
         if os.path.exists(self.filepath):
             with open(self.filepath,"rb") as f:
                 self.fingerprints=pickle.load(f)
 
-    def GenerateAndUpdate(self,sniffedPackets,groups):
-        Gen=FingerprintGenerator(sniffedPackets)
+    def GenerateAndUpdate(self,sniffedPackets_or_streampath,groups,type):   #type 1 means sniffed subject,2 means pcap files
+        Gen=FingerprintGenerator(sniffedPackets,type)
         fingerprints=Gen.genrate(groups)
         self.add_update(fingerprints)
-        with open(self.filepath,"wb") as f:
+        with open(self.filepath,"w") as f:
             pickle.dump(self.fingerprints,f)
         f.close()
 
 
     def Identify(self,sniffedPackets,groups):
-        Gen=FingerprintGenerator(sniffedPackets)
+        Gen=FingerprintGenerator(sniffedPackets,1)
         fingerprints=Gen.genrate(groups)
         result={"is_malicious":[],"new_app":[]}
         for app in fingerprints:

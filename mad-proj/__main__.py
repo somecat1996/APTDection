@@ -2,21 +2,27 @@
 """MAD -- Malicious Application Detector
 
 /usr/local/mad/
+    |-- mad.log                                 # log file for RPC (0-start; 1-stop; 2-retrain; 3-ready)
+    |-- fingerprint.pickle                      # pickled fingerprint database
     |-- dataset/                                # where all dataset go
     |   |-- YYYY-MM-DDTHH:MM:SS.US/             # dataset named after ISO timestamp
-    |   |   |-- fingerprint.json                # fingerprint filter report
-    |   |   |-- index.json                      # TCP flow index record
-    |   |   |-- record.json                     # WebGraphic group record
+    |   |   |-- flow.json                       # TCP flow index record
+    |   |   |-- group.json                      # WebGraphic group record
+    |   |   |-- filter.json                     # fingerprint filter report
+    |   |   |-- stream/                         # where stream files go
+    |   |   |   |-- IP_PORT-IP_PORT-TS.pcap     # temporary stream PCAP files
+    |   |   |   |-- ...
     |   |   |-- Background_PC/                  # where Background_PC dataset files go
     |   |       |-- 0/                          # clean ones
     |   |       |   |-- IP_PORT-IP_PORT-TS.dat  # dataset file
     |   |       |   |-- ...
     |   |       |-- 1/                          # malicious ones
-    |   |       |   |-- IP_PORT-IP_PORT-TS.dat  # dataset file
-    |   |       |   |-- ...
+    |   |           |-- IP_PORT-IP_PORT-TS.dat  # dataset file
+    |   |           |-- ...
     |   |-- ...
     |-- report/                                 # where CNN prediction report go\
     |   |-- Background_PC/                      # Background_PC reports
+    |   |   |-- index.json                      # report index file
     |   |   |-- YYYY-MM-DDTHH:MM:SS.US.json     # report named after dataset
     |   |-- ...
     |-- model/                                  # where CNN model go
@@ -24,23 +30,23 @@
     |   |   |-- ...
     |   |-- ...
     |-- retrain/                                # where CNN retrain data go
-    |   |-- dateset/                            # dataset for retrain procedure
-    |   |   |-- Background_PC/                  # Background_PC retrain dataset
-    |   |       |-- 0/                          # clean ones
-    |   |       |   |-- YYYY-MM-DDTHH:MM:SS.US-IP_PORT-IP_PORT-TS.dat
-    |   |       |   |-- ...
-    |   |       |-- 1/                          # malicious ones
-    |   |           |-- YYYY-MM-DDTHH:MM:SS.US-IP_PORT-IP_PORT-TS.dat
-    |   |           |-- ...
-    |   |-- stream/                             # stream PCAP for retrain procedure
-    |   |   |-- Background_PC/                  # Background_PC retrain stream file
-    |   |       |-- 0/                          # clean ones
-    |   |       |   |-- YYYY-MM-DDTHH:MM:SS.US-IP_PORT-IP_PORT-TS.pcap
-    |   |       |   |-- ...
-    |   |       |-- 1/                          # malicious ones
-    |   |           |-- YYYY-MM-DDTHH:MM:SS.US-IP_PORT-IP_PORT-TS.pcap
-    |   |           |-- ...
-    |-- mad.log                                 # log file for RPC (0-start; 1-stop; 2-retrain)
+        |-- dateset/                            # dataset for retrain procedure
+        |   |-- Background_PC/                  # Background_PC retrain dataset
+        |       |-- 0/                          # clean ones
+        |       |   |-- YYYY-MM-DDTHH:MM:SS.US-IP_PORT-IP_PORT-TS.dat
+        |       |   |-- ...
+        |       |-- 1/                          # malicious ones
+        |           |-- YYYY-MM-DDTHH:MM:SS.US-IP_PORT-IP_PORT-TS.dat
+        |           |-- ...
+        |-- stream/                             # stream PCAP for retrain procedure
+            |-- stream.json                     # stream index for retrain
+            |-- Background_PC/                  # Background_PC retrain stream file
+                |-- 0/                          # clean ones
+                |   |-- YYYY-MM-DDTHH:MM:SS.US-IP_PORT-IP_PORT-TS.pcap
+                |   |-- ...
+                |-- 1/                          # malicious ones
+                    |-- YYYY-MM-DDTHH:MM:SS.US-IP_PORT-IP_PORT-TS.pcap
+                    |-- ...
 
 """
 import collections
@@ -186,7 +192,7 @@ def start_worker():
 
     # and now, time for the neural network
     # reports should be placed in a certain directory
-    # run_cnn(path=path, ppid=os.getppid())
+    run_cnn(path=path, ppid=os.getppid())
 
     # afterwards, write a log file to record state of accomplish
     # the back-end of webpage shall check this file periodically
@@ -195,7 +201,8 @@ def start_worker():
 
     # finally, remove used temporary dataset files
     # but record files should be reserved for further usage
-    # shutil.rmtree(f'{path}/Background_PC')
+    for name in {'Background_PC', 'stream'}:
+        shutil.rmtree(os.path.join(path, name))
 
 
 def make_sniff():
@@ -224,7 +231,7 @@ def make_flow(sniffed, *, path):
     """Insert UA key to TraceFlow index."""
     print(f'Tracing TCP flow @ {path}')
     # TraceFlow
-    traceflow = pcapkit.trace()
+    traceflow = pcapkit.trace(fout=f'{path}/stream', format=pcapkit.PCAP)
     for count, packet in enumerate(sniffed):
         flag, data = pcapkit.scapy_tcp_traceflow(packet, count=count)
         if flag:    traceflow(data)
@@ -258,15 +265,14 @@ def make_flow(sniffed, *, path):
         for number in flow.index:
             analysis = pcapkit.analyse(file=bytes(sniffed[number]['TCP'].payload))
             if pcapkit.protocols.application.httpv1.HTTPv1 in analysis.protochain:
-                templist.append(analysis.info.header.get('User-Agent', 'UnknownUA'))
+                templist.append(analysis.info.header.get('User-Agent'))
                 hostlist.append(get_url(analysis))
-            else:
-                templist.append('UnknownUA')
-        index.append(pcapkit.all.Info(flow, url=tuple(filter(None, set(hostlist))),
-                        ua=decode(collections.Counter(templist).most_common(1)[0][0])))
+        ua = (collections.Counter(filter(None, templist)).most_common(1) or [('UnknownUA', 1)])[0][0]
+        url = tuple(filter(None, set(hostlist))) or ('none',)
+        index.append(pcapkit.all.Info(flow, ua=decode(ua), url=url))
 
     # dump index
-    with open(f'{path}/index.json', 'w') as file:
+    with open(f'{path}/flow.json', 'w') as file:
         json.dump(index, file)
 
     return tuple(index)
@@ -293,10 +299,10 @@ def make_group(sniffed, index, fp, *, path):
         groups = group(stream)
         record[kind] = groups
         if MODE != 3:
-            fp.GenerateAndUpdate(sniffed, groups)
+            fp.GenerateAndUpdate(sniffed, groups, type=1)
 
     # dump record
-    with open(f'{path}/record.json', 'w') as file:
+    with open(f'{path}/group.json', 'w') as file:
         json.dump(record, file)
 
     return record
@@ -307,7 +313,6 @@ def make_dataset(sniffed, labels, fp, *, path):
     print(f'Making dataset @ {path}')
     fplist = list()
     for kind, group in labels.items():
-        # only make dataset for type Background PC
         if kind != 'Background_PC':     continue
 
         # make directory
@@ -345,7 +350,7 @@ def make_dataset(sniffed, labels, fp, *, path):
                             file.write(packet.info.raw.header or None)
 
     # fingerprint report
-    with open(f'{path}/fingerprint.json', 'w') as file:
+    with open(f'{path}/filter.json', 'w') as file:
         json.dump(fpreport, file)
 
 
@@ -354,20 +359,33 @@ def run_cnn(*, path, ppid, retrain=False):
     # check mode for CNN
     mode = 4 if retrain else MODE
 
-    # write logs
-    with open('/usr/local/mad/mad.log', 'at', 1) as file:
-        file.write(f'2 {dt.datetime.now().isoformat()}\n')
+    # write log for start retrain
+    if retrain:
+        with open('/usr/local/mad/mad.log', 'at', 1) as file:
+            file.write(f'2 {dt.datetime.now().isoformat()}\n')
 
     # run CNN subprocess
-    cmd = [sys.executable, shlex.quote(os.path.join(ROOT, 'Training.py')),
-            path, '/usr/local/mad/model', MODE_DICT.get(mode), 'Background_PC', ppid]
-    subprocess.run(cmd)
+    for kind in {'Background_PC',}:
+        cmd = [sys.executable, shlex.quote(os.path.join(ROOT, 'Training.py')),
+                path, '/usr/local/mad/model', MODE_DICT.get(mode), kind, ppid]
+        subprocess.run(cmd)
 
-    # update fingerprints
-    # fp = fingerprintManager().GenerateAndUpdate(sniffed, groups)
-
-    # reset flag after retrain procedure
+    # things to do when retrain
     if retrain:
+        # load group record
+        with open(f'{path}/stream.json', 'r') as file:
+            record = json.load(file)
+
+        # update fingerprints
+        fp = fingerprintManager()
+        for kind in FLOW_DICT.keys():
+            fp.GenerateAndUpdate(sniffed, record[kind], type=2)
+
+        # write log for stop retrain
+        with open('/usr/local/mad/mad.log', 'at', 1) as file:
+            file.write(f'3 {dt.datetime.now().isoformat()}\n')
+
+        # reset flag after retrain procedure
         RETRAIN.value = False
 
 

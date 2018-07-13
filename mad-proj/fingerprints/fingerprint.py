@@ -75,14 +75,18 @@ class FingerprintGenerator():
     Object that is responsible of generating a fingerprint.
     """
 
-    def __init__(self,sniffedPackets):
+    def __init__(self,sniffedPackets_or_streampath,type):
         self.counter_req = 0
-        self.packets = sniffedPackets
+        self.packets = sniffedPackets_or_streampath
+        self.type=type
         pass
 
     def genrate(self,stream_groups):
         fingerprints={}
-        app_requests=self.get_http_requests(stream_groups)
+        if(self.type==1):
+            app_requests=self.get_http_requests(stream_groups)
+        else:
+            app_requests=self.get_http_requests2(stream_groups)
         for key in app_requests:
             http_requests=app_requests[key]
             type=http_requests.pop()
@@ -145,7 +149,10 @@ class FingerprintGenerator():
         tmp_headers = {}
         method="GET"
         for http_id in http_requests:
-            http_request=str(self.packets[http_id])
+            if(self.type==1):
+                http_request=str(self.packets[http_id])
+            else:
+                http_request = str(http_id)
             tmp = {}
             raw=http_request.split("\\r\\n")
             method=raw[0].split()[0]
@@ -238,6 +245,33 @@ class FingerprintGenerator():
             requests.append(is_malicious)
             requests.append(stream_groups[key][0]["type"])
             print(requests)
+            app_requests[key]=list(requests)
+        return app_requests
+
+    def get_http_requests2(self,stream_groups):
+        app_requests={}
+        ptr=".*(GET|POST).*HTTP.*"
+        for key in stream_groups:
+            requests = []
+            is_malicious=0
+            for x in stream_groups[key]:
+                if x["malicious"]!=0:
+                    is_malicious=1
+                filename=self.packets+'/'+x["label"]
+                source=PcapReader(filename)
+                packet=source.read_packet()
+                while packet:
+                    try:
+                        s = str(packet[Raw].load)
+                    except:
+                        packet = source.read_packet()
+                        continue
+                    if re.match(ptr, s):
+                        requests.append(s)
+                    packet = source.read_packet()
+            requests.append(is_malicious)
+            requests.append(stream_groups[key][0]["type"])
+            #print(requests)
             app_requests[key]=list(requests)
         return app_requests
 

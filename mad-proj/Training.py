@@ -1,10 +1,14 @@
 # -*- coding: utf-8 -*-
 
+
+import collections
+import datetime as dt
 import json
 import os
 import pathlib
-import sys
 import shutil
+import signal
+import sys
 import time
 
 import numpy as np
@@ -16,11 +20,11 @@ from StreamManager.StreamManager4 import *
 
 path = os.path.dirname(os.path.abspath(__file__))
 
-
 DataPath = sys.argv[1]
 ModelPath = sys.argv[2]
 mode = sys.argv[3]
 T = sys.argv[4]
+ppid = sys.argv[5]
 
 TrainRate = 0.8
 
@@ -69,8 +73,12 @@ LEARNING_RATE = 0.001
 
 
 def ReadDictionary(path, T):
-    file = open(path+"index.json")
-    files = json.load(file)[T]
+    # file = open(path+"index.json")
+    # files = json.load(file)[T]
+    files = {
+        '0' : [os.path.join(path, T, '0', file) for file in os.listdir(os.path.join(path, T, '0'))],
+        '1' : [os.path.join(path, T, '1', file) for file in os.listdir(os.path.join(path, T, '1'))],
+    }
     return files
 
 
@@ -353,8 +361,9 @@ def main(unused):
 
     # When this system is placed, used for retaining model and fingerprinting.
     elif mode == "retrain":
-        files = [os.path.join(DataPath, x) for x in os.listdir(DataPath) if os.path.isfile(DataPath + x)]
-        index = dataset(*files, mode=1)
+        # files = [os.path.join(DataPath, x) for x in os.listdir(DataPath) if os.path.isfile(DataPath + x)]
+        # index = dataset(*files, mode=1)
+        index = ReadDictionary(DataPath, T)
         print(index)
         packets_train, labels_train = ReadTrainData2(index, T)
         tensors_to_log = {"probabilities": "softmax_tensor"}
@@ -376,8 +385,11 @@ def main(unused):
     elif mode == "predict":
         start = time.time()
         print(start)
-        files = [os.path.join(DataPath, x) for x in os.listdir(DataPath) if os.path.isfile(DataPath + x)]
-        index = dataset(*files, mode=2)
+        # files = [os.path.join(DataPath, x) for x in os.listdir(DataPath) if os.path.isfile(DataPath + x)]
+        # index = dataset(*files, mode=2)
+        with open(os.path.join(DataPath, 'filter.json'), 'r') as file:
+            index = json.load(file)
+        index[T] = ReadDictionary(DataPath, T)
         print(index)
         isMalicious = index["is_malicious"]
         packets, names = ReadPredictData(index, T)
@@ -387,55 +399,130 @@ def main(unused):
             shuffle=False)
         predictions = list(classifier.predict(input_fn=predict_input_fn))
         predicted_classes = [p["classes"] for p in predictions]
-        print("detected by fingerprint:")
-        for i in isMalicious:
-            print(i)
-        print("detected by CNN: ")
+        with open(os.path.join(DataPath, "group.json"), "r") as file:
+            group = json.load(file)
         Malicious = []
-        for i in range(len(predicted_classes)):
-            if predicted_classes[i] == 1:
+        # print("detected by fingerprint:")
+        for i in isMalicious:
+            name = pathlib.Path(i).stem
+            ipua = "UnknownUA"
+            temp = dict(ua="UnknownUA")
+            for key in group:
+                for file in group[key]:
+                    if file["label"] == name:
+                        ipua = key
+                        temp = file
+                        break
+            src, dst, tstamp = name.split("-")
+            srcIP, srcPort = src.split("_")
+            dstIP, dstPort = dst.split("_")
+            Malicious.append({
+                "srcIP": srcIP,
+                "srcPort": srcPort,
+                "dstIP": dstIP,
+                "dstPort": dstPort,
+                "time": dt.datetime.fromtimestamp(float(tstamp)).isoformat(),
+                "name": name,
+                "ipua": ipua,
+            }.update(temp))
+        # print("detected by CNN: ")
+        for i, kind in enumerate(predicted_classes):
+            if kind == 1:
                 paths = pathlib.Path(names[i])
-                group = paths.parts[-4]
+                # group = paths.parts[-4]
                 name = paths.stem
-                groupPath = os.path.join(path, "stream/"+group)
-                stream = json.load(open(os.path.join(groupPath, "stream.json"), 'r'))["Background_PC"]
-                for ua in stream:
-                    for file in stream[ua]:
-                        if name in file["filename"]:
-                            print(ua)
-                print(name)
-                Malicious.append(names[i])
-        print("checking...")
-        group_dict = {}
+                # groupPath = os.path.join(path, "stream/"+group)
+                # stream = json.load(open(os.path.join(groupPath, "stream.json"), 'r'))[T]
+                # for ua in stream:
+                #     for file in stream[ua]:
+                #         if name in file["filename"]:
+                #             print(ua)
+                ipua = "UnknownUA"
+                temp = dict(ua="UnknownUA")
+                for key in group:
+                    for file in group[key]:
+                        if file["label"] == name:
+                            ipua = key
+                            temp = file
+                            break
+                src, dst, tstamp = name.split("-")
+                srcIP, srcPort = src.split("_")
+                dstIP, dstPort = dst.split("_")
+                Malicious.append({
+                    "srcIP": srcIP,
+                    "srcPort": srcPort,
+                    "dstIP": dstIP,
+                    "dstPort": dstPort,
+                    "time": dt.datetime.fromtimestamp(float(tstamp)).isoformat(),
+                    "name": name,
+                    "ipua": ipua,
+                }.update(temp))
+        # print("checking...")
+        group_dict = {T: []}
         for i in Malicious:
-            paths = pathlib.Path(i)
+            # paths = pathlib.Path(i)
             # paths = os.path.splitext(i)[0].split("/")
-            group = paths.parts[-4]
-            name = paths.stem
-            if group not in group_dict:
-                group_dict[group] = {}
-                group_dict[group]["Background_PC"] = []
-            tmp_dict = {}
-            tmp_dict["is_malicious"] = 1
-            tmp_dict["type"] = 0
-            tmp_dict["filename"] = name + ".pcap"
-            group_dict[group]["Background_PC"].append(tmp_dict)
-        val = []
-        for i in group_dict:
-            streamPath = os.path.join(path, "stream/"+i)
-            datasetPath = os.path.join(path, "dataset/"+i)
-            retrainPath = os.path.join(path, "retrain/Backgroud_PC/0")
-            if not os.path.exists(retrainPath):
-                os.mkdir(retrainPath)
-            val += StreamManager.validate(group_dict[i], root=streamPath)
-            for j in val:
-                shutil.copy(os.path.join(datasetPath, "Background_PC/0/"+j[:-4]+"dat"), retrainPath)
-        print(val)
-        print(len(val)/sum(predicted_classes))
+            # group = paths.parts[-4]
+            # name = paths.stem
+            # if group not in group_dict:
+            #     group_dict[group] = {}
+            #     group_dict[group]["Background_PC"] = []
+            # tmp_dict = {}
+            # tmp_dict["is_malicious"] = 1
+            # tmp_dict["type"] = 0
+            # tmp_dict["filename"] = i["name"] + ".pcap"
+            group_dict[T].append({
+                "is_malicious": 1,
+                "type": 0,
+                "filename": i["name"] + ".pcap",
+                "url": i["url"],
+                "index": i["index"]
+            })
+        # val = []
+        # for i in group_dict:
+        #     streamPath = os.path.join(path, "stream/"+i)
+        #     datasetPath = os.path.join(path, "dataset/"+i)
+        #     retrainPath = os.path.join(path, "retrain/Backgroud_PC/0")
+        #     if not os.path.exists(retrainPath):
+        #         os.mkdir(retrainPath)
+        #     val += StreamManager.validate(group_dict[i], root=streamPath)
+        #     for j in val:
+        #         shutil.copy(os.path.join(datasetPath, "Background_PC/0/"+j[:-4]+"dat"), retrainPath)
+        val = StreamManager.validate(group_dict)
+        loss = len(val)/sum(predicted_classes)
+        # print(val)
+        # print(loss)
+        # if loss > 0.1:
+        #     os.kill(ppid, signal.SIGUSR2)
         end = time.time()
         print(end)
         print('Running time: %s Seconds' % (end - start))
-
+        index = {T: collections.defaultdict(list)}
+        if os.path.isfile("/usr/local/mad/retrain/stream/index.json"):
+            with open("/usr/local/mad/retrain/stream/index.json", 'r') as file:
+                index.update(json.load(file))
+        report = []
+        for item in Malicious:
+            flag = int(item["name"] not in val)
+            if flag:    report.append(item)
+            index[T][item["ipua"]].append({
+                "name": os.path.join("/usr/local/mad/retrain/stream", T, str(flag), item["name"]+".pcap"),
+                "type": flag,
+            })
+            shutil.copy(os.path.join(DataPath, "stream", item["name"]+".pcap"),
+                        os.path.join("/usr/local/mad/retrain/stream", T, str(flag)))
+            shutil.copy(os.path.join(DataPath, T, "0", item["name"]+".dat"),
+                        os.path.join("/usr/local/mad/retrain/dataset", T, str(flag)))
+        with open("/usr/local/mad/retrain/stream/stream.json", 'w') as file:
+            json.dump(index, file)
+        stem = pathlib.Path(DataPath).stem
+        with open(f"/usr/local/mad/report/{T}/{stem}.json", 'w') as file:
+            json.dump(report, file)
+        with open(f"/usr/local/mad/report/{T}/index.json", 'w') as file:
+            files = [os.path.join(f"/usr/local/mad/report/{T}", name)
+                        for name in os.listdir(f"/usr/local/mad/report/{T}")
+                        if name != "index.json"]
+            json.dump(files, file)
 
     # Used for evaluating our system
     elif mode == "evaluate":
@@ -459,6 +546,7 @@ def main(unused):
         print("positive samples: %d" % len(predicted_classes_1))
         print("prediction positive samples: %d" % sum(predicted_classes_1))
         print("true positive rate: %f" % (sum(predicted_classes_1)/len(predicted_classes_1)))
+
 
 if __name__ == '__main__':
     tf.app.run()

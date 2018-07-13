@@ -199,11 +199,11 @@
         },
         "pypcapkit": {
             "hashes": [
-                "sha256:ad85ba78d229ef9f13775c31accc6da64cb309eba824c20e68b39e651edcbbef",
-                "sha256:e2db828be2aa2d30a69e350916ffcc378f3038a73350a9ce1742692ab0d495a4"
+                "sha256:5eac00dbf8a7ad0d0790dd7a5818e28dee0c3783838a817fe3cdb395b672504e",
+                "sha256:8bff249a879c65cae0d0c62f145a83680b05efe242f583b6d5962d03420c9e3a"
             ],
             "index": "pypi",
-            "version": "==0.9.6.post2"
+            "version": "==0.9.7.post1"
         },
         "requests": {
             "hashes": [
@@ -247,6 +247,7 @@
                 "sha256:7d90a57373501b3fae0a109f5e5176883ec5417a43868970564b84ae9e64709d",
                 "sha256:9215db0fa590a2da6a08d6c7ca41d940727c40332c80c968f1459470d6bf8873",
                 "sha256:c6c8ec1b5a30e1fccebc4ddbee18b6df2bbaf3cf128ee086bc538738c1b3b9be",
+                "sha256:cd83f4a50c0eaf18526e4e56e519c3593d998d1d213df161bbc78fffdd097cb8",
                 "sha256:d351f7db08b8de322536c5886fada3e37feae809bfd37368050f9eeea544b87e"
             ],
             "index": "pypi",
@@ -278,7 +279,7 @@
                 "sha256:0a2e54558a0628f2145d2fc822137e322412115173e8a2ddbe1c9024338ae83c",
                 "sha256:80044e51ec5bbf6c894ba0bc48d26a8c20a9ba629f4ca19ea26ecfcf87685f5f"
             ],
-            "markers": "python_version >= '3'",
+            "markers": "python_version != '3.2.*' and python_version != '3.0.*' and python_version != '3.1.*' and python_version != '3.3.*' and python_version >= '2.7'",
             "version": "==0.31.1"
         }
     },
