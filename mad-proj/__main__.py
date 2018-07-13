@@ -31,6 +31,7 @@ import json
 import multiprocessing
 import os
 import pathlib
+import shlex
 import signal
 import subprocess
 import sys
@@ -51,7 +52,8 @@ PATH = '/'          # path of original data
 IFACE = 'eth0'      # sniff interface
 # TIMEOUT = 1000      # sniff timeout
 TIMEOUT = 15        # sniff timeout
-RETRAIN = False     # retrain flag
+RETRAIN = multiprocessing.Value('B', False)     
+                    # retrain flag
 
 
 FLOW_DICT = {
@@ -63,10 +65,23 @@ FLOW_DICT = {
 }
 
 
+MODE_DICT = {
+    1 : 'train',    # initialisation
+    2 : 'retrain',  # migeration
+    3 : 'predict',  # prediction
+    4 : 'retrain',  # apdatation
+}
+
+
 def main(*, iface=None, mode=None, path=None):
     """Main interface for MAD."""
+    # bind signals
     signal.signal(signal.SIGUSR1, make_worker)
     signal.signal(signal.SIGUSR2, retrain_cnn)
+
+    # make paths
+    for name in {'dataset', 'report', 'model', 'retrain'}:
+        pathlib.Path(f'/usr/local/mad/{name}').mkdir(parents=True, exist_ok=True)
 
     if iface is not None:
         global IFACE
@@ -80,29 +95,29 @@ def main(*, iface=None, mode=None, path=None):
         global PATH
         PATH = path
 
+    # start procedure
     make_worker()
 
 
 def retrain_cnn(*args):
     """Retrain the CNN model."""
     # if already under retrain do nothing
-    global RETRAIN
-    if RETRAIN:     return
+    if RETRAIN.value:   return
 
     # update retrain flag
-    global MODE
-    RETRAIN = True
-    MODE = 4
+    RETRAIN.value = True
 
     # start retrain
     multiprocessing.Process(
         target=run_cnn,
-        kwargs={'path': '/usr/local/mad/retrain'},
+        kwargs={'path': '/usr/local/mad/retrain',
+                'ppid': os.getpid(), 'retrain': True},
     ).start()
 
 
 def make_worker(*args):
     """Create child process."""
+    # start child in prediction
     global MODE
     if MODE == 3:
         return multiprocessing.Process(target=start_worker).start()
@@ -152,7 +167,7 @@ def start_worker():
 
     # and now, time for the neural network
     # reports should be placed in a certain directory
-    # run_cnn(path=path)
+    # run_cnn(path=path, ppid=os.getppid())
 
     # afterwards, write a log file to record state of accomplish
     # the back-end of webpage shall check this file periodically
@@ -162,13 +177,17 @@ def start_worker():
 
 def make_sniff():
     """Load data or sniff packets."""
+    # just sniff when prediction
     if MODE == 3:
-        return scapy.all.sniff(offline='../../PyPCAPKit/sample/http3.pcap')
+        return scapy.all.sniff(offline='/home/ubuntu/httpdump/wanyong80.pcap000')
+        # return scapy.all.sniff(offline='../../PyPCAPKit/sample/http3.pcap')
         # return scapy.all.sniff(timeout=TIMEOUT, iface=IFACE)
 
+    # extract file, or ...
     if pathlib.Path(PATH).is_file():
         return scapy.all.sniff(offline=PATH)
 
+    # files in a directory
     sniffed = list()
     for file in os.listdir(PATH):
         try:
@@ -221,8 +240,11 @@ def make_flow(sniffed, *, path):
             else:
                 templist.append('UnknownUA')
         index.append(pcapkit.all.Info(flow, url=tuple(filter(None, set(hostlist))),
-                        ua=collections.Counter(templist).most_common(1)[0][0]))
+                        ua=decode(collections.Counter(templist).most_common(1)[0][0])))
 
+    import pprint
+    pprint.pprint(index)
+    # dump index
     with open(f'{path}/index.json', 'w') as file:
         json.dump(index, file)
 
@@ -308,11 +330,19 @@ def make_dataset(sniffed, labels, fp, *, path):
         json.dump(fpreport, file)
 
 
-def run_cnn(*, path):
+def run_cnn(*, path, ppid, retrain=False):
     """Create subprocess to run CNN model."""
-    cmd = [sys.executable, os.path.join(ROOT, 'Training.py'),
-            path, '/usr/local/mad/model', MODE, 'Background_PC', os.getppid()]
+    # check mode for CNN
+    mode = 4 if retrain else MODE
+
+    # run CNN subprocess
+    cmd = [sys.executable, shlex.quote(os.path.join(ROOT, 'Training.py')),
+            path, '/usr/local/mad/model', MODE_DICT.get(mode), 'Background_PC', ppid]
     subprocess.run(cmd)
+
+    # reset flag after retrain procedure
+    if retrain:
+        RETRAIN.value = False
 
 
 if __name__ == '__main__':

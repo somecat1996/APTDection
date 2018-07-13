@@ -460,5 +460,5 @@ def main(unused):
         print("prediction positive samples: %d" % sum(predicted_classes_1))
         print("true positive rate: %f" % (sum(predicted_classes_1)/len(predicted_classes_1)))
 
-
-tf.app.run()
+if __name__ == '__main__':
+    tf.app.run()
