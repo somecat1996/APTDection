@@ -5,7 +5,7 @@ import os
 
 class fingerprintManager:
     def __init__(self):
-        self.filepath="/usr/local/mad/fingerprint.pickle"
+        self.filepath="/usr/local/mad/fingerprints.pickle"
         self.fingerprints={}
         self.detector=DetectionModule()
         if os.path.exists(self.filepath):
@@ -16,7 +16,7 @@ class fingerprintManager:
         Gen=FingerprintGenerator(sniffedPackets)
         fingerprints=Gen.genrate(groups)
         self.add_update(fingerprints)
-        with open(self.filepath,"w") as f:
+        with open(self.filepath,"wb") as f:
             pickle.dump(self.fingerprints,f)
         f.close()
 

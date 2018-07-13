@@ -15,13 +15,31 @@
     |   |       |   |-- IP_PORT-IP_PORT-TS.dat  # dataset file
     |   |       |   |-- ...
     |   |-- ...
-    |-- report/                                 # where CNN prediction report go
-    |   |-- YYYY-MM-DDTHH:MM:SS.US.json         # report named after dataset
+    |-- report/                                 # where CNN prediction report go\
+    |   |-- Background_PC/                      # Background_PC reports
+    |   |   |-- YYYY-MM-DDTHH:MM:SS.US.json     # report named after dataset
     |   |-- ...
     |-- model/                                  # where CNN model go
+    |   |-- Background_PC/                      # Background_PC models
+    |   |   |-- ...
     |   |-- ...
-    |-- retrain/                                # where CNN retrain dataset go
-    |   |-- ...
+    |-- retrain/                                # where CNN retrain data go
+    |   |-- dateset/                            # dataset for retrain procedure
+    |   |   |-- Background_PC/                  # Background_PC retrain dataset
+    |   |       |-- 0/                          # clean ones
+    |   |       |   |-- YYYY-MM-DDTHH:MM:SS.US-IP_PORT-IP_PORT-TS.dat
+    |   |       |   |-- ...
+    |   |       |-- 1/                          # malicious ones
+    |   |           |-- YYYY-MM-DDTHH:MM:SS.US-IP_PORT-IP_PORT-TS.dat
+    |   |           |-- ...
+    |   |-- stream/                             # stream PCAP for retrain procedure
+    |   |   |-- Background_PC/                  # Background_PC retrain stream file
+    |   |       |-- 0/                          # clean ones
+    |   |       |   |-- YYYY-MM-DDTHH:MM:SS.US-IP_PORT-IP_PORT-TS.pcap
+    |   |       |   |-- ...
+    |   |       |-- 1/                          # malicious ones
+    |   |           |-- YYYY-MM-DDTHH:MM:SS.US-IP_PORT-IP_PORT-TS.pcap
+    |   |           |-- ...
     |-- mad.log                                 # log file for RPC (0-start; 1-stop; 2-retrain)
 
 """
@@ -32,6 +50,7 @@ import multiprocessing
 import os
 import pathlib
 import shlex
+import shutil
 import signal
 import subprocess
 import sys
@@ -80,7 +99,7 @@ def main(*, iface=None, mode=None, path=None):
     signal.signal(signal.SIGUSR2, retrain_cnn)
 
     # make paths
-    for name in {'dataset', 'report', 'model', 'retrain'}:
+    for name in {'dataset', 'report', 'model', 'retrain/dataset', 'retrain/stream'}:
         pathlib.Path(f'/usr/local/mad/{name}').mkdir(parents=True, exist_ok=True)
 
     if iface is not None:
@@ -110,7 +129,7 @@ def retrain_cnn(*args):
     # start retrain
     multiprocessing.Process(
         target=run_cnn,
-        kwargs={'path': '/usr/local/mad/retrain',
+        kwargs={'path': '/usr/local/mad/retrain/dataset',
                 'ppid': os.getpid(), 'retrain': True},
     ).start()
 
@@ -174,13 +193,17 @@ def start_worker():
     with open('/usr/local/mad/mad.log', 'at', 1) as file:
         file.write(f'1 {dt.datetime.now().isoformat()} {path}\n')
 
+    # finally, remove used temporary dataset files
+    # but record files should be reserved for further usage
+    # shutil.rmtree(f'{path}/Background_PC')
+
 
 def make_sniff():
     """Load data or sniff packets."""
     # just sniff when prediction
     if MODE == 3:
         return scapy.all.sniff(offline='/home/ubuntu/httpdump/wanyong80.pcap000')
-        # return scapy.all.sniff(offline='../../PyPCAPKit/sample/http3.pcap')
+        # return scapy.all.sniff(offline='../../PyPCAPKit/sample/http.pcap')
         # return scapy.all.sniff(timeout=TIMEOUT, iface=IFACE)
 
     # extract file, or ...
@@ -222,7 +245,7 @@ def make_flow(sniffed, *, path):
     def get_url(analysis):
         """Make URL of HTTP request."""
         if analysis.info.receipt == 'request':
-            host = decode(analysis.info.header.get('Host', bytes()))
+            host = decode(analysis.info.header.get('Host', str()))
             uri = decode(analysis.info.header.request.target)
             url = host + uri
             return url
@@ -242,8 +265,6 @@ def make_flow(sniffed, *, path):
         index.append(pcapkit.all.Info(flow, url=tuple(filter(None, set(hostlist))),
                         ua=decode(collections.Counter(templist).most_common(1)[0][0])))
 
-    import pprint
-    pprint.pprint(index)
     # dump index
     with open(f'{path}/index.json', 'w') as file:
         json.dump(index, file)
@@ -266,15 +287,13 @@ def make_group(sniffed, index, fp, *, path):
     if MODE != 3:
         stream.labelGroups()
 
-    # load labels
+    # labels & fingerprints
     record = dict()
     for kind, group in FLOW_DICT.items():
-        record[kind] = group(stream)
-
-    # fingerprints
-    if MODE != 3:
-        for label in record.values():
-            fp.GenerateAndUpdate(sniffed, label)
+        groups = group(stream)
+        record[kind] = groups
+        if MODE != 3:
+            fp.GenerateAndUpdate(sniffed, groups)
 
     # dump record
     with open(f'{path}/record.json', 'w') as file:
@@ -293,7 +312,7 @@ def make_dataset(sniffed, labels, fp, *, path):
 
         # make directory
         pathlib.Path(f'{path}/{kind}/0').mkdir(parents=True, exist_ok=True)  # safe
-        pathlib.Path(f'{path}/{kind}/0').mkdir(parents=True, exist_ok=True)  # malicious
+        pathlib.Path(f'{path}/{kind}/1').mkdir(parents=True, exist_ok=True)  # malicious
 
         # identify figerprints
         group_keys = group.keys()
@@ -335,10 +354,17 @@ def run_cnn(*, path, ppid, retrain=False):
     # check mode for CNN
     mode = 4 if retrain else MODE
 
+    # write logs
+    with open('/usr/local/mad/mad.log', 'at', 1) as file:
+        file.write(f'2 {dt.datetime.now().isoformat()}\n')
+
     # run CNN subprocess
     cmd = [sys.executable, shlex.quote(os.path.join(ROOT, 'Training.py')),
             path, '/usr/local/mad/model', MODE_DICT.get(mode), 'Background_PC', ppid]
     subprocess.run(cmd)
+
+    # update fingerprints
+    # fp = fingerprintManager().GenerateAndUpdate(sniffed, groups)
 
     # reset flag after retrain procedure
     if retrain:
@@ -346,4 +372,4 @@ def run_cnn(*, path, ppid, retrain=False):
 
 
 if __name__ == '__main__':
-    sys.exit(start_worker())
+    sys.exit(main())

@@ -14,11 +14,29 @@ MAD -- Malicious Application Detector
     |   |       |   |-- IP_PORT-IP_PORT-TS.dat  # dataset file
     |   |       |   |-- ...
     |   |-- ...
-    |-- report/                                 # where CNN prediction report go
-    |   |-- YYYY-MM-DDTHH:MM:SS.US.json         # report named after dataset
+    |-- report/                                 # where CNN prediction report go\
+    |   |-- Background_PC/                      # Background_PC reports
+    |   |   |-- YYYY-MM-DDTHH:MM:SS.US.json     # report named after dataset
     |   |-- ...
     |-- model/                                  # where CNN model go
+    |   |-- Background_PC/                      # Background_PC models
+    |   |   |-- ...
     |   |-- ...
-    |-- retrain/                                # where CNN retrain dataset go
-    |   |-- ...
+    |-- retrain/                                # where CNN retrain data go
+    |   |-- dateset/                            # dataset for retrain procedure
+    |   |   |-- Background_PC/                  # Background_PC retrain dataset
+    |   |       |-- 0/                          # clean ones
+    |   |       |   |-- YYYY-MM-DDTHH:MM:SS.US-IP_PORT-IP_PORT-TS.dat
+    |   |       |   |-- ...
+    |   |       |-- 1/                          # malicious ones
+    |   |           |-- YYYY-MM-DDTHH:MM:SS.US-IP_PORT-IP_PORT-TS.dat
+    |   |           |-- ...
+    |   |-- stream/                             # stream PCAP for retrain procedure
+    |   |   |-- Background_PC/                  # Background_PC retrain stream file
+    |   |       |-- 0/                          # clean ones
+    |   |       |   |-- YYYY-MM-DDTHH:MM:SS.US-IP_PORT-IP_PORT-TS.pcap
+    |   |       |   |-- ...
+    |   |       |-- 1/                          # malicious ones
+    |   |           |-- YYYY-MM-DDTHH:MM:SS.US-IP_PORT-IP_PORT-TS.pcap
+    |   |           |-- ...
     |-- mad.log                                 # log file for RPC (0-start; 1-stop; 2-retrain)
