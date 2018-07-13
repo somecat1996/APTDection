@@ -192,7 +192,7 @@ def start_worker():
 
     # and now, time for the neural network
     # reports should be placed in a certain directory
-    run_cnn(path=path, ppid=os.getppid())
+    # run_cnn(path=path, ppid=os.getppid())
 
     # afterwards, write a log file to record state of accomplish
     # the back-end of webpage shall check this file periodically
@@ -209,8 +209,8 @@ def make_sniff():
     """Load data or sniff packets."""
     # just sniff when prediction
     if MODE == 3:
-        return scapy.all.sniff(offline='/home/ubuntu/httpdump/wanyong80.pcap000')
-        # return scapy.all.sniff(offline='../../PyPCAPKit/sample/http.pcap')
+        # return scapy.all.sniff(offline='/home/ubuntu/httpdump/wanyong80.pcap000')
+        return scapy.all.sniff(offline='../../PyPCAPKit/sample/http.pcap')
         # return scapy.all.sniff(timeout=TIMEOUT, iface=IFACE)
 
     # extract file, or ...
@@ -230,6 +230,7 @@ def make_sniff():
 def make_flow(sniffed, *, path):
     """Insert UA key to TraceFlow index."""
     print(f'Tracing TCP flow @ {path}')
+
     # TraceFlow
     traceflow = pcapkit.trace(fout=f'{path}/stream', format=pcapkit.PCAP)
     for count, packet in enumerate(sniffed):
@@ -281,6 +282,7 @@ def make_flow(sniffed, *, path):
 def make_group(sniffed, index, fp, *, path):
     """Generate WebGraphic and fingerprints."""
     print(f'Now grouping packets @ {path}')
+
     # WebGraphic
     builder = webgraphic()
     builder.read_in(sniffed)
@@ -311,6 +313,7 @@ def make_group(sniffed, index, fp, *, path):
 def make_dataset(sniffed, labels, fp, *, path):
     """Make dataset."""
     print(f'Making dataset @ {path}')
+
     fplist = list()
     for kind, group in labels.items():
         if kind != 'Background_PC':     continue
@@ -356,6 +359,8 @@ def make_dataset(sniffed, labels, fp, *, path):
 
 def run_cnn(*, path, ppid, retrain=False):
     """Create subprocess to run CNN model."""
+    print(f"CNN running @ {path}")
+
     # check mode for CNN
     mode = 4 if retrain else MODE
 
