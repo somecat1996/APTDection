@@ -13,10 +13,10 @@ class fingerprintManager:
                 self.fingerprints=pickle.load(f)
 
     def GenerateAndUpdate(self,sniffedPackets_or_streampath,groups,type):   #type 1 means sniffed subject,2 means pcap files
-        Gen=FingerprintGenerator(sniffedPackets,type)
+        Gen=FingerprintGenerator(sniffedPackets_or_streampath,type)
         fingerprints=Gen.genrate(groups)
         self.add_update(fingerprints)
-        with open(self.filepath,"w") as f:
+        with open(self.filepath,"wb") as f:
             pickle.dump(self.fingerprints,f)
         f.close()
 

@@ -54,12 +54,13 @@ class StreamManager:
                 src_ip = ip[1]
             #if ip in ips[0]:
              #   self.browser_PC.append({"label":x,"type":1,"is_malicious":0})
+            d = y.infotodict()
             if ip in ips[1]:
-                self.backgroud_PC.append({"label":x,"url":y["url"],"index":y["index"],"UA":y["ua"],"internal_ip":src_ip,"external_ip":dst_ip,"type":1,"is_malicious":0})
+                self.backgroud_PC.append(d.update({"label":x,"internal_ip":src_ip,"external_ip":dst_ip,"type":1,"is_malicious":0}))
             elif ip in ips[3]:
-                self.backgroud_Phone.append({"label":x,"url":y["url"],"index":y["index"],"UA":y["ua"],"internal_ip":src_ip,"external_ip":dst_ip,"type":2,"is_malicious":0})
+                self.backgroud_Phone.append(d.update({"label":x,"internal_ip":src_ip,"external_ip":dst_ip,"type":2,"is_malicious":0}))
             elif ip in ips[4]:
-                self.suspicious.append({"label":x,"url":y["url"],"index":y["index"],"UA":y["ua"],"internal_ip":src_ip,"external_ip":dst_ip,"type":3,"is_malicious":0})
+                self.suspicious.append(d.update({"label":x,"internal_ip":src_ip,"external_ip":dst_ip,"type":3,"is_malicious":0}))
             else:
                 print("找不到",ip)
                 count_no+=1
@@ -211,7 +212,7 @@ class StreamManager:
         for i in range(len(targets)):
             index=targets[i]["index"]
             # url=self.GetUrl(index)
-            url=re.sub("https://", "", targets[i]["url"])
+            url=re.sub("https://", "", targets[i]["URL"])
             if url=="none":
                 malicious_num+=1
             else:
