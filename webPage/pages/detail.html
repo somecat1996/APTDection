@@ -123,7 +123,7 @@
 					<a href="abstract.html"><div class="pull-left"><i class="zmdi zmdi-chart mr-20"></i><span class="right-nav-text">概要统计</span></div><div class="pull-right"></div><div class="clearfix"></div></a>
 				</li>
 				<li>
-					<a href="detail.html"><div class="pull-left"><i class="zmdi zmdi-view-list-alt mr-20"></i><span class="right-nav-text">详细信息</span></div><div class="pull-right"></div><div class="clearfix"></div></a>
+					<a class="active" href="detail.html"><div class="pull-left"><i class="zmdi zmdi-view-list-alt mr-20"></i><span class="right-nav-text">详细信息</span></div><div class="pull-right"></div><div class="clearfix"></div></a>
 				</li>
 				<li><hr class="light-grey-hr mb-10"/></li>
 				<li class="navigation-header">
@@ -178,31 +178,19 @@
 										<table id="footable_3" class="table" data-filtering="true"  data-show-toggle="false">
 											<thead>
 												<tr>
-													<th data-breakpoints="xs">Src IP</th>
+													<th>Src IP</th>
 													<th>Src Port</th>
 													<th>Dst IP</th>
 													<th>Dst Port</th>
-													<th data-breakpoints="xs">User-Agent</th>
-													<th data-breakpoints="xs sm">Time</th>
+													<th>Time</th>
+													<th data-breakpoints="all" data-title="User-Agent">User-Agent</th>
 													<th data-breakpoints="all" data-title="Comment">Comment</th>
 													<th data-breakpoints="all" data-title="Description">Description</th>
 													<th data-breakpoints="all" data-title="Link">Link</th>
 													<th data-breakpoints="all" data-title="Type">Type</th>
 												</tr>
 											</thead>
-											<tbody>
-												<tr>
-													<td>1</td>
-													<td>Dennise</td>
-													<td>Fuhrman</td>
-													<td>High School History Teacher</td>
-													<td>November 8th 2011</td>
-													<td>July 25th 1960</td>
-													<td>July 25th 1960</td>
-													<td>July 25th 1960</td>
-													<td>July 25th 1960</td>
-													<td>July 25th 1960</td>
-												</tr>
+											<tbody id="results-display">
 											</tbody>
 										</table>
 									</div>
@@ -240,6 +228,27 @@
     <script src="../vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
 	<!-- Data table JavaScript -->
+	<script type="text/javascript">
+		$.getJSON ("../testFiles/index.json", function (data) {
+		    $.each(data, function (i, item) {
+				$.getJSON(item, function (data) {
+					$.each(data, function (i, item) {
+					    var info = item.info;
+						$("#results-display").append("<tr><td>" + item.srcIP +
+							"</td><td>" + item.srcPort +
+							"</td><td>" + item.dstIP +
+							"</td><td>" + item.dstPort +
+							"</td><td>" + item.time +
+							"</td><td>" + item.UA +
+							"</td><td>" + info.comment +
+							"</td><td>" + info.desc +
+							"</td><td>" + info.link +
+							"</td><td>" + info.type + "</td></tr>");
+					});
+				});
+			});
+        });
+	</script>
 	<script src="../vendors/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
 	<script src="../vendors/bower_components/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
 	<script src="../vendors/bower_components/datatables.net-buttons/js/buttons.flash.min.js"></script>
