@@ -72,7 +72,7 @@ from webgraphic.webgraphic import *
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
                     # file root path
-MODE = 2            # 1-initialisation; 2-migeration; 3-prediction; 4-adaptation
+MODE = 3            # 1-initialisation; 2-migeration; 3-prediction; 4-adaptation
 PATH = '/'          # path of original data
 IFACE = 'eth0'      # sniff interface
 # TIMEOUT = 1000      # sniff timeout

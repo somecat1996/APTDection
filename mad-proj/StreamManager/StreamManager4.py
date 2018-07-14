@@ -55,10 +55,13 @@ class StreamManager:
             #if ip in ips[0]:
              #   self.browser_PC.append({"label":x,"type":1,"is_malicious":0})
             if ip in ips[1]:
+                print({"label":x,"internal_ip":src_ip,"external_ip":dst_ip,"type":1,"is_malicious":0}.update(y))
                 self.backgroud_PC.append({"label":x,"internal_ip":src_ip,"external_ip":dst_ip,"type":1,"is_malicious":0}.update(y))
             elif ip in ips[3]:
+                print({"label":x,"internal_ip":src_ip,"external_ip":dst_ip,"type":2,"is_malicious":0}.update(y))
                 self.backgroud_Phone.append({"label":x,"internal_ip":src_ip,"external_ip":dst_ip,"type":2,"is_malicious":0}.update(y))
             elif ip in ips[4]:
+                print({"label":x,"internal_ip":src_ip,"external_ip":dst_ip,"type":3,"is_malicious":0}.update(y))
                 self.suspicious.append({"label":x,"internal_ip":src_ip,"external_ip":dst_ip,"type":3,"is_malicious":0}.update(y))
             else:
                 print("找不到",ip)
