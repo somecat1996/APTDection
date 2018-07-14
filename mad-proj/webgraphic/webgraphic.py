@@ -22,7 +22,8 @@ class webgraphic:
     def __init__(self):
         self.tmp_mem=[]
         self.tmp_index=[]
-        self.path=os.getcwd()
+        # self.path=os.getcwd()
+        self.path=os.path.dirname(os.path.abspath(__file__))
         self.groups = []
         self.twd_size=10.0    #the size of the time window
         self.filetered_ip=[]

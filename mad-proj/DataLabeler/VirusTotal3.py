@@ -24,8 +24,10 @@ class virustotal:
     "Opera/9.80 (Macintosh; Intel Mac OS X 10.6.8; U; fr) Presto/2.9.168 Version/11.52",
 ]
         self.ip=[]
-        path=os.getcwd()
-        f=open("/home/ubuntu/MaliciousApplicationDetector/DataLabeler/proxies3.txt","rb")
+        # path=os.getcwd()
+        path=os.path.dirname(os.path.abspath(__file__))
+        # f=open("/home/ubuntu/MaliciousApplicationDetector/DataLabeler/proxies3.txt","rb")
+        f=open(os.path.join(path, "proxies3.txt"), "r")
         line=f.readline()
         count=0
         while line:
