@@ -37,12 +37,21 @@ def parse():
 def _parse_type(text):
     if text is None:    return
 
+    # type_list = list()
+    # for letter in text.split():
+    #     type_list.append(_TYPE_CODE.get(letter))
+    # return tuple(type_list)
+
     type_list = list()
-    for letter in text.split():
-        type_list.append(_TYPE_CODE.get(letter))
-    return tuple(type_list)
+    text_list = text.split()
+    for key in _TYPE_CODE.keys():
+        type_list.append(key if (key in text_list) else '-')
+    return text if type_list == ['-']*6 else ' '.join(type_list)
 
 
 if __name__ == '__main__':
     import pprint
     pprint.pprint(parse())
+    # import json
+    # with open('useragents.json', 'w') as file:
+    #     json.dump(parse(), file)

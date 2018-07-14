@@ -72,7 +72,7 @@ from webgraphic.webgraphic import *
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
                     # file root path
-MODE = 3            # 1-initialisation; 2-migeration; 3-prediction; 4-adaptation
+MODE = 2            # 1-initialisation; 2-migeration; 3-prediction; 4-adaptation
 PATH = '/'          # path of original data
 IFACE = 'eth0'      # sniff interface
 # TIMEOUT = 1000      # sniff timeout
@@ -116,7 +116,7 @@ def main(*, iface=None, mode=None, path=None):
         global MODE
         MODE = mode
 
-    if mode != 3:
+    if path is not None:
         global PATH
         PATH = path
 
@@ -209,11 +209,12 @@ def make_sniff():
     """Load data or sniff packets."""
     # just sniff when prediction
     if MODE == 3:
-        return scapy.all.sniff(offline='/home/ubuntu/httpdump/wanyong80.pcap001')
-        # return scapy.all.sniff(offline='../../PyPCAPKit/sample/http.pcap')
+        # return scapy.all.sniff(offline='/home/ubuntu/httpdump/wanyong80.pcap001')
+        return scapy.all.sniff(offline='../../PyPCAPKit/sample/http.pcap')
         # return scapy.all.sniff(timeout=TIMEOUT, iface=IFACE)
 
     # extract file, or ...
+    PATH = '../../PyPCAPKit/sample/http.pcap'
     if pathlib.Path(PATH).is_file():
         return scapy.all.sniff(offline=PATH)
 
@@ -270,7 +271,7 @@ def make_flow(sniffed, *, path):
                 hostlist.append(get_url(analysis))
         ua = (collections.Counter(filter(None, templist)).most_common(1) or [('UnknownUA', 1)])[0][0]
         url = tuple(filter(None, set(hostlist))) or ('none',)
-        index.append(pcapkit.all.Info(flow, ua=decode(ua), url=url))
+        index.append(pcapkit.all.Info(flow, UA=decode(ua), URL=url))
 
     # dump index
     with open(f'{path}/flow.json', 'w') as file:
@@ -330,6 +331,10 @@ def make_dataset(sniffed, labels, fp, *, path):
                 fplist += group[ipua]
             group_keys = fpreport['new_app']
 
+            # fingerprint report
+            with open(f'{path}/filter.json', 'w') as file:
+                json.dump(fpreport, file)
+
         # enumerate files
         for ipua in group_keys:
             for file in group[ipua]:
@@ -351,10 +356,6 @@ def make_dataset(sniffed, labels, fp, *, path):
                     if pcapkit.protocols.application.httpv1.HTTPv1 in packet.protochain:
                         with open(fname, 'ab') as file:
                             file.write(packet.info.raw.header or None)
-
-    # fingerprint report
-    with open(f'{path}/filter.json', 'w') as file:
-        json.dump(fpreport, file)
 
 
 def run_cnn(*, path, ppid, retrain=False):

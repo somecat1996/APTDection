@@ -385,6 +385,7 @@ def main(unused):
     elif mode == "predict":
         start = time.time()
         print(start)
+        useragents = parse()
         # files = [os.path.join(DataPath, x) for x in os.listdir(DataPath) if os.path.isfile(DataPath + x)]
         # index = dataset(*files, mode=2)
         with open(os.path.join(DataPath, 'filter.json'), 'r') as file:
@@ -406,7 +407,7 @@ def main(unused):
         for i in isMalicious:
             name = pathlib.Path(i).stem
             ipua = "UnknownUA"
-            temp = dict(ua="UnknownUA")
+            temp = dict(UA="UnknownUA")
             for key in group:
                 for file in group[key]:
                     if file["label"] == name:
@@ -424,6 +425,8 @@ def main(unused):
                 "time": dt.datetime.fromtimestamp(float(tstamp)).isoformat(),
                 "name": name,
                 "ipua": ipua,
+                "info": useragents.get(temp["UA"],
+                            dict(desc=None, type=None, comment=None, link=(None, None))),
             }.update(temp))
         # print("detected by CNN: ")
         for i, kind in enumerate(predicted_classes):
@@ -438,7 +441,7 @@ def main(unused):
                 #         if name in file["filename"]:
                 #             print(ua)
                 ipua = "UnknownUA"
-                temp = dict(ua="UnknownUA")
+                temp = dict(UA="UnknownUA")
                 for key in group:
                     for file in group[key]:
                         if file["label"] == name:
@@ -456,6 +459,8 @@ def main(unused):
                     "time": dt.datetime.fromtimestamp(float(tstamp)).isoformat(),
                     "name": name,
                     "ipua": ipua,
+                    "info": useragents.get(temp["UA"],
+                                dict(desc=None, type=None, comment=None, link=(None, None))),
                 }.update(temp))
         # print("checking...")
         group_dict = {T: []}
