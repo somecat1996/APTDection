@@ -505,14 +505,16 @@ def main(unused):
         for item in Malicious:
             flag = int(item["name"] not in val)
             if flag:    report.append(item)
-            index[T][item["ipua"]].append({
-                "name": os.path.join("/usr/local/mad/retrain/stream", T, str(flag), item["name"]+".pcap"),
-                "type": flag,
-            })
-            shutil.copy(os.path.join(DataPath, "stream", item["name"]+".pcap"),
-                        os.path.join("/usr/local/mad/retrain/stream", T, str(flag)))
+            stem = pathlib.Path(DataPath).stem
+            name = stem+"Z"+item["name"]+".pcap"
             shutil.copy(os.path.join(DataPath, T, "0", item["name"]+".dat"),
-                        os.path.join("/usr/local/mad/retrain/dataset", T, str(flag)))
+                        os.path.join("/usr/local/mad/retrain/dataset", T, str(flag), name))
+            shutil.copy(os.path.join(DataPath, "stream", item["name"]+".pcap"),
+                        os.path.join("/usr/local/mad/retrain/stream", T, str(flag), name))
+            index[T][item.pop("ipua")].append(item.update({
+                "type": flag,
+                "file": os.path.join("/usr/local/mad/retrain/stream", T, str(flag), name),
+            }))
         with open("/usr/local/mad/retrain/stream/stream.json", 'w') as file:
             json.dump(index, file)
         stem = pathlib.Path(DataPath).stem

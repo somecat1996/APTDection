@@ -255,9 +255,10 @@ class FingerprintGenerator():
             requests = []
             is_malicious=0
             for x in stream_groups[key]:
-                if x["malicious"]!=0:
+                if x["is_malicious"]!=0:
                     is_malicious=1
-                filename=self.packets+'/'+x["label"]
+                # filename=self.packets+'/'+x["label"]
+                filename=x["file"]
                 source=PcapReader(filename)
                 packet=source.read_packet()
                 while packet:
