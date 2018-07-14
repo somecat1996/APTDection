@@ -232,7 +232,7 @@ class FingerprintGenerator():
 
     def get_http_requests(self,stream_groups):
         app_requests={}
-        ptr=".*(GET|POST).*HTTP.*"
+        ptr=".*(GET|POST|HEAD).*HTTP.*"
         for key in stream_groups:
             requests = []
             is_malicious=0
@@ -241,7 +241,8 @@ class FingerprintGenerator():
                 if x["is_malicious"]!=0:
                     is_malicious=1
                 for i in index:
-                    requests.append(i)
+                    if re.match(ptr, str(self.packets[i])):
+                        requests.append(i)
             requests.append(is_malicious)
             requests.append(stream_groups[key][0]["type"])
             print(requests)
@@ -250,15 +251,14 @@ class FingerprintGenerator():
 
     def get_http_requests2(self,stream_groups):
         app_requests={}
-        ptr=".*(GET|POST).*HTTP.*"
+        ptr=".*(GET|POST|HEAD).*HTTP.*"
         for key in stream_groups:
             requests = []
             is_malicious=0
             for x in stream_groups[key]:
-                if x["is_malicious"]!=0:
+                if x["malicious"]!=0:
                     is_malicious=1
-                # filename=self.packets+'/'+x["label"]
-                filename=x["file"]
+                filename=self.packets+'/'+x["label"]
                 source=PcapReader(filename)
                 packet=source.read_packet()
                 while packet:
