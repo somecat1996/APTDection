@@ -18,6 +18,12 @@
 	<!-- Morris Charts CSS -->
     <link href="../vendors/bower_components/morris.js/morris.css" rel="stylesheet" type="text/css"/>
 
+	<!-- vector map CSS -->
+	<link href="../vendors/vectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet" type="text/css"/>
+
+	<!-- Footable CSS -->
+	<link href="../vendors/bower_components/FooTable/compiled/footable.bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
 	<!-- Custom CSS -->
 	<link href="dist/css/style.css" rel="stylesheet" type="text/css">
 </head>
@@ -145,6 +151,68 @@
 		<div class="page-wrapper">
             <div class="container-fluid pt-25">
 
+				<!-- Title -->
+				<div class="row heading-bg">
+					<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+					  <h5 class="txt-dark">详细信息</h5>
+					</div>
+					<!-- Breadcrumb -->
+					<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+					  <ol class="breadcrumb">
+						<li><a href="index.html">主页</a></li>
+						<li><a href="#"><span>统计</span></a></li>
+						<li class="active"><span>详细信息</span></li>
+					  </ol>
+					</div>
+					<!-- /Breadcrumb -->
+				</div>
+				<!-- /Title -->
+
+				<!-- Row -->
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="panel panel-default card-view">
+							<div class="panel-wrapper collapse in">
+								<div class="panel-body">
+									<div class="table-wrap">
+										<table id="footable_3" class="table" data-filtering="true"  data-show-toggle="false">
+											<thead>
+												<tr>
+													<th data-breakpoints="xs">Src IP</th>
+													<th>Src Port</th>
+													<th>Dst IP</th>
+													<th>Dst Port</th>
+													<th data-breakpoints="xs">User-Agent</th>
+													<th data-breakpoints="xs sm">Time</th>
+													<th data-breakpoints="all" data-title="Comment">Comment</th>
+													<th data-breakpoints="all" data-title="Description">Description</th>
+													<th data-breakpoints="all" data-title="Link">Link</th>
+													<th data-breakpoints="all" data-title="Type">Type</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>1</td>
+													<td>Dennise</td>
+													<td>Fuhrman</td>
+													<td>High School History Teacher</td>
+													<td>November 8th 2011</td>
+													<td>July 25th 1960</td>
+													<td>July 25th 1960</td>
+													<td>July 25th 1960</td>
+													<td>July 25th 1960</td>
+													<td>July 25th 1960</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /Row -->
+
 			</div>
 
 			<!-- Footer -->
@@ -178,10 +246,10 @@
 	<script src="../vendors/bower_components/jszip/dist/jszip.min.js"></script>
 	<script src="../vendors/bower_components/pdfmake/build/pdfmake.min.js"></script>
 	<script src="../vendors/bower_components/pdfmake/build/vfs_fonts.js"></script>
+	<script src="../vendors/bower_components/moment/min/moment.min.js"></script>
+	<script src="../vendors/bower_components/FooTable/compiled/footable.min.js" type="text/javascript"></script>
+	<script src="dist/js/footable-data.js"></script>
 
-	<script src="../vendors/bower_components/datatables.net-buttons/js/buttons.html5.min.js"></script>
-	<script src="../vendors/bower_components/datatables.net-buttons/js/buttons.print.min.js"></script>
-	<script src="dist/js/export-table-data.js"></script>
 
 	<!-- Slimscroll JavaScript -->
 	<script src="dist/js/jquery.slimscroll.js"></script>
@@ -222,6 +290,13 @@
     <script src="../vendors/bower_components/raphael/raphael.min.js"></script>
     <script src="../vendors/bower_components/morris.js/morris.min.js"></script>
     <script src="dist/js/morris-data.js"></script>
+
+	<script type="text/javascript">
+		$(window).on("load",function(){
+		    $("tr.footable-filtering").remove();
+		});
+	</script>
+
 </body>
 
 </html>

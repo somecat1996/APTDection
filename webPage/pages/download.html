@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-	<title>MAD|下载</title>
+	<title>MAD|下载专区</title>
 
 	<!-- Favicon -->
 	<link rel="shortcut icon" href="../img/favicon.png">
@@ -145,6 +145,23 @@
 		<div class="page-wrapper">
             <div class="container-fluid pt-25">
 
+				<!-- Title -->
+				<div class="row heading-bg">
+					<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+					  <h5 class="txt-dark">下载专区</h5>
+					</div>
+					<!-- Breadcrumb -->
+					<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+					  <ol class="breadcrumb">
+						<li><a href="index.html">主页</a></li>
+						<li><a href="#"><span>关于</span></a></li>
+						<li class="active"><span>下载专区</span></li>
+					  </ol>
+					</div>
+					<!-- /Breadcrumb -->
+				</div>
+				<!-- /Title -->
+
                 <!-- Row -->
                 <div class="row">
                     <div class="col-sm-12">
@@ -189,24 +206,16 @@
 											<table id="example" class="table table-hover display  pb-30" >
 												<thead>
 													<tr>
-														<th>Name</th>
-														<th>Position</th>
-														<th>Office</th>
-														<th>Age</th>
-														<th>Start date</th>
-														<th>Salary</th>
+														<th>Src IP</th>
+														<th>Src Port</th>
+														<th>Dst IP</th>
+														<th>Dst Port</th>
+														<th>User-Agent</th>
+														<th>Time</th>
 													</tr>
 												</thead>
 
-												<tbody>
-													<tr>
-														<td>Tiger Nixon</td>
-														<td>System Architect</td>
-														<td>Edinburgh</td>
-														<td>61</td>
-														<td>2011/04/25</td>
-														<td>$320,800</td>
-													</tr>
+												<tbody id="results-display">
 												</tbody>
 											</table>
 										</div>
@@ -244,6 +253,22 @@
     <script src="../vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
 	<!-- Data table JavaScript -->
+	<script type="text/javascript">
+		$.getJSON ("../testFiles/index.json", function (data) {
+		    $.each(data, function (i, item) {
+				$.getJSON(item, function (data) {
+					$.each(data, function (i, item) {
+						$("#results-display").append("<tr><th>" + item.srcIP +
+							"</th><th>" + item.srcPort +
+							"</th><th>" + item.dstIP +
+							"</th><th>" + item.dstPort +
+							"</th><th>" + item.UA +
+							"</th><th>" + item.time + "</th></tr>");
+					});
+				});
+			});
+        });
+	</script>
 	<script src="../vendors/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
 	<script src="../vendors/bower_components/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
 	<script src="../vendors/bower_components/datatables.net-buttons/js/buttons.flash.min.js"></script>
@@ -294,6 +319,7 @@
     <script src="../vendors/bower_components/raphael/raphael.min.js"></script>
     <script src="../vendors/bower_components/morris.js/morris.min.js"></script>
     <script src="dist/js/morris-data.js"></script>
+
 </body>
 
 </html>
