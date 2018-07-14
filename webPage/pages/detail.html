@@ -219,6 +219,7 @@
     </div>
     <!-- /#wrapper -->
 
+
 	<!-- JavaScript -->
 
     <!-- jQuery -->
@@ -229,7 +230,7 @@
 
 	<!-- Data table JavaScript -->
 	<script type="text/javascript">
-		$.getJSON ("../testFiles/index.json", function (data) {
+		$.getJSON ("/report/index.json", function (data) {
 		    $.each(data, function (i, item) {
 				$.getJSON(item, function (data) {
 					$.each(data, function (i, item) {
@@ -263,11 +264,6 @@
 	<!-- Slimscroll JavaScript -->
 	<script src="dist/js/jquery.slimscroll.js"></script>
 
-	<!-- simpleWeather JavaScript -->
-	<script src="../vendors/bower_components/moment/min/moment.min.js"></script>
-	<script src="../vendors/bower_components/simpleWeather/jquery.simpleWeather.min.js"></script>
-	<script src="dist/js/simpleweather-data.js"></script>
-
 	<!-- Progressbar Animation JavaScript -->
 	<script src="../vendors/bower_components/waypoints/lib/jquery.waypoints.min.js"></script>
 	<script src="../vendors/bower_components/jquery.counterup/jquery.counterup.min.js"></script>
@@ -294,18 +290,6 @@
 	<!-- Init JavaScript -->
 	<script src="dist/js/index/init.js"></script>
 	<script src="dist/js/dashboard-data.js"></script>
-
-    <!-- Morris Charts JavaScript -->
-    <script src="../vendors/bower_components/raphael/raphael.min.js"></script>
-    <script src="../vendors/bower_components/morris.js/morris.min.js"></script>
-    <script src="dist/js/morris-data.js"></script>
-
-	<script type="text/javascript">
-		$(window).on("load",function(){
-		    $("tr.footable-filtering").remove();
-		});
-	</script>
-
 </body>
 
 </html>
