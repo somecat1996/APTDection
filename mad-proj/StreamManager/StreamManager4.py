@@ -54,13 +54,12 @@ class StreamManager:
                 src_ip = ip[1]
             #if ip in ips[0]:
              #   self.browser_PC.append({"label":x,"type":1,"is_malicious":0})
-            d = y.infotodict()
             if ip in ips[1]:
-                self.backgroud_PC.append(d.update({"label":x,"internal_ip":src_ip,"external_ip":dst_ip,"type":1,"is_malicious":0}))
+                self.backgroud_PC.append({"label":x,"internal_ip":src_ip,"external_ip":dst_ip,"type":1,"is_malicious":0}.update(y))
             elif ip in ips[3]:
-                self.backgroud_Phone.append(d.update({"label":x,"internal_ip":src_ip,"external_ip":dst_ip,"type":2,"is_malicious":0}))
+                self.backgroud_Phone.append({"label":x,"internal_ip":src_ip,"external_ip":dst_ip,"type":2,"is_malicious":0}.update(y))
             elif ip in ips[4]:
-                self.suspicious.append(d.update({"label":x,"internal_ip":src_ip,"external_ip":dst_ip,"type":3,"is_malicious":0}))
+                self.suspicious.append({"label":x,"internal_ip":src_ip,"external_ip":dst_ip,"type":3,"is_malicious":0}.update(y))
             else:
                 print("找不到",ip)
                 count_no+=1
@@ -288,7 +287,9 @@ class StreamManager:
     def getIP(self,filename):
         tmp=filename.split("_")
         ip1=tmp[0]
-        ip2=tmp[2]
+        ip2_raw=tmp[1]
+        ip2_tmp=ip2_raw.split("-")
+        ip2=ip2_tmp[1]
         result=[]
         result.append(ip1)
         result.append(ip2)
