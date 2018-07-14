@@ -62,6 +62,7 @@ import subprocess
 import sys
 
 import chardet
+import pcapkit
 import pcapkit.all
 import scapy.all
 
@@ -209,8 +210,8 @@ def make_sniff():
     """Load data or sniff packets."""
     # just sniff when prediction
     if MODE == 3:
-        return scapy.all.sniff(offline='/home/ubuntu/httpdump/torbotnet.pcap')
-        # return scapy.all.sniff(offline='../PyPCAPKit/sample/http.pcap')
+        # return scapy.all.sniff(offline='/home/ubuntu/httpdump/torbotnet.pcap')
+        return scapy.all.sniff(offline='../PyPCAPKit/sample/http.pcap')
         # return scapy.all.sniff(timeout=TIMEOUT, iface=IFACE)
 
     # extract file, or ...
