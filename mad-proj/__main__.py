@@ -192,7 +192,7 @@ def start_worker():
 
     # and now, time for the neural network
     # reports should be placed in a certain directory
-    # run_cnn(path=path, ppid=os.getppid())
+    run_cnn(path=path, ppid=os.getppid())
 
     # afterwards, write a log file to record state of accomplish
     # the back-end of webpage shall check this file periodically
@@ -209,8 +209,8 @@ def make_sniff():
     """Load data or sniff packets."""
     # just sniff when prediction
     if MODE == 3:
-        # return scapy.all.sniff(offline='/home/ubuntu/httpdump/torbotnet.pcap')
-        return scapy.all.sniff(offline='../PyPCAPKit/sample/http15.pcap')
+        return scapy.all.sniff(offline='/home/ubuntu/httpdump/wanyong80.pcap010')
+        # return scapy.all.sniff(offline='../PyPCAPKit/sample/http15.pcap')
         # return scapy.all.sniff(timeout=TIMEOUT, iface=IFACE)
 
     # extract file, or ...
