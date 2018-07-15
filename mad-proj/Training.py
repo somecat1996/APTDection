@@ -417,17 +417,17 @@ def main(unused):
             src, dst, tstamp = name.split("-")
             srcIP, srcPort = src.split("_")
             dstIP, dstPort = dst.split("_")
-            Malicious.append({
-                "srcIP": srcIP,
-                "srcPort": srcPort,
-                "dstIP": dstIP,
-                "dstPort": dstPort,
-                "time": dt.datetime.fromtimestamp(float(tstamp)).isoformat(),
-                "name": name,
-                "ipua": ipua,
-                "info": useragents.get(temp["UA"],
-                            dict(desc=None, type=None, comment=None, link=(None, None))),
-            }.update(temp))
+            Malicious.append(dict(temp, 
+                srcIP=srcIP,
+                srcPort=srcPort,
+                dstIP=dstIP,
+                dstPort=dstPort,
+                time=time,
+                name=name,
+                ipua=ipua,
+                info=useragents.get(temp["UA"],
+                        dict(desc=None, type=None, comment=None, link=(None, None)))
+            ))
         # print("detected by CNN: ")
         for i, kind in enumerate(predicted_classes):
             if kind == 1:
@@ -451,17 +451,17 @@ def main(unused):
                 src, dst, tstamp = name.split("-")
                 srcIP, srcPort = src.split("_")
                 dstIP, dstPort = dst.split("_")
-                Malicious.append({
-                    "srcIP": srcIP,
-                    "srcPort": srcPort,
-                    "dstIP": dstIP,
-                    "dstPort": dstPort,
-                    "time": dt.datetime.fromtimestamp(float(tstamp)).isoformat(),
-                    "name": name,
-                    "ipua": ipua,
-                    "info": useragents.get(temp["UA"],
-                                dict(desc=None, type=None, comment=None, link=(None, None))),
-                }.update(temp))
+                Malicious.append(dict(temp,
+                    srcIP=srcIP,
+                    srcPort=srcPort,
+                    dstIP=dstIP,
+                    dstPort=dstPort,
+                    time=dt.datetime.fromtimestamp(float(tstamp)).isoformat(),
+                    name=name,
+                    ipua=ipua,
+                    info=useragents.get(temp["UA"],
+                            dict(desc=None, type=None, comment=None, link=(None, None)))
+                ))
         # print("checking...")
         group_dict = {T: []}
         for i in Malicious:
@@ -476,13 +476,11 @@ def main(unused):
             # tmp_dict["is_malicious"] = 1
             # tmp_dict["type"] = 0
             # tmp_dict["filename"] = i["name"] + ".pcap"
-            group_dict[T].append({
-                "is_malicious": 1,
-                "type": 0,
-                "filename": i["name"] + ".pcap",
-                "url": i["url"],
-                "index": i["index"]
-            })
+            group_dict[T].append(dict(i,
+                is_malicious=1,
+                type=0,
+                filename=i["name"] + ".pcap",
+            ))
         # val = []
         # for i in group_dict:
         #     streamPath = os.path.join(path, "stream/"+i)
@@ -516,10 +514,10 @@ def main(unused):
                         os.path.join("/usr/local/mad/retrain/dataset", T, str(flag), name))
             shutil.copy(os.path.join(DataPath, "stream", item["name"]+".pcap"),
                         os.path.join("/usr/local/mad/retrain/stream", T, str(flag), name))
-            index[T][item.pop("ipua")].append(item.update({
-                "type": flag,
-                "file": os.path.join("/usr/local/mad/retrain/stream", T, str(flag), name),
-            }))
+            index[T][item["ipua"]].append(dict(item,
+                is_malicious=flag,
+                file=os.path.join("/usr/local/mad/retrain/stream", T, str(flag), name),
+            ))
         with open("/usr/local/mad/retrain/stream/stream.json", 'w') as file:
             json.dump(index, file)
         stem = pathlib.Path(DataPath).stem
