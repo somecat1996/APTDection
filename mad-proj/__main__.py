@@ -77,7 +77,7 @@ PATH = '/'          # path of original data
 IFACE = 'eth0'      # sniff interface
 # TIMEOUT = 1000      # sniff timeout
 TIMEOUT = 15        # sniff timeout
-RETRAIN = multiprocessing.Value('B', False)     
+RETRAIN = multiprocessing.Value('B', False)
                     # retrain flag
 
 
@@ -209,7 +209,7 @@ def make_sniff():
     """Load data or sniff packets."""
     # just sniff when prediction
     if MODE == 3:
-        return scapy.all.sniff(offline='/home/ubuntu/httpdump/torbotnet.pcap')
+        return scapy.all.sniff(offline='/home/ubuntu/httpdump/wanyong80.pcap024')
         # return scapy.all.sniff(offline='../PyPCAPKit/sample/http15.pcap')
         # return scapy.all.sniff(timeout=TIMEOUT, iface=IFACE)
 
@@ -360,7 +360,6 @@ def make_dataset(sniffed, labels, fp, *, path):
                             with open(fname, 'ab') as file:
                                 file.write(packet.info.raw.header or bytes())
                                 print(file.name)
-                            print(fname, pathlib.Path(fname).exists())
 
 
 def run_cnn(*, path, ppid, retrain=False):
