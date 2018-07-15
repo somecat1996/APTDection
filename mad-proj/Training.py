@@ -24,7 +24,7 @@ DataPath = sys.argv[1]
 ModelPath = sys.argv[2]
 mode = sys.argv[3]
 T = sys.argv[4]
-ppid = sys.argv[5]
+ppid = int(sys.argv[5])
 
 TrainRate = 0.8
 

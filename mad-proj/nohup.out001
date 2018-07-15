@@ -1,0 +1,19 @@
+New process start @ /usr/local/mad/dataset/2018-07-14T09:12:10.125192
+Tracing TCP flow @ /usr/local/mad/dataset/2018-07-14T09:12:10.125192
+Process Process-1:
+Traceback (most recent call last):
+  File "/home/linuxbrew/.linuxbrew/Cellar/python/3.6.5/lib/python3.6/multiprocessing/process.py", line 258, in _bootstrap
+    self.run()
+  File "/home/linuxbrew/.linuxbrew/Cellar/python/3.6.5/lib/python3.6/multiprocessing/process.py", line 93, in run
+    self._target(*self._args, **self._kwargs)
+  File "__main__.py", line 183, in start_worker
+    index = make_flow(sniffed, path=path)
+  File "__main__.py", line 238, in make_flow
+    if flag:    traceflow(data)
+  File "/home/linuxbrew/.linuxbrew/Cellar/python/3.6.5/lib/python3.6/site-packages/pcapkit/foundation/traceflow.py", line 199, in __call__
+    self.dump(packet)
+  File "/home/linuxbrew/.linuxbrew/Cellar/python/3.6.5/lib/python3.6/site-packages/pcapkit/foundation/traceflow.py", line 115, in dump
+    output(packet['frame'], name=f"Frame {packet['index']}")
+  File "/home/linuxbrew/.linuxbrew/Cellar/python/3.6.5/lib/python3.6/site-packages/pcapkit/dumpkit/__init__.py", line 43, in __call__
+    with open(self._file, 'ab') as file:
+FileNotFoundError: [Errno 2] No such file or directory: '/usr/local/mad/dataset/2018-07-14T09:12:10.125192/stream/58.215.146.142_80-192.168.61.3_50441-1531531208.718005.pcap'

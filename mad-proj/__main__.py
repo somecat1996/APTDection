@@ -322,6 +322,7 @@ def make_dataset(sniffed, labels, fp, *, path):
         # make directory
         pathlib.Path(f'{path}/{kind}/0').mkdir(parents=True, exist_ok=True)  # safe
         pathlib.Path(f'{path}/{kind}/1').mkdir(parents=True, exist_ok=True)  # malicious
+        pathlib.Path(f'/usr/local/mad/report/{kind}').mkdir(parents=True, exist_ok=True)
 
         # identify figerprints
         group_keys = group.keys()
@@ -377,7 +378,7 @@ def run_cnn(*, path, ppid, retrain=False):
     # run CNN subprocess
     for kind in {'Background_PC',}:
         cmd = [sys.executable, shlex.quote(os.path.join(ROOT, 'Training.py')),
-                path, '/usr/local/mad/model', MODE_DICT.get(mode), kind, ppid]
+                path, '/usr/local/mad/model', MODE_DICT.get(mode), kind, str(ppid)]
         subprocess.run(cmd)
 
     # things to do when retrain
