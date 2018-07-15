@@ -35,9 +35,7 @@ $(window).on("load",function(){
 var echartsConfig = function() { 
 	if( $('#e_chart_1').length > 0 ){
 		var eChart_1 = echarts.init(document.getElementById('e_chart_1'));
-		var size = 30;
-		var yy = 200;
-		var yy1 = 250;
+		var size = 10;
 		var option = {
 			tooltip: {
 				backgroundColor: 'rgba(33,33,33,1)',
@@ -60,7 +58,7 @@ var echartsConfig = function() {
 			animationDuration: 3000,
 			animationEasingUpdate: 'quinticInOut',
 			series: [{
-				name: 'a1',
+				name: '请求',
 				type: 'graph',
 				layout: 'force',
 				force: {
@@ -71,53 +69,53 @@ var echartsConfig = function() {
 					layoutAnimation: true,
 				},
 				data: [{
-					"name": "a2",
+					"name": "请求1",
 					x: 100,
-					y: yy,
-					"symbolSize": size,
-					"category": "a2",
+					y: 200,
+					"symbolSize": 30,
+					"category": "a1",
 					"draggable": "true",
-					"value": 100,
+					"value": "",
 					itemStyle: {
 						normal: {
-							color: ['#f742aa'],	
+							color: ['#635bd6'],
 						}
 					},
 
 				}, {
-					"name": "a3",
-					"value": 200,
+					"name": "请求2",
+					"value": "",
 					x: 200,
-					y: yy1,
-					"symbolSize": size,
-					"category": "a3",
+					y: 250,
+					"symbolSize": 20,
+					"category": "a2",
 					"draggable": "true",
 					itemStyle: {
 						normal: {
-							color: ['#635bd6'],	
+							color: ['#958FEF'],
 						}
 					},
 				}, {
 					x: 300,
-					y: yy,
-					"name": "BRAS",
-					"symbolSize": size,
-					"category": "BRAS",
+					y: 200,
+					"name": "请求3",
+					"symbolSize": 20,
+					"category": "a3",
 					"draggable": "true",
-					"value": 1,
+					"value": "",
 					itemStyle: {
 						normal: {
-							color: ['#f742aa'],	
+							color: ['#958FEF'],
 						}
 					},
 				},{
 					x: 300,
 					y: 300,
-					"name": "BRAS1",
-					"symbolSize": 20,
-					"category": "BRAS",
+					"name": "请求4",
+					"symbolSize": size,
+					"category": "a4",
 					"draggable": "true",
-					"value": 1,
+					"value": "",
 					itemStyle: {
 						normal: {
 							color: ['#958FEF'],	
@@ -126,24 +124,24 @@ var echartsConfig = function() {
 				},{
 					x: 300,
 					y: 300,
-					"name": "BRAS2",
-					"symbolSize": 20,
-					"category": "BRAS",
+					"name": "请求5",
+					"symbolSize": size,
+					"category": "a5",
 					"draggable": "true",
-					"value": 1,
+					"value": "",
 					itemStyle: {
 						normal: {
-							color: ['#635bd6'],	
+							color: ['#958FEF'],
 						}
 					},
 				}, {
 					x: 400,
-					y: yy1,
-					"name": "a4",
+					y: 250,
+					"name": "请求6",
 					"symbolSize": size,
-					"category": "a4",
+					"category": "a6",
 					"draggable": "true",
-					"value": 1,
+					"value": "",
 					itemStyle: {
 						normal: {
 							color: ['#958FEF'],	
@@ -151,65 +149,63 @@ var echartsConfig = function() {
 					},
 				}, {
 					x: 500,
-					y: yy,
-					"name": "OLT",
-					"symbolSize": size,
-					"category": "OLT",
+					y: 200,
+					"name": "请求7",
+					"symbolSize": 20,
+					"category": "a7",
 					"draggable": "true",
-					"value": 1,
+					"value": "",
 					itemStyle: {
 						normal: {
-							color: ['#635bd6'],	
+							color: ['#F73414'],
 						}
 					},
 				}, {
 					x: 600,
-					y: yy1,
-					"name": "p1",
-					"symbolSize": size,
-					"category": "p1",
+					y: 250,
+					"name": "请求8",
+					"symbolSize": 20,
+					"category": "a8",
 					"draggable": "true",
-					"value": 1,
+					"value": "",
 					itemStyle: {
 						normal: {
-							color: ['#958FEF'],	
+							color: ['#F73414'],
 						}
 					},
 				}, ],
 				links: [{
-					"source": "a2",
-					"target": "a3"
+					"source": "请求1",
+					"target": "请求2"
 				}, {
-					"source": "a3",
-					"target": "BRAS"
+					"source": "请求1",
+					"target": "请求3"
 				}, {
-					"source": "BRAS",
-					"target": "a4"
+					"source": "请求2",
+					"target": "请求4"
 				}, {
-					"source": "BRAS",
-					"target": "BRAS1"
+					"source": "请求2",
+					"target": "请求5"
 				}, {
-					"source": "BRAS",
-					"target": "BRAS2"
-				}, {
-					"source": "a4",
-					"target": "OLT"
-				}, {
-					"source": "OLT",
-					"target": "p1"
+					"source": "请求3",
+					"target": "请求6"
 				}, ],
 				categories: [{
+					'name': 'a1'
+				}, {
 					'name': 'a2'
 				}, {
-					'name': 'BRAS'
+					'name': 'a3'
 				}, {
 					'name': 'a4'
 				}, {
-					'name': 'OLT'
+					'name': 'a5'
 				}, {
-					'name': 'p1'
+					'name': 'a6'
 				}, {
-					'name': 'a3'
+					'name': 'a7'
+				}, {
+					'name': 'a8'
 				}],
 				//focusNodeAdjacency: true,
 				roam: false,
