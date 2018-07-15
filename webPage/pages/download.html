@@ -20,6 +20,9 @@
 
 	<!-- Custom CSS -->
 	<link href="dist/css/style.css" rel="stylesheet" type="text/css">
+
+    <!-- jQuery -->
+    <script src="../vendors/bower_components/jquery/dist/jquery.min.js"></script>
 </head>
 
 <body>
@@ -245,9 +248,6 @@
     <!-- /#wrapper -->
 
 	<!-- JavaScript -->
-
-    <!-- jQuery -->
-    <script src="../vendors/bower_components/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript">
 		$.getJSON ("/report/index.json", function (data) {
 		    $.each(data, function (i, item) {
