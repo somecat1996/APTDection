@@ -526,7 +526,7 @@ def main(unused):
         with open(f"/usr/local/mad/report/{T}/{stem}.json", 'w') as file:
             json.dump(report, file)
         with open(f"/usr/local/mad/report/{T}/index.json", 'w') as file:
-            files = [os.path.join(f"/usr/local/mad/report/{T}", name)
+            files = [f"/report/{T}/{name}"
                         for name in os.listdir(f"/usr/local/mad/report/{T}")
                         if name != "index.json"]
             json.dump(files, file)
