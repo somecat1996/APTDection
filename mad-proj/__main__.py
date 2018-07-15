@@ -62,7 +62,6 @@ import subprocess
 import sys
 
 import chardet
-import pcapkit
 import pcapkit.all
 import scapy.all
 
@@ -193,7 +192,7 @@ def start_worker():
 
     # and now, time for the neural network
     # reports should be placed in a certain directory
-    # run_cnn(path=path, ppid=os.getppid())
+    run_cnn(path=path, ppid=os.getppid())
 
     # afterwards, write a log file to record state of accomplish
     # the back-end of webpage shall check this file periodically
@@ -210,8 +209,8 @@ def make_sniff():
     """Load data or sniff packets."""
     # just sniff when prediction
     if MODE == 3:
-        # return scapy.all.sniff(offline='/home/ubuntu/httpdump/torbotnet.pcap')
-        return scapy.all.sniff(offline='../PyPCAPKit/sample/http.pcap')
+        return scapy.all.sniff(offline='/home/ubuntu/httpdump/torbotnet.pcap')
+        # return scapy.all.sniff(offline='../PyPCAPKit/sample/http15.pcap')
         # return scapy.all.sniff(timeout=TIMEOUT, iface=IFACE)
 
     # extract file, or ...
@@ -323,6 +322,7 @@ def make_dataset(sniffed, labels, fp, *, path):
         # make directory
         pathlib.Path(f'{path}/{kind}/0').mkdir(parents=True, exist_ok=True)  # safe
         pathlib.Path(f'{path}/{kind}/1').mkdir(parents=True, exist_ok=True)  # malicious
+        pathlib.Path(f'/usr/local/mad/report/{kind}').mkdir(parents=True, exist_ok=True)
 
         # identify figerprints
         group_keys = group.keys()
@@ -339,24 +339,28 @@ def make_dataset(sniffed, labels, fp, *, path):
         # enumerate files
         for ipua in group_keys:
             for file in group[ipua]:
-                label = int(file['type'])
-                fname = f"{file['label']}.dat"
+                label = file['label']
+                ftype = file['is_malicious']
+                fname = f'{path}/{kind}/{ftype}/{label}.dat'
 
                 # remove existing files
                 if pathlib.Path(fname).exists():
                     os.remove(fname)
 
                 # reassembly packets
-                reassembly = pcapkit.reassemble(protocol='TCP', strict=True)
+                reassembly = pcapkit.reassemble(protocol=pcapkit.TCP, strict=True)
                 for number in file['index']:
-                    flag, data = pcapkit.scapy_tcp_reassmbly(sniffed[number], count=number)
+                    flag, data = pcapkit.scapy_tcp_reassembly(sniffed[number], count=number)
                     if flag:    reassembly(data)
 
                 # dump dataset
-                for packet in reassembly.packets:
-                    if pcapkit.protocols.application.httpv1.HTTPv1 in packet.protochain:
-                        with open(fname, 'ab') as file:
-                            file.write(packet.info.raw.header or None)
+                for datagram in reassembly.datagram:
+                    for packet in datagram.packets:
+                        if pcapkit.protocols.application.httpv1.HTTPv1 in packet.protochain:
+                            with open(fname, 'ab') as file:
+                                file.write(packet.info.raw.header or bytes())
+                                print(file.name)
+                            print(fname, pathlib.Path(fname).exists())
 
 
 def run_cnn(*, path, ppid, retrain=False):
@@ -374,7 +378,7 @@ def run_cnn(*, path, ppid, retrain=False):
     # run CNN subprocess
     for kind in {'Background_PC',}:
         cmd = [sys.executable, shlex.quote(os.path.join(ROOT, 'Training.py')),
-                path, '/usr/local/mad/model', MODE_DICT.get(mode), kind, ppid]
+                path, '/usr/local/mad/model', MODE_DICT.get(mode), kind, str(ppid)]
         subprocess.run(cmd)
 
     # things to do when retrain

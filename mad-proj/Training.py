@@ -24,7 +24,7 @@ DataPath = sys.argv[1]
 ModelPath = sys.argv[2]
 mode = sys.argv[3]
 T = sys.argv[4]
-ppid = sys.argv[5]
+ppid = int(sys.argv[5])
 
 TrainRate = 0.8
 
@@ -526,9 +526,12 @@ def main(unused):
         with open(f"/usr/local/mad/report/{T}/{stem}.json", 'w') as file:
             json.dump(report, file)
         with open(f"/usr/local/mad/report/{T}/index.json", 'w') as file:
-            files = [os.path.join(f"/usr/local/mad/report/{T}", name)
-                        for name in os.listdir(f"/usr/local/mad/report/{T}")
-                        if name != "index.json"]
+            # files = [f"/report/{T}/{name}"
+            #             for name in os.listdir(f"/usr/local/mad/report/{T}")
+            #             if name != "index.json"]
+            files = list(map(lambda name: f"/report/{T}/{name}",
+                        filter(lambda name: name != "index.json",
+                            os.listdir(f"/usr/local/mad/report/{T}"))))
             json.dump(files, file)
 
     # Used for evaluating our system
