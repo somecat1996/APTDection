@@ -26,6 +26,30 @@
 
 	<!-- Custom CSS -->
 	<link href="dist/css/style.css" rel="stylesheet" type="text/css">
+
+    <!-- jQuery -->
+    <script src="../vendors/bower_components/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript">
+		$.getJSON ("/report/Background_PC/index.json", function (data) {
+		    $.each(data, function (i, item) {
+				$.getJSON(item, function (data) {
+					$.each(data, function (i, item) {
+					    var info = item.info;
+						$("#results-display").append("<tr><td>" + item.srcIP +
+							"</td><td>" + item.srcPort +
+							"</td><td>" + item.dstIP +
+							"</td><td>" + item.dstPort +
+							"</td><td>" + item.time +
+							"</td><td>" + item.UA +
+							"</td><td>" + info.comment +
+							"</td><td>" + info.desc +
+							"</td><td>" + info.link +
+							"</td><td>" + info.type + "</td></tr>");
+					});
+				});
+			});
+        });
+	</script>
 </head>
 
 <body>
@@ -222,29 +246,6 @@
 
 	<!-- JavaScript -->
 
-    <!-- jQuery -->
-    <script src="../vendors/bower_components/jquery/dist/jquery.min.js"></script>
-	<script type="text/javascript">
-		$.getJSON ("/report/index.json", function (data) {
-		    $.each(data, function (i, item) {
-				$.getJSON(item, function (data) {
-					$.each(data, function (i, item) {
-					    var info = item.info;
-						$("#results-display").append("<tr><td>" + item.srcIP +
-							"</td><td>" + item.srcPort +
-							"</td><td>" + item.dstIP +
-							"</td><td>" + item.dstPort +
-							"</td><td>" + item.time +
-							"</td><td>" + item.UA +
-							"</td><td>" + info.comment +
-							"</td><td>" + info.desc +
-							"</td><td>" + info.link +
-							"</td><td>" + info.type + "</td></tr>");
-					});
-				});
-			});
-        });
-	</script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="../vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>

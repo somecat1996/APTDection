@@ -23,6 +23,22 @@
 
     <!-- jQuery -->
     <script src="../vendors/bower_components/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript">
+		$.getJSON ("/report/Background_PC/index.json", function (data) {
+		    $.each(data, function (i, item) {
+				$.getJSON(item, function (data) {
+					$.each(data, function (i, item) {
+						$("#results-display").append("<tr><td>" + item.srcIP +
+							"</td><td>" + item.srcPort +
+							"</td><td>" + item.dstIP +
+							"</td><td>" + item.dstPort +
+							"</td><td>" + item.UA +
+							"</td><td>" + item.time + "</td></tr>");
+					});
+				});
+			});
+        });
+	</script>
 </head>
 
 <body>
@@ -248,22 +264,6 @@
     <!-- /#wrapper -->
 
 	<!-- JavaScript -->
-	<script type="text/javascript">
-		$.getJSON ("/report/index.json", function (data) {
-		    $.each(data, function (i, item) {
-				$.getJSON(item, function (data) {
-					$.each(data, function (i, item) {
-						$("#results-display").append("<tr><th>" + item.srcIP +
-							"</th><th>" + item.srcPort +
-							"</th><th>" + item.dstIP +
-							"</th><th>" + item.dstPort +
-							"</th><th>" + item.UA +
-							"</th><th>" + item.time + "</th></tr>");
-					});
-				});
-			});
-        });
-	</script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="../vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
