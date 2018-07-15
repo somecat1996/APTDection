@@ -3,9 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="72f023dd-9e1c-48f0-a389-44fc3943046d" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webPage/pages/about.html" afterPath="$PROJECT_DIR$/webPage/pages/about.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webPage/pages/detail.html" afterPath="$PROJECT_DIR$/webPage/pages/detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webPage/pages/download.html" afterPath="$PROJECT_DIR$/webPage/pages/download.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webPage/pages/index.html" afterPath="$PROJECT_DIR$/webPage/pages/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webPage/pages/abstract.html" afterPath="$PROJECT_DIR$/webPage/pages/abstract.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webPage/pages/intro.html" afterPath="$PROJECT_DIR$/webPage/pages/intro.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webPage/pages/usage.html" afterPath="$PROJECT_DIR$/webPage/pages/usage.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,16 +22,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="357">
               <caret line="142" column="13" lean-forward="false" selection-start-line="142" selection-start-column="13" selection-end-line="142" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="about.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webPage/pages/about.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="448">
-              <caret line="140" column="38" lean-forward="false" selection-start-line="140" selection-start-column="38" selection-end-line="140" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -57,11 +47,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="download.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="download.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webPage/pages/download.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1216">
-              <caret line="155" column="38" lean-forward="false" selection-start-line="155" selection-start-column="38" selection-end-line="155" selection-end-column="38" />
+            <state relative-caret-position="320">
+              <caret line="127" column="23" lean-forward="true" selection-start-line="127" selection-start-column="23" selection-end-line="127" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="abstract.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/webPage/pages/abstract.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="148">
+              <caret line="113" column="36" lean-forward="false" selection-start-line="113" selection-start-column="36" selection-end-line="113" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -77,14 +77,32 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="footable-data.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/footable-data.js">
+      <file leaf-file-name="about.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/webPage/pages/about.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="370">
-              <caret line="64" column="3" lean-forward="false" selection-start-line="64" selection-start-column="3" selection-end-line="64" selection-end-column="3" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
+            <state relative-caret-position="832">
+              <caret line="137" column="23" lean-forward="false" selection-start-line="137" selection-start-column="23" selection-end-line="137" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="intro.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/webPage/pages/intro.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="416">
+              <caret line="136" column="39" lean-forward="false" selection-start-line="136" selection-start-column="39" selection-end-line="136" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="usage.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/webPage/pages/usage.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-460">
+              <caret line="136" column="39" lean-forward="false" selection-start-line="136" selection-start-column="39" selection-end-line="136" selection-end-column="39" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -118,7 +136,10 @@
         <option value="$PROJECT_DIR$/webPage/pages/index.html" />
         <option value="$PROJECT_DIR$/webPage/pages/download.html" />
         <option value="$PROJECT_DIR$/webPage/pages/detail.html" />
+        <option value="$PROJECT_DIR$/webPage/pages/abstract.html" />
         <option value="$PROJECT_DIR$/webPage/pages/about.html" />
+        <option value="$PROJECT_DIR$/webPage/pages/intro.html" />
+        <option value="$PROJECT_DIR$/webPage/pages/usage.html" />
       </list>
     </option>
   </component>
@@ -481,14 +502,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webPage/pages/about.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5312">
@@ -837,18 +850,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webPage/pages/about.html">
+    <entry file="file://$PROJECT_DIR$/webPage/pages/download.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
-          <caret line="140" column="38" lean-forward="false" selection-start-line="140" selection-start-column="38" selection-end-line="140" selection-end-column="38" />
+        <state relative-caret-position="320">
+          <caret line="127" column="23" lean-forward="true" selection-start-line="127" selection-start-column="23" selection-end-line="127" selection-end-column="39" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webPage/pages/download.html">
+    <entry file="file://$PROJECT_DIR$/webPage/pages/abstract.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1216">
-          <caret line="155" column="38" lean-forward="false" selection-start-line="155" selection-start-column="38" selection-end-line="155" selection-end-column="38" />
+        <state relative-caret-position="148">
+          <caret line="113" column="36" lean-forward="false" selection-start-line="113" selection-start-column="36" selection-end-line="113" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webPage/pages/about.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="832">
+          <caret line="137" column="23" lean-forward="false" selection-start-line="137" selection-start-column="23" selection-end-line="137" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webPage/pages/intro.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="136" column="39" lean-forward="false" selection-start-line="136" selection-start-column="39" selection-end-line="136" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webPage/pages/usage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-460">
+          <caret line="136" column="39" lean-forward="false" selection-start-line="136" selection-start-column="39" selection-end-line="136" selection-end-column="39" />
           <folding />
         </state>
       </provider>
