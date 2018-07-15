@@ -70,12 +70,16 @@ from StreamManager.StreamManager4 import *
 from webgraphic.webgraphic import *
 
 
+# testing macros
+FILE = NotImplemented
+COUNT = -1
+
+
 ROOT = os.path.dirname(os.path.abspath(__file__))
                     # file root path
 MODE = 3            # 1-initialisation; 2-migeration; 3-prediction; 4-adaptation
 PATH = '/'          # path of original data
 IFACE = 'eth0'      # sniff interface
-COUNT = 0           # file counting
 TIMEOUT = 1000      # sniff timeout
 RETRAIN = multiprocessing.Value('B', False)
                     # retrain flag
@@ -98,7 +102,7 @@ MODE_DICT = {
 }
 
 
-def main(*, iface=None, mode=None, path=None):
+def main(*, iface=None, mode=None, path=None, _file=None):
     """Main interface for MAD."""
     # bind signals
     signal.signal(signal.SIGUSR1, make_worker)
@@ -119,6 +123,11 @@ def main(*, iface=None, mode=None, path=None):
     if path is not None:
         global PATH
         PATH = path
+
+    if _file is not None:
+        global FILE
+        with open(_file, 'r') as file:
+            FILE = json.load(file)
 
     # start procedure
     make_worker()
@@ -143,8 +152,9 @@ def retrain_cnn(*args):
 def make_worker(*args):
     """Create child process."""
     # start child in prediction
-    global MODE
+    global MODE, COUNT
     if MODE == 3:
+        if COUNT is not NotImplemented: COUNT += 1
         return multiprocessing.Process(target=start_worker).start()
 
     # do initialisation or migration first
@@ -209,8 +219,8 @@ def make_sniff():
     """Load data or sniff packets."""
     # just sniff when prediction
     if MODE == 3:
+        return scapy.all.sniff(offline=FILE[COUNT])
         return scapy.all.sniff(offline='/home/ubuntu/httpdump/wanyong80.pcap024')
-        # return scapy.all.sniff(offline='../PyPCAPKit/sample/http15.pcap')
         # return scapy.all.sniff(timeout=TIMEOUT, iface=IFACE)
 
     # extract file, or ...
