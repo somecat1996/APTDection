@@ -75,8 +75,8 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 MODE = 3            # 1-initialisation; 2-migeration; 3-prediction; 4-adaptation
 PATH = '/'          # path of original data
 IFACE = 'eth0'      # sniff interface
-# TIMEOUT = 1000      # sniff timeout
-TIMEOUT = 15        # sniff timeout
+COUNT = 0           # file counting
+TIMEOUT = 1000      # sniff timeout
 RETRAIN = multiprocessing.Value('B', False)
                     # retrain flag
 
@@ -349,7 +349,8 @@ def make_dataset(sniffed, labels, fp, *, path):
 
                 # reassembly packets
                 reassembly = pcapkit.reassemble(protocol=pcapkit.TCP, strict=True)
-                for number in file['index']:
+                for count,  number in enumerate(file['index']):
+                    if count >= 1000:   break
                     flag, data = pcapkit.scapy_tcp_reassembly(sniffed[number], count=number)
                     if flag:    reassembly(data)
 

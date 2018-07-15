@@ -515,8 +515,8 @@ def main(unused):
             shutil.copy(os.path.join(DataPath, "stream", item["name"]+".pcap"),
                         os.path.join("/usr/local/mad/retrain/stream", T, str(flag), name))
             index[T][item["ipua"]].append(dict(item,
-                is_malicious=flag,
-                file=os.path.join("/usr/local/mad/retrain/stream", T, str(flag), name),
+                malicious=flag,
+                filename=os.path.join("/usr/local/mad/retrain/stream", T, str(flag), name),
             ))
         with open("/usr/local/mad/retrain/stream/stream.json", 'w') as file:
             json.dump(index, file)
