@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="72f023dd-9e1c-48f0-a389-44fc3943046d" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webPage/pages/about.html" afterPath="$PROJECT_DIR$/webPage/pages/about.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webPage/pages/detail.html" afterPath="$PROJECT_DIR$/webPage/pages/detail.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webPage/pages/download.html" afterPath="$PROJECT_DIR$/webPage/pages/download.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webPage/pages/testFiles/index.json" afterPath="$PROJECT_DIR$/webPage/pages/testFiles/index.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webPage/pages/index.html" afterPath="$PROJECT_DIR$/webPage/pages/index.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -29,8 +30,8 @@
       <file leaf-file-name="about.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webPage/pages/about.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5312">
-              <caret line="166" column="31" lean-forward="false" selection-start-line="151" selection-start-column="16" selection-end-line="166" selection-end-column="31" />
+            <state relative-caret-position="448">
+              <caret line="140" column="38" lean-forward="false" selection-start-line="140" selection-start-column="38" selection-end-line="140" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -39,14 +40,14 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webPage/pages/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15584">
-              <caret line="487" column="49" lean-forward="false" selection-start-line="487" selection-start-column="49" selection-end-line="488" selection-end-column="53" />
+            <state relative-caret-position="404">
+              <caret line="136" column="38" lean-forward="false" selection-start-line="136" selection-start-column="38" selection-end-line="136" selection-end-column="38" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.json" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webPage/pages/testFiles/index.json">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
@@ -56,11 +57,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="download.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="download.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/webPage/pages/download.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="32">
-              <caret line="26" column="20" lean-forward="true" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="20" />
+            <state relative-caret-position="1216">
+              <caret line="155" column="38" lean-forward="false" selection-start-line="155" selection-start-column="38" selection-end-line="155" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -69,8 +70,8 @@
       <file leaf-file-name="detail.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webPage/pages/detail.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="32" column="20" lean-forward="false" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="42" />
+            <state relative-caret-position="128">
+              <caret line="163" column="38" lean-forward="false" selection-start-line="163" selection-start-column="38" selection-end-line="163" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -109,15 +110,15 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/webPage/testFiles/report.txt" />
-        <option value="$PROJECT_DIR$/webPage/pages/about.html" />
         <option value="$PROJECT_DIR$/webPage/testFiles/report.json" />
         <option value="$PROJECT_DIR$/webPage/testFiles/index.json" />
         <option value="$PROJECT_DIR$/webPage/pages/dist/js/footable-data.js" />
-        <option value="$PROJECT_DIR$/webPage/pages/index.html" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/webPage/pages/detail.html" />
-        <option value="$PROJECT_DIR$/webPage/pages/download.html" />
         <option value="$PROJECT_DIR$/webPage/pages/testFiles/index.json" />
+        <option value="$PROJECT_DIR$/webPage/pages/index.html" />
+        <option value="$PROJECT_DIR$/webPage/pages/download.html" />
+        <option value="$PROJECT_DIR$/webPage/pages/detail.html" />
+        <option value="$PROJECT_DIR$/webPage/pages/about.html" />
       </list>
     </option>
   </component>
@@ -705,14 +706,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webPage/pages/about.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5312">
-          <caret line="166" column="31" lean-forward="false" selection-start-line="151" selection-start-column="16" selection-end-line="166" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webPage/vendors/bower_components/FooTable/compiled/footable.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="448">
@@ -802,14 +795,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webPage/pages/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15584">
-          <caret line="487" column="49" lean-forward="false" selection-start-line="487" selection-start-column="49" selection-end-line="488" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Desktop/5b3c90f1ccb48/full-width-light/export-table.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="192">
@@ -828,26 +813,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/webPage/pages/testFiles/index.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="24" lean-forward="false" selection-start-line="0" selection-start-column="24" selection-end-line="0" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webPage/pages/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="404">
+          <caret line="136" column="38" lean-forward="false" selection-start-line="136" selection-start-column="38" selection-end-line="136" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/webPage/pages/detail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="32" column="20" lean-forward="false" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="42" />
+        <state relative-caret-position="128">
+          <caret line="163" column="38" lean-forward="false" selection-start-line="163" selection-start-column="38" selection-end-line="163" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webPage/pages/about.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="448">
+          <caret line="140" column="38" lean-forward="false" selection-start-line="140" selection-start-column="38" selection-end-line="140" selection-end-column="38" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/webPage/pages/download.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="32">
-          <caret line="26" column="20" lean-forward="true" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webPage/pages/testFiles/index.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="24" lean-forward="false" selection-start-line="0" selection-start-column="24" selection-end-line="0" selection-end-column="24" />
+        <state relative-caret-position="1216">
+          <caret line="155" column="38" lean-forward="false" selection-start-line="155" selection-start-column="38" selection-end-line="155" selection-end-column="38" />
           <folding />
         </state>
       </provider>
