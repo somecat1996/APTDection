@@ -365,11 +365,16 @@ def make_dataset(sniffed, labels, fp, *, path):
                     if flag:    reassembly(data)
 
                 # dump dataset
+                size = 0
                 for datagram in reassembly.datagram:
+                    if size > 1024:     break
                     for packet in datagram.packets:
+                        if size > 1024: break
                         if pcapkit.protocols.application.httpv1.HTTPv1 in packet.protochain:
                             with open(fname, 'ab') as file:
-                                file.write(packet.info.raw.header or bytes())
+                                byte = packet.info.raw.header or bytes()
+                                size += len(byte)
+                                file.write(byte)
                                 print(file.name)
 
 
