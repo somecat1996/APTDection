@@ -278,7 +278,9 @@ def make_sniff(*, path):
         # Extraction and Analysis
         index = list()
         sniffed = list()
-        for file in os.listdir(f'{path}/stream'):
+        total = len(os.listdir(f'{path}/stream'))
+        for number, file in enumerate(os.listdir(f'{path}/stream')):
+            print(f'{number}/{total} {file}')
             pcapfile = scapy.all.PcapReader(f'{path}/stream/{file}')
             flowlist = list()
             hostlist = list()
