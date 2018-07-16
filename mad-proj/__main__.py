@@ -237,7 +237,7 @@ def make_sniff():
     """Load data or sniff packets."""
     # just sniff when prediction
     if MODE == 3:
-        return scapy.all.sniff(offline=FILE[COUNT])
+        # return scapy.all.sniff(offline=FILE[COUNT])
         return scapy.all.sniff(offline='/home/ubuntu/httpdump/wanyong80.pcap024')
         # return scapy.all.sniff(timeout=TIMEOUT, iface=IFACE)
 
