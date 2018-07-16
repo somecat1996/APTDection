@@ -26,9 +26,9 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 
 
 FLOW_DICT = {
-    'Browser_PC' : lambda stream: stream.GetBrowserGroup_PC(),
+#    'Browser_PC' : lambda stream: stream.GetBrowserGroup_PC(),
     'Background_PC' : lambda stream: stream.GetBackgroudGroup_PC(),
-    'Browser_Phone' : lambda stream: stream.GetBrowserGroup_Phone(),
+#    'Browser_Phone' : lambda stream: stream.GetBrowserGroup_Phone(),
     'Background_Phone' : lambda stream: stream.GetBackgroudGroup_Phone(),
     'Suspicious' : lambda stream: stream.GetSuspicious(),
 }
