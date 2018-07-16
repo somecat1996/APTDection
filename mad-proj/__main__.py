@@ -269,10 +269,8 @@ def make_sniff(*, path):
         print('执行命令')
         if subp.returncode != 0:
             raise RuntimeError('流转化失败！')
-        # shutil.copytree(f'{path}/tmp/tcp_nosyn', f'{path}/stream')
-        # shutil.copytree(f'{path}/tmp/tcp_syn', f'{path}/stream')
-        os.system(f'cp -r {path}/tmp/tcp_nosyn {path}/stream')
-        os.system(f'cp -r {path}/tmp/tcp_syn {path}/stream')
+        os.system(f'cp {path}/tmp/tcp_nosyn/* {path}/stream')
+        os.system(f'cp {path}/tmp/tcp_syn/* {path}/stream')
         shutil.rmtree(f'{path}/tmp')
 
         # Extraction and Analysis
