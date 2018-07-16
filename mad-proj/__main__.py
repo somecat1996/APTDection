@@ -285,7 +285,7 @@ def make_sniff(*, path):
             templist = list()
             for packet in pcapfile:
                 if scapy.all.Raw in packet:
-                    pcapkit.analyse(file=bytes(packet[scapy.all.Raw].load))
+                    analysis = pcapkit.analyse(file=bytes(packet[scapy.all.Raw].load))
                     if pcapkit.protocols.application.httpv1.HTTPv1 in analysis.protochain:
                         flowlist.append(len(sniffed))
                         hostlist.append(get_url(analysis))
