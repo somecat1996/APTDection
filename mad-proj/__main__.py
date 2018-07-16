@@ -263,14 +263,15 @@ def make_sniff(*, path):
     if MODE == 3:
         # make stream using Pkt2Flow
         # name = FILE[COUNT]
+        pathlib.Path(f'{path}/stream').mkdir(parents=True, exist_ok=True)
         name = '/home/ubuntu/httpdump/wanyong80.pcap024'
         cmd = shlex.split(f'pkt2flow -xv -o {path}/tmp {name}')
         subp = subprocess.run(cmd)
         print('执行命令')
         if subp.returncode != 0:
             raise RuntimeError('流转化失败！')
-        os.system(f'mv {path}/tmp/tcp_nosyn/* {path}/stream')
-        os.system(f'mv {path}/tmp/tcp_syn/* {path}/stream')
+        os.system(f'mv {path}/tmp/tcp_nosyn/* {path}/stream/')
+        os.system(f'mv {path}/tmp/tcp_syn/* {path}/stream/')
         shutil.rmtree(f'{path}/tmp')
 
         # Extraction and Analysis
@@ -511,4 +512,4 @@ def run_cnn(*, path, ppid, retrain=False):
 
 
 if __name__ == '__main__':
-    sys.exit(start_worker())
+    sys.exit(main())
