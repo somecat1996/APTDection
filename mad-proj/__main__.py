@@ -60,6 +60,7 @@ import shutil
 import signal
 import subprocess
 import sys
+import time
 
 import chardet
 import pcapkit.all
@@ -180,9 +181,14 @@ def start_worker():
     with open('/usr/local/mad/mad.log', 'at', 1) as file:
         file.write(f'0 {dt.datetime.now().isoformat()} {path}\n')
 
+    start = time.time()
+
     # first, we sniff packets using Scapy
     # or load data from an existing PCAP file
     sniffed = make_sniff()
+
+    milestone_1 = time.time()
+    print('Sniffed for %f seconds' % milestone_1-start)
 
     # now, we send a signal to the parent process
     # to create a new process and continue
@@ -192,17 +198,29 @@ def start_worker():
     # using PyPCAPKit, whose interface is now done
     index = make_flow(sniffed, path=path)
 
+    milestone_2 = time.time()
+    print('Traced for %f seconds' % milestone_2-milestone_1)
+
     # generate WebGraphic & fingerprints for each flow
     # through reconstructed functions and methods
     group = make_group(sniffed, index, fp, path=path)
+
+    milestone_3 = time.time()
+    print('Grouped for %f seconds' % milestone_3-milestone_2)
 
     # and make dataset for each flow in accordance with the group
     # using PyPCAPKit with its reassembly interface
     make_dataset(sniffed, group, fp, path=path)
 
+    milestone_4 = time.time()
+    print('Made for %f seconds' % milestone_4-milestone_3)
+
     # and now, time for the neural network
     # reports should be placed in a certain directory
     run_cnn(path=path, ppid=os.getppid())
+
+    milestone_5 = time.time()
+    print('Run for %f seconds' % milestone_5-milestone_4)
 
     # afterwards, write a log file to record state of accomplish
     # the back-end of webpage shall check this file periodically
@@ -219,7 +237,7 @@ def make_sniff():
     """Load data or sniff packets."""
     # just sniff when prediction
     if MODE == 3:
-        return scapy.all.sniff(offline=FILE[COUNT])
+        # return scapy.all.sniff(offline=FILE[COUNT])
         return scapy.all.sniff(offline='/home/ubuntu/httpdump/wanyong80.pcap024')
         # return scapy.all.sniff(timeout=TIMEOUT, iface=IFACE)
 
@@ -365,11 +383,16 @@ def make_dataset(sniffed, labels, fp, *, path):
                     if flag:    reassembly(data)
 
                 # dump dataset
+                size = 0
                 for datagram in reassembly.datagram:
+                    if size > 1024:     break
                     for packet in datagram.packets:
+                        if size > 1024: break
                         if pcapkit.protocols.application.httpv1.HTTPv1 in packet.protochain:
                             with open(fname, 'ab') as file:
-                                file.write(packet.info.raw.header or bytes())
+                                byte = packet.info.raw.header or bytes()
+                                size += len(byte)
+                                file.write(byte)
                                 print(file.name)
 
 
