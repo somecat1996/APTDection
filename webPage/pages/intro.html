@@ -177,10 +177,52 @@
 										    <div class="item">
 												<img src="../img/System.png" alt="Owl Image"/>
 											</div>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
 					 </div>
+				</div>
+				<!-- /Row -->
+				<!-- Row -->
+				<div class="row">
+					<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+						<div class="panel panel-default border-panel card-view">
+							<div class="panel-heading">
+								<div class="pull-left">
+									<h6 class="panel-title txt-dark">数据预处理</h6>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+							<div  class="panel-wrapper collapse in">
+								<div  class="panel-body pl-15">
+									<ol>
+									    <li class="mb-10">系统读入在网关处捕获的HTTP流量数据，使用Alexa Top 10000的名单对HTTP流量进行过滤。Alexa Top名单中将世界网站按访问流量进行排名，因此这些域名能够被视作可信任的。</li>
+									    <li class="mb-10">考虑到捕获的HTTP流量中包含大量来自浏览器的部分，而浏览器的HTTP流量是由用户直接交互所产生的，是良性流量，这意味着我们只需要对后台软件产生的流量进行判别来检测恶意软件。因此，我们根据浏览器的HTTP请求相互之间存在关联的特点，使用WebGraphic请求图算法来对浏览器HTTP流量进行清洗。</li>
+									    <li class="mb-10">在去掉了浏览器流量后，在剩下的后台软件HTTP流量中，由于同类软件的相似HTTP流量会多次在网关处出现，对这些具有一定相同特征的流量进行重复处理会消耗不必要的资源，因此，通过对流量生成指纹，可在之后对流量的处理中直接判别相似流量，从而提高系统检测效率。</li>
+										<li>将过滤得到的HTTP流量进行流化处理，并对这些流按照其IP和使用的User-Agent进行聚类。最终将同一类组中的HTTP流利用jspcap进行重组，对重组后的数据进行下一步的检测分析。</li>
+									</ol>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+						<div class="panel panel-default border-panel card-view">
+							<div class="panel-heading">
+								<div class="pull-left">
+									<h6 class="panel-title txt-dark">分析检测</h6>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+							<div  class="panel-wrapper collapse in">
+								<div  class="panel-body">
+									<p style="text-indent:2em;">首先，我们提前使用采集的良性与恶意的HTTP流量样本集，采用深度学习中的卷积神经网络来训练基本的检测模型。工作时，模型以进行重组后的HTTP流作为输入，给出判别的结果。</p>
+									<p style="text-indent:2em;">考虑到该检测模型极其依赖于训练所使用的ground truth样本数据集，而该样本集是从别处采集进行标注获取的，往往不能涵盖实际应用的新环境当中所有可能的流量特征，这就会导致检测系统精度不够理想，特别是误检率较高。因此，我们在该部分引入了迁移学习和反馈学习的机制。检测模型在应用到实际环境的初期，在人工指导下进行调整并适应新环境；然后在之后的工作阶段中，根据判断，自主更新数据集并进行重新学习调整，保证模型持续有效。</p>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 				<!-- /Row -->
 				<!-- WebGraphic -->
@@ -270,6 +312,70 @@
 
 				</div>
 				<!-- /WebGraphic -->
+				<!-- Fingerprint -->
+				<div class="row">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<div class="panel panel-success border-panel card-view">
+							<div class="panel-heading">
+								<div class="pull-left">
+									<h6 class="panel-title txt-light">指纹判断相似流量</h6>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+							<div  class="panel-wrapper collapse in">
+								<div  class="panel-body">
+									<p style="text-indent:2em;">在一个网络系统内部，由于软件种类总数总体来看处于相对稳定状态，同时，同类软件在工作时往往会产生具有类似特征的HTTP流量，在网关捕获的所有HTTP流量数据中，很多流量之间具有相似性，且在长时间段内，出现过的流量的类型总量变化不大。因此，通过对这些出现过的相似流量进行识别，我们的系统就能够在工作过程当中利用已有检测结果直接做出判断，在很大程度上提高了系统的工作效率。</p>
+								</div>
+								<div  class="panel-body">
+									<p style="text-indent:2em;">由于依靠传统方式所使用的根据User-Agent来对同类流量进行识别并不够可靠，同时恶意软件也可能伪造自身的User-Agent影响识别结果。因此，我们选择根据每种软件所发出的HTTP请求在格式、大小以及某些字段所具有的特点，针对这些特征使用指纹生成算法来实现对相似的流量的识别。</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+						<div class="panel panel-default border-panel card-view">
+							<div class="panel-heading">
+								<div class="pull-left">
+									<h6 class="panel-title txt-dark">指纹提取算法</h6>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+							<div  class="panel-wrapper collapse in">
+								<div class="panel-body">
+									<p style="text-indent: 2em;">在该部中，我们根据IP+UA对HTTP流量(尚未进行流化处理)进行分组，以分组为单位，根据每组内包含的所有HTTP流量来进行该类流量的指纹计算。针对后台软件的流量在HTTP请求的格式和内容方面具有的特征,我们使用以下字段来生成后台软件流量的指纹：</p>
+								</div>
+								<div  class="panel-body pl-30">
+									<ul class="uo-list">
+									    <li class="mb-10">User-Agent字段</li>
+									    <li class="mb-10">IP字段</li>
+									    <li class="mb-10">Constant Header（组内所有HTTP请求头部的公共字段）</li>
+										<li class="mb-10">Average Size（组内所有HTTP请求头部平均大小）</li>
+										<li>Language字段</li>
+									</ol>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+						<div class="panel panel-default border-panel card-view">
+							<div class="panel-heading">
+								<div class="pull-left">
+									<h6 class="panel-title txt-dark">指纹识别算法</h6>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+							<div  class="panel-wrapper collapse in">
+								<div  class="panel-body">
+									<p style="text-indent:2em;">在指纹识别阶段，若之前生成的流量指纹列表为{FP1, FP2, FP3, …}，通过遍历该列表，将新生成的流量指纹与每个指纹计算相似度，若与某个已有指纹相似度达到所设定的阈值，则该流量被识别为已知流量。</p>
+									<p style="text-indent:2em;">识别过程中关键在于各个特征字段相似度分数以及相似度阈值大小的设定。若阈值设定过小，则会出现把新的流量识别为已知流量的情况；若设定过大，则会影响识别出相似流量的效果。但考虑到在本系统中指纹识别主要用途为提升系统效率，因此阈值宁愿设置较高，以避免在检测出现遗漏的情况。</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /Fingerprint -->
 
 			</div>
 
