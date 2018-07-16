@@ -414,9 +414,9 @@ def main(unused):
                         ipua = key
                         temp = file
                         break
-            src, dst, tstamp = name.split("-")
-            srcIP, srcPort = src.split("_")
-            dstIP, dstPort = dst.split("_")
+            srcIP, srcPort, dstIP, dstPort, tstamp, link = name.split("_")
+            # srcIP, srcPort = src.split("_")
+            # dstIP, dstPort = dst.split("_")
             Malicious.append(dict(temp, 
                 srcIP=srcIP,
                 srcPort=srcPort,
