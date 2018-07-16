@@ -185,7 +185,10 @@ def start_worker():
 
     # first, we sniff packets using Scapy
     # or load data from an existing PCAP file
-    sniffed = make_sniff()
+    if MODE == 3:
+        sniffed, index = make_sniff(path=path)
+    else:
+        sniffed = make_sniff(path=path)
 
     milestone_1 = time.time()
     print('Sniffed for %f seconds' % milestone_1-start)
@@ -196,7 +199,8 @@ def start_worker():
 
     # then, we trace and make index for TCP flow of packets sniffed
     # using PyPCAPKit, whose interface is now done
-    index = make_flow(sniffed, path=path)
+    if MODE != 3:
+        index = make_flow(sniffed, path=path)
 
     milestone_2 = time.time()
     print('Traced for %f seconds' % milestone_2-milestone_1)
@@ -233,40 +237,8 @@ def start_worker():
         shutil.rmtree(os.path.join(path, name))
 
 
-def make_sniff():
+def make_sniff(*, path):
     """Load data or sniff packets."""
-    # just sniff when prediction
-    if MODE == 3:
-        # return scapy.all.sniff(offline=FILE[COUNT])
-        return scapy.all.sniff(offline='/home/ubuntu/httpdump/wanyong80.pcap024')
-        # return scapy.all.sniff(timeout=TIMEOUT, iface=IFACE)
-
-    # extract file, or ...
-    PATH = '../../PyPCAPKit/sample/http.pcap'
-    if pathlib.Path(PATH).is_file():
-        return scapy.all.sniff(offline=PATH)
-
-    # files in a directory
-    sniffed = list()
-    for file in os.listdir(PATH):
-        try:
-            sniffed.extend(scapy.all.sniff(offline=f'{PATH}/{file}'))
-        except scapy.error.Scapy_Exception as error:
-            print('Error:', error)
-    return sniffed
-
-
-def make_flow(sniffed, *, path):
-    """Insert UA key to TraceFlow index."""
-    print(f'Tracing TCP flow @ {path}')
-
-    # TraceFlow
-    traceflow = pcapkit.trace(fout=f'{path}/stream', format=pcapkit.PCAP)
-    for count, packet in enumerate(sniffed):
-        flag, data = pcapkit.scapy_tcp_traceflow(packet, count=count)
-        if flag:    traceflow(data)
-    traceindex = traceflow.index
-
     def decode(byte):
         """Try to decode bytes content."""
         if isinstance(byte, bytes):
@@ -287,25 +259,116 @@ def make_flow(sniffed, *, path):
             url = host + uri
             return url
 
-    # Analysis
-    index = list()
-    for flow in traceindex:
-        hostlist = list()
-        templist = list()
-        for number in flow.index:
-            analysis = pcapkit.analyse(file=bytes(sniffed[number]['TCP'].payload))
-            if pcapkit.protocols.application.httpv1.HTTPv1 in analysis.protochain:
-                templist.append(analysis.info.header.get('User-Agent'))
-                hostlist.append(get_url(analysis))
-        ua = (collections.Counter(filter(None, templist)).most_common(1) or [('UnknownUA', 1)])[0][0]
-        url = tuple(filter(None, set(hostlist))) or ('none',)
-        index.append(pcapkit.all.Info(flow, UA=decode(ua), URL=url))
+    # just sniff when prediction
+    if MODE == 3:
+        # make stream using Pkt2Flow
+        # name = FILE[COUNT]
+        name = '/home/ubuntu/httpdump/wanyong80.pcap024'
+        cmd = shlex.split(f'pkt2flow -xv -o {path}/tmp {name}')
+        subp = subprocess.run(cmd)
+        print('执行命令')
+        if subp.returncode != 0:
+            raise RuntimeError('流转化失败！')
+        shutil.copytree(f'{path}/tmp/tcp_nosyn', f'{path}/stream')
+        shutil.copytree(f'{path}/tmp/tcp_syn', f'{path}/stream')
+        shutil.rmtree(f'{path}/tmp')
 
-    # dump index
-    with open(f'{path}/flow.json', 'w') as file:
-        json.dump(index, file)
+        # Extraction and Analysis
+        index = list()
+        sniffed = list()
+        for file in os.listdir(f'{path}/stream'):
+            pcapfile = scapy.all.PcapReader(f'{path}/stream/{file}')
+            flowlist = list()
+            hostlist = list()
+            templist = list()
+            for packet in pcapfile:
+                if scapy.all.Raw in packet:
+                    pcapkit.analyse(file=bytes(packet[scapy.all.Raw].load))
+                    if pcapkit.protocols.application.httpv1.HTTPv1 in analysis.protochain:
+                        flowlist.append(len(sniffed))
+                        hostlist.append(get_url(analysis))
+                        templist.append(analysis.info.header.get('User-Agent'))
+                        sniffed.append(packet)
+            if flowlist:
+                ua = (collections.Counter(filter(None, templist)).most_common(1) or [('UnknownUA', 1)])[0][0]
+                url = tuple(filter(None, set(hostlist))) or ('none',)
+                index.append(dict(
+                    index=flowlist,
+                    label=file,
+                    UA=decode(ua),
+                    URL=url,
+                ))
 
-    return tuple(index)
+        return sniffed, index
+        # return scapy.all.sniff(offline=FILE[COUNT])
+        # return scapy.all.sniff(offline='/home/ubuntu/httpdump/wanyong80.pcap024')
+        # return scapy.all.sniff(timeout=TIMEOUT, iface=IFACE)
+
+    # extract file, or ...
+    PATH = '../../PyPCAPKit/sample/http.pcap'
+    if pathlib.Path(PATH).is_file():
+        return scapy.all.sniff(offline=PATH)
+
+    # files in a directory
+    sniffed = list()
+    for file in os.listdir(PATH):
+        try:
+            sniffed.extend(scapy.all.sniff(offline=f'{PATH}/{file}'))
+        except scapy.error.Scapy_Exception as error:
+            print('Error:', error)
+    return sniffed
+
+
+# def make_flow(sniffed, *, path):
+#     """Insert UA key to TraceFlow index."""
+#     print(f'Tracing TCP flow @ {path}')
+
+#     # TraceFlow
+#     traceflow = pcapkit.trace(fout=f'{path}/stream', format=pcapkit.PCAP)
+#     for count, packet in enumerate(sniffed):
+#         flag, data = pcapkit.scapy_tcp_traceflow(packet, count=count)
+#         if flag:    traceflow(data)
+#     traceindex = traceflow.index
+
+#     def decode(byte):
+#         """Try to decode bytes content."""
+#         if isinstance(byte, bytes):
+#             charset = chardet.detect(byte)['encoding']
+#             if charset:
+#                 try:
+#                     return byte.decode(charset)
+#                 except Exception:
+#                     pass
+#             return str(byte)[2:-1]
+#         return byte
+
+#     def get_url(analysis):
+#         """Make URL of HTTP request."""
+#         if analysis.info.receipt == 'request':
+#             host = decode(analysis.info.header.get('Host', str()))
+#             uri = decode(analysis.info.header.request.target)
+#             url = host + uri
+#             return url
+
+#     # Analysis
+#     index = list()
+#     for flow in traceindex:
+#         hostlist = list()
+#         templist = list()
+#         for number in flow.index:
+#             analysis = pcapkit.analyse(file=bytes(sniffed[number]['TCP'].payload))
+#             if pcapkit.protocols.application.httpv1.HTTPv1 in analysis.protochain:
+#                 templist.append(analysis.info.header.get('User-Agent'))
+#                 hostlist.append(get_url(analysis))
+#         ua = (collections.Counter(filter(None, templist)).most_common(1) or [('UnknownUA', 1)])[0][0]
+#         url = tuple(filter(None, set(hostlist))) or ('none',)
+#         index.append(pcapkit.all.Info(flow, UA=decode(ua), URL=url))
+
+#     # dump index
+#     with open(f'{path}/flow.json', 'w') as file:
+#         json.dump(index, file)
+
+#     return tuple(index)
 
 
 def make_group(sniffed, index, fp, *, path):
@@ -376,24 +439,32 @@ def make_dataset(sniffed, labels, fp, *, path):
                     os.remove(fname)
 
                 # reassembly packets
-                reassembly = pcapkit.reassemble(protocol=pcapkit.TCP, strict=True)
-                for count,  number in enumerate(file['index']):
-                    if count >= 1000:   break
-                    flag, data = pcapkit.scapy_tcp_reassembly(sniffed[number], count=number)
-                    if flag:    reassembly(data)
+                # reassembly = pcapkit.reassemble(protocol=pcapkit.TCP, strict=True)
+                # for count, number in enumerate(file['index']):
+                #     if count >= 1000:   break
+                #     flag, data = pcapkit.scapy_tcp_reassembly(sniffed[number], count=number)
+                #     if flag:    reassembly(data)
 
                 # dump dataset
+                # size = 0
+                # for datagram in reassembly.datagram:
+                #     if size > 1024:     break
+                #     for packet in datagram.packets:
+                #         if size > 1024: break
+                #         if pcapkit.protocols.application.httpv1.HTTPv1 in packet.protochain:
+                #             with open(fname, 'ab') as file:
+                #                 byte = packet.info.raw.header or bytes()
+                #                 size += len(byte)
+                #                 file.write(byte)
+                #                 print(file.name)
                 size = 0
-                for datagram in reassembly.datagram:
+                for number in file['index']:
                     if size > 1024:     break
-                    for packet in datagram.packets:
-                        if size > 1024: break
-                        if pcapkit.protocols.application.httpv1.HTTPv1 in packet.protochain:
-                            with open(fname, 'ab') as file:
-                                byte = packet.info.raw.header or bytes()
-                                size += len(byte)
-                                file.write(byte)
-                                print(file.name)
+                    with open(fname, 'ab') as file:
+                        byte = sniffed[number][scapy.all.Raw].load.split(b'\r\n\r\n')[0]
+                        size += len(byte)
+                        file.write(byte)
+                        print(file.name)
 
 
 def run_cnn(*, path, ppid, retrain=False):
@@ -434,4 +505,4 @@ def run_cnn(*, path, ppid, retrain=False):
 
 
 if __name__ == '__main__':
-    sys.exit(main())
+    sys.exit(start_worker())

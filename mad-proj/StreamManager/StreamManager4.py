@@ -284,12 +284,21 @@ class StreamManager:
         print(self.suspicious_group)
         return self.suspicious_group
 
+    # def getIP(self,filename):
+    #     tmp=filename.split("_")
+    #     ip1=tmp[0]
+    #     ip2_raw=tmp[1]
+    #     ip2_tmp=ip2_raw.split("-")
+    #     ip2=ip2_tmp[1]
+    #     result=[]
+    #     result.append(ip1)
+    #     result.append(ip2)
+    #     result.sort()
+    #     return result
     def getIP(self,filename):
         tmp=filename.split("_")
         ip1=tmp[0]
-        ip2_raw=tmp[1]
-        ip2_tmp=ip2_raw.split("-")
-        ip2=ip2_tmp[1]
+        ip2=tmp[2]
         result=[]
         result.append(ip1)
         result.append(ip2)
