@@ -301,6 +301,10 @@ def make_sniff(*, path):
                     URL=url,
                 ))
 
+        # dump index
+        with open(f'{path}/flow.json', 'w') as file:
+            json.dump(index, file)
+
         return sniffed, index
         # return scapy.all.sniff(offline=FILE[COUNT])
         # return scapy.all.sniff(offline='/home/ubuntu/httpdump/wanyong80.pcap024')
@@ -321,56 +325,56 @@ def make_sniff(*, path):
     return sniffed
 
 
-# def make_flow(sniffed, *, path):
-#     """Insert UA key to TraceFlow index."""
-#     print(f'Tracing TCP flow @ {path}')
+def make_flow(sniffed, *, path):
+    """Insert UA key to TraceFlow index."""
+    print(f'Tracing TCP flow @ {path}')
 
-#     # TraceFlow
-#     traceflow = pcapkit.trace(fout=f'{path}/stream', format=pcapkit.PCAP)
-#     for count, packet in enumerate(sniffed):
-#         flag, data = pcapkit.scapy_tcp_traceflow(packet, count=count)
-#         if flag:    traceflow(data)
-#     traceindex = traceflow.index
+    # TraceFlow
+    traceflow = pcapkit.trace(fout=f'{path}/stream', format=pcapkit.PCAP)
+    for count, packet in enumerate(sniffed):
+        flag, data = pcapkit.scapy_tcp_traceflow(packet, count=count)
+        if flag:    traceflow(data)
+    traceindex = traceflow.index
 
-#     def decode(byte):
-#         """Try to decode bytes content."""
-#         if isinstance(byte, bytes):
-#             charset = chardet.detect(byte)['encoding']
-#             if charset:
-#                 try:
-#                     return byte.decode(charset)
-#                 except Exception:
-#                     pass
-#             return str(byte)[2:-1]
-#         return byte
+    def decode(byte):
+        """Try to decode bytes content."""
+        if isinstance(byte, bytes):
+            charset = chardet.detect(byte)['encoding']
+            if charset:
+                try:
+                    return byte.decode(charset)
+                except Exception:
+                    pass
+            return str(byte)[2:-1]
+        return byte
 
-#     def get_url(analysis):
-#         """Make URL of HTTP request."""
-#         if analysis.info.receipt == 'request':
-#             host = decode(analysis.info.header.get('Host', str()))
-#             uri = decode(analysis.info.header.request.target)
-#             url = host + uri
-#             return url
+    def get_url(analysis):
+        """Make URL of HTTP request."""
+        if analysis.info.receipt == 'request':
+            host = decode(analysis.info.header.get('Host', str()))
+            uri = decode(analysis.info.header.request.target)
+            url = host + uri
+            return url
 
-#     # Analysis
-#     index = list()
-#     for flow in traceindex:
-#         hostlist = list()
-#         templist = list()
-#         for number in flow.index:
-#             analysis = pcapkit.analyse(file=bytes(sniffed[number]['TCP'].payload))
-#             if pcapkit.protocols.application.httpv1.HTTPv1 in analysis.protochain:
-#                 templist.append(analysis.info.header.get('User-Agent'))
-#                 hostlist.append(get_url(analysis))
-#         ua = (collections.Counter(filter(None, templist)).most_common(1) or [('UnknownUA', 1)])[0][0]
-#         url = tuple(filter(None, set(hostlist))) or ('none',)
-#         index.append(pcapkit.all.Info(flow, UA=decode(ua), URL=url))
+    # Analysis
+    index = list()
+    for flow in traceindex:
+        hostlist = list()
+        templist = list()
+        for number in flow.index:
+            analysis = pcapkit.analyse(file=bytes(sniffed[number]['TCP'].payload))
+            if pcapkit.protocols.application.httpv1.HTTPv1 in analysis.protochain:
+                templist.append(analysis.info.header.get('User-Agent'))
+                hostlist.append(get_url(analysis))
+        ua = (collections.Counter(filter(None, templist)).most_common(1) or [('UnknownUA', 1)])[0][0]
+        url = tuple(filter(None, set(hostlist))) or ('none',)
+        index.append(pcapkit.all.Info(flow, UA=decode(ua), URL=url))
 
-#     # dump index
-#     with open(f'{path}/flow.json', 'w') as file:
-#         json.dump(index, file)
+    # dump index
+    with open(f'{path}/flow.json', 'w') as file:
+        json.dump(index, file)
 
-#     return tuple(index)
+    return tuple(index)
 
 
 def make_group(sniffed, index, fp, *, path):
