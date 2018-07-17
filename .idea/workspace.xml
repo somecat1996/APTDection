@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="72f023dd-9e1c-48f0-a389-44fc3943046d" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webPage/pages/dist/js/footable-data.js" afterPath="$PROJECT_DIR$/webPage/pages/dist/js/footable-data.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webPage/pages/inner_detail.html" afterPath="$PROJECT_DIR$/webPage/pages/inner_detail.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,13 +30,23 @@
       <file leaf-file-name="inner_detail.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/webPage/pages/inner_detail.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="53" column="160" lean-forward="false" selection-start-line="53" selection-start-column="160" selection-end-line="53" selection-end-column="160" />
+            <state relative-caret-position="224">
+              <caret line="49" column="62" lean-forward="false" selection-start-line="49" selection-start-column="62" selection-end-line="49" selection-end-column="62" />
               <folding>
                 <element signature="n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#div#0;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <marker date="1531833235642" expanded="true" signature="1952:1966" ph="..." />
+                <marker date="1531833914960" expanded="true" signature="1952:1966" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="footable-data.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/footable-data.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="96">
+              <caret line="3" column="4" lean-forward="true" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -118,9 +129,9 @@
         <option value="$PROJECT_DIR$/webPage/pages/download.html" />
         <option value="$PROJECT_DIR$/webPage/pages/intro.html" />
         <option value="$PROJECT_DIR$/webPage/pages/usage.html" />
-        <option value="$PROJECT_DIR$/webPage/pages/dist/js/footable-data.js" />
         <option value="$PROJECT_DIR$/webPage/pages/testFiles/index.json" />
         <option value="$PROJECT_DIR$/webPage/pages/testFiles/inner_IP.json" />
+        <option value="$PROJECT_DIR$/webPage/pages/dist/js/footable-data.js" />
         <option value="$PROJECT_DIR$/webPage/pages/inner_detail.html" />
       </list>
     </option>
@@ -713,7 +724,7 @@
           <folding>
             <element signature="n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#0;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <marker date="1531833235642" expanded="true" signature="1952:1966" ph="..." />
+            <marker date="1531833914960" expanded="true" signature="1952:1966" ph="..." />
           </folding>
         </state>
       </provider>
@@ -987,14 +998,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/footable-data.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="5" column="56" lean-forward="true" selection-start-line="5" selection-start-column="56" selection-end-line="5" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webPage/pages/ua_detail.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="101">
@@ -1061,14 +1064,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/footable-data.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="3" column="4" lean-forward="true" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/webPage/pages/inner_detail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="53" column="160" lean-forward="false" selection-start-line="53" selection-start-column="160" selection-end-line="53" selection-end-column="160" />
+        <state relative-caret-position="224">
+          <caret line="49" column="62" lean-forward="false" selection-start-line="49" selection-start-column="62" selection-end-line="49" selection-end-column="62" />
           <folding>
             <element signature="n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#0;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <marker date="1531833235642" expanded="true" signature="1952:1966" ph="..." />
+            <marker date="1531833914960" expanded="true" signature="1952:1966" ph="..." />
           </folding>
         </state>
       </provider>
