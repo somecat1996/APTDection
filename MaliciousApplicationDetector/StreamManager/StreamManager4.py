@@ -1,7 +1,9 @@
 import os
 import re
-from scapy.all import *
+#from scapy.all import *
 from DataLabeler.DataLabeler import Datalabler
+import dpkt
+
 
 class StreamManager:
     def __init__(self,filename):
@@ -39,18 +41,18 @@ class StreamManager:
         for x in files:
             ip=self.getIP(x)
             if ip in ips[-1] or ip in ips[0] or ip in ips[2]:
-                print("过滤流文件:",x)
-                print(len(files))
+                #print("过滤流文件:",x)
+                #print(len(files))
                 count_f+=1
                 continue
             if ip in ips[1]:
-                self.backgroud_PC.append({"filename":x,"type":2,"is_malicious":0,"http":""})
+                self.backgroud_PC.append({"filename":x,"type":2,"is_malicious":0,"http":[],"UA":0,"url":0})
             elif ip in ips[3]:
-                self.backgroud_Phone.append({"filename":x,"type":4,"is_malicious":0,"http":""})
+                self.backgroud_Phone.append({"filename":x,"type":4,"is_malicious":0,"http":[],"UA":0,"url":0})
             elif ip in ips[4]:
-                self.suspicious.append({"filename":x,"type":5,"is_malicious":0,"http":""})
+                self.suspicious.append({"filename":x,"type":5,"is_malicious":0,"http":[],"UA":0,"url":0})
             else:
-                print("找不到",ip)
+                #print("找不到",ip)
                 count_no+=1
 
         print("共有:",total,"个文件")
@@ -82,17 +84,18 @@ class StreamManager:
         print("数据标记完毕，开始聚类...")
         '''
 
-
-
+        print("正在成组数据类型2...")
         # backgroudtype PC
         for i in range(len(self.backgroud_PC)):
-            UA,http_load= self.getUA(self.backgroud_PC[i]["filename"])
+            UA,url,http_load= self.getUA(self.backgroud_PC[i]["filename"])
             ip = self.getIP(self.backgroud_PC[i]["filename"])
             tag = ip[0]
             if self.isLocalIP(ip[0]):
                 tag = ip[1]
             key = tag + " " + UA
             self.backgroud_PC[i]["http"]=http_load
+            self.backgroud_PC[i]["url"] = url
+            self.backgroud_PC[i]["UA"] = UA
             if key in self.backgroud_groups_PC:
                 self.backgroud_groups_PC[key].append(self.backgroud_PC[i])
             else:
@@ -102,17 +105,18 @@ class StreamManager:
 
                 # browsertype
 
-
-
+        print("正在成组数据类型4...")
         # backgroudtype PC
         for i in range(len(self.backgroud_Phone)):
-            UA,http_load = self.getUA(self.backgroud_Phone[i]["filename"])
+            UA,url,http_load = self.getUA(self.backgroud_Phone[i]["filename"])
             ip = self.getIP(self.backgroud_Phone[i]["filename"])
             tag = ip[0]
             if self.isLocalIP(ip[0]):
                 tag = ip[1]
             key = tag + " " + UA
             self.backgroud_Phone[i]["http"]=http_load
+            self.backgroud_Phone[i]["url"] =url
+            self.backgroud_Phone[i]["UA"] = UA
             if key in self.backgroud_groups_Phone:
                 self.backgroud_groups_Phone[key].append(self.backgroud_Phone[i])
             else:
@@ -120,14 +124,18 @@ class StreamManager:
                 tmp.append(self.backgroud_Phone[i])
                 self.backgroud_groups_Phone[key] = list(tmp)
 
+        print("正在成组数据类型5...")
         # empty_ua
         for i in range(len(self.suspicious)):
-            UA = self.getUA(self.suspicious[i]["filename"])
+            UA,url,http_load= self.getUA(self.suspicious[i]["filename"])
             ip = self.getIP(self.suspicious[i]["filename"])
             tag = ip[0]
             if self.isLocalIP(ip[0]):
                 tag = ip[1]
             key = tag + " "+UA
+            self.suspicious[i]["http"] = http_load
+            self.suspicious[i]["url"] = url
+            self.suspicious[i]["UA"] = UA
             if key in self.suspicious_group:
                 self.suspicious_group[key].append(self.suspicious[i])
             else:
@@ -255,6 +263,7 @@ class StreamManager:
             for x in self.backgroud_groups_Phone[key]:
                 tmp.append(x)
 
+
         for key in self.suspicious_group:
             for x in self.suspicious_group[key]:
                 tmp.append(x)
@@ -263,17 +272,17 @@ class StreamManager:
 
 
     def GetBackgroudGroup_PC(self):
-        print(self.backgroud_groups_PC)
+        #print(self.backgroud_groups_PC)
         return self.backgroud_groups_PC
 
 
 
     def GetBackgroudGroup_Phone(self):
-        print(self.backgroud_groups_Phone)
+        #print(self.backgroud_groups_Phone)
         return self.backgroud_groups_Phone
 
     def GetSuspicious(self):
-        print(self.suspicious_group)
+        #print(self.suspicious_group)
         return self.suspicious_group
 
     def getIP(self,filename):
@@ -289,32 +298,55 @@ class StreamManager:
     def getUA(self,filename):
         filepath = self.datapath + "/tmp/"+filename
         pattern="User-Agent.*?\\\\r"
+        pattern1 = "/.*?HTTP"
+        pattern2 = "/.*?\\?"
+        pattern3 = "Host.*?\\\\r"
 
         useragent="UnknownUA"
+        uri_tmp = "none"
 
-        source = PcapReader(filepath)
-        packet = source.read_packet()
+        f=open(filepath,"rb")
+        source = dpkt.pcap.Reader(f)
+        packet = dpkt_next(source)
         http_load=[]
         got_ua=0
+        got_uri=0
         while packet:
+            s=packet_to_bytes(packet)
+            '''
             try:
                 s = str(packet[Raw].load)
             except:
                 packet = source.read_packet()
                 continue
-            ptr=".*(GET|POST|HEAD).*HTTP.*"
+           '''
+            ptr=bytes(".*(GET|POST|HEAD).*HTTP.*".encode())
             if re.match(ptr, s):
-                http_load.append(bytes(s))
+                http_load.append(s)
+                s=str(s)
                 if not got_ua:
                     try:
                         ua = re.findall(pattern,s)[0].strip("\\r")
                         ua=re.sub("User-Agent: ","",ua)
                         useragent=ua
+                        got_ua=1
                     except:
-                        packet = source.read_packet()
-                        continue
-                packet = source.read_packet()
-        return useragent,http_load
+                        pass
+                if not got_uri:
+                    ttt = re.findall(pattern1, s)[0]
+                    if not re.findall(pattern2, ttt):
+                        ttt = ttt.strip(" HTTP")
+                    else:
+                        ttt = re.findall(pattern2, ttt)[0].strip("?")
+                    try:
+                        uri = re.findall(pattern3, s)[0].strip("\\r").strip("Host: ") + ttt
+                        uri_tmp = re.sub("http://","", uri)
+                        got_uri=1
+                    except:
+                        pass
+            packet = dpkt_next(source)
+        f.close()
+        return useragent,uri_tmp,http_load
 
     def GetUrl(self,filename):
         filepath=self.datapath+"/tmp/"+filename
@@ -322,15 +354,12 @@ class StreamManager:
         pattern2="/.*?\\?"
         pattern3="Host.*?\\\\r"
 
-        source = PcapReader(filepath)
-        packet = source.read_packet()
+        f=open(filepath,"rb")
+        source = dpkt.pcap.Reader(f)
+        packet = dpkt_next(source)
         uri_tmp="none"
         while packet:
-            try:
-                s = str(packet[Raw].load)
-            except:
-                packet = source.read_packet()
-                continue
+            s=packet_to_str(packet)
             ptr = ".*(GET|POST|HEAD).*HTTP.*"
             if re.match(ptr, s):
                 ttt = re.findall(pattern1, s)[0]
@@ -340,14 +369,13 @@ class StreamManager:
                     ttt = re.findall(pattern2, ttt)[0].strip("?")
                 try:
                     uri = re.findall(pattern3, s)[0].strip("\\r").strip("Host: ") + ttt
+                    uri_tmp = re.sub("http://", "", uri)
                 except:
-                    packet = source.read_packet()
+                    packet = dpkt_next(source)
                     continue
-                uri_tmp=re.sub("http://","",uri)
                 break
-            else:
-                packet = source.read_packet()
-
+            packet =dpkt_next(source)
+        f.close()
         return uri_tmp
 
     def isLocalIP(self,IP):
@@ -358,3 +386,21 @@ class StreamManager:
             if re.match(x,IP):
                 return True
         return False
+
+
+def dpkt_next(reader):
+    try:
+        p=next(reader)
+        return p
+    except:
+        return None
+
+def packet_to_str(packet):
+    p = dpkt.ethernet.Ethernet(packet[1])
+    s = str(p.data.data.pack()[p.data.data.__hdr_len__:])
+    return s
+
+def packet_to_bytes(packet):
+    p = dpkt.ethernet.Ethernet(packet[1])
+    s = p.data.data.pack()[p.data.data.__hdr_len__:]
+    return s

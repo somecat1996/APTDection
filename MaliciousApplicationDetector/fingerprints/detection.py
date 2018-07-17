@@ -110,7 +110,7 @@ class DetectionModule():
                 The result of this similarity function between the HTTP host features.
         """
         result = 0.0
-        if new_ip == old_ip:
+        if new_ip == old_ip or new_ip in old_ip or old_ip in new_ip:
             result += 1.0
             return result
         else:
@@ -191,6 +191,8 @@ class DetectionModule():
                 Returns 1.0 if there is a match, 0.0 otherwise.
         """
         result = 0.0
+        if new_ua=="UnknownUA":
+            return 0
         if new_ua == old_ua:
             result += 1.0
             return result
