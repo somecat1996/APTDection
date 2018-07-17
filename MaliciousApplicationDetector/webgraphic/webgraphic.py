@@ -48,7 +48,8 @@ class webgraphic:
         self.filter_recently=[]
         self.recent_three=[]
         self.recent_index = 0
-        file=open(self.path+"/webgraphic/top-10k.txt",'r')
+#        file=open('/home/ubuntu/APTDetection/MaliciousApplicationDetector/webgraphic/top-10k.txt', 'r') #file=open(self.path+"/webgraphic/top-10k.txt",'r')
+        file=open('/home/ubuntu/APTDection/MaliciousApplicationDetector/webgraphic/top-10k.txt', 'r')
         line=file.readline()
         while line:
             self.filter.append(line.strip("\n"))

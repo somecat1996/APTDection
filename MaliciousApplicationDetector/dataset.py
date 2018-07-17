@@ -12,7 +12,7 @@ import shutil
 import signal
 import sys
 
-import jspcap
+# import jspcap
 
 from fingerprints.fingerprintsManager import *
 from StreamManager.StreamManager4 import *
@@ -71,7 +71,7 @@ def dataset(*args, mode, labeled=False):
     _worker_alive = mp.Array('I', [ True for _ in args ])
     _worker_pool = tuple(args)
     _worker_mode = int(mode)
-
+    print(args)
     # start process
     make_worker()
 
@@ -111,11 +111,12 @@ def worker(path, *, mode, _count=0):
         # make files
         sdict = make_steam(name, mode=mode,             # make stream
                             _labeled=_worker_labeled)
+        print('Stream!', sdict)
         os.kill(os.getppid(), signal.SIGUSR1)           # send signal
         _signal_sent = True                             # sent signal
         index = make_dataset(name, sdict, mode=mode,    # make dataset
                                 fingerprint=_worker_labeled)
-
+        print('Dataset!', index)
         # aftermath
         if path != make_path(f'stream/{name}/{name}.pcap'):
             os.remove(make_path(f'stream/{name}/{name}.pcap'))
@@ -281,9 +282,9 @@ def make_dataset(name, labels=None, *, mode, overwrite=True, fingerprint=False):
         for ipua in group_keys:
             for file in group[ipua]:
                 label = int(file['is_malicious'])
-                srcfile = file["filename"]
+                srcfile = file['filename']
                 dataset = file['filename'].replace('.pcap', '.dat')
-                loads(make_path(f'stream/{name}/tmp/{srcfile}'),
+                loads(file['http'],#make_path(f'stream/{name}/tmp/{srcfile}'),
                         make_path(f"dataset/{name}/{kind}/{label}/{dataset}"), remove=overwrite)
     print(f'Finished making dataset for {name}...')
 
@@ -299,17 +300,19 @@ def loads(fin, fout, *, remove):
         else:       return
 
     # extraction procedure
-    print(f'Start extracting {fin}...')
-    extractor = jspcap.extract(fin=fin, store=False, nofile=True, verbose=True,
-                                tcp=True, strict=True, extension=False)
-    print(f'Finished extracting {fin}...')
+    # print(f'Start extracting {fin}...')
+    # extractor = jspcap.extract(fin=fin, store=False, nofile=True, verbose=True,
+    #                             tcp=True, strict=True, extension=False)
+    # print(f'Finished extracting {fin}...')
 
     # fetch reassembly
     print(f'Start dumping to {fout}...')
-    for reassembly in extractor.reassembly.tcp:
-        for packet in reassembly.packets:
-            if jspcap.HTTP in packet.protochain:
-                dumps(fout, packet.info.raw.header or b'')
+    # for reassembly in extractor.reassembly.tcp:
+    #     for packet in reassembly.packets:
+    #         if jspcap.HTTP in packet.protochain:
+    #             dumps(fout, packet.info.raw.header or b'')
+    for http in fin:
+        dumps(fout, http.split(b'\r\n\r\n')[0])
     print(f'Finished dumping to {fout}...')
 
 
