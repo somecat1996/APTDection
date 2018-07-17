@@ -44,6 +44,24 @@ _worker_max = mp.cpu_count()
 _worker_num = mp.Value('I', 0)
 
 
+
+class JSONEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, bytes):
+            return {'val': obj.hex(), '_spec_type': 'bytes'}
+        else:
+            return super().default(obj)
+
+
+def object_hook(obj):
+    _spec_type = obj.get('_spec_type')
+    if _spec_type:
+        if _spec_type == 'bytes':
+            return bytes.fromhex(obj['val'])
+        raise ParseError(f'unknown {_spec_type}')
+    return obj
+
+
 def dataset(*args, mode, labeled=False):
     """Cook dataset for CNN.
 
@@ -125,6 +143,7 @@ def worker(path, *, mode, _count=0):
         if not _signal_sent:
             os.kill(os.getppid(), signal.SIGUSR1)       # send signal
         raise error
+
     # print(f'[{time.time()}] Worker B_{_count} @ {path} start')
     # time.sleep(random.randint(0, dt.datetime.now().second))
     # print(f'[{time.time()}] Worker B_{_count} @ {path} done')
@@ -219,7 +238,7 @@ def make_record(name, stream, *, mode):
 
     # dump stream.json
     with open(make_path(f'stream/{name}/stream.json'), 'w') as json_file:
-        json.dump(record, json_file)
+        json.dump(record, json_file, cls=JSONEncoder)
     return record
 
 
@@ -254,7 +273,7 @@ def make_dataset(name, labels=None, *, mode, overwrite=True, fingerprint=False):
     # load JSON file
     if labels is None:
         with open(make_path(f'stream/{name}/stream.json'), 'r') as file:
-            labels = json.load(file)
+            labels = json.load(file, object_hook=object_hook)
 
     fplist = list()
     for kind, group in labels.items():
@@ -349,7 +368,7 @@ def make_index(*, fp=None, retrieve=False):
     if fp is not None:
         with open(make_path(f'dataset/{time.time()}_'
                             f'{random.randint(0, dt.datetime.now().second)}.fp'), 'w') as file:
-            json.dump({'is_malicious': fp}, file)
+            json.dump({'is_malicious': fp}, file, cls=JSONEncoder)
 
     # retrieve report
     if retrieve:
@@ -357,13 +376,13 @@ def make_index(*, fp=None, retrieve=False):
         for item in os.listdir(make_path(f'dataset')):
             if os.path.splitext(item)[1] == '.fp':
                 with open(make_path(f'dataset/{item}'), 'r') as file:
-                    fp += json.load(file)['is_malicious']
+                    fp += json.load(file, object_hook=object_hook)['is_malicious']
                 os.remove(make_path(f'dataset/{item}'))
         index['is_malicious'] = fp
 
     # dump index.json
     with open(make_path('dataset/index.json'), 'w') as index_file:
-        json.dump(index, index_file)
+        json.dump(index, index_file, cls=JSONEncoder)
     return index
 
 
