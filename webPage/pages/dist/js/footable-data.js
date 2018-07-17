@@ -3,7 +3,7 @@ $(function () {
 	"use strict";
 	
 	/*Init FooTable*/
-	$('[@id^=footable]').footable();
+	$('[@id^="footable"]').footable();
 	
 	/*Editing FooTable*/
 	

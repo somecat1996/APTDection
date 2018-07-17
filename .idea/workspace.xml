@@ -27,25 +27,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="inner_detail.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="inner_detail.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webPage/pages/inner_detail.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="49" column="62" lean-forward="false" selection-start-line="49" selection-start-column="62" selection-end-line="49" selection-end-column="62" />
+            <state relative-caret-position="320">
+              <caret line="64" column="65" lean-forward="false" selection-start-line="64" selection-start-column="65" selection-end-line="64" selection-end-column="65" />
               <folding>
                 <element signature="n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#div#0;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <marker date="1531833914960" expanded="true" signature="1952:1966" ph="..." />
+                <marker date="1531834038565" expanded="true" signature="1952:1966" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="footable-data.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="footable-data.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/footable-data.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="3" column="4" lean-forward="true" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
+            <state relative-caret-position="160">
+              <caret line="5" column="23" lean-forward="false" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -131,8 +131,8 @@
         <option value="$PROJECT_DIR$/webPage/pages/usage.html" />
         <option value="$PROJECT_DIR$/webPage/pages/testFiles/index.json" />
         <option value="$PROJECT_DIR$/webPage/pages/testFiles/inner_IP.json" />
-        <option value="$PROJECT_DIR$/webPage/pages/dist/js/footable-data.js" />
         <option value="$PROJECT_DIR$/webPage/pages/inner_detail.html" />
+        <option value="$PROJECT_DIR$/webPage/pages/dist/js/footable-data.js" />
       </list>
     </option>
   </component>
@@ -311,46 +311,16 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="bootstrap" />
+              <option name="myItemId" value="FooTable" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="dist" />
+              <option name="myItemId" value="compiled" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="APTDection" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="APTDection" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webPage" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="vendors" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bower_components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bootstrap" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dist" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemId" value="footable.js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NestingTreeNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -724,7 +694,7 @@
           <folding>
             <element signature="n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#0;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <marker date="1531833914960" expanded="true" signature="1952:1966" ph="..." />
+            <marker date="1531834038565" expanded="true" signature="1952:1966" ph="..." />
           </folding>
         </state>
       </provider>
@@ -990,24 +960,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webPage/vendors/bower_components/FooTable/compiled/footable.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="8" column="4266" lean-forward="false" selection-start-line="8" selection-start-column="4266" selection-end-line="8" selection-end-column="4266" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webPage/pages/ua_detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="101">
-          <caret line="32" column="20" lean-forward="false" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="42" />
-          <folding>
-            <element signature="n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Desktop/5b3c90f1ccb48/full-width-light/foo-table.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="370">
@@ -1048,14 +1000,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webPage/pages/testFiles/inner_IP.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
-          <caret line="56" column="27" lean-forward="false" selection-start-line="56" selection-start-column="27" selection-end-line="56" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webPage/vendors/bower_components/FooTable/compiled/footable.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="94">
@@ -1064,23 +1008,49 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/footable-data.js">
+    <entry file="file://$PROJECT_DIR$/webPage/vendors/bower_components/FooTable/compiled/footable.min.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="3" column="4" lean-forward="true" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
+        <state relative-caret-position="386">
+          <caret line="8" column="4208" lean-forward="false" selection-start-line="8" selection-start-column="4208" selection-end-line="8" selection-end-column="4208" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webPage/pages/ua_detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="101">
+          <caret line="32" column="20" lean-forward="false" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="42" />
+          <folding>
+            <element signature="n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webPage/pages/testFiles/inner_IP.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="448">
+          <caret line="56" column="27" lean-forward="false" selection-start-line="56" selection-start-column="27" selection-end-line="56" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/webPage/pages/inner_detail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="49" column="62" lean-forward="false" selection-start-line="49" selection-start-column="62" selection-end-line="49" selection-end-column="62" />
+        <state relative-caret-position="320">
+          <caret line="64" column="65" lean-forward="false" selection-start-line="64" selection-start-column="65" selection-end-line="64" selection-end-column="65" />
           <folding>
             <element signature="n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#0;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <marker date="1531833914960" expanded="true" signature="1952:1966" ph="..." />
+            <marker date="1531834038565" expanded="true" signature="1952:1966" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/footable-data.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="5" column="23" lean-forward="false" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
+          <folding />
         </state>
       </provider>
     </entry>
