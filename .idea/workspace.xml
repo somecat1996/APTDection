@@ -29,12 +29,12 @@
       <file leaf-file-name="inner_detail.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/webPage/pages/inner_detail.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="256">
-              <caret line="228" column="58" lean-forward="false" selection-start-line="228" selection-start-column="58" selection-end-line="228" selection-end-column="58" />
+            <state relative-caret-position="216">
+              <caret line="55" column="55" lean-forward="false" selection-start-line="55" selection-start-column="55" selection-end-line="55" selection-end-column="55" />
               <folding>
                 <element signature="n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#div#0;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <marker date="1531835265196" expanded="true" signature="2102:2116" ph="..." />
+                <marker date="1531835815220" expanded="true" signature="2102:2116" ph="..." />
               </folding>
             </state>
           </provider>
@@ -672,13 +672,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/webPage/vendors/bower_components/FooTable/compiled/footable.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117664">
-          <caret line="3677" column="46" lean-forward="false" selection-start-line="3677" selection-start-column="46" selection-end-line="3677" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Desktop/5b3c90f1ccb48/full-width-light/foo-table.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="47680">
@@ -693,7 +686,7 @@
           <folding>
             <element signature="n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#0;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <marker date="1531835265196" expanded="true" signature="2102:2116" ph="..." />
+            <marker date="1531835815220" expanded="true" signature="2102:2116" ph="..." />
           </folding>
         </state>
       </provider>
@@ -959,14 +952,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Desktop/5b3c90f1ccb48/full-width-light/foo-table.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
-          <caret line="1527" column="57" lean-forward="false" selection-start-line="1520" selection-start-column="52" selection-end-line="1527" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/init.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
@@ -1041,14 +1026,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/Desktop/5b3c90f1ccb48/full-width-light/data-table.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="1244" column="67" lean-forward="false" selection-start-line="1244" selection-start-column="67" selection-end-line="1244" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/5b3c90f1ccb48/full-width-light/foo-table.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1074">
+          <caret line="1525" column="79" lean-forward="false" selection-start-line="1525" selection-start-column="79" selection-end-line="1525" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/webPage/pages/inner_detail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="228" column="58" lean-forward="false" selection-start-line="228" selection-start-column="58" selection-end-line="228" selection-end-column="58" />
+        <state relative-caret-position="216">
+          <caret line="55" column="55" lean-forward="false" selection-start-line="55" selection-start-column="55" selection-end-line="55" selection-end-column="55" />
           <folding>
             <element signature="n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#0;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <marker date="1531835265196" expanded="true" signature="2102:2116" ph="..." />
+            <marker date="1531835815220" expanded="true" signature="2102:2116" ph="..." />
           </folding>
         </state>
       </provider>
