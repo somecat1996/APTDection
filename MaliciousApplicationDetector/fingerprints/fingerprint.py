@@ -89,7 +89,7 @@ class FingerprintGenerator():
             type=http_requests.pop()
             is_malicious=http_requests.pop()
             fingerprint=self.generate_fingerprint(http_requests,type,key,is_malicious)
-            stream_groups[key].append(fingerprint)
+            #stream_groups[key].append(fingerprint)
             fingerprints[key]=fingerprint
         return fingerprints
     
