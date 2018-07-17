@@ -3,8 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="72f023dd-9e1c-48f0-a389-44fc3943046d" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webPage/pages/about.html" afterPath="$PROJECT_DIR$/webPage/pages/about.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webPage/pages/abstract.html" afterPath="$PROJECT_DIR$/webPage/pages/abstract.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webPage/pages/dist/js/footable-data.js" afterPath="$PROJECT_DIR$/webPage/pages/dist/js/footable-data.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webPage/pages/download.html" afterPath="$PROJECT_DIR$/webPage/pages/download.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webPage/pages/index.html" afterPath="$PROJECT_DIR$/webPage/pages/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webPage/pages/intro.html" afterPath="$PROJECT_DIR$/webPage/pages/intro.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webPage/pages/testFiles/index.json" afterPath="$PROJECT_DIR$/webPage/pages/testFiles/index.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webPage/pages/usage.html" afterPath="$PROJECT_DIR$/webPage/pages/usage.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/webPage/pages/detail.html" afterPath="$PROJECT_DIR$/webPage/pages/inner_detail.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,114 +26,79 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webPage/pages/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15904">
-              <caret line="497" column="0" lean-forward="false" selection-start-line="143" selection-start-column="8" selection-end-line="497" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="abstract.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webPage/pages/abstract.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="12736">
-              <caret line="398" column="40" lean-forward="false" selection-start-line="398" selection-start-column="40" selection-end-line="398" selection-end-column="40" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="detail.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webPage/pages/detail.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4768">
-              <caret line="149" column="23" lean-forward="false" selection-start-line="149" selection-start-column="23" selection-end-line="149" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="about.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webPage/pages/about.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5440">
-              <caret line="170" column="32" lean-forward="false" selection-start-line="170" selection-start-column="32" selection-end-line="170" selection-end-column="41" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="intro.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/webPage/pages/intro.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="415">
-              <caret line="371" column="196" lean-forward="false" selection-start-line="371" selection-start-column="196" selection-end-line="371" selection-end-column="196" />
+            <state relative-caret-position="-5551">
+              <caret line="30" column="58" lean-forward="true" selection-start-line="30" selection-start-column="58" selection-end-line="46" selection-end-column="32" />
               <folding>
                 <element signature="n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#div#0;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#div#1;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#style#0;n#p#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#2;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#1;n#div#0;n#div#1;n#div#0;n#div#1;n#div#2;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#div#3;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#style#0;n#p#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#3;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#3;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#div#4;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#style#0;n#p#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#4;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#4;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#div#4;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#div#5;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#style#0;n#p#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#5;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#5;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#6;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#6;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#1;n#div#0;n#div#1;n#div#0;n#div#1;n#div#6;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="download.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webPage/pages/download.html">
+      <file leaf-file-name="inner_detail.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/webPage/pages/inner_detail.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="274">
-              <caret line="194" column="52" lean-forward="true" selection-start-line="194" selection-start-column="52" selection-end-line="194" selection-end-column="52" />
+            <state relative-caret-position="64">
+              <caret line="23" column="28" lean-forward="true" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="35" />
+              <folding>
+                <element signature="n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#0;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <marker date="1531819809504" expanded="true" signature="1922:1936" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="foo-table.html" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/Desktop/5b3c90f1ccb48/full-width-light/foo-table.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="370">
+              <caret line="1527" column="57" lean-forward="true" selection-start-line="1520" selection-start-column="52" selection-end-line="1527" selection-end-column="57" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
+      <file leaf-file-name="inner_IP.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/webPage/pages/testFiles/inner_IP.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4576">
-              <caret line="143" column="13" lean-forward="false" selection-start-line="143" selection-start-column="13" selection-end-line="143" selection-end-column="13" />
+            <state relative-caret-position="256">
+              <caret line="17" column="13" lean-forward="true" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="carousel.html" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/Desktop/5b3c90f1ccb48/full-width-light/carousel.html">
+      <file leaf-file-name="index.json" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/webPage/pages/testFiles/index.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="1427" column="51" lean-forward="true" selection-start-line="1427" selection-start-column="51" selection-end-line="1427" selection-end-column="51" />
+            <state relative-caret-position="0">
+              <caret line="0" column="33" lean-forward="true" selection-start-line="0" selection-start-column="33" selection-end-line="0" selection-end-column="33" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="usage.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webPage/pages/usage.html">
+      <file leaf-file-name="ua_detail.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/webPage/pages/ua_detail.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="32">
-              <caret line="136" column="39" lean-forward="false" selection-start-line="136" selection-start-column="39" selection-end-line="136" selection-end-column="39" />
-              <folding />
+            <state relative-caret-position="101">
+              <caret line="32" column="20" lean-forward="true" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="42" />
+              <folding>
+                <element signature="n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -141,6 +113,7 @@
       <find>mployees</find>
       <find>e_chart_1</find>
       <find>full</find>
+      <find>footable_3</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -152,17 +125,21 @@
         <option value="$PROJECT_DIR$/webPage/testFiles/report.txt" />
         <option value="$PROJECT_DIR$/webPage/testFiles/report.json" />
         <option value="$PROJECT_DIR$/webPage/testFiles/index.json" />
-        <option value="$PROJECT_DIR$/webPage/pages/dist/js/footable-data.js" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/webPage/pages/testFiles/index.json" />
-        <option value="$PROJECT_DIR$/webPage/pages/index.html" />
-        <option value="$PROJECT_DIR$/webPage/pages/usage.html" />
         <option value="$PROJECT_DIR$/webPage/pages/detail.html" />
-        <option value="$PROJECT_DIR$/webPage/pages/abstract.html" />
-        <option value="$PROJECT_DIR$/webPage/pages/about.html" />
         <option value="$PROJECT_DIR$/webPage/pages/dist/js/dashboard-data.js" />
+        <option value="$PROJECT_DIR$/webPage/pages/index.html" />
+        <option value="$PROJECT_DIR$/webPage/pages/about.html" />
+        <option value="$PROJECT_DIR$/webPage/pages/outer_detail.html" />
+        <option value="$PROJECT_DIR$/webPage/pages/ua_detail.html" />
+        <option value="$PROJECT_DIR$/webPage/pages/abstract.html" />
         <option value="$PROJECT_DIR$/webPage/pages/download.html" />
         <option value="$PROJECT_DIR$/webPage/pages/intro.html" />
+        <option value="$PROJECT_DIR$/webPage/pages/usage.html" />
+        <option value="$PROJECT_DIR$/webPage/pages/dist/js/footable-data.js" />
+        <option value="$PROJECT_DIR$/webPage/pages/testFiles/inner_IP.json" />
+        <option value="$PROJECT_DIR$/webPage/pages/inner_detail.html" />
+        <option value="$PROJECT_DIR$/webPage/pages/testFiles/index.json" />
       </list>
     </option>
   </component>
@@ -177,6 +154,9 @@
     <option name="y" value="-8" />
     <option name="width" value="1382" />
     <option name="height" value="754" />
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -234,7 +214,159 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="vendors" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="APTDection" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="APTDection" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webPage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vendors" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bower_components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="APTDection" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="APTDection" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webPage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vendors" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bower_components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FooTable" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="APTDection" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="APTDection" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webPage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vendors" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bower_components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FooTable" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="compiled" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="APTDection" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="APTDection" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webPage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vendors" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bower_components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FooTable" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="compiled" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="footable.js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NestingTreeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="APTDection" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="APTDection" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webPage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="pages" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="APTDection" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="APTDection" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webPage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pages" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="testFiles" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -315,6 +447,7 @@
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
     <property name="node.js.detected.package.jscs" value="true" />
     <property name="node.js.selected.package.jscs" value="" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -512,10 +645,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="754" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2912254" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.295764" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5030257" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -547,31 +680,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/webPage/pages/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3232">
-          <caret line="101" column="40" lean-forward="false" selection-start-line="101" selection-start-column="40" selection-end-line="101" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webPage/testFiles/report.json" />
-    <entry file="file://$PROJECT_DIR$/webPage/pages/about.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5312">
-          <caret line="166" column="31" lean-forward="true" selection-start-line="151" selection-start-column="16" selection-end-line="166" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webPage/pages/download.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8224">
-          <caret line="257" column="45" lean-forward="false" selection-start-line="257" selection-start-column="45" selection-end-line="257" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webPage/pages/testFiles/index.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -600,11 +708,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webPage/pages/detail.html">
+    <entry file="file://$PROJECT_DIR$/webPage/pages/inner_detail.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7776">
           <caret line="243" column="72" lean-forward="false" selection-start-line="243" selection-start-column="72" selection-end-line="243" selection-end-column="72" />
-          <folding />
+          <folding>
+            <element signature="n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#0;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <marker date="1531819809504" expanded="true" signature="1922:1936" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -612,7 +724,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -620,7 +731,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3232">
           <caret line="101" column="40" lean-forward="false" selection-start-line="101" selection-start-column="40" selection-end-line="101" selection-end-column="40" />
-          <folding />
+          <folding>
+            <element signature="n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -628,7 +741,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="9728">
           <caret line="304" column="61" lean-forward="true" selection-start-line="304" selection-start-column="61" selection-end-line="304" selection-end-column="61" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -636,7 +748,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5920">
           <caret line="185" column="54" lean-forward="false" selection-start-line="185" selection-start-column="54" selection-end-line="185" selection-end-column="54" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -658,7 +769,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="224">
           <caret line="7" column="20" lean-forward="true" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
-          <folding />
+          <folding>
+            <element signature="n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -666,7 +779,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6464">
           <caret line="202" column="71" lean-forward="false" selection-start-line="202" selection-start-column="71" selection-end-line="202" selection-end-column="71" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -692,13 +804,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MaliciousApplicationDetector/Training.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="383" column="62" lean-forward="true" selection-start-line="383" selection-start-column="62" selection-end-line="383" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Desktop/5b3c90f1ccb48/full-width-light/accordion-toggle.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3488">
@@ -706,24 +811,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webPage/vendors/bower_components/FooTable/compiled/footable.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
-          <caret line="8" column="4266" lean-forward="true" selection-start-line="8" selection-start-column="4266" selection-end-line="8" selection-end-column="4266" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webPage/vendors/bower_components/FooTable/compiled/footable.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="117472">
           <caret line="3677" column="46" lean-forward="false" selection-start-line="3677" selection-start-column="46" selection-end-line="3677" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Desktop/5b3c90f1ccb48/full-width-light/foo-table.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="1527" column="57" lean-forward="true" selection-start-line="1520" selection-start-column="52" selection-end-line="1527" selection-end-column="57" />
         </state>
       </provider>
     </entry>
@@ -777,56 +868,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/footable-data.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
-          <caret line="64" column="3" lean-forward="false" selection-start-line="64" selection-start-column="3" selection-end-line="64" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webPage/pages/testFiles/index.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="24" lean-forward="false" selection-start-line="0" selection-start-column="24" selection-end-line="0" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webPage/pages/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15904">
-          <caret line="497" column="0" lean-forward="false" selection-start-line="143" selection-start-column="8" selection-end-line="497" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webPage/pages/abstract.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="12736">
-          <caret line="398" column="40" lean-forward="false" selection-start-line="398" selection-start-column="40" selection-end-line="398" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Desktop/5b3c90f1ccb48/full-width-light/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="1409" column="29" lean-forward="true" selection-start-line="1305" selection-start-column="29" selection-end-line="1409" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webPage/pages/about.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5440">
-          <caret line="170" column="32" lean-forward="false" selection-start-line="170" selection-start-column="32" selection-end-line="170" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webPage/pages/detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4768">
-          <caret line="149" column="23" lean-forward="false" selection-start-line="149" selection-start-column="23" selection-end-line="149" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -862,7 +907,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4576">
           <caret line="143" column="13" lean-forward="false" selection-start-line="143" selection-start-column="13" selection-end-line="143" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -876,55 +920,140 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webPage/pages/usage.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="32">
-          <caret line="136" column="39" lean-forward="false" selection-start-line="136" selection-start-column="39" selection-end-line="136" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Desktop/5b3c90f1ccb48/full-width-light/carousel.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="96">
           <caret line="1427" column="51" lean-forward="true" selection-start-line="1427" selection-start-column="51" selection-end-line="1427" selection-end-column="51" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webPage/pages/outer_detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="141" column="56" lean-forward="false" selection-start-line="141" selection-start-column="56" selection-end-line="141" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webPage/pages/about.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="78" column="21" lean-forward="true" selection-start-line="69" selection-start-column="21" selection-end-line="78" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webPage/pages/abstract.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="245">
+          <caret line="71" column="21" lean-forward="false" selection-start-line="71" selection-start-column="21" selection-end-line="71" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/webPage/pages/download.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="194" column="52" lean-forward="true" selection-start-line="194" selection-start-column="52" selection-end-line="194" selection-end-column="52" />
-          <folding />
+        <state relative-caret-position="468">
+          <caret line="93" column="21" lean-forward="false" selection-start-line="93" selection-start-column="21" selection-end-line="93" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/webPage/pages/intro.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="415">
-          <caret line="371" column="196" lean-forward="false" selection-start-line="371" selection-start-column="196" selection-end-line="371" selection-end-column="196" />
+        <state relative-caret-position="440">
+          <caret line="74" column="21" lean-forward="false" selection-start-line="74" selection-start-column="21" selection-end-line="74" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webPage/pages/usage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="404">
+          <caret line="74" column="21" lean-forward="false" selection-start-line="74" selection-start-column="21" selection-end-line="74" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MaliciousApplicationDetector/readme.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="3" column="23" lean-forward="false" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MaliciousApplicationDetector/Training.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="387" column="32" lean-forward="false" selection-start-line="387" selection-start-column="32" selection-end-line="387" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webPage/pages/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5551">
+          <caret line="30" column="58" lean-forward="true" selection-start-line="30" selection-start-column="58" selection-end-line="46" selection-end-column="32" />
           <folding>
             <element signature="n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webPage/vendors/bower_components/FooTable/compiled/footable.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="8" column="4266" lean-forward="false" selection-start-line="8" selection-start-column="4266" selection-end-line="8" selection-end-column="4266" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/footable-data.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="5" column="56" lean-forward="true" selection-start-line="5" selection-start-column="56" selection-end-line="5" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webPage/pages/ua_detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="101">
+          <caret line="32" column="20" lean-forward="true" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="42" />
+          <folding>
+            <element signature="n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webPage/pages/inner_detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="23" column="28" lean-forward="true" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="35" />
+          <folding>
             <element signature="n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#0;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#1;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#p#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#2;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#1;n#div#0;n#div#1;n#div#0;n#div#1;n#div#2;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#3;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#p#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#3;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#3;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#4;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#p#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#4;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#4;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#div#4;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#5;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#p#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#5;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#5;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#6;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#6;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#1;n#div#0;n#div#1;n#div#0;n#div#1;n#div#6;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1531819809504" expanded="true" signature="1922:1936" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/5b3c90f1ccb48/full-width-light/foo-table.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="370">
+          <caret line="1527" column="57" lean-forward="true" selection-start-line="1520" selection-start-column="52" selection-end-line="1527" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webPage/pages/testFiles/inner_IP.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="17" column="13" lean-forward="true" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webPage/pages/testFiles/index.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="33" lean-forward="true" selection-start-line="0" selection-start-column="33" selection-end-line="0" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>
