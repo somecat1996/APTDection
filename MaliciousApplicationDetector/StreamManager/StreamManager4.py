@@ -7,9 +7,9 @@ import dpkt
 
 class StreamManager:
     def __init__(self,filename):
-        # self.filename=filename
-        # path=os.path.dirname(os.path.abspath(__file__))#os.getcwd()
-        # self.datapath=path+"/stream/"+filename.strip('.pcap')
+        #self.filename=filename
+        #path=os.getcwd()
+        #self.datapath=path+"/stream/"+filename.strip('.pcap')
         root, file = os.path.split(filename)
         self.filename = file
         self.datapath = root
