@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="72f023dd-9e1c-48f0-a389-44fc3943046d" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webPage/pages/dist/js/footable-data.js" afterPath="$PROJECT_DIR$/webPage/pages/dist/js/footable-data.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webPage/pages/inner_detail.html" afterPath="$PROJECT_DIR$/webPage/pages/inner_detail.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -45,7 +44,7 @@
         <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/footable-data.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="160">
-              <caret line="5" column="23" lean-forward="false" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
+              <caret line="5" column="41" lean-forward="false" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -1049,7 +1048,7 @@
     <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/footable-data.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
-          <caret line="5" column="23" lean-forward="false" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
+          <caret line="5" column="41" lean-forward="false" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="41" />
           <folding />
         </state>
       </provider>
