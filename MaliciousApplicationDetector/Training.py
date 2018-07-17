@@ -396,6 +396,7 @@ def main(unused):
             if predicted_classes[i] == 1:
                 paths = pathlib.Path(names[i])
                 group = paths.parts[-4]
+                print(paths, group)
                 name = paths.stem
                 groupPath = os.path.join(path, "stream/"+group)
                 stream = json.load(open(os.path.join(groupPath, "stream.json"), 'r'))["Background_PC"]

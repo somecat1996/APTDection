@@ -71,7 +71,7 @@ def dataset(*args, mode, labeled=False):
     _worker_alive = mp.Array('I', [ True for _ in args ])
     _worker_pool = tuple(args)
     _worker_mode = int(mode)
-
+    print(args)
     # start process
     make_worker()
 
@@ -111,11 +111,12 @@ def worker(path, *, mode, _count=0):
         # make files
         sdict = make_steam(name, mode=mode,             # make stream
                             _labeled=_worker_labeled)
+        print('Stream!', sdict)
         os.kill(os.getppid(), signal.SIGUSR1)           # send signal
         _signal_sent = True                             # sent signal
         index = make_dataset(name, sdict, mode=mode,    # make dataset
                                 fingerprint=_worker_labeled)
-
+        print('Dataset!', index)
         # aftermath
         if path != make_path(f'stream/{name}/{name}.pcap'):
             os.remove(make_path(f'stream/{name}/{name}.pcap'))
