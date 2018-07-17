@@ -12,7 +12,7 @@ import shutil
 import signal
 import sys
 
-import jspcap
+# import jspcap
 
 from fingerprints.fingerprintsManager import *
 from StreamManager.StreamManager4 import *
@@ -281,9 +281,9 @@ def make_dataset(name, labels=None, *, mode, overwrite=True, fingerprint=False):
         for ipua in group_keys:
             for file in group[ipua]:
                 label = int(file['is_malicious'])
-                srcfile = file["filename"]
+                srcfile = file['filename']
                 dataset = file['filename'].replace('.pcap', '.dat')
-                loads(make_path(f'stream/{name}/tmp/{srcfile}'),
+                loads(file['http'],#make_path(f'stream/{name}/tmp/{srcfile}'),
                         make_path(f"dataset/{name}/{kind}/{label}/{dataset}"), remove=overwrite)
     print(f'Finished making dataset for {name}...')
 
@@ -299,17 +299,19 @@ def loads(fin, fout, *, remove):
         else:       return
 
     # extraction procedure
-    print(f'Start extracting {fin}...')
-    extractor = jspcap.extract(fin=fin, store=False, nofile=True, verbose=True,
-                                tcp=True, strict=True, extension=False)
-    print(f'Finished extracting {fin}...')
+    # print(f'Start extracting {fin}...')
+    # extractor = jspcap.extract(fin=fin, store=False, nofile=True, verbose=True,
+    #                             tcp=True, strict=True, extension=False)
+    # print(f'Finished extracting {fin}...')
 
     # fetch reassembly
     print(f'Start dumping to {fout}...')
-    for reassembly in extractor.reassembly.tcp:
-        for packet in reassembly.packets:
-            if jspcap.HTTP in packet.protochain:
-                dumps(fout, packet.info.raw.header or b'')
+    # for reassembly in extractor.reassembly.tcp:
+    #     for packet in reassembly.packets:
+    #         if jspcap.HTTP in packet.protochain:
+    #             dumps(fout, packet.info.raw.header or b'')
+    for http in fin:
+        dumps(fout, http.split(b'\r\n\r\n')[0])
     print(f'Finished dumping to {fout}...')
 
 
