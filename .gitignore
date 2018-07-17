@@ -5,6 +5,7 @@ MaliciousApplicationDetector/retrain/*
 MaliciousApplicationDetector/Model/*
 MaliciousApplicationDetector.zip
 
+mad/*
 oldFiles/*
 deprecated/
 webPage/app.py

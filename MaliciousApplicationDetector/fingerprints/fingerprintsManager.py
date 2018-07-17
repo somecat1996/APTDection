@@ -5,7 +5,8 @@ import os
 
 class fingerprintManager:
     def __init__(self):
-        self.filepath="/home/ubuntu/MaliciousApplicationDetector/fingerprints/fingerprints"
+        # self.filepath="/home/ubuntu/MaliciousApplicationDetector/fingerprints/fingerprints"
+        self.filepath=os.path.dirname(os.path.abspath(__file__))+"fingerprints"
         self.fingerprints={}
         self.detector=DetectionModule()
         if os.path.exists(self.filepath):

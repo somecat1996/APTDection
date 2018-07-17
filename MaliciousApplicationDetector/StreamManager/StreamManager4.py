@@ -7,9 +7,12 @@ import dpkt
 
 class StreamManager:
     def __init__(self,filename):
-        self.filename=filename
-        path=os.getcwd()
-        self.datapath=path+"/stream/"+filename.strip('.pcap')
+        # self.filename=filename
+        # path=os.path.dirname(os.path.abspath(__file__))#os.getcwd()
+        # self.datapath=path+"/stream/"+filename.strip('.pcap')
+        root, file = os.path.split(path)
+        self.filename = file
+        self.datapath = root
         self.backgroud_groups_PC={}
         self.backgroud_groups_Phone = {}
         self.suspicious_group={}
@@ -204,7 +207,8 @@ class StreamManager:
                             print("扫描命中！！！！")
 
 
-    def validate(self,dict):
+    @classmethod
+    def validate(cls,dict):
         targets=[]
         for key in dict:
             for x in dict[key]:
@@ -216,7 +220,7 @@ class StreamManager:
         malicious_num=0
         for i in range(len(targets)):
             filename=targets[i]["filename"]
-            url=self.GetUrl(filename)
+            url=cls.GetUrl(cls,filename)
             if url=="none":
                 malicious_num+=1
             else:
