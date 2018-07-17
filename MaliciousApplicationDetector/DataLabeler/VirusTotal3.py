@@ -25,7 +25,8 @@ class virustotal:
 ]
         self.ip=[]
         path=os.getcwd()
-        f=open("/home/ubuntu/MaliciousApplicationDetector/DataLabeler/proxies3.txt","rb")
+        # f=open("/home/ubuntu/MaliciousApplicationDetector/DataLabeler/proxies3.txt","rb")
+        f=open(os.path.dirname(os.path.abspath(__file__))+"proxies3.txt","rb")
         line=f.readline()
         count=0
         while line:

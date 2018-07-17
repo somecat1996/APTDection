@@ -10,7 +10,7 @@ class webgraphic:
     def __init__(self):
         self.tmp_mem=[]
         self.tmp_index=[]
-        self.path=os.getcwd()
+        self.path=os.path.dirname(os.path.abspath(__file__))#os.getcwd()
         self.groups = []
         self.twd_size=10.0    #the size of the time window
         self.filetered_ip=[]
@@ -48,8 +48,8 @@ class webgraphic:
         self.filter_recently=[]
         self.recent_three=[]
         self.recent_index = 0
-#        file=open('/home/ubuntu/APTDetection/MaliciousApplicationDetector/webgraphic/top-10k.txt', 'r') #file=open(self.path+"/webgraphic/top-10k.txt",'r')
-        file=open('/home/ubuntu/APTDection/MaliciousApplicationDetector/webgraphic/top-10k.txt', 'r')
+        #file=open(self.path+"/webgraphic/top-10k.txt",'r')
+        file=open(self.path+"/top-10k.txt",'r')
         line=file.readline()
         while line:
             self.filter.append(line.strip("\n"))
