@@ -297,6 +297,10 @@ def make_dataset(name, labels=None, *, mode, overwrite=True, fingerprint=False):
                 fplist += group[ipua]
             group_keys = fpreport['new_app']
 
+            with open(make_path(f'stream/{name}/fingerprint.json'), 'w') as jsonfile:
+                json.dump(fpreport, jsonfile, cls=JSONEncoder)
+            print(fpreport)
+
         # enumerate files
         for ipua in group_keys:
             for file in group[ipua]:
