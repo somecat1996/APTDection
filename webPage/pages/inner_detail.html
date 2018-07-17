@@ -42,8 +42,8 @@
 								"</td><td>" + info.link +
 								"</td><td>" + info.type + "</td></tr>"
 						}
-						UATable = "<p data-toggle=\"modal\" data-target=\".bs-example-modal-lg\">详细信息</p>" +
-							"<div class=\"modal fade bs-example-modal-lg\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myLargeModalLabel\" aria-hidden=\"true\" style=\"display: none;\">" +
+						UATable = "<p data-toggle=\"modal\" data-target=\"." + item.IP.replace(/\./g,"_") + "\">详细信息</p>" +
+							"<div class=\"modal fade " + item.IP.replace(/\./g,"_") + "\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myLargeModalLabel\" aria-hidden=\"true\" style=\"display: none;\">" +
 							"<div class=\"modal-dialog modal-lg\">" +
 							"<div class=\"modal-content\">" +
 							"<div class=\"modal-header\">" +
