@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="72f023dd-9e1c-48f0-a389-44fc3943046d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webPage/pages/dist/js/footable-data.js" afterPath="$PROJECT_DIR$/webPage/pages/dist/js/footable-data.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webPage/pages/inner_detail.html" afterPath="$PROJECT_DIR$/webPage/pages/inner_detail.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -30,12 +29,12 @@
       <file leaf-file-name="inner_detail.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/webPage/pages/inner_detail.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="21" column="43" lean-forward="false" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
+            <state relative-caret-position="256">
+              <caret line="228" column="58" lean-forward="false" selection-start-line="228" selection-start-column="58" selection-end-line="228" selection-end-column="58" />
               <folding>
                 <element signature="n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#div#0;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <marker date="1531835108185" expanded="true" signature="2102:2116" ph="..." />
+                <marker date="1531835265196" expanded="true" signature="2102:2116" ph="..." />
               </folding>
             </state>
           </provider>
@@ -694,7 +693,7 @@
           <folding>
             <element signature="n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#0;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <marker date="1531835108185" expanded="true" signature="2102:2116" ph="..." />
+            <marker date="1531835265196" expanded="true" signature="2102:2116" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1044,12 +1043,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/webPage/pages/inner_detail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="21" column="43" lean-forward="false" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
+        <state relative-caret-position="256">
+          <caret line="228" column="58" lean-forward="false" selection-start-line="228" selection-start-column="58" selection-end-line="228" selection-end-column="58" />
           <folding>
             <element signature="n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#0;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <marker date="1531835108185" expanded="true" signature="2102:2116" ph="..." />
+            <marker date="1531835265196" expanded="true" signature="2102:2116" ph="..." />
           </folding>
         </state>
       </provider>
