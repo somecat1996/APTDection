@@ -10,7 +10,7 @@ class StreamManager:
         # self.filename=filename
         # path=os.path.dirname(os.path.abspath(__file__))#os.getcwd()
         # self.datapath=path+"/stream/"+filename.strip('.pcap')
-        root, file = os.path.split(path)
+        root, file = os.path.split(filename)
         self.filename = file
         self.datapath = root
         self.backgroud_groups_PC={}

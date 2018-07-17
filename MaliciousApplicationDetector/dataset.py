@@ -121,10 +121,10 @@ def worker(path, *, mode, _count=0):
         if path != make_path(f'stream/{name}/{name}.pcap'):
             os.remove(make_path(f'stream/{name}/{name}.pcap'))
     except BaseException as error:
-        print(error)
+        print(str(error))
         if not _signal_sent:
             os.kill(os.getppid(), signal.SIGUSR1)       # send signal
-
+        raise error
     # print(f'[{time.time()}] Worker B_{_count} @ {path} start')
     # time.sleep(random.randint(0, dt.datetime.now().second))
     # print(f'[{time.time()}] Worker B_{_count} @ {path} done')
