@@ -15,51 +15,42 @@
 	<!-- vector map CSS -->
 	<link href="../vendors/vectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet" type="text/css"/>
 
-	<!-- Footable CSS -->
-	<link href="../vendors/bower_components/FooTable/compiled/footable.bootstrap.min.css" rel="stylesheet" type="text/css"/>
-
 	<!-- Custom CSS -->
 	<link href="dist/css/style.css" rel="stylesheet" type="text/css">
 
     <!-- jQuery -->
     <script src="../vendors/bower_components/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript">
-		$.getJSON ("/report/innerIP/index.json", function (data) {
+		$.getJSON ("testFiles/index.json", function (data) {
+//		$.getJSON ("/report/innerIP/index.json", function (data) {
 		    $.each(data, function (i, item) {
 				$.getJSON(item, function (data) {
 					$.each(data, function (i, item) {
 					    var UA = item.UA;
 					    var UATable = "";
 					    for(var i=0;i<UA.length;i++){
-							UATable = UATable + "<tr><td>" + UA[i].name +
-								"</td><td>" + UA[i].stime +
-								"</td><td>" + UA[i].etime + "</td>";
-							if(UA[i].type==="1"){
-							    UATable = UATable + "<td><span class=\"label label-danger\">恶意</span></td>";
-							}else{
-							    UATable = UATable + "<td><span class=\"label label-success\">良性</span></td>";
-							}
 							var info = UA[i].info;
-							UATable = UATable + "<td>" + info.comment +
-								"</td><td>" + info.desc +
-								"</td><td>" + info.link +
-								"</td><td>" + info.type + "</td></tr>"
+							UATable = UATable + "<div class=\"row\"><div class=\"col-md-6\"><h6 class=\"text-center\">名称</h6><p class=\"text-center\">" + UA[i].name +	"</p></div><div class=\"col-md-6\"><h6 class=\"text-center\">备注</h6><p class=\"text-center\">" + info.comment + "</p></div></div>" +
+								"<div class=\"row\"><div class=\"col-md-6\"><h6 class=\"text-center\">描述</h6><p class=\"text-center\">" + info.desc +	"</p></div><div class=\"col-md-6\"><h6 class=\"text-center\">链接</h6><p class=\"text-center\">" + info.link + "</p></div></div>" +
+								"<div class=\"row\"><div class=\"col-md-6\"><h6 class=\"text-center\">第一次活动时间</h6><p class=\"text-center\">" + UA[i].stime + "</p></div><div class=\"col-md-6\"><h6 class=\"text-center\">最后一次活动时间</h6><p class=\"text-center\">" + UA[i].etime + "</p></div></div>";
+							if(UA[i].type==="1"){
+							    UATable = UATable + "<div class=\"row\"><div class=\"col-md-6\"><h6 class=\"text-center\">类型</h6><p class=\"text-center\"><span class=\"label label-danger\">恶意</span></p></div><div class=\"col-md-6\"><h6 class=\"text-center\">种类</h6><p class=\"text-center\">" + info.type + "</p></div></div>";
+							}else{
+							    UATable = UATable + "<div class=\"row\"><div class=\"col-md-6\"><h6 class=\"text-center\">类型</h6><p class=\"text-center\"><span class=\"label label-success\">良性</span></p></div><div class=\"col-md-6\"><h6 class=\"text-center\">种类</h6><p class=\"text-center\">" + info.type + "</p></div></div>";
+							}
+							if(i<UA.length-1){
+							    UATable = UATable + "<hr>"
+							}
 						}
 						UATable = "<p data-toggle=\"modal\" data-target=\"." + item.IP.replace(/\./g,"_") + "\">详细信息</p>" +
-							"<div class=\"modal fade " + item.IP.replace(/\./g,"_") + "\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myLargeModalLabel\" aria-hidden=\"true\" style=\"display: none;\">" +
+							"<div class=\"modal fade " + item.IP.replace(/\./g,"_") + "\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"gridSystemModalLabel\" aria-hidden=\"true\" style=\"display: none;\">" +
 							"<div class=\"modal-dialog modal-lg\">" +
 							"<div class=\"modal-content\">" +
 							"<div class=\"modal-header\">" +
 							"<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">×</button>" +
 							"<h5 class=\"modal-title\" id=\"myLargeModalLabel\">详细信息</h5>" +
-							"</div><div class=\"modal-body\"><div class=\"table-wrap\">" +
-							"<table id=\"footable_" + item.IP.replace(/\./g,"_") + "\" class=\"table\" data-filtering=\"true\"  data-show-toggle=\"false\">" +
-							"<thead><tr><th data-breakpoints=\"xs\">名称</th><th>第一次运行时间</th><th data-breakpoints=\"xs\">最后一次运行时间</th><th data-breakpoints=\"xs sm\">种类</th>" +
-							"<th data-breakpoints=\"all\" data-title=\"comment\">备注</th>" +
-							"<th data-breakpoints=\"all\" data-title=\"description\">描述</th>" +
-							"<th data-breakpoints=\"all\" data-title=\"link\">链接</th>" +
-							"<th data-breakpoints=\"all\" data-title=\"type\">类型</th></tr></thead><tbody>" +
-							UATable + "</tbody></table></div></div><div class=\"modal-footer\">" +
+							"</div><div class=\"modal-body\">" +
+							UATable + "</div><div class=\"modal-footer\">" +
 							"<button type=\"button\" class=\"btn btn-danger text-left\" data-dismiss=\"modal\">Close</button>" +
 							"</div></div></div></div>";
 						UATable = "<tr><td>" + item.IP +
@@ -224,9 +215,6 @@
 		<!-- Data table JavaScript -->
 		<script src="../vendors/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
 		<script src="dist/js/dataTables-data.js"></script>
-		<script src="../vendors/bower_components/moment/min/moment.min.js"></script>
-		<script src="../vendors/bower_components/FooTable/compiled/footable.min.js" type="text/javascript"></script>
-		<script src="dist/js/footable-data.js"></script>
 
 		<!-- Slimscroll JavaScript -->
 		<script src="dist/js/jquery.slimscroll.js"></script>
