@@ -6,7 +6,6 @@
     |-- fingerprint.pickle                      # pickled fingerprint database
     |-- dataset/                                # where all dataset go
     |   |-- YYYY-MM-DDTHH:MM:SS.US/             # dataset named after ISO timestamp
-    |   |   |-- flow.json                       # TCP flow index record
     |   |   |-- group.json                      # WebGraphic group record
     |   |   |-- filter.json                     # fingerprint filter report
     |   |   |-- stream/                         # where stream files go
@@ -120,7 +119,7 @@ def object_hook(obj):
     return obj
 
 
-def main(*, iface=None, mode=None, path=None, _file=None):
+def main(*, iface=None, mode=None, path=None, file=None):
     """Main interface for MAD."""
     # bind signals
     signal.signal(signal.SIGUSR1, make_worker)
@@ -142,9 +141,9 @@ def main(*, iface=None, mode=None, path=None, _file=None):
         global PATH
         PATH = path
 
-    if _file is not None:
+    if file is not None:
         global FILE
-        with open(_file, 'r') as file:
+        with open(file, 'r') as file:
             FILE = json.load(file, object_hook=object_hook)
 
     # start procedure
@@ -155,7 +154,6 @@ def retrain_cnn(*args):
     """Retrain the CNN model."""
     # if already under retrain do nothing
     if RETRAIN.value:   return
-    return
 
     # update retrain flag
     RETRAIN.value = True
@@ -248,7 +246,6 @@ def make_sniff(*, path):
     """Load data or sniff packets."""
     # just sniff when prediction
     if MODE == 3:
-        return '/home/ubuntu/httpdump/wanyong80.pcap000'
         return FILE[COUNT]
         # name = f'/usr/local/mad/pcap/{pathlib.Path(path).stem}.pcap'
         # sniffed = scapy.all.sniff(timeout=TIMEOUT, iface=IFACE)
@@ -368,7 +365,7 @@ def run_cnn(*, path, ppid, retrain=False):
             file.write(f'2 {dt.datetime.now().isoformat()}\n')
 
     # run CNN subprocess
-    # os.kill(os.getppid(), signal.SIGUSR1)
+    os.kill(os.getppid(), signal.SIGUSR1)
     for kind in {'Background_PC',}:
         cmd = [sys.executable, shlex.quote(os.path.join(ROOT, 'Training.py')),
                 path, '/usr/local/mad/model', MODE_DICT.get(mode), kind, str(ppid)]
