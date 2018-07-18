@@ -7,7 +7,7 @@ class ViruTotalThread(threading.Thread):
         self.que=queue
         self.que_result=queue_result
         self.counter=counter
-        print("线程启动")
+        #print("线程启动")
 
     def run(self):
         while not self.que.empty():
