@@ -465,8 +465,9 @@ def main(unused):
                 #             print(ua)
                 ipua = "UnknownUA"
                 temp = dict(UA="UnknownUA")
-                for key in group:
-                    for file in group[key]:
+                labels = group[T]
+                for key in lables[T]:
+                    for file in labels[key]:
                         if name in file["filename"]:
                             ipua = key
                             temp = file
