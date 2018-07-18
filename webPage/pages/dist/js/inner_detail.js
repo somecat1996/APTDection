@@ -1,7 +1,7 @@
 /**
  * Created by lenovo on 2018/7/18.
  */
-$("#results-display").load(function() {
+$("#results-display").ready(function() {
     $.getJSON ("/report/innerIP/index.json", function (data) {
         $.each(data, function (i, item) {
             $.getJSON(item, function (data) {
