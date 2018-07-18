@@ -407,8 +407,11 @@ def dpkt_next(reader):
         return None
 
 def packet_to_str(packet):
-    p = dpkt.ethernet.Ethernet(packet[1])
-    s = str(p.data.data.pack()[p.data.data.__hdr_len__:])
+    try:
+        p = dpkt.ethernet.Ethernet(packet[1])
+        s = str(p.data.data.pack()[p.data.data.__hdr_len__:])
+    except:
+        return "notvalid"  
     return s
     
 

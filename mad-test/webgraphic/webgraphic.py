@@ -107,8 +107,7 @@ class webgraphic:
         e=0
         while packet:
             e = packet[0]
-            p = dpkt.ethernet.Ethernet(packet[1])
-            s = str(p.data.data.pack()[p.data.data.__hdr_len__:])
+	    s = dpkt_next(self.source)
             '''
             try:
                 s = str(packet[Raw].load)
