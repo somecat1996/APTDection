@@ -3,6 +3,7 @@
 
 import collections
 import datetime as dt
+import ipaddress
 import json
 import os
 import pathlib
@@ -406,11 +407,12 @@ def main(unused):
         # files = [os.path.join(DataPath, x) for x in os.listdir(DataPath) if os.path.isfile(DataPath + x)]
         # index = dataset(*files, mode=2)
         with open(os.path.join(DataPath, 'filter.json'), 'r') as file:
-            index = json.load(file, object_hook=object_hook)
-        index[T] = ReadDictionary(DataPath, T)
-        print(index)
-        isMalicious = index["is_malicious"]
-        packets, names = ReadPredictData(index, T)
+            data_index = json.load(file, object_hook=object_hook)
+        data_index[T] = ReadDictionary(DataPath, T)
+        print(data_index)
+        isMalicious = data_index["is_malicious"]
+        isClean = data_index["is_clean"]
+        packets, names = ReadPredictData(data_index, T)
         predict_input_fn = tf.estimator.inputs.numpy_input_fn(
             x={"packet": packets},
             num_epochs=1,
@@ -419,97 +421,174 @@ def main(unused):
         predicted_classes = [p["classes"] for p in predictions]
         with open(os.path.join(DataPath, "group.json"), "r") as file:
             group = json.load(file, object_hook=object_hook)
-        Malicious = []
+        group_data = dict()
+        for ipua in group[T]:
+            for file in group[T][ipua]:
+                name = pathlib.Path(file['filename']).stem
+                group_data[name] = file
         # print("detected by fingerprint:")
+        Malicious = []
         for i in isMalicious:
             name = pathlib.Path(i).stem
-            ipua = "UnknownUA"
-            temp = dict(UA="UnknownUA")
-            for key in group[T]:
-                for file in group[T][key]:
-                    if name in file["filename"]:
-                        ipua = key
-                        temp = file
-                        break
+            # ipua = "UnknownUA"
+            # temp = dict(UA="UnknownUA")
+            # for key in group[T]:
+            #     for file in group[T][key]:
+            #         if name in file["filename"]:
+            #             ipua = key
+            #             temp = file
+            #             break
             # src, dst, tstamp = name.split("-")
             # srcIP, srcPort = src.split("_")
             # dstIP, dstPort = dst.split("_")
             listname = name.split("_")
-            srcIP = listname[0]
-            srcPort = listname[1]
-            dstIP = listname[2]
-            dstPort = listname[3]
+            temp_data = group_data[name]
+            temp_ip = ipaddress.ip_address(listname[0])
+            if temp_ip.is_private:
+                srcIP = temp_ip
+                srcPort = listname[1]
+                dstIP = listname[2]
+                dstPort = listname[3]
+            else:
+                srcIP = listname[2]
+                srcPort = listname[3]
+                dstIP = temp_ip
+                dstPort = listname[3]
             tstamp = listname[4]
-            Malicious.append(dict(temp, 
+            Malicious.append(dict(temp_data, 
                 srcIP=srcIP,
                 srcPort=srcPort,
                 dstIP=dstIP,
                 dstPort=dstPort,
                 time=dt.datetime.fromtimestamp(float(tstamp)).isoformat(),
                 name=name,
-                ipua=ipua,
-                info=useragents.get(temp["UA"],
+                ipua=temp_data["ipua"],
+                info=useragents.get(temp_data["UA"],
+                        dict(desc=None, type=None, comment=None, link=(None, None)))
+            ))
+        Clean = []
+        for i in isClean:
+            name = pathlib.Path(i).stem
+            # ipua = "UnknownUA"
+            # temp = dict(UA="UnknownUA")
+            # for key in group[T]:
+            #     for file in group[T][key]:
+            #         if name in file["filename"]:
+            #             ipua = key
+            #             temp = file
+            #             break
+            # src, dst, tstamp = name.split("-")
+            # srcIP, srcPort = src.split("_")
+            # dstIP, dstPort = dst.split("_")
+            listname = name.split("_")
+            temp_data = group_data[name]
+            temp_ip = ipaddress.ip_address(listname[0])
+            if temp_ip.is_private:
+                srcIP = temp_ip
+                srcPort = listname[1]
+                dstIP = listname[2]
+                dstPort = listname[3]
+            else:
+                srcIP = listname[2]
+                srcPort = listname[3]
+                dstIP = temp_ip
+                dstPort = listname[3]
+            tstamp = listname[4]
+            Malicious.append(dict(temp_data, 
+                srcIP=srcIP,
+                srcPort=srcPort,
+                dstIP=dstIP,
+                dstPort=dstPort,
+                time=dt.datetime.fromtimestamp(float(tstamp)).isoformat(),
+                name=name,
+                ipua=temp_data["ipua"],
+                info=useragents.get(temp_data["UA"],
                         dict(desc=None, type=None, comment=None, link=(None, None)))
             ))
         # print("detected by CNN: ")
+        group_dict = {T: []}
         for i, kind in enumerate(predicted_classes):
+            name = pathlib.Path(names[i]).stem
+            listname = name.split("_")
+            temp_data = group_data[name]
+            temp_ip = ipaddress.ip_address(listname[0])
+            if temp_ip.is_private:
+                srcIP = temp_ip
+                srcPort = listname[1]
+                dstIP = listname[2]
+                dstPort = listname[3]
+            else:
+                srcIP = listname[2]
+                srcPort = listname[3]
+                dstIP = temp_ip
+                dstPort = listname[3]
+            tstamp = listname[4]
+            temp_dict = dict(temp_data,
+                is_malicious=kind,
+                srcIP=srcIP,
+                srcPort=srcPort,
+                dstIP=dstIP,
+                dstPort=dstPort,
+                time=dt.datetime.fromtimestamp(float(tstamp)).isoformat(),
+                name=name,
+                ipua=temp_data["ipua"],
+                info=useragents.get(temp_data["UA"],
+                        dict(desc=None, type=None, comment=None, link=(None, None)))
+            )
             if kind == 1:
-                paths = pathlib.Path(names[i])
+                Malicious.append(temp_dict)
+                group_dict[T].append(dict(i,
+                    is_malicious=1,
+                    type=temp_data["type"],
+                    filename=name + ".pcap",
+                ))
+            else:
+                Clean.append(temp_dict)
+                # paths = pathlib.Path(names[i])
                 # group = paths.parts[-4]
-                name = paths.stem
+                # name = paths.stem
                 # groupPath = os.path.join(path, "stream/"+group)
                 # stream = json.load(open(os.path.join(groupPath, "stream.json"), 'r'))[T]
                 # for ua in stream:
                 #     for file in stream[ua]:
                 #         if name in file["filename"]:
                 #             print(ua)
-                ipua = "UnknownUA"
-                temp = dict(UA="UnknownUA")
-                for key in group[T]:
-                    for file in group[T][key]:
-                        if name in file["filename"]:
-                            ipua = key
-                            temp = file
-                            break
+                # ipua = "UnknownUA"
+                # temp = dict(UA="UnknownUA")
+                # for key in group[T]:
+                #     for file in group[T][key]:
+                #         if name in file["filename"]:
+                #             ipua = key
+                #             temp = file
+                #             break
                 # src, dst, tstamp = name.split("-")
                 # srcIP, srcPort = src.split("_")
                 # dstIP, dstPort = dst.split("_")
-                listname = name.split("_")
-                srcIP = listname[0]
-                srcPort = listname[1]
-                dstIP = listname[2]
-                dstPort = listname[3]
-                tstamp = listname[4]
-                Malicious.append(dict(temp,
-                    srcIP=srcIP,
-                    srcPort=srcPort,
-                    dstIP=dstIP,
-                    dstPort=dstPort,
-                    time=dt.datetime.fromtimestamp(float(tstamp)).isoformat(),
-                    name=name,
-                    ipua=ipua,
-                    info=useragents.get(temp["UA"],
-                            dict(desc=None, type=None, comment=None, link=(None, None)))
-                ))
+                # listname = name.split("_")
+                # srcIP = listname[0]
+                # srcPort = listname[1]
+                # dstIP = listname[2]
+                # dstPort = listname[3]
+                # tstamp = listname[4]
         # print("checking...")
-        group_dict = {T: []}
-        for i in Malicious:
-            # paths = pathlib.Path(i)
-            # paths = os.path.splitext(i)[0].split("/")
-            # group = paths.parts[-4]
-            # name = paths.stem
-            # if group not in group_dict:
-            #     group_dict[group] = {}
-            #     group_dict[group]["Background_PC"] = []
-            # tmp_dict = {}
-            # tmp_dict["is_malicious"] = 1
-            # tmp_dict["type"] = 0
-            # tmp_dict["filename"] = i["name"] + ".pcap"
-            group_dict[T].append(dict(i,
-                is_malicious=1,
-                type=0,
-                filename=i["name"] + ".pcap",
-            ))
+        # group_dict = {T: []}
+        # for i in Malicious:
+        #     # paths = pathlib.Path(i)
+        #     # paths = os.path.splitext(i)[0].split("/")
+        #     # group = paths.parts[-4]
+        #     # name = paths.stem
+        #     # if group not in group_dict:
+        #     #     group_dict[group] = {}
+        #     #     group_dict[group]["Background_PC"] = []
+        #     # tmp_dict = {}
+        #     # tmp_dict["is_malicious"] = 1
+        #     # tmp_dict["type"] = 0
+        #     # tmp_dict["filename"] = i["name"] + ".pcap"
+        #     group_dict[T].append(dict(i,
+        #         is_malicious=1,
+        #         type=0,
+        #         filename=i["name"] + ".pcap",
+        #     ))
         # val = []
         # for i in group_dict:
         #     streamPath = os.path.join(path, "stream/"+i)
@@ -520,25 +599,34 @@ def main(unused):
         #     val += StreamManager.validate(group_dict[i], root=streamPath)
         #     for j in val:
         #         shutil.copy(os.path.join(datasetPath, "Background_PC/0/"+j[:-4]+"dat"), retrainPath)
+        stem = pathlib.Path(DataPath).stem
         val = StreamManager(NotImplemented, DataPath).validate(group_dict)
         loss = len(val)/sum(predicted_classes)
-        print(val)
-        print(loss)
+        # print(val)
+        loss_record = list()
+        if os.path.isfile("/usr/local/mad/loss.json"):
+            with open("/usr/local/mad/loss.json", "r") as file:
+                loss_record = json.load(file, object_hook=object_hook)
+        print("loss:", loss)
+        loss_record.append(dict(
+            time=stem,
+            loss=loss,
+        ))
+        with open("/usr/local/mad/loss.json", "w") as file:
+            json.dump(loss_record, file, cls=JSONEncoder)
         if loss > 0.1:
             print('Need retrain...')
             os.kill(ppid, signal.SIGUSR2)
         end = time.time()
         print(end)
         print('Running time: %s Seconds' % (end - start))
-        index = {T: collections.defaultdict(list)}
+        retrain_index = {T: collections.defaultdict(list)}
         if os.path.isfile("/usr/local/mad/retrain/stream/stream.json"):
             with open("/usr/local/mad/retrain/stream/stream.json", 'r') as file:
-                index.update(json.load(file, object_hook=object_hook))
-        report = []
+                retrain_index.update(json.load(file, object_hook=object_hook))
         for item in Malicious:
             flag = int(item["name"] not in val)
-            if flag:    report.append(item)
-            stem = pathlib.Path(DataPath).stem
+            item["is_malicious"] = flag
             name = stem+"_"+item["name"]
             # print('src:', os.path.join(DataPath, T, "0", item["name"]+".dat"))
             # print('dst:', os.path.join("/usr/local/mad/retrain/dataset", T, str(flag), name+".dat"))
@@ -548,23 +636,22 @@ def main(unused):
             # print('dst:', os.path.join("/usr/local/mad/retrain/stream", T, str(flag), name+".pcap"))
             shutil.copy(os.path.join(DataPath, "stream", item["name"]+".pcap"),
                         os.path.join("/usr/local/mad/retrain/stream", T, str(flag), name+".pcap"))
-            index[T][item["ipua"]].append(dict(item,
-                malicious=flag,
-                filename=os.path.join("/usr/local/mad/retrain/stream", T, str(flag), name),
-            ))
+            retrain_index[T][item["ipua"]].append(item)
         with open("/usr/local/mad/retrain/stream/stream.json", 'w') as file:
-            json.dump(index, file, cls=JSONEncoder)
-        stem = pathlib.Path(DataPath).stem
+            json.dump(retrain_index, file, cls=JSONEncoder)
+        report = list()
+        report.extend(Clean)
+        report.extend(Malicious)
         with open(f"/usr/local/mad/report/{T}/{stem}.json", 'w') as file:
             json.dump(report, file, cls=JSONEncoder)
+        report_index = list(map(lambda name: f"/report/{T}/{name}",
+                        filter(lambda name: name != "index.json",
+                            os.listdir(f"/usr/local/mad/report/{T}"))))
         with open(f"/usr/local/mad/report/{T}/index.json", 'w') as file:
             # files = [f"/report/{T}/{name}"
             #             for name in os.listdir(f"/usr/local/mad/report/{T}")
             #             if name != "index.json"]
-            files = list(map(lambda name: f"/report/{T}/{name}",
-                        filter(lambda name: name != "index.json",
-                            os.listdir(f"/usr/local/mad/report/{T}"))))
-            json.dump(files, file, cls=JSONEncoder)
+            json.dump(report_index, file, cls=JSONEncoder)
 
     # Used for evaluating our system
     elif mode == "evaluate":

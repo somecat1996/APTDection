@@ -31,7 +31,7 @@ class fingerprintManager:
         Gen=FingerprintGenerator(stream_path)
         fingerprints=Gen.genrate(groups)
         print("有",len(fingerprints),"个指纹")
-        result={"is_malicious":[],"new_app":[]}
+        result={"is_malicious":[],"new_app":[],"is_clean":[]}
         for app in fingerprints:
             flag=False
             for old_app in self.fingerprints:
@@ -43,6 +43,8 @@ class fingerprintManager:
                     flag=True
                     if self.fingerprints[old_app].is_malicious:
                         result["is_malicious"].append(app)
+                    else:
+                        result["is_clean"].append(app)
                     break
             if not flag:
                 result["new_app"].append(app)

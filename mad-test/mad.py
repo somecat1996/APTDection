@@ -154,6 +154,7 @@ def retrain_cnn(*args):
     """Retrain the CNN model."""
     # if already under retrain do nothing
     if RETRAIN.value:   return
+    return
 
     # update retrain flag
     RETRAIN.value = True
@@ -249,6 +250,7 @@ def make_sniff(*, path):
     """Load data or sniff packets."""
     # just sniff when prediction
     if MODE == 3:
+        return '/home/ubuntu/httpdump/wanyong80.pcap000'
         if FILE is NotImplemented:
             name = f'/usr/local/mad/pcap/{pathlib.Path(path).stem}.pcap'
             sniffed = scapy.all.sniff(timeout=TIMEOUT, iface=IFACE)
@@ -369,7 +371,7 @@ def run_cnn(*, path, ppid, retrain=False):
             file.write(f'2 {dt.datetime.now().isoformat()}\n')
 
     # run CNN subprocess
-    os.kill(os.getppid(), signal.SIGUSR1)
+    # os.kill(os.getppid(), signal.SIGUSR1)
     for kind in {'Background_PC',}:
         cmd = [sys.executable, shlex.quote(os.path.join(ROOT, 'Training.py')),
                 path, '/usr/local/mad/model', MODE_DICT.get(mode), kind, str(ppid)]
@@ -384,7 +386,7 @@ def run_cnn(*, path, ppid, retrain=False):
         # update fingerprints
         fp = fingerprintManager()
         for kind in FLOW_DICT.keys():
-            fp.GenerateAndUpdate(sniffed, record[kind], type=2)
+            fp.GenerateAndUpdate(NotImplemented, record[kind], type=2)
 
         # write log for stop retrain
         with open('/usr/local/mad/mad.log', 'at', 1) as file:
