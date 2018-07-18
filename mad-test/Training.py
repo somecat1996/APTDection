@@ -429,83 +429,85 @@ def main(unused):
                 group_data[name] = file
         # print("detected by fingerprint:")
         Malicious = []
-        for i in isMalicious:
-            name = pathlib.Path(i).stem
-            # ipua = "UnknownUA"
-            # temp = dict(UA="UnknownUA")
-            # for key in group[T]:
-            #     for file in group[T][key]:
-            #         if name in file["filename"]:
-            #             ipua = key
-            #             temp = file
-            #             break
-            # src, dst, tstamp = name.split("-")
-            # srcIP, srcPort = src.split("_")
-            # dstIP, dstPort = dst.split("_")
-            listname = name.split("_")
-            temp_data = group_data[name]
-            temp_ip = ipaddress.ip_address(listname[0])
-            if temp_ip.is_private:
-                srcIP = temp_ip
-                srcPort = listname[1]
-                dstIP = listname[2]
-                dstPort = listname[3]
-            else:
-                srcIP = listname[2]
-                srcPort = listname[3]
-                dstIP = temp_ip
-                dstPort = listname[3]
-            tstamp = listname[4]
-            Malicious.append(dict(temp_data, 
-                srcIP=srcIP,
-                srcPort=srcPort,
-                dstIP=dstIP,
-                dstPort=dstPort,
-                time=dt.datetime.fromtimestamp(float(tstamp)).isoformat(),
-                name=name,
-                ipua=temp_data["ipua"],
-                info=useragents.get(temp_data["UA"],
-                        dict(desc=None, type=None, comment=None, link=(None, None)))
-            ))
+        for ipua in isMalicious:
+            for filedict in group[ipua]:
+                filename = filedict["filename"]
+                name = pathlib.Path(filename).stem
+                # ipua = "UnknownUA"
+                # temp = dict(UA="UnknownUA")
+                # for key in group[T]:
+                #     for file in group[T][key]:
+                #         if name in file["filename"]:
+                #             ipua = key
+                #             temp = file
+                #             break
+                # src, dst, tstamp = name.split("-")
+                # srcIP, srcPort = src.split("_")
+                # dstIP, dstPort = dst.split("_")
+                listname = name.split("_")
+                temp_ip = ipaddress.ip_address(listname[0])
+                if temp_ip.is_private:
+                    srcIP = temp_ip
+                    srcPort = listname[1]
+                    dstIP = listname[2]
+                    dstPort = listname[3]
+                else:
+                    srcIP = listname[2]
+                    srcPort = listname[3]
+                    dstIP = temp_ip
+                    dstPort = listname[3]
+                tstamp = listname[4]
+                Malicious.append(dict(filedict, 
+                    srcIP=srcIP,
+                    srcPort=srcPort,
+                    dstIP=dstIP,
+                    dstPort=dstPort,
+                    time=dt.datetime.fromtimestamp(float(tstamp)).isoformat(),
+                    name=name,
+                    ipua=filedict["ipua"],
+                    info=useragents.get(filedict["UA"],
+                            dict(desc=None, type=None, comment=None, link=(None, None)))
+                ))
         Clean = []
-        for i in isClean:
-            name = pathlib.Path(i).stem
-            # ipua = "UnknownUA"
-            # temp = dict(UA="UnknownUA")
-            # for key in group[T]:
-            #     for file in group[T][key]:
-            #         if name in file["filename"]:
-            #             ipua = key
-            #             temp = file
-            #             break
-            # src, dst, tstamp = name.split("-")
-            # srcIP, srcPort = src.split("_")
-            # dstIP, dstPort = dst.split("_")
-            listname = name.split("_")
-            temp_data = group_data[name]
-            temp_ip = ipaddress.ip_address(listname[0])
-            if temp_ip.is_private:
-                srcIP = temp_ip
-                srcPort = listname[1]
-                dstIP = listname[2]
-                dstPort = listname[3]
-            else:
-                srcIP = listname[2]
-                srcPort = listname[3]
-                dstIP = temp_ip
-                dstPort = listname[3]
-            tstamp = listname[4]
-            Malicious.append(dict(temp_data, 
-                srcIP=srcIP,
-                srcPort=srcPort,
-                dstIP=dstIP,
-                dstPort=dstPort,
-                time=dt.datetime.fromtimestamp(float(tstamp)).isoformat(),
-                name=name,
-                ipua=temp_data["ipua"],
-                info=useragents.get(temp_data["UA"],
-                        dict(desc=None, type=None, comment=None, link=(None, None)))
-            ))
+        for ipua in isClean:
+            for filedict in group[ipua]:
+                filename = filedict["filename"]
+                name = pathlib.Path(filename).stem
+                # ipua = "UnknownUA"
+                # temp = dict(UA="UnknownUA")
+                # for key in group[T]:
+                #     for file in group[T][key]:
+                #         if name in file["filename"]:
+                #             ipua = key
+                #             temp = file
+                #             break
+                # src, dst, tstamp = name.split("-")
+                # srcIP, srcPort = src.split("_")
+                # dstIP, dstPort = dst.split("_")
+                listname = name.split("_")
+                temp_ip = ipaddress.ip_address(listname[0])
+                if temp_ip.is_private:
+                    srcIP = temp_ip
+                    srcPort = listname[1]
+                    dstIP = listname[2]
+                    dstPort = listname[3]
+                else:
+                    srcIP = listname[2]
+                    srcPort = listname[3]
+                    dstIP = temp_ip
+                    dstPort = listname[3]
+                tstamp = listname[4]
+                Clean.append(dict(filedict, 
+                    srcIP=srcIP,
+                    srcPort=srcPort,
+                    dstIP=dstIP,
+                    dstPort=dstPort,
+                    time=dt.datetime.fromtimestamp(float(tstamp)).isoformat(),
+                    name=name,
+                    ipua=filedict["ipua"],
+                    info=useragents.get(filedict["UA"],
+                            dict(desc=None, type=None, comment=None, link=(None, None)))
+                ))
         # print("detected by CNN: ")
         group_dict = {T: []}
         for i, kind in enumerate(predicted_classes):
