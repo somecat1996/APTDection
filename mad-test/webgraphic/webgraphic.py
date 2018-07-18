@@ -623,6 +623,8 @@ class webgraphic:
         for m in words2:
             if m in stop_words:
                 words2.remove(m)
+        if len(words2)==0 or len(words1)==0:
+            return False
         if words1[-1]==words2[-1]:
                 return True
         return False
