@@ -447,15 +447,15 @@ def main(unused):
                 listname = name.split("_")
                 temp_ip = ipaddress.ip_address(listname[0])
                 if temp_ip.is_private:
-                    srcIP = temp_ip
+                    srcIP = listname[0]
                     srcPort = listname[1]
                     dstIP = listname[2]
                     dstPort = listname[3]
                 else:
                     srcIP = listname[2]
                     srcPort = listname[3]
-                    dstIP = temp_ip
-                    dstPort = listname[3]
+                    dstIP = listname[0]
+                    dstPort = listname[1]
                 tstamp = listname[4]
                 Malicious.append(dict(filedict, 
                     srcIP=srcIP,
@@ -487,15 +487,15 @@ def main(unused):
                 listname = name.split("_")
                 temp_ip = ipaddress.ip_address(listname[0])
                 if temp_ip.is_private:
-                    srcIP = temp_ip
+                    srcIP = listname[0]
                     srcPort = listname[1]
                     dstIP = listname[2]
                     dstPort = listname[3]
                 else:
                     srcIP = listname[2]
                     srcPort = listname[3]
-                    dstIP = temp_ip
-                    dstPort = listname[3]
+                    dstIP = listname[0]
+                    dstPort = listname[1]
                 tstamp = listname[4]
                 Clean.append(dict(filedict, 
                     srcIP=srcIP,
@@ -516,15 +516,15 @@ def main(unused):
             temp_data = group_data[name]
             temp_ip = ipaddress.ip_address(listname[0])
             if temp_ip.is_private:
-                srcIP = temp_ip
+                srcIP = listname[0]
                 srcPort = listname[1]
                 dstIP = listname[2]
                 dstPort = listname[3]
             else:
                 srcIP = listname[2]
                 srcPort = listname[3]
-                dstIP = temp_ip
-                dstPort = listname[3]
+                dstIP = listname[0]
+                dstPort = listname[1]
             tstamp = listname[4]
             temp_dict = dict(temp_data[0],
                 is_malicious=kind,
