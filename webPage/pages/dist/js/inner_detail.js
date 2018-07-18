@@ -19,7 +19,7 @@ $("#results-display").ready(function() {
                             UATable = UATable + "<div class=\"row\"><div class=\"col-md-6\"><h6 class=\"text-center\">类型</h6><p class=\"text-center\"><span class=\"label label-success\">良性</span></p></div><div class=\"col-md-6\"><h6 class=\"text-center\">种类</h6><p class=\"text-center\">" + info.type + "</p></div></div>";
                         }
                         if(i<UA.length-1){
-                            UATable = UATable + "<hr>"
+                            UATable = UATable + "<hr>";
                         }
                     }
                     UATable = "<p data-toggle=\"modal\" data-target=\"." + item.IP.replace(/\./g,"_") + "\">详细信息</p>" +
@@ -43,6 +43,7 @@ $("#results-display").ready(function() {
         });
     });
 });
-$(document).ready(function() {
+window.onload(function() {
+// $(document).ready(function() {
     $('#datable_1').DataTable();
 });
