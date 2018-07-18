@@ -43,7 +43,7 @@ $("#results-display").ready(function() {
         });
     });
 });
-window.onload(function() {
+window.onload = function() {$('#datable_1').DataTable();}
 // $(document).ready(function() {
-    $('#datable_1').DataTable();
-});
+//     $('#datable_1').DataTable();
+// });
