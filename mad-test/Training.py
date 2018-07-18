@@ -530,8 +530,8 @@ def main(unused):
         print(end)
         print('Running time: %s Seconds' % (end - start))
         index = {T: collections.defaultdict(list)}
-        if os.path.isfile("/usr/local/mad/retrain/stream/index.json"):
-            with open("/usr/local/mad/retrain/stream/index.json", 'r') as file:
+        if os.path.isfile("/usr/local/mad/retrain/stream/stream.json"):
+            with open("/usr/local/mad/retrain/stream/stream.json", 'r') as file:
                 index.update(json.load(file, object_hook=object_hook))
         report = []
         for item in Malicious:
