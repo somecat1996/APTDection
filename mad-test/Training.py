@@ -426,7 +426,7 @@ def main(unused):
         for ipua in group[T]:
             for file in group[T][ipua]:
                 name = pathlib.Path(file['filename']).stem
-                group_data[name] = file
+                group_data[name] = [file, ipua]
         # print("detected by fingerprint:")
         Malicious = []
         for ipua in isMalicious:
@@ -470,7 +470,7 @@ def main(unused):
                 ))
         Clean = []
         for ipua in isClean:
-            for filedict in group[ipua]:
+            for filedict in group[T][ipua]:
                 filename = filedict["filename"]
                 name = pathlib.Path(filename).stem
                 # ipua = "UnknownUA"
@@ -504,7 +504,7 @@ def main(unused):
                     dstPort=dstPort,
                     time=dt.datetime.fromtimestamp(float(tstamp)).isoformat(),
                     name=name,
-                    ipua=filedict["ipua"],
+                    ipua=ipua,
                     info=useragents.get(filedict["UA"],
                             dict(desc=None, type=None, comment=None, link=(None, None)))
                 ))
@@ -526,7 +526,7 @@ def main(unused):
                 dstIP = temp_ip
                 dstPort = listname[3]
             tstamp = listname[4]
-            temp_dict = dict(temp_data,
+            temp_dict = dict(temp_data[0],
                 is_malicious=kind,
                 srcIP=srcIP,
                 srcPort=srcPort,
@@ -534,15 +534,15 @@ def main(unused):
                 dstPort=dstPort,
                 time=dt.datetime.fromtimestamp(float(tstamp)).isoformat(),
                 name=name,
-                ipua=temp_data["ipua"],
-                info=useragents.get(temp_data["UA"],
+                ipua=temp_data[1],
+                info=useragents.get(temp_data[0]["UA"],
                         dict(desc=None, type=None, comment=None, link=(None, None)))
             )
             if kind == 1:
                 Malicious.append(temp_dict)
-                group_dict[T].append(dict(i,
+                group_dict[T].append(dict(
                     is_malicious=1,
-                    type=temp_data["type"],
+                    type=temp_data[0]["type"],
                     filename=name + ".pcap",
                 ))
             else:
