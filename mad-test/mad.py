@@ -171,7 +171,10 @@ def make_worker(*args):
     # start child in prediction
     global MODE, COUNT
     if MODE == 3:
-        if FILE is not NotImplemented:  COUNT += 1
+        if FILE is not NotImplemented:
+            COUNT += 1
+            if COUNT == len(FILE):
+                return
         return multiprocessing.Process(target=start_worker).start()
 
     # do initialisation or migration first
