@@ -221,8 +221,7 @@ class StreamManager:
                             print("扫描命中！！！！")
 
 
-    @classmethod
-    def validate(cls,dict):
+    def validate(self,dict):
         targets=[]
         for key in dict:
             for x in dict[key]:
@@ -234,7 +233,7 @@ class StreamManager:
         malicious_num=0
         for i in range(len(targets)):
             filename=targets[i]["filename"]
-            url=cls.GetUrl(cls,filename)
+            url=self.GetUrl(filename)
             if url=="none":
                 malicious_num+=1
             else:
