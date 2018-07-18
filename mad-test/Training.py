@@ -413,6 +413,7 @@ def main(unused):
         isMalicious = data_index["is_malicious"]
         isClean = data_index["is_clean"]
         packets, names = ReadPredictData(data_index, T)
+        print(names)
         predict_input_fn = tf.estimator.inputs.numpy_input_fn(
             x={"packet": packets},
             num_epochs=1,

@@ -339,6 +339,7 @@ def make_dataset(labels, fp, *, path):
 
         # enumerate files
         for ipua in group_keys:
+            print(ipua, group[ipua])
             for file in group[ipua]:
                 label = pathlib.Path(file['filename']).stem
                 ftype = int(file['is_malicious'])
