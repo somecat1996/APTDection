@@ -78,7 +78,7 @@ COUNT = -1
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
                     # file root path
-MODE = 3            # 1-initialisation; 2-migeration; 3-prediction; 4-adaptation
+MODE = 3            # 1-initialisation; 2-migration; 3-prediction; 4-adaptation
 PATH = '/'          # path of original data
 IFACE = 'eth0'      # sniff interface
 TIMEOUT = 1000      # sniff timeout
@@ -97,7 +97,7 @@ FLOW_DICT = {
 
 MODE_DICT = {
     1 : 'train',    # initialisation
-    2 : 'retrain',  # migeration
+    2 : 'retrain',  # migration
     3 : 'predict',  # prediction
     4 : 'retrain',  # apdatation
 }
