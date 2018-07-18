@@ -107,7 +107,7 @@ class webgraphic:
         e=0
         while packet:
             e = packet[0]
-	    s = packet_to_str(packet)
+            s = packet_to_str(packet)
             '''
             try:
                 s = str(packet[Raw].load)
