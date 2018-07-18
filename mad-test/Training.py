@@ -520,7 +520,7 @@ def main(unused):
         #     val += StreamManager.validate(group_dict[i], root=streamPath)
         #     for j in val:
         #         shutil.copy(os.path.join(datasetPath, "Background_PC/0/"+j[:-4]+"dat"), retrainPath)
-        val = StreamManager(NotImplemented, DataPath).validate(group_dict[T])
+        val = StreamManager(NotImplemented, DataPath).validate(group_dict)
         loss = len(val)/sum(predicted_classes)
         # print(val)
         # print(loss)
