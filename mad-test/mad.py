@@ -171,7 +171,7 @@ def make_worker(*args):
     # start child in prediction
     global MODE, COUNT
     if MODE == 3:
-        if COUNT is not NotImplemented: COUNT += 1
+        if FILE is not NotImplemented:  COUNT += 1
         return multiprocessing.Process(target=start_worker).start()
 
     # do initialisation or migration first
@@ -246,15 +246,16 @@ def make_sniff(*, path):
     """Load data or sniff packets."""
     # just sniff when prediction
     if MODE == 3:
+        if FILE is NotImplemented:
+            name = f'/usr/local/mad/pcap/{pathlib.Path(path).stem}.pcap'
+            sniffed = scapy.all.sniff(timeout=TIMEOUT, iface=IFACE)
+            scapy.all.wrpcap(name, sniffed)
+            return name
+        print(f"Now it's time for No.{COUNT} {FILE[COUNT]}")
         return FILE[COUNT]
-        # name = f'/usr/local/mad/pcap/{pathlib.Path(path).stem}.pcap'
-        # sniffed = scapy.all.sniff(timeout=TIMEOUT, iface=IFACE)
-        # scapy.all.wrpcap(name, sniffed)
-        # return name
 
 
     # extract file, or ...
-    # PATH = '../../PyPCAPKit/sample/http.pcap'
     if pathlib.Path(PATH).is_file():
         return PATH
 
