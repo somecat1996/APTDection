@@ -248,7 +248,7 @@ def make_sniff(*, path):
     """Load data or sniff packets."""
     # just sniff when prediction
     if MODE == 3:
-        return '/home/ubuntu/httpdump/wanyong80.pcap024'
+        return '/home/ubuntu/httpdump/wanyong80.pcap000'
         return FILE[COUNT]
         # name = f'/usr/local/mad/pcap/{pathlib.Path(path).stem}.pcap'
         # sniffed = scapy.all.sniff(timeout=TIMEOUT, iface=IFACE)
@@ -364,6 +364,7 @@ def run_cnn(*, path, ppid, retrain=False):
             file.write(f'2 {dt.datetime.now().isoformat()}\n')
 
     # run CNN subprocess
+    # os.kill(os.getppid(), signal.SIGUSR1)
     for kind in {'Background_PC',}:
         cmd = [sys.executable, shlex.quote(os.path.join(ROOT, 'Training.py')),
                 path, '/usr/local/mad/model', MODE_DICT.get(mode), kind, str(ppid)]
