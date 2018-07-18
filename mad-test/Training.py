@@ -538,11 +538,15 @@ def main(unused):
             flag = int(item["name"] not in val)
             if flag:    report.append(item)
             stem = pathlib.Path(DataPath).stem
-            name = stem+"Z/"+item["name"]+".pcap"
+            name = stem+"_"+item["name"]
+            print('src:', os.path.join(DataPath, T, "0", item["name"]+".dat"))
+            print('dst:', os.path.join("/usr/local/mad/retrain/dataset", T, str(flag), name+".dat"))
             shutil.copy(os.path.join(DataPath, T, "0", item["name"]+".dat"),
-                        os.path.join("/usr/local/mad/retrain/dataset", T, str(flag), name))
+                        os.path.join("/usr/local/mad/retrain/dataset", T, str(flag), name+".dat"))
+            print('src:', os.path.join(DataPath, "stream", item["name"]+".pcap"))
+            print('dst:', os.path.join("/usr/local/mad/retrain/stream", T, str(flag), name+".pcap"))
             shutil.copy(os.path.join(DataPath, "stream", item["name"]+".pcap"),
-                        os.path.join("/usr/local/mad/retrain/stream", T, str(flag), name))
+                        os.path.join("/usr/local/mad/retrain/stream", T, str(flag), name+".pcap"))
             index[T][item["ipua"]].append(dict(item,
                 malicious=flag,
                 filename=os.path.join("/usr/local/mad/retrain/stream", T, str(flag), name),
