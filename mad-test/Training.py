@@ -425,9 +425,9 @@ def main(unused):
             name = pathlib.Path(i).stem
             ipua = "UnknownUA"
             temp = dict(UA="UnknownUA")
-            for key in group:
-                for file in group[key]:
-                    if file["label"] == name:
+            for key in group[T]:
+                for file in group[T][key]:
+                    if name in file["filename"]:
                         ipua = key
                         temp = file
                         break
@@ -465,9 +465,8 @@ def main(unused):
                 #             print(ua)
                 ipua = "UnknownUA"
                 temp = dict(UA="UnknownUA")
-                labels = group[T]
-                for key in lables[T]:
-                    for file in labels[key]:
+                for key in group[T]:
+                    for file in group[T][key]:
                         if name in file["filename"]:
                             ipua = key
                             temp = file
