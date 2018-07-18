@@ -317,6 +317,10 @@ def make_dataset(labels, fp, *, path):
         pathlib.Path(f'{path}/{kind}/0').mkdir(parents=True, exist_ok=True)  # safe
         pathlib.Path(f'{path}/{kind}/1').mkdir(parents=True, exist_ok=True)  # malicious
         pathlib.Path(f'/usr/local/mad/report/{kind}').mkdir(parents=True, exist_ok=True)
+        pathlib.Path(f'/usr/local/mad/retrain/stream/{kind}/0').mkdir(parents=True, exist_ok=True)
+        pathlib.Path(f'/usr/local/mad/retrain/stream/{kind}/1').mkdir(parents=True, exist_ok=True)
+        pathlib.Path(f'/usr/local/mad/retrain/dataset/{kind}/0').mkdir(parents=True, exist_ok=True)
+        pathlib.Path(f'/usr/local/mad/retrain/dataset/{kind}/1').mkdir(parents=True, exist_ok=True)
 
         # identify figerprints
         group_keys = group.keys()

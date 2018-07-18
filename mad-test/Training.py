@@ -520,8 +520,7 @@ def main(unused):
         #     val += StreamManager.validate(group_dict[i], root=streamPath)
         #     for j in val:
         #         shutil.copy(os.path.join(datasetPath, "Background_PC/0/"+j[:-4]+"dat"), retrainPath)
-#        val = StreamManager(NotImplemented, DataPath).validate(group_dict)
-        val = []
+        val = []#StreamManager(NotImplemented, DataPath).validate(group_dict)
         loss = len(val)/sum(predicted_classes)
         # print(val)
         # print(loss)
@@ -540,12 +539,12 @@ def main(unused):
             if flag:    report.append(item)
             stem = pathlib.Path(DataPath).stem
             name = stem+"_"+item["name"]
-            print('src:', os.path.join(DataPath, T, "0", item["name"]+".dat"))
-            print('dst:', os.path.join("/usr/local/mad/retrain/dataset", T, str(flag), name+".dat"))
+            # print('src:', os.path.join(DataPath, T, "0", item["name"]+".dat"))
+            # print('dst:', os.path.join("/usr/local/mad/retrain/dataset", T, str(flag), name+".dat"))
             shutil.copy(os.path.join(DataPath, T, "0", item["name"]+".dat"),
                         os.path.join("/usr/local/mad/retrain/dataset", T, str(flag), name+".dat"))
-            print('src:', os.path.join(DataPath, "stream", item["name"]+".pcap"))
-            print('dst:', os.path.join("/usr/local/mad/retrain/stream", T, str(flag), name+".pcap"))
+            # print('src:', os.path.join(DataPath, "stream", item["name"]+".pcap"))
+            # print('dst:', os.path.join("/usr/local/mad/retrain/stream", T, str(flag), name+".pcap"))
             shutil.copy(os.path.join(DataPath, "stream", item["name"]+".pcap"),
                         os.path.join("/usr/local/mad/retrain/stream", T, str(flag), name+".pcap"))
             index[T][item["ipua"]].append(dict(item,
