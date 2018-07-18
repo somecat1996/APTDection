@@ -3,24 +3,53 @@
 <head>
     <meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-	<title>MAD|通信服务器信息</title>
+	<title>MAD|UA详细信息</title>
 
 	<!-- Favicon -->
 	<link rel="shortcut icon" href="../img/favicon.png">
-	<link rel="icon" href="../img/favicon.png" type="image/x-icon">>
+	<link rel="icon" href="../img/favicon.png" type="image/x-icon">
 
 	<!-- Data table CSS -->
 	<link href="../vendors/bower_components/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
 
+	<!-- Toast CSS -->
+	<link href="../vendors/bower_components/jquery-toast-plugin/dist/jquery.toast.min.css" rel="stylesheet" type="text/css">
+
+	<!-- Morris Charts CSS -->
+    <link href="../vendors/bower_components/morris.js/morris.css" rel="stylesheet" type="text/css"/>
+
 	<!-- vector map CSS -->
 	<link href="../vendors/vectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet" type="text/css"/>
+
+	<!-- Footable CSS -->
+	<link href="../vendors/bower_components/FooTable/compiled/footable.bootstrap.min.css" rel="stylesheet" type="text/css"/>
 
 	<!-- Custom CSS -->
 	<link href="dist/css/style.css" rel="stylesheet" type="text/css">
 
     <!-- jQuery -->
     <script src="../vendors/bower_components/jquery/dist/jquery.min.js"></script>
-	<script src="dist/js/outer_detail.js"></script>
+	<script type="text/javascript">
+		$.getJSON ("/report/Background_PC/index.json", function (data) {
+		    $.each(data, function (i, item) {
+				$.getJSON(item, function (data) {
+					$.each(data, function (i, item) {
+					    var info = item.info;
+						$("#results-display").append("<tr><td>" + item.srcIP +
+							"</td><td>" + item.srcPort +
+							"</td><td>" + item.dstIP +
+							"</td><td>" + item.dstPort +
+							"</td><td>" + item.time +
+							"</td><td>" + item.UA +
+							"</td><td>" + info.comment +
+							"</td><td>" + info.desc +
+							"</td><td>" + info.link +
+							"</td><td>" + info.type + "</td></tr>");
+					});
+				});
+			});
+        });
+	</script>
 </head>
 
 <body>
@@ -103,14 +132,14 @@
 				<!-- Title -->
 				<div class="row heading-bg">
 					<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-					  <h5 class="txt-dark">通信服务器信息</h5>
+					  <h5 class="txt-dark">UA详细信息</h5>
 					</div>
 					<!-- Breadcrumb -->
 					<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
 					  <ol class="breadcrumb">
 						<li><a href="index.html">主页</a></li>
 						<li><a href="#"><span>统计</span></a></li>
-						<li class="active"><span>通信服务器信息</span></li>
+						<li class="active"><span>UA详细信息</span></li>
 					  </ol>
 					</div>
 					<!-- /Breadcrumb -->
@@ -124,21 +153,24 @@
 							<div class="panel-wrapper collapse in">
 								<div class="panel-body">
 									<div class="table-wrap">
-										<div class="table-responsive">
-											<table id="datable_1" class="table table-hover display  pb-30">
-												<thead>
-													<tr>
-														<th>IP地址</th>
-														<th>类型</th>
-														<th>首次活动时间</th>
-														<th>最后活动时间</th>
-														<th>内部通信IP信息</th>
-													</tr>
-												</thead>
-												<tbody id="results-display">
-												</tbody>
-											</table>
-										</div>
+										<table id="footable_3" class="table" data-filtering="true"  data-show-toggle="false">
+											<thead>
+												<tr>
+													<th>Src IP</th>
+													<th>Src Port</th>
+													<th>Dst IP</th>
+													<th>Dst Port</th>
+													<th>Time</th>
+													<th data-breakpoints="all" data-title="User-Agent">User-Agent</th>
+													<th data-breakpoints="all" data-title="Comment">Comment</th>
+													<th data-breakpoints="all" data-title="Description">Description</th>
+													<th data-breakpoints="all" data-title="Link">Link</th>
+													<th data-breakpoints="all" data-title="Type">Type</th>
+												</tr>
+											</thead>
+											<tbody id="results-display">
+											</tbody>
+										</table>
 									</div>
 								</div>
 							</div>
@@ -165,17 +197,24 @@
     </div>
     <!-- /#wrapper -->
 
+
 	<!-- JavaScript -->
 
-    <!-- jQuery -->
-    <script src="../vendors/bower_components/jquery/dist/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="../vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
 	<!-- Data table JavaScript -->
 	<script src="../vendors/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
-    <script src="dist/js/dataTables-data.js"></script>
+	<script src="../vendors/bower_components/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+	<script src="../vendors/bower_components/datatables.net-buttons/js/buttons.flash.min.js"></script>
+	<script src="../vendors/bower_components/jszip/dist/jszip.min.js"></script>
+	<script src="../vendors/bower_components/pdfmake/build/pdfmake.min.js"></script>
+	<script src="../vendors/bower_components/pdfmake/build/vfs_fonts.js"></script>
+	<script src="../vendors/bower_components/moment/min/moment.min.js"></script>
+	<script src="../vendors/bower_components/FooTable/compiled/footable.min.js" type="text/javascript"></script>
+	<script src="dist/js/footable-data.js"></script>
+
 
 	<!-- Slimscroll JavaScript -->
 	<script src="dist/js/jquery.slimscroll.js"></script>
@@ -206,11 +245,6 @@
 	<!-- Init JavaScript -->
 	<script src="dist/js/index/init.js"></script>
 	<script src="dist/js/dashboard-data.js"></script>
-
-    <!-- Morris Charts JavaScript -->
-    <script src="../vendors/bower_components/raphael/raphael.min.js"></script>
-    <script src="../vendors/bower_components/morris.js/morris.min.js"></script>
-    <script src="dist/js/morris-data.js"></script>
 </body>
 
 </html>
