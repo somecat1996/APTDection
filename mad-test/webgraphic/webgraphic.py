@@ -107,6 +107,7 @@ class webgraphic:
         e=0
         while packet:
             e = packet[0]
+            p = dpkt.ethernet.Ethernet(packet[1])
             s = packet_to_str(packet)
             '''
             try:
