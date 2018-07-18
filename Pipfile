@@ -10,6 +10,7 @@ requests = "*"
 scapy = "*"
 flask = "*"
 chardet = "*"
+dpkt = "*"
 
 [dev-packages]
 

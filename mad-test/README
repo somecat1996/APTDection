@@ -1,0 +1,48 @@
+MAD -- Malicious Application Detector
+
+/usr/local/mad/
+    |-- mad.log                                 # log file for RPC (0-start; 1-stop; 2-retrain; 3-ready)
+    |-- fingerprint.pickle                      # pickled fingerprint database
+    |-- dataset/                                # where all dataset go
+    |   |-- YYYY-MM-DDTHH:MM:SS.US/             # dataset named after ISO timestamp
+    |   |   |-- flow.json                       # TCP flow index record
+    |   |   |-- group.json                      # WebGraphic group record
+    |   |   |-- filter.json                     # fingerprint filter report
+    |   |   |-- stream/                         # where stream files go
+    |   |   |   |-- IP_PORT-IP_PORT-TS.pcap     # temporary stream PCAP files
+    |   |   |   |-- ...
+    |   |   |-- Background_PC/                  # where Background_PC dataset files go
+    |   |       |-- 0/                          # clean ones
+    |   |       |   |-- IP_PORT-IP_PORT-TS.dat  # dataset file
+    |   |       |   |-- ...
+    |   |       |-- 1/                          # malicious ones
+    |   |           |-- IP_PORT-IP_PORT-TS.dat  # dataset file
+    |   |           |-- ...
+    |   |-- ...
+    |-- report/                                 # where CNN prediction report go\
+    |   |-- Background_PC/                      # Background_PC reports
+    |   |   |-- index.json                      # report index file
+    |   |   |-- YYYY-MM-DDTHH:MM:SS.US.json     # report named after dataset
+    |   |-- ...
+    |-- model/                                  # where CNN model go
+    |   |-- Background_PC/                      # Background_PC models
+    |   |   |-- ...
+    |   |-- ...
+    |-- retrain/                                # where CNN retrain data go
+        |-- dateset/                            # dataset for retrain procedure
+        |   |-- Background_PC/                  # Background_PC retrain dataset
+        |       |-- 0/                          # clean ones
+        |       |   |-- YYYY-MM-DDTHH:MM:SS.US-IP_PORT-IP_PORT-TS.dat
+        |       |   |-- ...
+        |       |-- 1/                          # malicious ones
+        |           |-- YYYY-MM-DDTHH:MM:SS.US-IP_PORT-IP_PORT-TS.dat
+        |           |-- ...
+        |-- stream/                             # stream PCAP for retrain procedure
+            |-- stream.json                     # stream index for retrain
+            |-- Background_PC/                  # Background_PC retrain stream file
+                |-- 0/                          # clean ones
+                |   |-- YYYY-MM-DDTHH:MM:SS.US-IP_PORT-IP_PORT-TS.pcap
+                |   |-- ...
+                |-- 1/                          # malicious ones
+                    |-- YYYY-MM-DDTHH:MM:SS.US-IP_PORT-IP_PORT-TS.pcap
+                    |-- ...
