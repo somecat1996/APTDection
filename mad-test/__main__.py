@@ -248,9 +248,8 @@ def make_sniff(*, path):
     """Load data or sniff packets."""
     # just sniff when prediction
     if MODE == 3:
-        return '../../PyPCAPKit/sample/http3.pcap'
+        return '/home/ubuntu/httpdump/wanyong80.pcap024'
         return FILE[COUNT]
-        # return '/home/ubuntu/httpdump/wanyong80.pcap024'
         # name = f'/usr/local/mad/pcap/{pathlib.Path(path).stem}.pcap'
         # sniffed = scapy.all.sniff(timeout=TIMEOUT, iface=IFACE)
         # scapy.all.wrpcap(name, sniffed)
@@ -285,6 +284,7 @@ def make_group(name, fp, *, path):
 
     # StreamManager
     stream = StreamManager(name, str(path))
+    stream.generate()
     stream.classify(IPS)
     stream.Group()
     if MODE != 3:
@@ -300,7 +300,7 @@ def make_group(name, fp, *, path):
 
     # dump record
     with open(f'{path}/group.json', 'w') as file:
-        json.dump(record, file, object_hook, cls=JSONEncoder)
+        json.dump(record, file, cls=JSONEncoder)
 
     return record
 
