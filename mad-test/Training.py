@@ -538,7 +538,7 @@ def main(unused):
             flag = int(item["name"] not in val)
             if flag:    report.append(item)
             stem = pathlib.Path(DataPath).stem
-            name = stem+"Z"+item["name"]+".pcap"
+            name = stem+"Z/"+item["name"]+".pcap"
             shutil.copy(os.path.join(DataPath, T, "0", item["name"]+".dat"),
                         os.path.join("/usr/local/mad/retrain/dataset", T, str(flag), name))
             shutil.copy(os.path.join(DataPath, "stream", item["name"]+".pcap"),
