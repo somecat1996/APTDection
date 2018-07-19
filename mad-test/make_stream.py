@@ -7,14 +7,17 @@ import os
 import pathlib
 
 
-def make_stream()
+def make_stream():
     file_dict = collections.defaultdict(dict)
     for path in os.listdir('/usr/local/mad/dataset'):
+        if not os.path.isfile(f'/usr/local/mad/dataset/{path}/group.json'): continue
         with open(f'/usr/local/mad/dataset/{path}/group.json') as json_file:
             labels = json.load(json_file)
+        path = path.split('.')[0]
         for kind, group in labels.items():
             for ipua in group:
                 for file in group[ipua]:
+                    file['ipua'] = ipua
                     name = pathlib.Path(file['filename']).stem
                     file_dict[path][name] = file
 
@@ -43,4 +46,10 @@ def make_stream()
         json.dump(stream, file)
 
     return stream
+
+
+if __name__ == '__main__':
+#    import pprint
+#    pprint.pprint(make_stream())
+    make_stream()
 
