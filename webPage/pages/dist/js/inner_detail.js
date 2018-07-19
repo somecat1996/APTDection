@@ -43,10 +43,10 @@ $("#results-display").ready(function() {
     //     });
     // });
 });
-setTimeout(function() {
-  $('#datable_1').DataTable();
-}, 100 * 1000);
+// setTimeout(function() {
+//   $('#datable_1').DataTable();
+// }, 100 * 1000);
 // window.onload = function() {$('#datable_1').DataTable();}
-// $(document).ready(function() {
-//     $('#datable_1').DataTable();
-// });
+$(document).ready(function() {
+    $('#datable_1').DataTable();
+});
