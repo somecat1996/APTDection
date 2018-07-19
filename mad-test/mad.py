@@ -6,8 +6,10 @@
     |-- fingerprint.pickle                      # pickled fingerprint database
     |-- dataset/                                # where all dataset go
     |   |-- YYYY-MM-DDTHH:MM:SS.US/             # dataset named after ISO timestamp
-    |   |   |-- group.json                      # WebGraphic group record
+    |   |   |-- groups.json                     # WebGraphic group record
     |   |   |-- filter.json                     # fingerprint filter report
+    |   |   |-- record.json                     # flattened group record
+    |   |   |-- stream.json                     # backup for stream.json in retrain
     |   |   |-- stream/                         # where stream files go
     |   |   |   |-- IP_PORT-IP_PORT-TS.pcap     # temporary stream PCAP files
     |   |   |   |-- ...
@@ -153,7 +155,7 @@ def retrain_cnn(*args):
     """Retrain the CNN model."""
     # if already under retrain do nothing
     if RETRAIN.value:   return
-    # return
+    return ###
 
     # update retrain flag
     RETRAIN.value = True
@@ -249,7 +251,7 @@ def make_sniff(*, path):
     """Load data or sniff packets."""
     # just sniff when prediction
     if MODE == 3:
-        # return '/home/ubuntu/httpdump/wanyong80.pcap010'
+        return '/home/ubuntu/httpdump/wanyong80.pcap010' ###
         if FILE is NotImplemented:
             name = f'/usr/local/mad/pcap/{pathlib.Path(path).stem}.pcap'
             sniffed = scapy.all.sniff(timeout=TIMEOUT, iface=IFACE)
@@ -301,7 +303,8 @@ def make_group(name, fp, *, path):
             fp.GenerateAndUpdate(f'{path}/stream', groups)
 
     # dump record
-    with open(f'{path}/group.json', 'w') as file:
+    dump_stream(record, path=path)
+    with open(f'{path}/groups.json', 'w') as file:
         json.dump(record, file, cls=JSONEncoder)
 
     return record
@@ -371,10 +374,10 @@ def run_cnn(*, path, retrain=False):
             file.write(f'2 {dt.datetime.now().isoformat()}\n')
 
     # run CNN subprocess
-    try:
-        os.kill(PID, signal.SIGUSR1)
-    except ProcessLookupError:
-        print(f"ProcessLookupError: Process {PID} not found")
+    ### try:
+    ###     os.kill(PID, signal.SIGUSR1)
+    ### except ProcessLookupError:
+    ###     print(f"ProcessLookupError: Process {PID} not found")
     for kind in {'Background_PC',}:
         cmd = [sys.executable, shlex.quote(os.path.join(ROOT, 'Training.py')),
                 path, '/usr/local/mad/model', MODE_DICT.get(mode), kind, str(PID)]
@@ -383,7 +386,7 @@ def run_cnn(*, path, retrain=False):
     # things to do when retrain
     if retrain:
         # load group record
-        record = make_stream()
+        record = load_stream(root=path)
 
         # update fingerprints
         fp = fingerprintManager()

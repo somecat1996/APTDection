@@ -424,13 +424,15 @@ def main(unused):
             predicted_classes = [p["classes"] for p in predictions]
         else:
             predicted_classes = list()
-        with open(os.path.join(DataPath, "group.json"), "r") as file:
+        with open(os.path.join(DataPath, "groups.json"), "r") as file:
             group = json.load(file, object_hook=object_hook)
-        group_data = dict()
-        for ipua in group[T]:
-            for file in group[T][ipua]:
-                name = pathlib.Path(file['filename']).stem
-                group_data[name] = [file, ipua]
+        with open(os.path.join(DataPath, "record.json"), "r") as file:
+            group_data = json.load(file, object_hook=object_hook)
+        # group_data = dict()
+        # for ipua in group[T]:
+        #     for file in group[T][ipua]:
+        #         name = pathlib.Path(file['filename']).stem
+        #         group_data[name] = [file, ipua]
         # print("detected by fingerprint:")
         Malicious = []
         for ipua in isMalicious:
@@ -532,7 +534,7 @@ def main(unused):
                 dstIP = listname[0]
                 dstPort = listname[1]
             tstamp = listname[4]
-            temp_dict = dict(temp_data[0],
+            temp_dict = dict(temp_data,
                 is_malicious=int(kind),
                 srcIP=srcIP,
                 srcPort=srcPort,
@@ -540,15 +542,15 @@ def main(unused):
                 dstPort=dstPort,
                 time=dt.datetime.fromtimestamp(float(tstamp)).isoformat(),
                 name=name,
-                ipua=temp_data[1],
-                info=useragents.get(temp_data[0]["UA"],
+                ipua=temp_data["ipua"],
+                info=useragents.get(temp_data["UA"],
                         dict(desc=None, type=None, comment=None, link=(None, None)))
             )
             if kind == 1:
                 Malicious.append(temp_dict)
                 group_dict[T].append(dict(
                     is_malicious=1,
-                    type=temp_data[0]["type"],
+                    type=temp_data["type"],
                     filename=name + ".pcap",
                 ))
             else:
@@ -624,7 +626,7 @@ def main(unused):
         with open("/usr/local/mad/loss.json", "w") as file:
             json.dump(loss_record, file, cls=JSONEncoder)
         if loss > 0.5:
-            print('Need retrain...')
+            print(f'{DataPath} needs retrain...')
             try:
                 os.kill(ppid, signal.SIGUSR2)
             except ProcessLookupError:
@@ -632,7 +634,7 @@ def main(unused):
         end = time.time()
         print(end)
         print('Running time: %s Seconds' % (end - start))
-        retrain_index = make_stream()
+        retrain_index = load_stream(root=DataPath)
         # if os.path.isfile("/usr/local/mad/retrain/stream.json"):
         #     while True:
         #         try:

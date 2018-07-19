@@ -5,8 +5,10 @@ MAD -- Malicious Application Detector
     |-- fingerprint.pickle                      # pickled fingerprint database
     |-- dataset/                                # where all dataset go
     |   |-- YYYY-MM-DDTHH:MM:SS.US/             # dataset named after ISO timestamp
-    |   |   |-- group.json                      # WebGraphic group record
+    |   |   |-- groups.json                     # WebGraphic group record
     |   |   |-- filter.json                     # fingerprint filter report
+    |   |   |-- record.json                     # flattened group record
+    |   |   |-- stream.json                     # backup for stream.json in retrain
     |   |   |-- stream/                         # where stream files go
     |   |   |   |-- IP_PORT-IP_PORT-TS.pcap     # temporary stream PCAP files
     |   |   |   |-- ...
