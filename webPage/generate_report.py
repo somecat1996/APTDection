@@ -157,6 +157,6 @@ def writeOuterIP(index):
         json.dump(f, outerIP)
 
 if __name__ == "__main__":
-    index = readReportList("./Background")
+    index = readReportList("./Background_PC")
     writeInnerIP(index)
     writeUA(index)
