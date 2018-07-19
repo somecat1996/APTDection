@@ -246,24 +246,24 @@ class StreamManager:
         else:
             url_to_scan=list(set(urls))
 
-        false_alarm=[]
+        true_alarm=[]
 
         l = Datalabler()
         l.setThreadNum(20)
         result = l.lable(url_to_scan)
         for x in result:
-            if x["malicious"]==0 and x["suspicious"]==0:
+            if x["malicious"]>=1 or x["suspicious"]>=1:
                 url_tmp=x["url"]
                 for i in range(len(urls)):
                     if url_tmp==urls[i]:
-                        false_alarm.append(targets[index[i]]["filename"])
+                        true_alarm.append(targets[index[i]]["filename"])
             else:
                 malicious_num+=1
 
         print("总共标记:",len(targets),"个恶意流")
-        print("virustotal检测出的恶意流个数为:",malicious_num)
+        print("virustotal检测出的误报恶意流个数为:",malicious_num)
 
-        return false_alarm
+        return true_alarm
 
     def extractIP(self,ipUA):
         raw=ipUA.split()
