@@ -144,7 +144,7 @@ class webgraphic:
                     print("无效包，跳过")
                     continue
 
-                
+
                 if(self.hit_filter(host)):
                     print("安全域名：",host,",filtered")
                     filtered_num+=1
@@ -152,7 +152,7 @@ class webgraphic:
                         self.filetered_ip.append(ip)
                     packet = dpkt_next(self.source)
                     continue
-               
+
 
 
                 total_num+=1   #count valid http requests

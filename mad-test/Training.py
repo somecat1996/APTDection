@@ -504,7 +504,7 @@ def main(unused):
                     dstIP = listname[0]
                     dstPort = listname[1]
                 tstamp = listname[4]
-                Clean.append(dict(filedict, 
+                Clean.append(dict(filedict,
                     is_malicious=0,
                     srcIP=srcIP,
                     srcPort=srcPort,
@@ -612,7 +612,7 @@ def main(unused):
         #         shutil.copy(os.path.join(datasetPath, "Background_PC/0/"+j[:-4]+"dat"), retrainPath)
         stem = pathlib.Path(DataPath).name
         val = StreamManager(NotImplemented, DataPath).validate(group_dict)
-        loss = len(val)/sum(predicted_classes) if names else 0.0
+        loss = 1 - (len(val)/sum(predicted_classes) if names else 0.0)
         # print(val)
         loss_record = list()
         if os.path.isfile("/usr/local/mad/loss.json"):
