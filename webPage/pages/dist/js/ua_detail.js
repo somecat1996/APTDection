@@ -182,6 +182,7 @@ function B(item, c) {
         eChart_1.resize();
     };
     echartsConfig();
+    num++;
     /*****Resize function start*****/
     var echartResize;
     $(window).on("resize", function () {
@@ -191,13 +192,14 @@ function B(item, c) {
     }).resize();
     /*****Resize function end*****/
 }
-
+var num = 0;
 window.onload = function() {
     while(flag===1){}
     for(let i=0;i<items.length;i++){
         // console.log(items[i]);
         // console.log(i+1);
         B(items[i], i+1);
+    while(num===S){}
     $('#datable_1').DataTable();
     }
 }
