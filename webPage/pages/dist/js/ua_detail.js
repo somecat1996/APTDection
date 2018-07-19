@@ -105,6 +105,9 @@ $("#results-display").ready(function() {
                     "target": item.dstIP[i]
                 });
             }
+            console.log(data);
+            console.log(links);
+
             var echartsConfig = function() {
                 var eChart_1 = echarts.init(document.getElementById("modal" + count.toString()));
                 var option = {

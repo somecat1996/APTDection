@@ -646,7 +646,7 @@ def main(unused):
         for kind in {'Background_PC',}:
             retrain_index[kind] = collections.defaultdict(list, retrain_index[kind])
         for item in Malicious:
-            flag = int(item["name"] not in val)
+            flag = int(item["name"] in val)
             item["is_malicious"] = flag
             name = stem+"_"+item["name"]
             retrain_index[T][item["ipua"]].append(item)
