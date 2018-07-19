@@ -1,22 +1,24 @@
 /**
  * Created by lenovo on 2018/7/18.
  */
+var count = 0;
 $("#results-display").ready(function() {
     // $.getJSON ("testFiles/index.json", function (data) {
     $.getJSON ("/report/UA.json", function (data) {
         // $.each(data, function (i, item) {
         //     $.getJSON(item, function (data) {
+        count++;
         $.each(data, function (i, item) {
             var info = item.info;
             var Table = "<div class=\"row\"><div class=\"col-md-6\"><h6 class=\"text-center\">类型</h6><p class=\"text-center\">" + info.type +	"</p></div><div class=\"col-md-6\"><h6 class=\"text-center\">备注</h6><p class=\"text-center\">" + info.comment + "</p></div></div>" +
                 "<div class=\"row\"><div class=\"col-md-6\"><h6 class=\"text-center\">描述</h6><p class=\"text-center\">" + info.desc +	"</p></div><div class=\"col-md-6\"><h6 class=\"text-center\">链接</h6><p class=\"text-center\">" + info.link + "</p></div></div>";
-            Table = Table + "<hr><div id=\"" + item.name.replace(" ","_") + "\" class=\"center-block\" style=\"width:600px;height:600px;\"></div><div class=\"label-chatrs mt-15\">" +
+            Table = Table + "<hr><div id=\"modal" + count.toString() + "\" class=\"center-block\" style=\"width:600px;height:600px;\"></div><div class=\"label-chatrs mt-15\">" +
                 "<div class=\"mb-5\"><span class=\"clabels inline-block bg-blue mr-5\"></span><span class=\"clabels-text font-12 inline-block txt-dark capitalize-font\">内部IP地址</span>" +
                 "</div><div class=\"mb-5\"><span class=\"clabels inline-block bg-light-blue mr-5\"></span><span class=\"clabels-text font-12 inline-block txt-dark capitalize-font\">User-Agent</span>" +
                 "</div><div class=\"\"><span class=\"clabels inline-block bg-red mr-5\"></span><span class=\"clabels-text font-12 inline-block txt-dark capitalize-font\">外部IP地址</span>" +
                 "</div></div>";
-            Table = "<p data-toggle=\"modal\" data-target=\"." + item.name.replace(" ","_") + "\">详细信息</p>" +
-                "<div class=\"modal fade " + item.name.replace(" ","_") + "\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"gridSystemModalLabel\" aria-hidden=\"true\" style=\"display: none;\">" +
+            Table = "<p data-toggle=\"modal\" data-target=\".modal" + count.toString() + "\">详细信息</p>" +
+                "<div class=\"modal fade modal" + count.toString() + "\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"gridSystemModalLabel\" aria-hidden=\"true\" style=\"display: none;\">" +
                 "<div class=\"modal-dialog modal-lg\">" +
                 "<div class=\"modal-content\">" +
                 "<div class=\"modal-header\">" +
@@ -104,7 +106,7 @@ $("#results-display").ready(function() {
                 });
             }
             var echartsConfig = function() {
-                var eChart_1 = echarts.init(document.getElementById(item.name.replace(" ","_")));
+                var eChart_1 = echarts.init(document.getElementById("modal" + count.toString()));
                 var option = {
                     tooltip: {
                         backgroundColor: 'rgba(33,33,33,1)',
