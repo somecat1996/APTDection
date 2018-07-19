@@ -38,17 +38,17 @@ $("#results-display").ready(function() {
                 "</td><td>" + item.malicious +
                 "</td><td>" + UATable + "</td></tr>";
             $("#results-display").append(UATable);
-            console.log("1");
         });
     });
     //     });
     // });
+}).success(function() {
+    $('#datable_1').DataTable();
 });
 // setTimeout(function() {
 //   $('#datable_1').DataTable();
 // }, 100 * 1000);
 // window.onload = function() {$('#datable_1').DataTable();}
-$(document).ready(function() {
-    $('#datable_1').DataTable();
-    console.log("2");
-});
+// $(document).ready(function() {
+//     $('#datable_1').DataTable();
+// });

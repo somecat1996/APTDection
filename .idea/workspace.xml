@@ -44,11 +44,11 @@
       <file leaf-file-name="inner_detail.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/inner_detail.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="128">
-              <caret line="42" column="14" lean-forward="false" selection-start-line="42" selection-start-column="14" selection-end-line="42" selection-end-column="14" />
+            <state relative-caret-position="310">
+              <caret line="46" column="3" lean-forward="true" selection-start-line="46" selection-start-column="3" selection-end-line="46" selection-end-column="3" />
               <folding>
                 <element signature="e#0#42#0" expanded="false" />
-                <marker date="1531992164208" expanded="true" signature="2420:2434" ph="..." />
+                <marker date="1531993094811" expanded="true" signature="2388:2402" ph="..." />
               </folding>
             </state>
           </provider>
@@ -57,8 +57,8 @@
       <file leaf-file-name="outer_detail.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/outer_detail.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="164">
-              <caret line="29" column="30" lean-forward="true" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="30" />
+            <state relative-caret-position="296">
+              <caret line="46" column="33" lean-forward="true" selection-start-line="46" selection-start-column="33" selection-end-line="46" selection-end-column="33" />
               <folding>
                 <element signature="e#0#42#0" expanded="false" />
                 <marker date="1531989311577" expanded="true" signature="1363:1377" ph="..." />
@@ -879,17 +879,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/outer_detail.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="29" column="30" lean-forward="true" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#42#0" expanded="false" />
-            <marker date="1531989311577" expanded="true" signature="1363:1377" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/detail.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
@@ -900,13 +889,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/inner_detail.js">
+    <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/outer_detail.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="42" column="14" lean-forward="false" selection-start-line="42" selection-start-column="14" selection-end-line="42" selection-end-column="14" />
+        <state relative-caret-position="296">
+          <caret line="46" column="33" lean-forward="true" selection-start-line="46" selection-start-column="33" selection-end-line="46" selection-end-column="33" />
           <folding>
             <element signature="e#0#42#0" expanded="false" />
-            <marker date="1531992164208" expanded="true" signature="2420:2434" ph="..." />
+            <marker date="1531989311577" expanded="true" signature="1363:1377" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/inner_detail.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="46" column="3" lean-forward="true" selection-start-line="46" selection-start-column="3" selection-end-line="46" selection-end-column="3" />
+          <folding>
+            <element signature="e#0#42#0" expanded="false" />
+            <marker date="1531993094811" expanded="true" signature="2388:2402" ph="..." />
           </folding>
         </state>
       </provider>
