@@ -31,6 +31,6 @@ $.getJSON ("/report/Background_PC/index.json", function (data) {
     // $('#footable_3').footable();
 });
 // window.onload = function() {$('#footable_3').footable();}
-setTimeout(function() {
-  $('#footable_3').footable();
-}, 100 * 1000);
+// setTimeout(function() {
+//   $('#footable_3').footable();
+// }, 100 * 1000);
