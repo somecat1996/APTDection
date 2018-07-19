@@ -194,6 +194,8 @@ window.onload = function() {
     $('#datable_1').DataTable();
     while(count<S){}
     for(let i=0;i<items.length;i++){
+        console.log(items[i]);
+        console.log(i+1);
         B(items[i], i+1);
     }
 }
