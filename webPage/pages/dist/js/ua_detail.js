@@ -192,7 +192,10 @@ function B(item, c) {
 
 window.onload = function() {
     $('#datable_1').DataTable();
-    while(count<S){}
+    while(count<S){
+        console.log(count);
+        console.log(S);
+    }
     for(let i=0;i<items.length;i++){
         console.log(items[i]);
         console.log(i+1);

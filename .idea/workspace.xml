@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="72f023dd-9e1c-48f0-a389-44fc3943046d" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webPage/pages/dist/js/ua_detail.js" afterPath="$PROJECT_DIR$/webPage/pages/dist/js/ua_detail.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -39,12 +40,12 @@
       <file leaf-file-name="ua_detail.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/ua_detail.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="34" column="28" lean-forward="false" selection-start-line="34" selection-start-column="28" selection-end-line="34" selection-end-column="28" />
+            <state relative-caret-position="264">
+              <caret line="196" column="21" lean-forward="false" selection-start-line="196" selection-start-column="21" selection-end-line="196" selection-end-column="21" />
               <folding>
                 <element signature="e#0#42#0" expanded="false" />
-                <marker date="1532012921577" expanded="true" signature="1098:1123" ph="..." />
-                <marker date="1532012921577" expanded="true" signature="2057:2071" ph="..." />
+                <marker date="1532013138731" expanded="true" signature="1098:1123" ph="..." />
+                <marker date="1532013138731" expanded="true" signature="2057:2071" ph="..." />
               </folding>
             </state>
           </provider>
@@ -872,12 +873,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/ua_detail.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="34" column="28" lean-forward="false" selection-start-line="34" selection-start-column="28" selection-end-line="34" selection-end-column="28" />
+        <state relative-caret-position="264">
+          <caret line="196" column="21" lean-forward="false" selection-start-line="196" selection-start-column="21" selection-end-line="196" selection-end-column="21" />
           <folding>
             <element signature="e#0#42#0" expanded="false" />
-            <marker date="1532012921577" expanded="true" signature="1098:1123" ph="..." />
-            <marker date="1532012921577" expanded="true" signature="2057:2071" ph="..." />
+            <marker date="1532013138731" expanded="true" signature="1098:1123" ph="..." />
+            <marker date="1532013138731" expanded="true" signature="2057:2071" ph="..." />
           </folding>
         </state>
       </provider>
