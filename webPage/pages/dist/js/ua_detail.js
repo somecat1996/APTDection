@@ -40,10 +40,7 @@ $("#results-display").ready(function() {
                 "</td><td>" + item.etime +
                 "</td><td>" + Table + "</td></tr>";
             $("#results-display").append(Table);
-            $("#modal" + count.toString()).ready(function () {
-                B(item);
-            });
-
+            B(item);
         });
     });
     //     });
