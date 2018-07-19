@@ -64,7 +64,7 @@ from webgraphic.webgraphic import *
 
 # testing macros
 FILE = NotImplemented
-COUNT = 19
+COUNT = -1
 
 
 PID = os.getpid()   # PID
@@ -95,9 +95,6 @@ MODE_DICT = {
 }
 
 
-print(f'Manager process: {PID}')
-
-
 class JSONEncoder(json.JSONEncoder):
     def default(self, obj):
         if isinstance(obj, bytes):
@@ -122,7 +119,7 @@ def main(*, iface=None, mode=None, path=None, file=None):
     signal.signal(signal.SIGUSR2, retrain_cnn)
 
     # make paths
-    for name in {'dataset', 'report', 'model', 'pcap', 'retrain/dataset'}:
+    for name in {'dataset', 'report', 'model', 'pcap', 'retrain/dataset', 'retrain/stream'}:
         pathlib.Path(f'/usr/local/mad/{name}').mkdir(parents=True, exist_ok=True)
 
     if iface is not None:
@@ -144,8 +141,6 @@ def main(*, iface=None, mode=None, path=None, file=None):
 
     # start procedure
     make_worker()
-    while True:
-        time.sleep(100_000_000)
 
 
 def retrain_cnn(*args):
@@ -161,7 +156,7 @@ def retrain_cnn(*args):
     multiprocessing.Process(
         target=run_cnn,
         kwargs={'path': '/usr/local/mad/retrain/dataset',
-                'retrain': True},
+                'ppid': os.getpid(), 'retrain': True},
     ).start()
 
 
@@ -372,8 +367,6 @@ def run_cnn(*, path, retrain=False):
     # run CNN subprocess
     try:
         os.kill(PID, signal.SIGUSR1)
-    except ProcessLookupError:
-        print(f"ProcessLookupError: Process {PID} not found")
     for kind in {'Background_PC',}:
         cmd = [sys.executable, shlex.quote(os.path.join(ROOT, 'Training.py')),
                 path, '/usr/local/mad/model', MODE_DICT.get(mode), kind, str(PID)]
@@ -387,8 +380,8 @@ def run_cnn(*, path, retrain=False):
 
         # update fingerprints
         fp = fingerprintManager()
-        for kind in {'Background_PC',}:
-            fp.GenerateAndUpdate(NotImplemented, record[kind])
+        for kind in FLOW_DICT.keys():
+            fp.GenerateAndUpdate(NotImplemented, record[kind], type=2)
 
         # write log for stop retrain
         with open('/usr/local/mad/mad.log', 'at', 1) as file:
