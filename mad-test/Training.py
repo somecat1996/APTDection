@@ -610,7 +610,7 @@ def main(unused):
         #     val += StreamManager.validate(group_dict[i], root=streamPath)
         #     for j in val:
         #         shutil.copy(os.path.join(datasetPath, "Background_PC/0/"+j[:-4]+"dat"), retrainPath)
-        stem = pathlib.Path(DataPath).stem
+        stem = pathlib.Path(DataPath).name
         val = StreamManager(NotImplemented, DataPath).validate(group_dict)
         loss = len(val)/sum(predicted_classes) if names else 0.0
         # print(val)
