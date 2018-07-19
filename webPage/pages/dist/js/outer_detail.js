@@ -3,6 +3,7 @@
  */
 $("#results-display").ready(function() {
     $.getJSON ("/report/outerIP.json", function (data) {
+        var count = data.length;
         // $.each(data, function (i, item) {
         //     $.getJSON(item, function (data) {
         $.each(data, function (i, item) {
@@ -38,7 +39,15 @@ $("#results-display").ready(function() {
                 "</td><td>" + item.etime +
                 "</td><td>" + Table + "</td></tr>";
             $("#results-display").append(Table);
+            count--;
+            A();
         });
+        function A() {
+            if(count-1==0){
+                $('#datable_1').DataTable();
+            }
+            else {}
+        }
     });
     //     });
     // });
