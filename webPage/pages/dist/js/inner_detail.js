@@ -5,7 +5,6 @@ $("#results-display").ready(function() {
     $.getJSON ("/report/innerIP.json", function (data) {
         // $.each(data, function (i, item) {
         //     $.getJSON(item, function (data) {
-        setTimeout(function() {
         $.each(data, function (i, item) {
             var UA = item.UA;
             var UATable = "";
@@ -39,8 +38,8 @@ $("#results-display").ready(function() {
                 "</td><td>" + item.malicious +
                 "</td><td>" + UATable + "</td></tr>";
             $("#results-display").append(UATable);
+            console.log("1");
         });
-        }, 1);
     });
     //     });
     // });
@@ -51,4 +50,5 @@ $("#results-display").ready(function() {
 // window.onload = function() {$('#datable_1').DataTable();}
 $(document).ready(function() {
     $('#datable_1').DataTable();
+    console.log("2");
 });
