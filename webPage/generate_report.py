@@ -31,8 +31,10 @@ def writeUA(index):
                         j['stime'] = time
                     elif time > j['etime']:
                         j['etime'] = time
-                    j['src'].append(src)
-                    j['dst'].append(dst)
+                    if src not in j['src']:
+                        j['src'].append(src)
+                    if dst not in j['dst']:
+                        j['dst'].append(dst)
                     break
             if flag:
                 UA.append({
