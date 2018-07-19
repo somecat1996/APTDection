@@ -40,10 +40,9 @@ $("#results-display").ready(function() {
             $("#results-display").append(UATable);
         });
     });
+    A();
     //     });
     // });
-}).success(function() {
-    $('#datable_1').DataTable();
 });
 // setTimeout(function() {
 //   $('#datable_1').DataTable();
@@ -52,3 +51,6 @@ $("#results-display").ready(function() {
 // $(document).ready(function() {
 //     $('#datable_1').DataTable();
 // });
+function A() {
+    $('#datable_1').DataTable();
+}
