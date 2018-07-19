@@ -27,29 +27,6 @@
 	<!-- Custom CSS -->
 	<link href="dist/css/style.css" rel="stylesheet" type="text/css">
 
-    <!-- jQuery -->
-    <script src="../vendors/bower_components/jquery/dist/jquery.min.js"></script>
-	<script type="text/javascript">
-		$.getJSON ("/report/Background_PC/index.json", function (data) {
-		    $.each(data, function (i, item) {
-				$.getJSON(item, function (data) {
-					$.each(data, function (i, item) {
-					    var info = item.info;
-						$("#results-display").append("<tr><td>" + item.srcIP +
-							"</td><td>" + item.srcPort +
-							"</td><td>" + item.dstIP +
-							"</td><td>" + item.dstPort +
-							"</td><td>" + item.time +
-							"</td><td>" + item.UA +
-							"</td><td>" + info.comment +
-							"</td><td>" + info.desc +
-							"</td><td>" + info.link +
-							"</td><td>" + info.type + "</td></tr>");
-					});
-				});
-			});
-        });
-	</script>
 </head>
 
 <body>
@@ -161,6 +138,7 @@
 													<th>Dst IP</th>
 													<th>Dst Port</th>
 													<th>Time</th>
+													<th>Type</th>
 													<th data-breakpoints="all" data-title="User-Agent">User-Agent</th>
 													<th data-breakpoints="all" data-title="Comment">Comment</th>
 													<th data-breakpoints="all" data-title="Description">Description</th>
@@ -200,6 +178,8 @@
 
 	<!-- JavaScript -->
 
+    <!-- jQuery -->
+    <script src="../vendors/bower_components/jquery/dist/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="../vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -213,7 +193,7 @@
 	<script src="../vendors/bower_components/pdfmake/build/vfs_fonts.js"></script>
 	<script src="../vendors/bower_components/moment/min/moment.min.js"></script>
 	<script src="../vendors/bower_components/FooTable/compiled/footable.min.js" type="text/javascript"></script>
-	<script src="dist/js/footable-data.js"></script>
+	<script src="dist/js/detail.js"></script>
 
 
 	<!-- Slimscroll JavaScript -->
