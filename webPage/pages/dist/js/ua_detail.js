@@ -3,6 +3,7 @@
  */
 var count = 0;
 var S = 0;
+var flag = 1;
 var items = [];
 $("#results-display").ready(function() {
     // $.getJSON ("testFiles/index.json", function (data) {
@@ -32,7 +33,7 @@ $("#results-display").ready(function() {
                 "<button type=\"button\" class=\"btn btn-danger text-left\" data-dismiss=\"modal\">Close</button>" +
                 "</div></div></div></div>";
             var type;
-            if(item.type==="1"){
+            if(item.type===1){
                 type = "<span class=\"label label-danger\">恶意</span>";
             }else{
                 type = "<span class=\"label label-success\">良性</span>";
@@ -44,6 +45,7 @@ $("#results-display").ready(function() {
                 "</td><td>" + Table + "</td></tr>";
             $("#results-display").append(Table);
             items.push(item);
+            if(S===count){flag=0;}
         });
     });
     //     });
@@ -180,6 +182,7 @@ function B(item, c) {
         eChart_1.resize();
     };
     echartsConfig();
+    num++;
     /*****Resize function start*****/
     var echartResize;
     $(window).on("resize", function () {
@@ -189,11 +192,14 @@ function B(item, c) {
     }).resize();
     /*****Resize function end*****/
 }
-
+var num = 0;
 window.onload = function() {
-    $('#datable_1').DataTable();
-    while(count<S){}
+    while(flag===1){}
     for(let i=0;i<items.length;i++){
+        // console.log(items[i]);
+        // console.log(i+1);
         B(items[i], i+1);
+    while(num===S){}
+    $('#datable_1').DataTable();
     }
 }
