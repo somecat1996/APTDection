@@ -199,7 +199,7 @@ window.onload = function() {
         // console.log(items[i]);
         // console.log(i+1);
         B(items[i], i+1);
-    while(num===S){}
+    while(num!==S){}
     $('#datable_1').DataTable();
     }
 }
