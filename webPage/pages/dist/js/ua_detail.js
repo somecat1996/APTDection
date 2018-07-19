@@ -179,4 +179,4 @@ $("#results-display").ready(function() {
     // });
 });
 
-window.onload = function() {$('table[id^="footable_"]').footable();}
+window.onload = function() {$('#datable_1').DataTable();}

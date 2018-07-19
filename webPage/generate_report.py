@@ -68,9 +68,6 @@ def writeInnerIP(index):
             for j in innerIP:
                 if src == j['IP']:
                     flag = False
-                    j["total"] += 1
-                    if type == '1':
-                        j["malicious"] += 1
                     flag2 = True
                     for k in j['UA']:
                         if name == k['name'] and type == k['type']:
@@ -80,6 +77,9 @@ def writeInnerIP(index):
                             elif time > k['etime']:
                                 k['etime'] = time
                     if flag2:
+                        j["total"] += 1
+                        if type == '1':
+                            j["malicious"] += 1
                         j['UA'].append({
                             "name": name,
                             "stime": time,
