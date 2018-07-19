@@ -1,0 +1,45 @@
+[
+  {
+    "name":"qweqweqwe",
+    "type":"0",
+    "stime":"1234",
+    "etime":"5678",
+    "info":{
+        "comment":"argfdsgfsdgf",
+        "desc":"fgdsgreretre",
+        "link":["fdsgrerwrfe", null],
+        "type":"41484856"
+    },
+    "srcIP":[
+      "123.123.123.1",
+      "123.123.123.2",
+      "123.123.123.3"
+    ],
+    "dstIP":[
+      "456.456.456.1"
+    ]
+  }, {
+    "name":"asdasdasd",
+    "type":"1",
+    "stime":"1234",
+    "etime":"5678",
+    "info":{
+        "comment":"argfdsgfsdgf",
+        "desc":"fgdsgreretre",
+        "link":["fdsgrerwrfe", null],
+        "type":"41484856"
+    },
+    "srcIP":[
+      "123.123.123.1",
+      "123.123.123.2",
+      "123.123.123.3",
+      "123.123.123.4",
+      "123.123.123.5",
+      "123.123.123.6",
+      "123.123.123.7"
+    ],
+    "dstIP":[
+      "456.456.456.1"
+    ]
+  }
+]

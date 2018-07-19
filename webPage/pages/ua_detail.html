@@ -18,51 +18,6 @@
 	<!-- Custom CSS -->
 	<link href="dist/css/style.css" rel="stylesheet" type="text/css">
 
-    <!-- jQuery -->
-    <script src="../vendors/bower_components/jquery/dist/jquery.min.js"></script>
-	<script type="text/javascript">
-		$.getJSON ("testFiles/index.json", function (data) {
-//		$.getJSON ("/report/innerIP/index.json", function (data) {
-		    $.each(data, function (i, item) {
-				$.getJSON(item, function (data) {
-					$.each(data, function (i, item) {
-					    var UA = item.UA;
-					    var UATable = "";
-					    for(var i=0;i<UA.length;i++){
-							var info = UA[i].info;
-							UATable = UATable + "<div class=\"row\"><div class=\"col-md-6\"><h6 class=\"text-center\">名称</h6><p class=\"text-center\">" + UA[i].name +	"</p></div><div class=\"col-md-6\"><h6 class=\"text-center\">备注</h6><p class=\"text-center\">" + info.comment + "</p></div></div>" +
-								"<div class=\"row\"><div class=\"col-md-6\"><h6 class=\"text-center\">描述</h6><p class=\"text-center\">" + info.desc +	"</p></div><div class=\"col-md-6\"><h6 class=\"text-center\">链接</h6><p class=\"text-center\">" + info.link + "</p></div></div>" +
-								"<div class=\"row\"><div class=\"col-md-6\"><h6 class=\"text-center\">第一次活动时间</h6><p class=\"text-center\">" + UA[i].stime + "</p></div><div class=\"col-md-6\"><h6 class=\"text-center\">最后一次活动时间</h6><p class=\"text-center\">" + UA[i].etime + "</p></div></div>";
-							if(UA[i].type==="1"){
-							    UATable = UATable + "<div class=\"row\"><div class=\"col-md-6\"><h6 class=\"text-center\">类型</h6><p class=\"text-center\"><span class=\"label label-danger\">恶意</span></p></div><div class=\"col-md-6\"><h6 class=\"text-center\">种类</h6><p class=\"text-center\">" + info.type + "</p></div></div>";
-							}else{
-							    UATable = UATable + "<div class=\"row\"><div class=\"col-md-6\"><h6 class=\"text-center\">类型</h6><p class=\"text-center\"><span class=\"label label-success\">良性</span></p></div><div class=\"col-md-6\"><h6 class=\"text-center\">种类</h6><p class=\"text-center\">" + info.type + "</p></div></div>";
-							}
-							if(i<UA.length-1){
-							    UATable = UATable + "<hr>"
-							}
-						}
-						UATable = "<p data-toggle=\"modal\" data-target=\"." + item.IP.replace(/\./g,"_") + "\">详细信息</p>" +
-							"<div class=\"modal fade " + item.IP.replace(/\./g,"_") + "\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"gridSystemModalLabel\" aria-hidden=\"true\" style=\"display: none;\">" +
-							"<div class=\"modal-dialog modal-lg\">" +
-							"<div class=\"modal-content\">" +
-							"<div class=\"modal-header\">" +
-							"<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">×</button>" +
-							"<h5 class=\"modal-title\" id=\"myLargeModalLabel\">详细信息</h5>" +
-							"</div><div class=\"modal-body\">" +
-							UATable + "</div><div class=\"modal-footer\">" +
-							"<button type=\"button\" class=\"btn btn-danger text-left\" data-dismiss=\"modal\">Close</button>" +
-							"</div></div></div></div>";
-						UATable = "<tr><td>" + item.IP +
-							"</td><td>" + item.total +
-							"</td><td>" + item.malicious +
-							"</td><td>" + UATable + "</td></tr>";
-						$("#results-display").append(UATable);
-					});
-				});
-			});
-        });
-	</script>
 </head>
 
 <body>
@@ -170,13 +125,52 @@
 											<table id="datable_1" class="table table-hover display  pb-30">
 												<thead>
 													<tr>
-														<th>IP地址</th>
-														<th>UA总数</th>
-														<th>恶意UA数量</th>
-														<th>查看所有UA</th>
+														<th>名称</th>
+														<th>类别</th>
+														<th>首次活动时间</th>
+														<th>最后活动时间</th>
+														<th>详细信息</th>
 													</tr>
 												</thead>
 												<tbody id="results-display">
+													<!--<tr>-->
+														<!--<td>213.123.123.12</td>-->
+														<!--<td>4</td>-->
+														<!--<td>2</td>-->
+														<!--<td>-->
+															<!--<p data-toggle="modal" data-target=".213_123_123_12" onclick="echartsConfig();">详细信息</p>-->
+															<!--<div class="modal fade 213_123_123_12" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" aria-hidden="true" style="display: none;">-->
+																<!--<div class="modal-dialog modal-lg">-->
+																	<!--<div class="modal-content">-->
+																		<!--<div class="modal-header">-->
+																			<!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>-->
+																			<!--<h5 class="modal-title" id="ModalLabel">详细信息</h5>-->
+																		<!--</div>-->
+																		<!--<div class="modal-body">-->
+																			<!--<div id="e_chart_1" class="center-block" style="width:600px;height:600px;"></div>-->
+																			<!--<div class="label-chatrs mt-15">-->
+																				<!--<div class="mb-5">-->
+																					<!--<span class="clabels inline-block bg-blue mr-5"></span>-->
+																					<!--<span class="clabels-text font-12 inline-block txt-dark capitalize-font">用户操作请求</span>-->
+																				<!--</div>-->
+																				<!--<div class="mb-5">-->
+																					<!--<span class="clabels inline-block bg-light-blue mr-5"></span>-->
+																					<!--<span class="clabels-text font-12 inline-block txt-dark capitalize-font">关联请求</span>-->
+																				<!--</div>-->
+																				<!--<div class="">-->
+																					<!--<span class="clabels inline-block bg-red mr-5"></span>-->
+																					<!--<span class="clabels-text font-12 inline-block txt-dark capitalize-font">孤立请求</span>-->
+																				<!--</div>-->
+																			<!--</div>-->
+																		<!--</div>-->
+																		<!--<div class="modal-footer">-->
+																			<!--<button type="button" class="btn btn-danger text-left" data-dismiss="modal">Close</button>-->
+																		<!--</div>-->
+																	<!--</div>-->
+																<!--</div>-->
+															<!--</div>-->
+														<!--</td>-->
+													<!--</tr>-->
 												</tbody>
 											</table>
 										</div>
@@ -216,7 +210,6 @@
 
 	<!-- Data table JavaScript -->
 	<script src="../vendors/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
-    <script src="dist/js/dataTables-data.js"></script>
 
 	<!-- Slimscroll JavaScript -->
 	<script src="dist/js/jquery.slimscroll.js"></script>
@@ -241,12 +234,17 @@
 	<script src="../vendors/bower_components/echarts/dist/echarts-en.min.js"></script>
 	<script src="../vendors/echarts-liquidfill.min.js"></script>
 
+	<!-- EChartJS JavaScript -->
+	<script src="../vendors/bower_components/echarts/dist/echarts-en.min.js"></script>
+	<script src="../vendors/echarts-liquidfill.min.js"></script>
+
 	<!-- Switchery JavaScript -->
 	<script src="../vendors/bower_components/switchery/dist/switchery.min.js"></script>
 
 	<!-- Init JavaScript -->
+	<script src="dist/js/ua_detail.js"></script>
 	<script src="dist/js/index/init.js"></script>
-	<script src="dist/js/dashboard-data.js"></script>
+	<!--<script src="dist/js/dashboard-data.js"></script>-->
 
     <!-- Morris Charts JavaScript -->
     <script src="../vendors/bower_components/raphael/raphael.min.js"></script>
