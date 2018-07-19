@@ -3,6 +3,7 @@
  */
 $.getJSON ("/report/Background_PC/index.json", function (data) {
     $.each(data, function (i, item) {
+        setTimeout(function() {
         $.getJSON(item, function (data) {
             $.each(data, function (i, item) {
                 var info = item.info;
@@ -25,6 +26,7 @@ $.getJSON ("/report/Background_PC/index.json", function (data) {
                     "</td><td>" + info.type + "</td></tr>");
             });
         });
+        }, 1);
     });
     // $('#footable_3').footable();
 });
