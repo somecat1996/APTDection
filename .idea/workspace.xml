@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="72f023dd-9e1c-48f0-a389-44fc3943046d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mad-test/Training.py" afterPath="$PROJECT_DIR$/mad-test/Training.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webPage/pages/dist/js/ua_detail.js" afterPath="$PROJECT_DIR$/webPage/pages/dist/js/ua_detail.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -15,16 +14,12 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ua_detail.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/ua_detail.js">
+      <file leaf-file-name="Training.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mad-test/Training.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="502">
-              <caret line="108" column="29" lean-forward="false" selection-start-line="108" selection-start-column="29" selection-end-line="108" selection-end-column="29" />
-              <folding>
-                <element signature="e#0#42#0" expanded="false" />
-                <marker date="1532011470468" expanded="true" signature="1046:1071" ph="..." />
-                <marker date="1532011470468" expanded="true" signature="2005:2019" ph="..." />
-              </folding>
+            <state relative-caret-position="128">
+              <caret line="613" column="32" lean-forward="true" selection-start-line="613" selection-start-column="32" selection-end-line="613" selection-end-column="32" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -36,6 +31,20 @@
               <caret line="157" column="20" lean-forward="false" selection-start-line="157" selection-start-column="20" selection-end-line="157" selection-end-column="20" />
               <folding>
                 <element signature="n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ua_detail.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/ua_detail.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="311">
+              <caret line="43" column="24" lean-forward="false" selection-start-line="43" selection-start-column="24" selection-end-line="43" selection-end-column="24" />
+              <folding>
+                <element signature="e#0#42#0" expanded="false" />
+                <marker date="1532012030582" expanded="true" signature="1046:1071" ph="..." />
+                <marker date="1532012030582" expanded="true" signature="2005:2019" ph="..." />
               </folding>
             </state>
           </provider>
@@ -806,7 +815,7 @@
         <state relative-caret-position="480">
           <caret line="96" column="20" lean-forward="false" selection-start-line="96" selection-start-column="20" selection-end-line="96" selection-end-column="20" />
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#0#9#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -855,20 +864,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mad-test/Training.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="655" column="19" lean-forward="false" selection-start-line="655" selection-start-column="19" selection-end-line="655" selection-end-column="19" />
+        <state relative-caret-position="128">
+          <caret line="613" column="32" lean-forward="true" selection-start-line="613" selection-start-column="32" selection-end-line="613" selection-end-column="32" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/ua_detail.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="502">
-          <caret line="108" column="29" lean-forward="false" selection-start-line="108" selection-start-column="29" selection-end-line="108" selection-end-column="29" />
+        <state relative-caret-position="311">
+          <caret line="43" column="24" lean-forward="false" selection-start-line="43" selection-start-column="24" selection-end-line="43" selection-end-column="24" />
           <folding>
             <element signature="e#0#42#0" expanded="false" />
-            <marker date="1532011470468" expanded="true" signature="1046:1071" ph="..." />
-            <marker date="1532011470468" expanded="true" signature="2005:2019" ph="..." />
+            <marker date="1532012030582" expanded="true" signature="1046:1071" ph="..." />
+            <marker date="1532012030582" expanded="true" signature="2005:2019" ph="..." />
           </folding>
         </state>
       </provider>

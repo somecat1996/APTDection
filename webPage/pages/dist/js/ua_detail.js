@@ -40,149 +40,154 @@ $("#results-display").ready(function() {
                 "</td><td>" + item.etime +
                 "</td><td>" + Table + "</td></tr>";
             $("#results-display").append(Table);
-            var data = [];
-            data.push({
-                "name": item.name,
-                "value": "",
-                x: 300,
-                y: 300,
-                "symbolSize": 40,
-                "category": "a",
-                "draggable": "true",
-                itemStyle: {
-                    normal: {
-                        color: ['#958FEF'],
-                    }
-                }
+            $("#modal" + count.toString()).ready(function () {
+                B(item);
             });
-            var srcIP = item.srcIP;
-            for(let i=0;i<srcIP.length;i++){
-                data.push({
-                    "name": item.srcIP[i],
-                    "value": "",
-                    x: 300 + 50*Math.cos(-1.57*(i+1)/(item.srcIP.length+1)),
-                    y: 300 + 50*Math.sin(-1.57*(i+1)/(item.srcIP.length+1)),
-                    "symbol": "triangle",
-                    "symbolSize": 20,
-                    "category": "b",
-                    "draggable": "true",
-                    itemStyle: {
-                        normal: {
-                            color: ['#635bd6'],
-                        }
-                    }
-                });
-            }
-            for(let i=0;i<item.dstIP.length;i++){
-                data.push({
-                    "name": item.dstIP[i],
-                    "value": "",
-                    x: 300 + 50*Math.cos(1.57*(i+1)/(item.dstIP.length+1)),
-                    y: 300 + 50*Math.sin(1.57*(i+1)/(item.dstIP.length+1)),
-                    "symbol": "rect",
-                    "symbolSize": 20,
-                    "category": "c",
-                    "draggable": "true",
-                    itemStyle: {
-                        normal: {
-                            color: ['#F73414'],
-                        }
-                    }
-                });
-            }
-            var links = [];
-            for(let i=0;i<item.srcIP.length;i++){
-                links.push(
-                    {
-                    "source": item.name,
-                    "target": item.srcIP[i]
-                });
-            }
-            for(let i=0;i<item.dstIP.length;i++){
-                links.push(
-                    {
-                    "source": item.name,
-                    "target": item.dstIP[i]
-                });
-            }
-            console.log(data);
-            console.log(links);
 
-            var echartsConfig = function() {
-                var eChart_1 = echarts.init(document.getElementById("modal" + count.toString()));
-                var option = {
-                    tooltip: {
-                        backgroundColor: 'rgba(33,33,33,1)',
-                        borderRadius: 0,
-                        padding: 10,
-                        axisPointer: {
-                            type: 'cross',
-                            label: {
-                                backgroundColor: 'rgba(33,33,33,1)'
-                            }
-                        },
-                        textStyle: {
-                            color: '#fff',
-                            fontStyle: 'normal',
-                            fontWeight: 'normal',
-                            fontFamily: "'Montserrat', sans-serif",
-                            fontSize: 12
-                        }
-                    },
-                    animationDuration: 3000,
-                    animationEasingUpdate: 'quinticInOut',
-                    series: [{
-                        name: '节点',
-                        type: 'graph',
-                        layout: 'force',
-                        force: {
-                            //initLayout: ...,
-                            repulsion: 50,
-                            gravity: 0.1,
-                            // edgeLength: 30,
-                            layoutAnimation: true,
-                        },
-                        data: data,
-                        links: links,
-                        categories: [{
-                            'name': 'a'
-                        }, {
-                            'name': 'b'
-                        }, {
-                            'name': 'c'
-                        }],
-                        focusNodeAdjacency: true,
-                        roam: true,
-                        label: {
-                            normal: {
-                                position: 'right',
-                                show: true,
-                            }
-                        },
-
-                        lineStyle: {
-                            normal: {
-                                show: true
-                            }
-                        }
-                    }]
-                };
-                eChart_1.setOption(option);
-                eChart_1.resize();
-            };
-            echartsConfig();
-            /*****Resize function start*****/
-            var echartResize;
-            $(window).on("resize", function () {
-                /*E-Chart Resize*/
-                clearTimeout(echartResize);
-                echartResize = setTimeout(echartsConfig, 200);
-            }).resize();
-            /*****Resize function end*****/
         });
     });
     //     });
     // });
 });
+
+function B(item) {
+    var data = [];
+    data.push({
+        "name": item.name,
+        "value": "",
+        x: 300,
+        y: 300,
+        "symbolSize": 40,
+        "category": "a",
+        "draggable": "true",
+        itemStyle: {
+            normal: {
+                color: ['#958FEF'],
+            }
+        }
+    });
+    var srcIP = item.srcIP;
+    for(let i=0;i<srcIP.length;i++){
+        data.push({
+            "name": item.srcIP[i],
+            "value": "",
+            x: 300 + 50*Math.cos(-1.57*(i+1)/(item.srcIP.length+1)),
+            y: 300 + 50*Math.sin(-1.57*(i+1)/(item.srcIP.length+1)),
+            "symbol": "triangle",
+            "symbolSize": 20,
+            "category": "b",
+            "draggable": "true",
+            itemStyle: {
+                normal: {
+                    color: ['#635bd6'],
+                }
+            }
+        });
+    }
+    for(let i=0;i<item.dstIP.length;i++){
+        data.push({
+            "name": item.dstIP[i],
+            "value": "",
+            x: 300 + 50*Math.cos(1.57*(i+1)/(item.dstIP.length+1)),
+            y: 300 + 50*Math.sin(1.57*(i+1)/(item.dstIP.length+1)),
+            "symbol": "rect",
+            "symbolSize": 20,
+            "category": "c",
+            "draggable": "true",
+            itemStyle: {
+                normal: {
+                    color: ['#F73414'],
+                }
+            }
+        });
+    }
+    var links = [];
+    for(let i=0;i<item.srcIP.length;i++){
+        links.push(
+            {
+            "source": item.name,
+            "target": item.srcIP[i]
+        });
+    }
+    for(let i=0;i<item.dstIP.length;i++){
+        links.push(
+            {
+            "source": item.name,
+            "target": item.dstIP[i]
+        });
+    }
+
+    var echartsConfig = function() {
+        var eChart_1 = echarts.init(document.getElementById("modal" + count.toString()));
+        var option = {
+            tooltip: {
+                backgroundColor: 'rgba(33,33,33,1)',
+                borderRadius: 0,
+                padding: 10,
+                axisPointer: {
+                    type: 'cross',
+                    label: {
+                        backgroundColor: 'rgba(33,33,33,1)'
+                    }
+                },
+                textStyle: {
+                    color: '#fff',
+                    fontStyle: 'normal',
+                    fontWeight: 'normal',
+                    fontFamily: "'Montserrat', sans-serif",
+                    fontSize: 12
+                }
+            },
+            animationDuration: 3000,
+            animationEasingUpdate: 'quinticInOut',
+            series: [{
+                name: '节点',
+                type: 'graph',
+                layout: 'force',
+                force: {
+                    //initLayout: ...,
+                    repulsion: 50,
+                    gravity: 0.1,
+                    // edgeLength: 30,
+                    layoutAnimation: true,
+                },
+                data: data,
+                links: links,
+                categories: [{
+                    'name': 'a'
+                }, {
+                    'name': 'b'
+                }, {
+                    'name': 'c'
+                }],
+                focusNodeAdjacency: true,
+                roam: true,
+                label: {
+                    normal: {
+                        position: 'right',
+                        show: true,
+                    }
+                },
+
+                lineStyle: {
+                    normal: {
+                        show: true
+                    }
+                }
+            }]
+        };
+        eChart_1.setOption(option);
+        eChart_1.resize();
+    };
+    echartsConfig();
+    /*****Resize function start*****/
+    var echartResize;
+    $(window).on("resize", function () {
+        /*E-Chart Resize*/
+        clearTimeout(echartResize);
+        echartResize = setTimeout(echartsConfig, 200);
+    }).resize();
+    /*****Resize function end*****/
+}
 
 window.onload = function() {$('#datable_1').DataTable();}
