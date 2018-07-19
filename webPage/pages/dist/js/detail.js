@@ -7,7 +7,7 @@ $.getJSON ("/report/Background_PC/index.json", function (data) {
             $.each(data, function (i, item) {
                 var info = item.info;
                 var type = '';
-                if(item.type==="1"){
+                if(item.is_malicious==="1"){
                     type = "<span class=\"label label-danger\">恶意</span>";
                 }else{
                     type = "<span class=\"label label-success\">良性</span>";
