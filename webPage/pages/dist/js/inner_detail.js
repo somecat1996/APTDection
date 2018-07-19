@@ -1,8 +1,10 @@
 /**
  * Created by lenovo on 2018/7/18.
  */
+var count = 0;
 $("#results-display").ready(function() {
     $.getJSON ("/report/innerIP.json", function (data) {
+        count = data.length;
         // $.each(data, function (i, item) {
         //     $.getJSON(item, function (data) {
         $.each(data, function (i, item) {
@@ -15,7 +17,7 @@ $("#results-display").ready(function() {
                     "<div class=\"row\"><div class=\"col-md-6\"><h6 class=\"text-center\">第一次活动时间</h6><p class=\"text-center\">" + UA[i].stime + "</p></div><div class=\"col-md-6\"><h6 class=\"text-center\">最后一次活动时间</h6><p class=\"text-center\">" + UA[i].etime + "</p></div></div>";
                 if(UA[i].type===1){
                     UATable = UATable + "<div class=\"row\"><div class=\"col-md-6\"><h6 class=\"text-center\">类型</h6><p class=\"text-center\"><span class=\"label label-danger\">恶意</span></p></div><div class=\"col-md-6\"><h6 class=\"text-center\">种类</h6><p class=\"text-center\">" + info.type + "</p></div></div>";
-                }else{
+                }else if(UA[i].type===0){
                     UATable = UATable + "<div class=\"row\"><div class=\"col-md-6\"><h6 class=\"text-center\">类型</h6><p class=\"text-center\"><span class=\"label label-success\">良性</span></p></div><div class=\"col-md-6\"><h6 class=\"text-center\">种类</h6><p class=\"text-center\">" + info.type + "</p></div></div>";
                 }
                 if(i<UA.length-1){
@@ -38,12 +40,25 @@ $("#results-display").ready(function() {
                 "</td><td>" + item.malicious +
                 "</td><td>" + UATable + "</td></tr>";
             $("#results-display").append(UATable);
+            count--;
+            A();
         });
     });
     //     });
     // });
 });
-window.onload = function() {$('#datable_1').DataTable();}
+function A() {
+    if(count===0){
+        ;
+    }
+    else {
+        $('#datable_1').DataTable();
+    }
+}
+// setTimeout(function() {
+//   $('#datable_1').DataTable();
+// }, 100 * 1000);
+// window.onload = function() {$('#datable_1').DataTable();}
 // $(document).ready(function() {
 //     $('#datable_1').DataTable();
 // });

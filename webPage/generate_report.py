@@ -1,6 +1,5 @@
 import os
 import json
-import datetime as dt
 
 
 def readReportList(path):
@@ -31,10 +30,10 @@ def writeUA(index):
                         j['stime'] = time
                     elif time > j['etime']:
                         j['etime'] = time
-                    if src not in j['src']:
-                        j['src'].append(src)
-                    if dst not in j['dst']:
-                        j['dst'].append(dst)
+                    if src not in j['srcIP']:
+                        j['srcIP'].append(src)
+                    if dst not in j['dstIP']:
+                        j['dstIP'].append(dst)
                     break
             if flag:
                 UA.append({
@@ -43,8 +42,8 @@ def writeUA(index):
                     "stime": time,
                     "etime": time,
                     "info": info,
-                    "src": [src],
-                    "dst": [dst]
+                    "srcIP": [src],
+                    "dstIP": [dst]
                 })
     with open("UA.json", 'w') as f:
         json.dump(UA, f)
@@ -78,7 +77,7 @@ def writeInnerIP(index):
                                 k['etime'] = time
                     if flag2:
                         j["total"] += 1
-                        if type == '1':
+                        if type == 1:
                             j["malicious"] += 1
                         j['UA'].append({
                             "name": name,
@@ -104,6 +103,7 @@ def writeInnerIP(index):
                 })
     with open("innerIP.json", 'w') as f:
         json.dump(innerIP, f)
+
 
 def writeOuterIP(index):
     outerIP = list()
