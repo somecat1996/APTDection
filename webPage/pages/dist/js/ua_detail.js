@@ -3,6 +3,7 @@
  */
 var count = 0;
 var S = 0;
+var flag = 1;
 var items = [];
 $("#results-display").ready(function() {
     // $.getJSON ("testFiles/index.json", function (data) {
@@ -44,6 +45,7 @@ $("#results-display").ready(function() {
                 "</td><td>" + Table + "</td></tr>";
             $("#results-display").append(Table);
             items.push(item);
+            if(S===count){flag=0;}
         });
     });
     //     });
@@ -191,14 +193,11 @@ function B(item, c) {
 }
 
 window.onload = function() {
-    $('#datable_1').DataTable();
-    while(count<S){
-        console.log(count);
-        console.log(S);
-    }
+    while(flag===1){}
     for(let i=0;i<items.length;i++){
-        console.log(items[i]);
-        console.log(i+1);
+        // console.log(items[i]);
+        // console.log(i+1);
         B(items[i], i+1);
+    $('#datable_1').DataTable();
     }
 }
