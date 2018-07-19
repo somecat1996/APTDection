@@ -60,6 +60,7 @@ import scapy.all
 from fingerprints.fingerprintsManager import *
 from StreamManager.StreamManager4 import *
 from webgraphic.webgraphic import *
+from make_stream import *
 
 
 # testing macros
@@ -382,8 +383,7 @@ def run_cnn(*, path, retrain=False):
     # things to do when retrain
     if retrain:
         # load group record
-        with open(f'/usr/local/mad/retrain/stream.json', 'r') as file:
-            record = json.load(file, object_hook=object_hook)
+        record = make_stream()
 
         # update fingerprints
         fp = fingerprintManager()

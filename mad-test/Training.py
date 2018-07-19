@@ -15,6 +15,7 @@ import time
 import numpy as np
 import tensorflow as tf
 
+from make_stream import *
 from useragents.useragents import parse
 from StreamManager.StreamManager4 import *
 
@@ -631,15 +632,15 @@ def main(unused):
         end = time.time()
         print(end)
         print('Running time: %s Seconds' % (end - start))
-        retrain_index = collections.defaultdict(dict)
-        if os.path.isfile("/usr/local/mad/retrain/stream.json"):
-            while True:
-                try:
-                    with open("/usr/local/mad/retrain/stream.json", 'r') as file:
-                        retrain_index.update(json.load(file, object_hook=object_hook))
-                except json.decoder.JSONDecodeError:
-                    continue
-                break
+        retrain_index = make_stream()
+        # if os.path.isfile("/usr/local/mad/retrain/stream.json"):
+        #     while True:
+        #         try:
+        #             with open("/usr/local/mad/retrain/stream.json", 'r') as file:
+        #                 retrain_index.update(json.load(file, object_hook=object_hook))
+        #         except json.decoder.JSONDecodeError:
+        #             continue
+        #         break
         for kind in {'Background_PC',}:
             retrain_index[kind] = collections.defaultdict(list, retrain_index[kind])
         for item in Malicious:
