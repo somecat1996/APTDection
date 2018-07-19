@@ -430,7 +430,7 @@ def main(unused):
         # print("detected by fingerprint:")
         Malicious = []
         for ipua in isMalicious:
-            for filedict in group[ipua]:
+            for filedict in group.get(ipua, list()):
                 filename = filedict["filename"]
                 name = pathlib.Path(filename).stem
                 # ipua = "UnknownUA"
@@ -471,7 +471,7 @@ def main(unused):
                 ))
         Clean = []
         for ipua in isClean:
-            for filedict in group[T][ipua]:
+            for filedict in group[T].get(ipua, list()):
                 filename = filedict["filename"]
                 name = pathlib.Path(filename).stem
                 # ipua = "UnknownUA"

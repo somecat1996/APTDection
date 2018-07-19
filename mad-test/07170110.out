@@ -1,9 +1,0 @@
-Traceback (most recent call last):
-  File "run_mad.py", line 4, in <module>
-    from mad import main
-  File "/home/ubuntu/APTDection/mad-test/mad.py", line 70, in <module>
-    from webgraphic.webgraphic import *
-  File "/home/ubuntu/APTDection/mad-test/webgraphic/webgraphic.py", line 110
-    s = packet_to_str(packet)
-                            ^
-TabError: inconsistent use of tabs and spaces in indentation
