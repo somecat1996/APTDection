@@ -53,7 +53,8 @@ $("#results-display").ready(function() {
                     }
                 }
             });
-            for(let i=0;i<item.srcIP.length;i++){
+            var srcIP = item.srcIP;
+            for(let i=0;i<srcIP.length;i++){
                 data.push({
                     "name": item.srcIP[i],
                     "value": "",
