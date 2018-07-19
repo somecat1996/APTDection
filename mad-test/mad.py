@@ -64,7 +64,7 @@ from webgraphic.webgraphic import *
 
 # testing macros
 FILE = NotImplemented
-COUNT = -1
+COUNT = 4
 
 
 PID = os.getpid()   # PID
@@ -93,6 +93,9 @@ MODE_DICT = {
     3 : 'predict',  # prediction
     4 : 'retrain',  # apdatation
 }
+
+
+print(f'Manager process: {PID}')
 
 
 class JSONEncoder(json.JSONEncoder):
@@ -141,6 +144,8 @@ def main(*, iface=None, mode=None, path=None, file=None):
 
     # start procedure
     make_worker()
+    while True:
+        time.sleep(100_000_000)
 
 
 def retrain_cnn(*args):
@@ -365,7 +370,10 @@ def run_cnn(*, path, retrain=False):
             file.write(f'2 {dt.datetime.now().isoformat()}\n')
 
     # run CNN subprocess
-    os.kill(PID, signal.SIGUSR1)
+    try:
+        os.kill(PID, signal.SIGUSR1)
+    except ProcessLookupError:
+        print(f"ProcessLookupError: Process {PID} not found")
     for kind in {'Background_PC',}:
         cmd = [sys.executable, shlex.quote(os.path.join(ROOT, 'Training.py')),
                 path, '/usr/local/mad/model', MODE_DICT.get(mode), kind, str(PID)]
