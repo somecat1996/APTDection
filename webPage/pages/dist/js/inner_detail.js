@@ -42,7 +42,7 @@ $("#results-display").ready(function() {
             A();
         });
         function A(i) {
-            if(count===i){
+            if(count===i-1){
                 $('#datable_1').DataTable();
             }
             else {}
