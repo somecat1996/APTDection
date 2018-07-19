@@ -40,11 +40,11 @@ $("#results-display").ready(function() {
                 "</td><td>" + item.malicious +
                 "</td><td>" + UATable + "</td></tr>";
             $("#results-display").append(UATable);
-            console.log(i);
-            A(i);
+            count--;
+            A();
         });
-        function A(i) {
-            if(count-1==i){
+        function A() {
+            if(count-1==0){
                 $('#datable_1').DataTable();
             }
             else {}
