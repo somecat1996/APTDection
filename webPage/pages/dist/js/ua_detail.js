@@ -177,6 +177,5 @@ $("#results-display").ready(function() {
             });
         });
     });
+    $('#datable_1').DataTable();
 });
-
-window.onload = function() {$('#datable_1').DataTable();}
