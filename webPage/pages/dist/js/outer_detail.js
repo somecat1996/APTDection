@@ -27,7 +27,7 @@ $("#results-display").ready(function() {
                 "<button type=\"button\" class=\"btn btn-danger text-left\" data-dismiss=\"modal\">Close</button>" +
                 "</div></div></div></div>";
             var type;
-            if(item.type==="1"){
+            if(item.type===1){
                 type = "<span class=\"label label-danger\">恶意</span>";
             }else{
                 type = "<span class=\"label label-success\">良性</span>";
