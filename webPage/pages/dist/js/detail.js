@@ -27,4 +27,4 @@ $.getJSON ("/report/Background_PC/index.json", function (data) {
         });
     });
 });
-window.onload = function() {$('#datable_1').DataTable();}
+window.onload = function() {$('#footable_3').footable();}
