@@ -1,47 +1,38 @@
 /*Morris Init*/
+var count = 1;
 $(function() {
 	"use strict";
-	
+	var data = [];
+	// $.getJSON ("/report/loss.json", function (data) {
+	$.getJSON ("testFiles/loss.json", function (data) {
+		count = data.length;
+		console.log(data);
+        $.each(data, function (i, item) {
+        	data.push({
+				period: item.time.replace('T', ' '),
+				loss: item.loss
+			});
+        	count--;
+		});
+	});
+	// while (count > 0){console.log(count);}
+	console.log(data);
     if($('#morris_area_chart').length > 0)
 		// Area Chart
 		Morris.Area({
 			element: 'morris_area_chart',
-			data: [{
-				period: '2018-7-8 17:30',
-				active: 1208,
-				malware: 213
-			},{
-				period: '2018-7-8 17:40',
-				active: 1238,
-				malware: 231
-			},{
-				period: '2018-7-8 17:50',
-				active: 1308,
-				malware: 123
-			},{
-				period: '2018-7-8 18:00',
-				active: 2308,
-				malware: 223
-			},{
-				period: '2018-7-8 18:10',
-				active: 1230,
-				malware: 232
-			},{
-				period: '2018-7-8 18:20',
-				active: 1238,
-				malware: 323
-			}],
+			data: data,
 			xkey: 'period',
-			ykeys: ['active', 'malware'],
-			labels: ['活动软件数', '恶意软件数'],
+			ykeys: ['loss'],
+			labels: ['误报数：正确数'],
 			pointSize: 0,
 			lineWidth:0,
 			fillOpacity: 1,
-			pointStrokeColors:['#76c880', '#d06052'],
+			pointStrokeColors:['#76c880'],
 			behaveLikeLine: true,
 			grid: false,
 			hideHover: 'auto',
-			lineColors: ['#76c880', '#d06052'],
+			lineColors: ['#76c880'],
 			resize: true,
 			redraw: true,
 			smooth: true,
