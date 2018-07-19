@@ -3,7 +3,7 @@
  */
 var count = 1;
 var Data = [];
-$.getJSON ("/report/loss.json", function (data) {
+$.getJSON ("/mad/loss.json", function (data) {
 // $.getJSON ("testFiles/loss.json", function (data) {
     count = data.length;
     $.each(data, function (i, item) {
