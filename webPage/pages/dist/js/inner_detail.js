@@ -4,6 +4,7 @@
 $("#results-display").ready(function() {
     $.getJSON ("/report/innerIP.json", function (data) {
         var count = data.length;
+        console.log(count);
         // $.each(data, function (i, item) {
         //     $.getJSON(item, function (data) {
         $.each(data, function (i, item) {
@@ -39,6 +40,7 @@ $("#results-display").ready(function() {
                 "</td><td>" + item.malicious +
                 "</td><td>" + UATable + "</td></tr>";
             $("#results-display").append(UATable);
+            console.log(i);
             A(i);
         });
         function A(i) {
