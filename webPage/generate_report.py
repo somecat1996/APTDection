@@ -45,7 +45,7 @@ def writeUA(index):
                     "dst": [dst]
                 })
     with open("UA.json", 'w') as f:
-        json.dump(f, UA)
+        json.dump(UA, f)
 
 
 def writeInnerIP(index):
@@ -101,7 +101,7 @@ def writeInnerIP(index):
                         }]
                 })
     with open("innerIP.json", 'w') as f:
-        json.dump(f, innerIP)
+        json.dump(innerIP, f)
 
 def writeOuterIP(index):
     outerIP = list()
@@ -154,9 +154,10 @@ def writeOuterIP(index):
                         }]
                 })
     with open("outerIP.json", 'w') as f:
-        json.dump(f, outerIP)
+        json.dump(outerIP, f)
 
 if __name__ == "__main__":
     index = readReportList("./Background_PC")
     writeInnerIP(index)
     writeUA(index)
+    writeOuterIP(index)
