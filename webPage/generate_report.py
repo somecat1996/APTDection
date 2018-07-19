@@ -93,7 +93,8 @@ def writeInnerIP(index):
                             "etime": time,
                             "type": type,
                             "info": info
-                        }]
+                        }
+                    ]
                 })
     with open("innerIP.json", 'w') as f:
         json.dump(innerIP, f)
