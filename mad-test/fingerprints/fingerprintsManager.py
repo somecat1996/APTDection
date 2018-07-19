@@ -62,4 +62,3 @@ class fingerprintManager:
                     break
             if not flag:
                 self.fingerprints[app]=newfingerprints[app]
-

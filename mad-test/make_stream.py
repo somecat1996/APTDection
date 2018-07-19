@@ -75,4 +75,3 @@ if __name__ == '__main__':
     # import pprint
     # pprint.pprint(make_stream())
     load_stream()
-
