@@ -2,9 +2,12 @@
  * Created by lenovo on 2018/7/18.
  */
 var count = 0;
+var S = 0;
+var items = [];
 $("#results-display").ready(function() {
     // $.getJSON ("testFiles/index.json", function (data) {
     $.getJSON ("/report/UA.json", function (data) {
+        S = data.length;
         // $.each(data, function (i, item) {
         //     $.getJSON(item, function (data) {
         $.each(data, function (i, item) {
@@ -40,14 +43,14 @@ $("#results-display").ready(function() {
                 "</td><td>" + item.etime +
                 "</td><td>" + Table + "</td></tr>";
             $("#results-display").append(Table);
-            B(item);
+            items.push(item);
         });
     });
     //     });
     // });
 });
 
-function B(item) {
+function B(item, c) {
     var data = [];
     data.push({
         "name": item.name,
@@ -115,7 +118,7 @@ function B(item) {
     }
 
     var echartsConfig = function() {
-        var eChart_1 = echarts.init(document.getElementById("modal" + count.toString()));
+        var eChart_1 = echarts.init(document.getElementById("modal" + c.toString()));
         var option = {
             tooltip: {
                 backgroundColor: 'rgba(33,33,33,1)',
@@ -187,4 +190,10 @@ function B(item) {
     /*****Resize function end*****/
 }
 
-window.onload = function() {$('#datable_1').DataTable();}
+window.onload = function() {
+    $('#datable_1').DataTable();
+    while(count<S){}
+    for(let i=0;i<items.length;i++){
+        B(items[i], i+1);
+    }
+}
