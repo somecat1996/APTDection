@@ -414,12 +414,15 @@ def main(unused):
         isClean = data_index["is_clean"]
         packets, names = ReadPredictData(data_index, T)
         print(names)
-        predict_input_fn = tf.estimator.inputs.numpy_input_fn(
-            x={"packet": packets},
-            num_epochs=1,
-            shuffle=False)
-        predictions = list(classifier.predict(input_fn=predict_input_fn))
-        predicted_classes = [p["classes"] for p in predictions]
+        if names:
+            predict_input_fn = tf.estimator.inputs.numpy_input_fn(
+                x={"packet": packets},
+                num_epochs=1,
+                shuffle=False)
+            predictions = list(classifier.predict(input_fn=predict_input_fn))
+            predicted_classes = [p["classes"] for p in predictions]
+        else:
+            predicted_classes = list()
         with open(os.path.join(DataPath, "group.json"), "r") as file:
             group = json.load(file, object_hook=object_hook)
         group_data = dict()
@@ -606,7 +609,7 @@ def main(unused):
         #         shutil.copy(os.path.join(datasetPath, "Background_PC/0/"+j[:-4]+"dat"), retrainPath)
         stem = pathlib.Path(DataPath).stem
         val = StreamManager(NotImplemented, DataPath).validate(group_dict)
-        loss = len(val)/sum(predicted_classes)
+        loss = len(val)/sum(predicted_classes) if names else 0.0
         # print(val)
         loss_record = list()
         if os.path.isfile("/usr/local/mad/loss.json"):
@@ -630,8 +633,13 @@ def main(unused):
         print('Running time: %s Seconds' % (end - start))
         retrain_index = collections.defaultdict(dict)
         if os.path.isfile("/usr/local/mad/retrain/stream.json"):
-            with open("/usr/local/mad/retrain/stream.json", 'r') as file:
-                retrain_index.update(json.load(file, object_hook=object_hook))
+            while True:
+                try:
+                    with open("/usr/local/mad/retrain/stream.json", 'r') as file:
+                        retrain_index.update(json.load(file, object_hook=object_hook))
+                except json.decoder.JSONDecodeError:
+                    continue
+                break
         for kind in {'Background_PC',}:
             retrain_index[kind] = collections.defaultdict(list, retrain_index[kind])
         for item in Malicious:
