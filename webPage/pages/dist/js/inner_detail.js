@@ -5,6 +5,7 @@ $("#results-display").ready(function() {
     $.getJSON ("/report/innerIP.json", function (data) {
         // $.each(data, function (i, item) {
         //     $.getJSON(item, function (data) {
+        setTimeout(function() {
         $.each(data, function (i, item) {
             var UA = item.UA;
             var UATable = "";
@@ -39,6 +40,7 @@ $("#results-display").ready(function() {
                 "</td><td>" + UATable + "</td></tr>";
             $("#results-display").append(UATable);
         });
+        }, 1);
     });
     //     });
     // });
