@@ -43,11 +43,11 @@
       <file leaf-file-name="inner_detail.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/inner_detail.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="416">
-              <caret line="42" column="8" lean-forward="true" selection-start-line="42" selection-start-column="8" selection-end-line="42" selection-end-column="8" />
+            <state relative-caret-position="104">
+              <caret line="42" column="20" lean-forward="true" selection-start-line="42" selection-start-column="20" selection-end-line="42" selection-end-column="20" />
               <folding>
                 <element signature="e#0#42#0" expanded="false" />
-                <marker date="1531993346423" expanded="true" signature="2388:2402" ph="..." />
+                <marker date="1531993874240" expanded="true" signature="2432:2446" ph="..." />
               </folding>
             </state>
           </provider>
@@ -901,11 +901,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/inner_detail.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="42" column="8" lean-forward="true" selection-start-line="42" selection-start-column="8" selection-end-line="42" selection-end-column="8" />
+        <state relative-caret-position="104">
+          <caret line="42" column="20" lean-forward="true" selection-start-line="42" selection-start-column="20" selection-end-line="42" selection-end-column="20" />
           <folding>
             <element signature="e#0#42#0" expanded="false" />
-            <marker date="1531993346423" expanded="true" signature="2388:2402" ph="..." />
+            <marker date="1531993874240" expanded="true" signature="2432:2446" ph="..." />
           </folding>
         </state>
       </provider>

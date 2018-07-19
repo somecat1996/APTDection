@@ -1,8 +1,10 @@
 /**
  * Created by lenovo on 2018/7/18.
  */
+var count = 0;
 $("#results-display").ready(function() {
     $.getJSON ("/report/innerIP.json", function (data) {
+        count = data.length;
         // $.each(data, function (i, item) {
         //     $.getJSON(item, function (data) {
         $.each(data, function (i, item) {
@@ -38,12 +40,21 @@ $("#results-display").ready(function() {
                 "</td><td>" + item.malicious +
                 "</td><td>" + UATable + "</td></tr>";
             $("#results-display").append(UATable);
+            count--;
+            A();
         });
     });
-    A();
     //     });
     // });
 });
+function A() {
+    if(count===0){
+        ;
+    }
+    else {
+        $('#datable_1').DataTable();
+    }
+}
 // setTimeout(function() {
 //   $('#datable_1').DataTable();
 // }, 100 * 1000);
@@ -51,6 +62,3 @@ $("#results-display").ready(function() {
 // $(document).ready(function() {
 //     $('#datable_1').DataTable();
 // });
-function A() {
-    $('#datable_1').DataTable();
-}
