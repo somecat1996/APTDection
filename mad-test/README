@@ -36,12 +36,4 @@ MAD -- Malicious Application Detector
         |       |-- 1/                          # malicious ones
         |           |-- YYYY-MM-DDTHH:MM:SS.US-IP_PORT-IP_PORT-TS.dat
         |           |-- ...
-        |-- stream/                             # stream PCAP for retrain procedure
-            |-- stream.json                     # stream index for retrain
-            |-- Background_PC/                  # Background_PC retrain stream file
-                |-- 0/                          # clean ones
-                |   |-- YYYY-MM-DDTHH:MM:SS.US-IP_PORT-IP_PORT-TS.pcap
-                |   |-- ...
-                |-- 1/                          # malicious ones
-                    |-- YYYY-MM-DDTHH:MM:SS.US-IP_PORT-IP_PORT-TS.pcap
-                    |-- ...
+        |-- stream.json                         # stream index for retrain

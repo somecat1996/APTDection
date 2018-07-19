@@ -37,15 +37,7 @@
         |       |-- 1/                          # malicious ones
         |           |-- YYYY-MM-DDTHH:MM:SS.US-IP_PORT-IP_PORT-TS.dat
         |           |-- ...
-        |-- stream/                             # stream PCAP for retrain procedure
-            |-- stream.json                     # stream index for retrain
-            |-- Background_PC/                  # Background_PC retrain stream file
-                |-- 0/                          # clean ones
-                |   |-- YYYY-MM-DDTHH:MM:SS.US-IP_PORT-IP_PORT-TS.pcap
-                |   |-- ...
-                |-- 1/                          # malicious ones
-                    |-- YYYY-MM-DDTHH:MM:SS.US-IP_PORT-IP_PORT-TS.pcap
-                    |-- ...
+        |-- stream.json                         # stream index for retrain
 
 """
 import collections
@@ -72,9 +64,10 @@ from webgraphic.webgraphic import *
 
 # testing macros
 FILE = NotImplemented
-COUNT = -1
+COUNT = 19
 
 
+PID = os.getpid()   # PID
 ROOT = os.path.dirname(os.path.abspath(__file__))
                     # file root path
 MODE = 3            # 1-initialisation; 2-migration; 3-prediction; 4-adaptation
@@ -102,6 +95,9 @@ MODE_DICT = {
 }
 
 
+print(f'Manager process: {PID}')
+
+
 class JSONEncoder(json.JSONEncoder):
     def default(self, obj):
         if isinstance(obj, bytes):
@@ -126,7 +122,7 @@ def main(*, iface=None, mode=None, path=None, file=None):
     signal.signal(signal.SIGUSR2, retrain_cnn)
 
     # make paths
-    for name in {'dataset', 'report', 'model', 'pcap', 'retrain/dataset', 'retrain/stream'}:
+    for name in {'dataset', 'report', 'model', 'pcap', 'retrain/dataset'}:
         pathlib.Path(f'/usr/local/mad/{name}').mkdir(parents=True, exist_ok=True)
 
     if iface is not None:
@@ -148,6 +144,8 @@ def main(*, iface=None, mode=None, path=None, file=None):
 
     # start procedure
     make_worker()
+    while True:
+        time.sleep(100_000_000)
 
 
 def retrain_cnn(*args):
@@ -163,7 +161,7 @@ def retrain_cnn(*args):
     multiprocessing.Process(
         target=run_cnn,
         kwargs={'path': '/usr/local/mad/retrain/dataset',
-                'ppid': os.getpid(), 'retrain': True},
+                'retrain': True},
     ).start()
 
 
@@ -212,7 +210,7 @@ def start_worker():
 
     # now, we send a signal to the parent process
     # to create a new process and continue
-    # os.kill(os.getppid(), signal.SIGUSR1)
+    # os.kill(PID, signal.SIGUSR1)
 
     # then, generate WebGraphic & fingerprints for each flow
     # through reconstructed functions and methods
@@ -230,7 +228,7 @@ def start_worker():
 
     # and now, time for the neural network
     # reports should be placed in a certain directory
-    run_cnn(path=path, ppid=os.getppid())
+    run_cnn(path=path)
 
     milestone_4 = time.time()
     print(f'Predicted for {milestone_4-milestone_3} seconds')
@@ -320,8 +318,8 @@ def make_dataset(labels, fp, *, path):
         pathlib.Path(f'{path}/{kind}/0').mkdir(parents=True, exist_ok=True)  # safe
         pathlib.Path(f'{path}/{kind}/1').mkdir(parents=True, exist_ok=True)  # malicious
         pathlib.Path(f'/usr/local/mad/report/{kind}').mkdir(parents=True, exist_ok=True)
-        pathlib.Path(f'/usr/local/mad/retrain/stream/{kind}/0').mkdir(parents=True, exist_ok=True)
-        pathlib.Path(f'/usr/local/mad/retrain/stream/{kind}/1').mkdir(parents=True, exist_ok=True)
+        # pathlib.Path(f'/usr/local/mad/retrain/stream/{kind}/0').mkdir(parents=True, exist_ok=True)
+        # pathlib.Path(f'/usr/local/mad/retrain/stream/{kind}/1').mkdir(parents=True, exist_ok=True)
         pathlib.Path(f'/usr/local/mad/retrain/dataset/{kind}/0').mkdir(parents=True, exist_ok=True)
         pathlib.Path(f'/usr/local/mad/retrain/dataset/{kind}/1').mkdir(parents=True, exist_ok=True)
 
@@ -359,7 +357,7 @@ def make_dataset(labels, fp, *, path):
                         print(file.name)
 
 
-def run_cnn(*, path, ppid, retrain=False):
+def run_cnn(*, path, retrain=False):
     """Create subprocess to run CNN model."""
     print(f"CNN running @ {path}")
 
@@ -372,22 +370,25 @@ def run_cnn(*, path, ppid, retrain=False):
             file.write(f'2 {dt.datetime.now().isoformat()}\n')
 
     # run CNN subprocess
-    os.kill(os.getppid(), signal.SIGUSR1)
+    try:
+        os.kill(PID, signal.SIGUSR1)
+    except ProcessLookupError:
+        print(f"ProcessLookupError: Process {PID} not found")
     for kind in {'Background_PC',}:
         cmd = [sys.executable, shlex.quote(os.path.join(ROOT, 'Training.py')),
-                path, '/usr/local/mad/model', MODE_DICT.get(mode), kind, str(ppid)]
+                path, '/usr/local/mad/model', MODE_DICT.get(mode), kind, str(PID)]
         subprocess.run(cmd)
 
     # things to do when retrain
     if retrain:
         # load group record
-        with open(f'{path}/stream.json', 'r') as file:
+        with open(f'/usr/local/mad/retrain/stream.json', 'r') as file:
             record = json.load(file, object_hook=object_hook)
 
         # update fingerprints
         fp = fingerprintManager()
-        for kind in FLOW_DICT.keys():
-            fp.GenerateAndUpdate(NotImplemented, record[kind], type=2)
+        for kind in {'Background_PC',}:
+            fp.GenerateAndUpdate(NotImplemented, record[kind])
 
         # write log for stop retrain
         with open('/usr/local/mad/mad.log', 'at', 1) as file:

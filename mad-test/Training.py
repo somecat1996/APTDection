@@ -186,7 +186,7 @@ def ReadTrainData1(path, T):
 
 
 def ReadTrainData2(index, T):
-    files = index[T]
+    files = index
     packets_1 = []
     labels_1 = []
     packets_0 = []
@@ -457,7 +457,8 @@ def main(unused):
                     dstIP = listname[0]
                     dstPort = listname[1]
                 tstamp = listname[4]
-                Malicious.append(dict(filedict, 
+                Malicious.append(dict(filedict,
+                    is_malicious=1,
                     srcIP=srcIP,
                     srcPort=srcPort,
                     dstIP=dstIP,
@@ -498,6 +499,7 @@ def main(unused):
                     dstPort = listname[1]
                 tstamp = listname[4]
                 Clean.append(dict(filedict, 
+                    is_malicious=0,
                     srcIP=srcIP,
                     srcPort=srcPort,
                     dstIP=dstIP,
@@ -527,7 +529,7 @@ def main(unused):
                 dstPort = listname[1]
             tstamp = listname[4]
             temp_dict = dict(temp_data[0],
-                is_malicious=kind,
+                is_malicious=int(kind),
                 srcIP=srcIP,
                 srcPort=srcPort,
                 dstIP=dstIP,
@@ -617,30 +619,35 @@ def main(unused):
         ))
         with open("/usr/local/mad/loss.json", "w") as file:
             json.dump(loss_record, file, cls=JSONEncoder)
-        if loss > 0.1:
+        if loss > 0.5:
             print('Need retrain...')
-            os.kill(ppid, signal.SIGUSR2)
+            try:
+                os.kill(ppid, signal.SIGUSR2)
+            except ProcessLookupError:
+                print(f"ProcessLookupError: Process {ppid} not found")
         end = time.time()
         print(end)
         print('Running time: %s Seconds' % (end - start))
-        retrain_index = {T: collections.defaultdict(list)}
-        if os.path.isfile("/usr/local/mad/retrain/stream/stream.json"):
-            with open("/usr/local/mad/retrain/stream/stream.json", 'r') as file:
+        retrain_index = collections.defaultdict(dict)
+        if os.path.isfile("/usr/local/mad/retrain/stream.json"):
+            with open("/usr/local/mad/retrain/stream.json", 'r') as file:
                 retrain_index.update(json.load(file, object_hook=object_hook))
+        for kind in {'Background_PC',}:
+            retrain_index[kind] = collections.defaultdict(list, retrain_index[kind])
         for item in Malicious:
             flag = int(item["name"] not in val)
             item["is_malicious"] = flag
             name = stem+"_"+item["name"]
-            # print('src:', os.path.join(DataPath, T, "0", item["name"]+".dat"))
-            # print('dst:', os.path.join("/usr/local/mad/retrain/dataset", T, str(flag), name+".dat"))
+            retrain_index[T][item["ipua"]].append(item)
             shutil.copy(os.path.join(DataPath, T, "0", item["name"]+".dat"),
                         os.path.join("/usr/local/mad/retrain/dataset", T, str(flag), name+".dat"))
+            # print('src:', os.path.join(DataPath, T, "0", item["name"]+".dat"))
+            # print('dst:', os.path.join("/usr/local/mad/retrain/dataset", T, str(flag), name+".dat"))
             # print('src:', os.path.join(DataPath, "stream", item["name"]+".pcap"))
             # print('dst:', os.path.join("/usr/local/mad/retrain/stream", T, str(flag), name+".pcap"))
-            shutil.copy(os.path.join(DataPath, "stream", item["name"]+".pcap"),
-                        os.path.join("/usr/local/mad/retrain/stream", T, str(flag), name+".pcap"))
-            retrain_index[T][item["ipua"]].append(item)
-        with open("/usr/local/mad/retrain/stream/stream.json", 'w') as file:
+            # shutil.copy(os.path.join(DataPath, "stream", item["name"]+".pcap"),
+            #             os.path.join("/usr/local/mad/retrain/stream", T, str(flag), name+".pcap"))
+        with open("/usr/local/mad/retrain/stream.json", 'w') as file:
             json.dump(retrain_index, file, cls=JSONEncoder)
         report = list()
         report.extend(Clean)
@@ -649,12 +656,12 @@ def main(unused):
             json.dump(report, file, cls=JSONEncoder)
         report_index = list(map(lambda name: f"/report/{T}/{name}",
                         filter(lambda name: name != "index.json",
-                            os.listdir(f"/usr/local/mad/report/{T}"))))
+                            sorted(os.listdir(f"/usr/local/mad/report/{T}")))))
         with open(f"/usr/local/mad/report/{T}/index.json", 'w') as file:
+            json.dump(report_index, file, cls=JSONEncoder)
             # files = [f"/report/{T}/{name}"
             #             for name in os.listdir(f"/usr/local/mad/report/{T}")
             #             if name != "index.json"]
-            json.dump(report_index, file, cls=JSONEncoder)
 
     # Used for evaluating our system
     elif mode == "evaluate":

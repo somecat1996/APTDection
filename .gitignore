@@ -9,6 +9,7 @@ oldFiles/*
 deprecated/
 webPage/app.py
 
+*.out
 nohup.out*
 
 *.cap
@@ -16,6 +17,8 @@ nohup.out*
 *.json
 *.tar.gz
 *.icloud
+
+!data.json
 
 __pycache__/
 
