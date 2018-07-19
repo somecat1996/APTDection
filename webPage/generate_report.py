@@ -10,9 +10,6 @@ def readReportList(path):
 
 def writeUA(index):
     UA = list()
-    if os.path.isfile("UA.json"):
-        with open("UA.json", 'r') as f:
-            UA.extend(json.load(f))
     for file in index:
         tmp_data = json.load(open("/usr/local/mad" + file, 'r'))
         for i in tmp_data:
@@ -51,9 +48,6 @@ def writeUA(index):
 
 def writeInnerIP(index):
     innerIP = list()
-    if os.path.isfile("innerIP.json"):
-        with open("innerIP.json", 'r') as f:
-            innerIP.extend(json.load(f))
     for file in index:
         tmp_data = json.load(open("/usr/local/mad" + file, 'r'))
         for i in tmp_data:
@@ -107,9 +101,6 @@ def writeInnerIP(index):
 
 def writeOuterIP(index):
     outerIP = list()
-    if os.path.isfile("outerIP.json"):
-        with open("outerIP.json", 'r') as f:
-            outerIP.extend(json.load(f))
     for file in index:
         tmp_data = json.load(open("/usr/local/mad" + file, 'r'))
         for i in tmp_data:
