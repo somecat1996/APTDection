@@ -15,11 +15,11 @@ def writeUA(index):
         with open("UA.json", 'r') as f:
             UA.extend(json.load(f))
     for file in index:
-        tmp_data = json.load(open(file, 'r'))
+        tmp_data = json.load(open("/usr/local/mad" + file, 'r'))
         for i in tmp_data:
             name = i['UA']
             type = i['is_malicious']
-            time = dt.datetime.fromisoformat(i['time'])
+            time = i['time']
             info = i['info']
             src = i['srcIP']
             dst = i['dstIP']
@@ -54,11 +54,11 @@ def writeInnerIP(index):
         with open("innerIP.json", 'r') as f:
             innerIP.extend(json.load(f))
     for file in index:
-        tmp_data = json.load(open(file, 'r'))
+        tmp_data = json.load(open("/usr/local/mad" + file, 'r'))
         for i in tmp_data:
             name = i['UA']
             type = i['is_malicious']
-            time = dt.datetime.fromisoformat(i['time'])
+            time = i['time']
             info = i['info']
             src = i['srcIP']
             dst = i['dstIP']
@@ -109,11 +109,11 @@ def writeOuterIP(index):
         with open("outerIP.json", 'r') as f:
             outerIP.extend(json.load(f))
     for file in index:
-        tmp_data = json.load(open(file, 'r'))
+        tmp_data = json.load(open("/usr/local/mad" + file, 'r'))
         for i in tmp_data:
             name = i['UA']
             type = i['is_malicious']
-            time = dt.datetime.fromisoformat(i['time'])
+            time = i['time']
             info = i['info']
             src = i['srcIP']
             dst = i['dstIP']
@@ -157,6 +157,6 @@ def writeOuterIP(index):
         json.dump(f, outerIP)
 
 if __name__ == "__main__":
-    index = readReportList("./report")
+    index = readReportList("./Background")
     writeInnerIP(index)
     writeUA(index)
