@@ -53,6 +53,7 @@ $("#results-display").ready(function() {
 });
 
 function B(item, c) {
+    num++;
     var data = [];
     data.push({
         "name": item.name,
@@ -182,7 +183,6 @@ function B(item, c) {
         eChart_1.resize();
     };
     echartsConfig();
-    num++;
     /*****Resize function start*****/
     var echartResize;
     $(window).on("resize", function () {
