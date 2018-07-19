@@ -1,6 +1,5 @@
 import os
 import json
-import datetime as dt
 
 
 def readReportList(path):
@@ -78,7 +77,7 @@ def writeInnerIP(index):
                                 k['etime'] = time
                     if flag2:
                         j["total"] += 1
-                        if type == '1':
+                        if type == 1:
                             j["malicious"] += 1
                         j['UA'].append({
                             "name": name,
@@ -104,6 +103,7 @@ def writeInnerIP(index):
                 })
     with open("innerIP.json", 'w') as f:
         json.dump(innerIP, f)
+
 
 def writeOuterIP(index):
     outerIP = list()
