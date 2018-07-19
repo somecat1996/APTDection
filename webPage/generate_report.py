@@ -31,9 +31,9 @@ def writeUA(index):
                     elif time > j['etime']:
                         j['etime'] = time
                     if src not in j['src']:
-                        j['src'].append(src)
+                        j['srcIP'].append(src)
                     if dst not in j['dst']:
-                        j['dst'].append(dst)
+                        j['dstIP'].append(dst)
                     break
             if flag:
                 UA.append({
@@ -42,8 +42,8 @@ def writeUA(index):
                     "stime": time,
                     "etime": time,
                     "info": info,
-                    "src": [src],
-                    "dst": [dst]
+                    "srcIP": [src],
+                    "dstIP": [dst]
                 })
     with open("UA.json", 'w') as f:
         json.dump(UA, f)
