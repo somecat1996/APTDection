@@ -1,15 +1,15 @@
 [
 	{
-		"IP":"213.123.123.1",
-		"total":4,
-		"malicious":2,
-		"UA":[
+		"IP":"213.123.123.1",//内网IP
+		"total":4,//UA总数
+		"malicious":2,//恶意UA数量
+		"UA":[//多个UA
 			{
-				"name":"111111111111",
-				"stime":"12312312312",
-				"etime":"56456456456",
-				"type":"1",
-				"info":{
+				"name":"111111111111",//UA名称
+				"stime":"12312312312",//UA首次出现时间
+				"etime":"56456456456",//UA最后出现时间
+				"type":"1",//恶意or良性，写的时候改成str
+				"info":{//就是info，不详细说了
 					"comment":"11111111111111",
 					"desc":"fgdsgreretre",
 					"link":["fdsgrerwrfe", null],

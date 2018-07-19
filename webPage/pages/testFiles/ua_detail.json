@@ -1,10 +1,10 @@
 [
   {
-    "name":"qweqweqwe",
-    "type":"0",
-    "stime":"1234",
-    "etime":"5678",
-    "info":{
+    "name":"qweqweqwe",//名称
+    "type":"0",//恶意or良性，写的时候改成str
+    "stime":"1234",//首次出现时间
+    "etime":"5678",//最后出现时间
+    "info":{//info
         "comment":"argfdsgfsdgf",
         "desc":"fgdsgreretre",
         "link":["fdsgrerwrfe", null],
