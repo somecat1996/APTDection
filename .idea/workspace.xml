@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="72f023dd-9e1c-48f0-a389-44fc3943046d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webPage/pages/dist/js/ua_detail.js" afterPath="$PROJECT_DIR$/webPage/pages/dist/js/ua_detail.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/webPage/pages/dist/js/ua_detail.js" afterPath="$PROJECT_DIR$/webPage/pages/dist/js/ua_detail2.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -40,10 +41,24 @@
       <file leaf-file-name="ua_detail.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webPage/pages/ua_detail.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="448">
-              <caret line="157" column="20" lean-forward="false" selection-start-line="157" selection-start-column="20" selection-end-line="157" selection-end-column="20" />
+            <state relative-caret-position="-3040">
+              <caret line="147" column="32" lean-forward="true" selection-start-line="147" selection-start-column="32" selection-end-line="147" selection-end-column="32" />
               <folding>
                 <element signature="n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ua_detail2.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/ua_detail2.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="296">
+              <caret line="73" column="35" lean-forward="false" selection-start-line="73" selection-start-column="4" selection-end-line="73" selection-end-column="35" />
+              <folding>
+                <element signature="e#0#42#0" expanded="false" />
+                <marker date="1532018416479" expanded="true" signature="1122:1147" ph="..." />
+                <marker date="1532018416479" expanded="true" signature="2081:2095" ph="..." />
               </folding>
             </state>
           </provider>
@@ -52,13 +67,22 @@
       <file leaf-file-name="ua_detail.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/ua_detail.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="232">
-              <caret line="55" column="10" lean-forward="false" selection-start-line="55" selection-start-column="10" selection-end-line="55" selection-end-column="10" />
+            <state relative-caret-position="224">
+              <caret line="9" column="24" lean-forward="true" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
               <folding>
                 <element signature="e#0#42#0" expanded="false" />
-                <marker date="1532014666435" expanded="true" signature="1112:1137" ph="..." />
-                <marker date="1532014666435" expanded="true" signature="2071:2085" ph="..." />
+                <marker date="1532019166255" expanded="true" signature="1930:1944" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ua_detail.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/webPage/pages/testFiles/ua_detail.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="192">
+              <caret line="6" column="11" lean-forward="true" selection-start-line="2" selection-start-column="4" selection-end-line="6" selection-end-column="11" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -69,8 +93,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
-        <option value="JavaScript File" />
         <option value="Python Script" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -101,7 +125,6 @@
         <option value="$PROJECT_DIR$/webPage/testFiles/report.json" />
         <option value="$PROJECT_DIR$/webPage/testFiles/index.json" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/webPage/pages/dist/js/dashboard-data.js" />
         <option value="$PROJECT_DIR$/webPage/pages/dist/js/footable-data.js" />
         <option value="$PROJECT_DIR$/webPage/pages/testFiles/index.json" />
         <option value="$PROJECT_DIR$/webPage/pages/dist/js/index/detail.js" />
@@ -124,6 +147,7 @@
         <option value="$PROJECT_DIR$/webPage/pages/dist/js/outer_detail.js" />
         <option value="$PROJECT_DIR$/webPage/generate_report.py" />
         <option value="$PROJECT_DIR$/mad-test/Training.py" />
+        <option value="$PROJECT_DIR$/webPage/pages/dist/js/dashboard-data.js" />
         <option value="$PROJECT_DIR$/webPage/pages/dist/js/ua_detail.js" />
       </list>
     </option>
@@ -199,6 +223,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="pages" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="APTDection" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="APTDection" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webPage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pages" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="testFiles" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -510,20 +556,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/webPage/vendors/jquery.sparkline/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Desktop/5b3c90f1ccb48/full-width-light/accordion-toggle.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3488">
-          <caret line="1335" column="33" lean-forward="true" selection-start-line="1283" selection-start-column="20" selection-end-line="1335" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webPage/testFiles/report.json" />
     <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/morris-data.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -718,14 +750,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webPage/pages/abstract.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="62" column="21" lean-forward="true" selection-start-line="62" selection-start-column="21" selection-end-line="65" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webPage/pages/download.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="276">
@@ -788,14 +812,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="64">
           <caret line="0" column="173" lean-forward="false" selection-start-line="0" selection-start-column="173" selection-end-line="0" selection-end-column="173" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webPage/pages/testFiles/ua_detail.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-96">
-          <caret line="6" column="11" lean-forward="true" selection-start-line="2" selection-start-column="4" selection-end-line="6" selection-end-column="11" />
           <folding />
         </state>
       </provider>
@@ -876,16 +892,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webPage/pages/ua_detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
-          <caret line="157" column="20" lean-forward="false" selection-start-line="157" selection-start-column="20" selection-end-line="157" selection-end-column="20" />
-          <folding>
-            <element signature="n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mad-test/Training.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="128">
@@ -915,22 +921,67 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/webPage/pages/abstract.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-12090">
+          <caret line="62" column="21" lean-forward="true" selection-start-line="62" selection-start-column="21" selection-end-line="65" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/dashboard-data.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18848">
-          <caret line="619" column="16" lean-forward="true" selection-start-line="619" selection-start-column="16" selection-end-line="619" selection-end-column="16" />
+        <state relative-caret-position="32">
+          <caret line="71" column="30" lean-forward="true" selection-start-line="71" selection-start-column="30" selection-end-line="71" selection-end-column="30" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webPage/pages/testFiles/UA.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webPage/pages/testFiles/ua_detail.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="6" column="11" lean-forward="true" selection-start-line="2" selection-start-column="4" selection-end-line="6" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/ua_detail2.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="73" column="35" lean-forward="false" selection-start-line="73" selection-start-column="4" selection-end-line="73" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#42#0" expanded="false" />
+            <marker date="1532018416479" expanded="true" signature="1122:1147" ph="..." />
+            <marker date="1532018416479" expanded="true" signature="2081:2095" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webPage/pages/ua_detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3040">
+          <caret line="147" column="32" lean-forward="true" selection-start-line="147" selection-start-column="32" selection-end-line="147" selection-end-column="32" />
+          <folding>
+            <element signature="n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/ua_detail.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="55" column="10" lean-forward="false" selection-start-line="55" selection-start-column="10" selection-end-line="55" selection-end-column="10" />
+        <state relative-caret-position="224">
+          <caret line="9" column="24" lean-forward="true" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
           <folding>
             <element signature="e#0#42#0" expanded="false" />
-            <marker date="1532014666435" expanded="true" signature="1112:1137" ph="..." />
-            <marker date="1532014666435" expanded="true" signature="2071:2085" ph="..." />
+            <marker date="1532019166255" expanded="true" signature="1930:1944" ph="..." />
           </folding>
         </state>
       </provider>
