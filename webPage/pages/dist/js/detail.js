@@ -18,8 +18,7 @@ $.getJSON ("/report/Background_PC/index.json", function (data) {
                     "</td><td>" + item.dstIP +
                     "</td><td>" + item.dstPort +
                     "</td><td>" + item.time +
-                    "</td><td>" + type +
-                    "</td><td>" + item.UA + "</td></tr>");
+                    "</td><td>" + type + "</td></tr>");
             });
         });
         }, 1);
