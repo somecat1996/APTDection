@@ -19,11 +19,7 @@ $.getJSON ("/report/Background_PC/index.json", function (data) {
                     "</td><td>" + item.dstPort +
                     "</td><td>" + item.time +
                     "</td><td>" + type +
-                    "</td><td>" + item.UA +
-                    "</td><td>" + info.comment +
-                    "</td><td>" + info.desc +
-                    "</td><td>" + info.link +
-                    "</td><td>" + info.type + "</td></tr>");
+                    "</td><td>" + item.UA + "</td></tr>");
             });
         });
         }, 1);
