@@ -39,7 +39,7 @@ $("#results-display").ready(function() {
                 "</td><td>" + item.malicious +
                 "</td><td>" + UATable + "</td></tr>";
             $("#results-display").append(UATable);
-            A();
+            A(i);
         });
         function A(i) {
             if(count-1==i){
