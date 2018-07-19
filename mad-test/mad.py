@@ -37,15 +37,7 @@
         |       |-- 1/                          # malicious ones
         |           |-- YYYY-MM-DDTHH:MM:SS.US-IP_PORT-IP_PORT-TS.dat
         |           |-- ...
-        |-- stream/                             # stream PCAP for retrain procedure
-            |-- stream.json                     # stream index for retrain
-            |-- Background_PC/                  # Background_PC retrain stream file
-                |-- 0/                          # clean ones
-                |   |-- YYYY-MM-DDTHH:MM:SS.US-IP_PORT-IP_PORT-TS.pcap
-                |   |-- ...
-                |-- 1/                          # malicious ones
-                    |-- YYYY-MM-DDTHH:MM:SS.US-IP_PORT-IP_PORT-TS.pcap
-                    |-- ...
+        |-- stream.json                         # stream index for retrain
 
 """
 import collections
@@ -75,6 +67,7 @@ FILE = NotImplemented
 COUNT = -1
 
 
+PID = os.getpid()   # PID
 ROOT = os.path.dirname(os.path.abspath(__file__))
                     # file root path
 MODE = 3            # 1-initialisation; 2-migration; 3-prediction; 4-adaptation
@@ -212,7 +205,7 @@ def start_worker():
 
     # now, we send a signal to the parent process
     # to create a new process and continue
-    # os.kill(os.getppid(), signal.SIGUSR1)
+    # os.kill(PID, signal.SIGUSR1)
 
     # then, generate WebGraphic & fingerprints for each flow
     # through reconstructed functions and methods
@@ -230,7 +223,7 @@ def start_worker():
 
     # and now, time for the neural network
     # reports should be placed in a certain directory
-    run_cnn(path=path, ppid=os.getppid())
+    run_cnn(path=path)
 
     milestone_4 = time.time()
     print(f'Predicted for {milestone_4-milestone_3} seconds')
@@ -359,7 +352,7 @@ def make_dataset(labels, fp, *, path):
                         print(file.name)
 
 
-def run_cnn(*, path, ppid, retrain=False):
+def run_cnn(*, path, retrain=False):
     """Create subprocess to run CNN model."""
     print(f"CNN running @ {path}")
 
@@ -372,16 +365,16 @@ def run_cnn(*, path, ppid, retrain=False):
             file.write(f'2 {dt.datetime.now().isoformat()}\n')
 
     # run CNN subprocess
-    os.kill(os.getppid(), signal.SIGUSR1)
+    os.kill(PID, signal.SIGUSR1)
     for kind in {'Background_PC',}:
         cmd = [sys.executable, shlex.quote(os.path.join(ROOT, 'Training.py')),
-                path, '/usr/local/mad/model', MODE_DICT.get(mode), kind, str(ppid)]
+                path, '/usr/local/mad/model', MODE_DICT.get(mode), kind, str(PID)]
         subprocess.run(cmd)
 
     # things to do when retrain
     if retrain:
         # load group record
-        with open(f'{path}/stream.json', 'r') as file:
+        with open(f'/usr/local/mad/retrain/stream.json', 'r') as file:
             record = json.load(file, object_hook=object_hook)
 
         # update fingerprints
