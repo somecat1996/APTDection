@@ -67,7 +67,7 @@ from make_stream import *
 
 # testing macros
 FILE = NotImplemented
-COUNT = 19
+COUNT = -1
 
 
 PID = os.getpid()   # PID
@@ -155,7 +155,7 @@ def retrain_cnn(*args):
     """Retrain the CNN model."""
     # if already under retrain do nothing
     if RETRAIN.value:   return
-    return ###
+    # return ###
 
     # update retrain flag
     RETRAIN.value = True
@@ -251,7 +251,7 @@ def make_sniff(*, path):
     """Load data or sniff packets."""
     # just sniff when prediction
     if MODE == 3:
-        return '/home/ubuntu/httpdump/wanyong80.pcap010' ###
+        # return '/home/ubuntu/httpdump/wanyong80.pcap010' ###
         if FILE is NotImplemented:
             name = f'/usr/local/mad/pcap/{pathlib.Path(path).stem}.pcap'
             sniffed = scapy.all.sniff(timeout=TIMEOUT, iface=IFACE)
@@ -374,10 +374,10 @@ def run_cnn(*, path, retrain=False):
             file.write(f'2 {dt.datetime.now().isoformat()}\n')
 
     # run CNN subprocess
-    ### try:
-    ###     os.kill(PID, signal.SIGUSR1)
-    ### except ProcessLookupError:
-    ###     print(f"ProcessLookupError: Process {PID} not found")
+    try: ###
+        os.kill(PID, signal.SIGUSR1) ###
+    except ProcessLookupError: ###
+        print(f"ProcessLookupError: Process {PID} not found") ###
     for kind in {'Background_PC',}:
         cmd = [sys.executable, shlex.quote(os.path.join(ROOT, 'Training.py')),
                 path, '/usr/local/mad/model', MODE_DICT.get(mode), kind, str(PID)]

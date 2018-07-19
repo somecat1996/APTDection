@@ -41,7 +41,7 @@ def load_stream(*, root):
     file_dict = collections.defaultdict(dict)
     for path in os.listdir('/usr/local/mad/dataset'):
         if os.path.isfile(f'/usr/local/mad/dataset/{path}/record.json'):
-            with open(os.path.join(path, 'record.json')) as json_file:
+            with open(f'/usr/local/mad/dataset/{path}/record.json') as json_file:
                 file_dict[path] = json.load(json_file, object_hook=object_hook)
 
     stream = dict()
