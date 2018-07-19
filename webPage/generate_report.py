@@ -1,5 +1,6 @@
 import os
 import json
+import datetime as dt
 
 
 def readReportList(path):
@@ -14,8 +15,13 @@ def writeInnerIP(index):
             UA.extend(json.load(f))
     for file in index:
         tmp_data = json.load(open(file, 'r'))
-
-
+        for i in tmp_data:
+            name = i['UA']
+            type = i['is_malicious']
+            time = dt.datetime.fromisoformat(i['time'])
+            info = i['info']
+            src = i['srcIP']
+            dst = i['dstIP']
 
 if __name__ == "__main__":
-
+    pass
