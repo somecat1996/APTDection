@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="72f023dd-9e1c-48f0-a389-44fc3943046d" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webPage/pages/detail.html" afterPath="$PROJECT_DIR$/webPage/pages/detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webPage/pages/dist/js/detail.js" afterPath="$PROJECT_DIR$/webPage/pages/dist/js/detail.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webPage/generate_report.py" afterPath="$PROJECT_DIR$/webPage/generate_report.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -16,56 +15,34 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="outer_IP.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webPage/pages/testFiles/outer_IP.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="6" column="18" lean-forward="false" selection-start-line="2" selection-start-column="4" selection-end-line="6" selection-end-column="18" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="inner_IP.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webPage/pages/testFiles/inner_IP.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="128">
-              <caret line="4" column="30" lean-forward="true" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
+            <state relative-caret-position="544">
+              <caret line="17" column="13" lean-forward="false" selection-start-line="2" selection-start-column="8" selection-end-line="17" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="generate_report.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="outer_IP.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/webPage/pages/testFiles/outer_IP.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="384">
+              <caret line="12" column="7" lean-forward="true" selection-start-line="2" selection-start-column="4" selection-end-line="12" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="generate_report.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/webPage/generate_report.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1076">
-              <caret line="87" column="35" lean-forward="false" selection-start-line="87" selection-start-column="35" selection-end-line="87" selection-end-column="35" />
+            <state relative-caret-position="340">
+              <caret line="152" column="37" lean-forward="true" selection-start-line="152" selection-start-column="37" selection-end-line="152" selection-end-column="37" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="detail.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/detail.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="310">
-              <caret line="21" column="43" lean-forward="false" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
-              <folding>
-                <element signature="e#0#42#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="detail.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webPage/pages/detail.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
-              <caret line="142" column="65" lean-forward="true" selection-start-line="142" selection-start-column="65" selection-end-line="142" selection-end-column="65" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -128,9 +105,9 @@
         <option value="$PROJECT_DIR$/webPage/pages/testFiles/inner_IP.json" />
         <option value="$PROJECT_DIR$/webPage/pages/testFiles/outer_IP.json" />
         <option value="$PROJECT_DIR$/webPage/pages/testFiles/ua_detail.json" />
-        <option value="$PROJECT_DIR$/webPage/generate_report.py" />
         <option value="$PROJECT_DIR$/webPage/pages/dist/js/detail.js" />
         <option value="$PROJECT_DIR$/webPage/pages/detail.html" />
+        <option value="$PROJECT_DIR$/webPage/generate_report.py" />
       </list>
     </option>
   </component>
@@ -829,14 +806,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webPage/pages/testFiles/outer_IP.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="6" column="18" lean-forward="false" selection-start-line="2" selection-start-column="4" selection-end-line="6" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webPage/pages/testFiles/ua_detail.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-96">
@@ -866,38 +835,46 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webPage/generate_report.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1076">
-          <caret line="87" column="35" lean-forward="false" selection-start-line="87" selection-start-column="35" selection-end-line="87" selection-end-column="35" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webPage/pages/testFiles/inner_IP.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="4" column="30" lean-forward="true" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webPage/pages/detail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="142" column="65" lean-forward="true" selection-start-line="142" selection-start-column="65" selection-end-line="142" selection-end-column="65" />
+        <state relative-caret-position="306">
+          <caret line="146" column="72" lean-forward="true" selection-start-line="146" selection-start-column="72" selection-end-line="146" selection-end-column="72" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/detail.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="21" column="43" lean-forward="false" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
+        <state relative-caret-position="278">
+          <caret line="20" column="41" lean-forward="false" selection-start-line="20" selection-start-column="41" selection-end-line="20" selection-end-column="41" />
           <folding>
             <element signature="e#0#42#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webPage/pages/testFiles/inner_IP.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="17" column="13" lean-forward="false" selection-start-line="2" selection-start-column="8" selection-end-line="17" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webPage/pages/testFiles/outer_IP.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="12" column="7" lean-forward="true" selection-start-line="2" selection-start-column="4" selection-end-line="12" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webPage/generate_report.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="152" column="37" lean-forward="true" selection-start-line="152" selection-start-column="37" selection-end-line="152" selection-end-column="37" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
