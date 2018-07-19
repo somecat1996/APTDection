@@ -8,9 +8,9 @@ $.getJSON ("/report/Background_PC/index.json", function (data) {
                 var info = item.info;
                 var type = '';
                 if(item.type==="1"){
-                    type = "<div class=\"row\"><div class=\"col-md-6\"><h6 class=\"text-center\">类型</h6><p class=\"text-center\"><span class=\"label label-danger\">恶意</span></p></div><div class=\"col-md-6\"><h6 class=\"text-center\">种类</h6><p class=\"text-center\">" + info.type + "</p></div></div>";
+                    type = "<span class=\"label label-danger\">恶意</span>";
                 }else{
-                    type = "<div class=\"row\"><div class=\"col-md-6\"><h6 class=\"text-center\">类型</h6><p class=\"text-center\"><span class=\"label label-success\">良性</span></p></div><div class=\"col-md-6\"><h6 class=\"text-center\">种类</h6><p class=\"text-center\">" + info.type + "</p></div></div>";
+                    type = "<span class=\"label label-success\">良性</span>";
                 }
                 $("#results-display").append("<tr><td>" + item.srcIP +
                     "</td><td>" + item.srcPort +
