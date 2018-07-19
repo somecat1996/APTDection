@@ -4,6 +4,7 @@
 $("#results-display").ready(function() {
     $.getJSON ("/report/outerIP.json", function (data) {
         var count = data.length;
+        console.log(count);
         // $.each(data, function (i, item) {
         //     $.getJSON(item, function (data) {
         $.each(data, function (i, item) {
@@ -52,7 +53,7 @@ $("#results-display").ready(function() {
     //     });
     // });
 });
-window.onload = function() {$('#datable_1').DataTable();}
+// window.onload = function() {$('#datable_1').DataTable();}
 // $(document).ready(function() {
 //     $('#datable_1').DataTable();
 // });
