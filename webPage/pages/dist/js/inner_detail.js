@@ -45,7 +45,7 @@ $("#results-display").ready(function() {
 });
 setTimeout(function() {
   $('#datable_1').DataTable();
-}, 60 * 1000);
+}, 100 * 1000);
 // window.onload = function() {$('#datable_1').DataTable();}
 // $(document).ready(function() {
 //     $('#datable_1').DataTable();

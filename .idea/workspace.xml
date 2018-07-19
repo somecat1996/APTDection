@@ -56,10 +56,10 @@
         <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/inner_detail.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="424">
-              <caret line="47" column="4" lean-forward="false" selection-start-line="47" selection-start-column="4" selection-end-line="47" selection-end-column="4" />
+              <caret line="47" column="5" lean-forward="false" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
               <folding>
                 <element signature="e#0#42#0" expanded="false" />
-                <marker date="1531990682833" expanded="true" signature="2388:2402" ph="..." />
+                <marker date="1531990795083" expanded="true" signature="2388:2402" ph="..." />
               </folding>
             </state>
           </provider>
@@ -889,10 +889,10 @@
     <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/inner_detail.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="424">
-          <caret line="47" column="4" lean-forward="false" selection-start-line="47" selection-start-column="4" selection-end-line="47" selection-end-column="4" />
+          <caret line="47" column="5" lean-forward="false" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
           <folding>
             <element signature="e#0#42#0" expanded="false" />
-            <marker date="1531990682833" expanded="true" signature="2388:2402" ph="..." />
+            <marker date="1531990795083" expanded="true" signature="2388:2402" ph="..." />
           </folding>
         </state>
       </provider>
