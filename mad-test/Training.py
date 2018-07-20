@@ -612,8 +612,8 @@ def main(unused):
         #         shutil.copy(os.path.join(datasetPath, "Background_PC/0/"+j[:-4]+"dat"), retrainPath)
         stem = pathlib.Path(DataPath).name
         val = StreamManager(NotImplemented, DataPath).validate(group_dict)
-        loss = 1 - (len(val)/sum(predicted_classes) if names else 0.0)
-        # print(val)
+        loss = 1 - (len(val)/sum(predicted_classes) if sum(predicted_classes) else 1.0)
+        # print('### Testing:', len(val), val, sum(predicted_classes), predicted_classes) ###
         loss_record = list()
         if os.path.isfile("/usr/local/mad/loss.json"):
             with open("/usr/local/mad/loss.json", "r") as file:

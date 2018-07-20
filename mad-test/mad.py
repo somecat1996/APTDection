@@ -251,7 +251,7 @@ def make_sniff(*, path):
     """Load data or sniff packets."""
     # just sniff when prediction
     if MODE == 3:
-        # return '/home/ubuntu/httpdump/wanyong80.pcap010' ###
+        # return '/data/wanyong-httpdump/20180408/20180309/wanyong.pcap000' ###
         if FILE is NotImplemented:
             name = f'/usr/local/mad/pcap/{pathlib.Path(path).stem}.pcap'
             sniffed = scapy.all.sniff(timeout=TIMEOUT, iface=IFACE)
