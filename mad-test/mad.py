@@ -195,12 +195,12 @@ def start_worker():
     path.mkdir(parents=True, exist_ok=True)
     fp = fingerprintManager()
 
-    print(f'New process start @ {path}')
+    print(f'New mode_{MODE} process start @ {path}')
 
     # write a log file to inform state of running
     # the back-end of webpage shall check this file
     with open('/usr/local/mad/mad.log', 'at', 1) as file:
-        file.write(f'0 {dt.datetime.now().isoformat()} {path}\n')
+        file.write(f'0 {dt.datetime.now().isoformat()} {path} {MODE}\n')
 
     milestone_0 = time.time()
 
@@ -213,7 +213,8 @@ def start_worker():
 
     # now, we send a signal to the parent process
     # to create a new process and continue
-    # os.kill(PID, signal.SIGUSR1)
+    if FILE is NotImplemented:
+        os.kill(PID, signal.SIGUSR1)
 
     # then, generate WebGraphic & fingerprints for each flow
     # through reconstructed functions and methods
@@ -239,12 +240,15 @@ def start_worker():
     # afterwards, write a log file to record state of accomplish
     # the back-end of webpage shall check this file periodically
     with open('/usr/local/mad/mad.log', 'at', 1) as file:
-        file.write(f'1 {dt.datetime.now().isoformat()} {path}\n')
+        file.write(f'1 {dt.datetime.now().isoformat()} {path} {MODE} {name}\n')
 
     # finally, remove used temporary dataset files
     # but record files should be reserved for further usage
     for name in {'Background_PC', 'stream'}:
         shutil.rmtree(os.path.join(path, name))
+
+    milestone_5 = time.time()
+    print(f'Total run for {milestone_5-milestone_0} seconds')
 
 
 def make_sniff(*, path):
@@ -374,10 +378,11 @@ def run_cnn(*, path, retrain=False):
             file.write(f'2 {dt.datetime.now().isoformat()}\n')
 
     # run CNN subprocess
-    try: ###
-        os.kill(PID, signal.SIGUSR1) ###
-    except ProcessLookupError: ###
-        print(f"ProcessLookupError: Process {PID} not found") ###
+    if MODE == 3 and FILE is not NotImplemented: ###
+        try: ###
+            os.kill(PID, signal.SIGUSR1) ###
+        except ProcessLookupError: ###
+            print(f"ProcessLookupError: Process {PID} not found") ###
     for kind in {'Background_PC',}:
         cmd = [sys.executable, shlex.quote(os.path.join(ROOT, 'Training.py')),
                 path, '/usr/local/mad/model', MODE_DICT.get(mode), kind, str(PID)]
