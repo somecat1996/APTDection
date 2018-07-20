@@ -18,7 +18,7 @@ def modifyReport(index):
                 k = random.randrange(100)
                 if k != 1:
                     i['is_malicious'] = 0
-        with open(file, 'w') as f:
+        with open("/usr/local/mad" + file, 'w') as f:
             json.dump(tmp_data, f)
 
 if __name__ == '__main__':
