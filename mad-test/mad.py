@@ -213,7 +213,7 @@ def start_worker():
 
     # now, we send a signal to the parent process
     # to create a new process and continue
-    if FILE is NotImplemented:
+    if MODE == 3 and FILE is NotImplemented:
         os.kill(PID, signal.SIGUSR1)
 
     # then, generate WebGraphic & fingerprints for each flow
@@ -240,7 +240,7 @@ def start_worker():
     # afterwards, write a log file to record state of accomplish
     # the back-end of webpage shall check this file periodically
     with open('/usr/local/mad/mad.log', 'at', 1) as file:
-        file.write(f'1 {dt.datetime.now().isoformat()} {path} {MODE} {name}\n')
+        file.write(f'1 {dt.datetime.now().isoformat()} {path} {MODE}\n')
 
     # finally, remove used temporary dataset files
     # but record files should be reserved for further usage
@@ -375,7 +375,7 @@ def run_cnn(*, path, retrain=False):
     # write log for start retrain
     if retrain:
         with open('/usr/local/mad/mad.log', 'at', 1) as file:
-            file.write(f'2 {dt.datetime.now().isoformat()}\n')
+            file.write(f'2 {dt.datetime.now().isoformat() {path} {mode}}\n')
 
     # run CNN subprocess
     if MODE == 3 and FILE is not NotImplemented: ###
@@ -400,7 +400,7 @@ def run_cnn(*, path, retrain=False):
 
         # write log for stop retrain
         with open('/usr/local/mad/mad.log', 'at', 1) as file:
-            file.write(f'3 {dt.datetime.now().isoformat()}\n')
+            file.write(f'3 {dt.datetime.now().isoformat() {path} {mode}}\n')
 
         # reset flag after retrain procedure
         RETRAIN.value = False
