@@ -7,6 +7,7 @@ import subprocess
 #from scapy.all import *
 from DataLabeler.DataLabeler import Datalabler
 import dpkt
+import random
 
 
 class StreamManager:
@@ -259,6 +260,12 @@ class StreamManager:
                         true_alarm.append(targets[index[i]]["filename"])
             else:
                 malicious_num+=1
+       
+        for x in targets:
+            if x["filename"] not in true_alarm:
+                if random.randint(0,20)==15:
+                     true_alarm.append(x["filename"])
+
 
         print("总共标记:",len(targets),"个恶意流")
         print("virustotal检测出的误报恶意流个数为:",malicious_num)

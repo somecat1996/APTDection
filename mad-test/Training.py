@@ -551,7 +551,7 @@ def main(unused):
                 group_dict[T].append(dict(
                     is_malicious=1,
                     type=temp_data["type"],
-                    filename=name,
+                    filename=name + ".pcap",
                 ))
             else:
                 Clean.append(temp_dict)
@@ -646,7 +646,7 @@ def main(unused):
         for kind in {'Background_PC',}:
             retrain_index[kind] = collections.defaultdict(list, retrain_index[kind])
         for item in Malicious:
-            flag = int(item["name"] in val)
+            flag = int(item["name"]+".pcap" in val)
             item["is_malicious"] = flag
             name = stem+"_"+item["name"]
             retrain_index[T][item["ipua"]].append(item)
