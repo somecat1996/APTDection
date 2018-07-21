@@ -11,6 +11,11 @@ scapy = "*"
 flask = "*"
 chardet = "*"
 dpkt = "*"
+networkx = "*"
+numpy = "*"
+scipy = "*"
+pandas = "*"
+matplotlib = "*"
 
 [dev-packages]
 
