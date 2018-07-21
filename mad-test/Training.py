@@ -410,11 +410,11 @@ def main(unused):
         with open(os.path.join(DataPath, 'filter.json'), 'r') as file:
             data_index = json.load(file, object_hook=object_hook)
         data_index[T] = ReadDictionary(DataPath, T)
-        print(data_index)
+        # print('data_index:', data_index) ###
         isMalicious = data_index["is_malicious"]
         isClean = data_index["is_clean"]
         packets, names = ReadPredictData(data_index, T)
-        print(names)
+        print('names:', names) ###
         if names:
             predict_input_fn = tf.estimator.inputs.numpy_input_fn(
                 x={"packet": packets},
@@ -435,8 +435,10 @@ def main(unused):
         #         group_data[name] = [file, ipua]
         # print("detected by fingerprint:")
         Malicious = []
+        print('is_malicious:', isMalicious) ###
         for ipua in isMalicious:
-            for filedict in group.get(ipua, list()):
+            # print('ipua:', ipua, group[T].get(ipua, list())) ###
+            for filedict in group[T].get(ipua, list()):
                 filename = filedict["filename"]
                 name = pathlib.Path(filename).stem
                 # ipua = "UnknownUA"
@@ -476,7 +478,9 @@ def main(unused):
                             dict(desc=None, type=None, comment=None, link=(None, None)))
                 ))
         Clean = []
+        print('is_clean:', isClean) ###
         for ipua in isClean:
+            # print('ipua:', ipua, group[T].get(ipua, list())) ###
             for filedict in group[T].get(ipua, list()):
                 filename = filedict["filename"]
                 name = pathlib.Path(filename).stem
@@ -517,6 +521,8 @@ def main(unused):
                             dict(desc=None, type=None, comment=None, link=(None, None)))
                 ))
         # print("detected by CNN: ")
+        CNNClean = list()
+        CNNMalicious = list()
         group_dict = {T: []}
         for i, kind in enumerate(predicted_classes):
             name = pathlib.Path(names[i]).stem
@@ -547,14 +553,14 @@ def main(unused):
                         dict(desc=None, type=None, comment=None, link=(None, None)))
             )
             if kind == 1:
-                Malicious.append(temp_dict)
+                CNNMalicious.append(temp_dict)
                 group_dict[T].append(dict(
                     is_malicious=1,
                     type=temp_data["type"],
                     filename=name + ".pcap",
                 ))
             else:
-                Clean.append(temp_dict)
+                CNNClean.append(temp_dict)
                 # paths = pathlib.Path(names[i])
                 # group = paths.parts[-4]
                 # name = paths.stem
@@ -645,7 +651,7 @@ def main(unused):
         #         break
         for kind in {'Background_PC',}:
             retrain_index[kind] = collections.defaultdict(list, retrain_index[kind])
-        for item in Malicious:
+        for item in CNNMalicious:
             flag = int(item["name"]+".pcap" in val)
             item["is_malicious"] = flag
             name = stem+"_"+item["name"]
@@ -664,6 +670,9 @@ def main(unused):
         report = list()
         report.extend(Clean)
         report.extend(Malicious)
+        report.extend(CNNClean)
+        report.extend(CNNMalicious)
+        __import__('pprint').pprint(report) ###
         with open(f"/usr/local/mad/report/{T}/{stem}.json", 'w') as file:
             json.dump(report, file, cls=JSONEncoder)
         report_index = list(map(lambda name: f"/report/{T}/{name}",

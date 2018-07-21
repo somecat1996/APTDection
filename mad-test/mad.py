@@ -220,8 +220,8 @@ def start_worker():
 
     # now, we send a signal to the parent process
     # to create a new process and continue
-    if MODE == 3 and FILE is NotImplemented:
-        os.kill(PID, signal.SIGUSR1)
+    if MODE == 3 and FILE is NotImplemented: ###
+        os.kill(PID, signal.SIGUSR1) ###
 
     # then, generate WebGraphic & fingerprints for each flow
     # through reconstructed functions and methods
@@ -251,8 +251,8 @@ def start_worker():
 
     # finally, remove used temporary dataset files
     # but record files should be reserved for further usage
-    for name in {'Background_PC', 'stream'}:
-        shutil.rmtree(os.path.join(path, name))
+    for name in {'Background_PC', 'stream'}: ###
+        shutil.rmtree(os.path.join(path, name)) ###
 
     milestone_5 = time.time()
     print(f'Worked for {milestone_5-milestone_0} seconds')
@@ -262,7 +262,7 @@ def make_sniff(*, path):
     """Load data or sniff packets."""
     # just sniff when prediction
     if MODE == 3:
-        # return '/data/wanyong-httpdump/20180408/20180309/wanyong.pcap000' ###
+        # return '/data/wanyong-httpdump/20180408/20180309/wanyong.pcap000' ###
         if FILE is NotImplemented:
             name = f'/usr/local/mad/pcap/{pathlib.Path(path).name}.pcap'
             sniffed = scapy.all.sniff(timeout=TIMEOUT, iface=IFACE)

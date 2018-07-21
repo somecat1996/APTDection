@@ -2,7 +2,7 @@
 
 grep="grep --color=auto"
 
-FILE="07211205.out"
+FILE="07211440.out"
 
 ps -aux | $grep mad
 
