@@ -385,7 +385,7 @@ def run_cnn(*, path, retrain=False):
             print(f"ProcessLookupError: Process {PID} not found") ###
     for kind in {'Background_PC',}:
         cmd = [sys.executable, shlex.quote(os.path.join(ROOT, 'Training.py')),
-                path, '/usr/local/mad/model', MODE_DICT.get(mode), kind, str(PID)]
+                path, f'/usr/local/mad/model/{kind}', MODE_DICT.get(mode), kind, str(PID)]
         subprocess.run(cmd)
 
     # things to do when retrain
