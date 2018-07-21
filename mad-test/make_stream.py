@@ -41,8 +41,13 @@ def load_stream(*, root):
     file_dict = collections.defaultdict(dict)
     for path in os.listdir('/usr/local/mad/dataset'):
         if os.path.isfile(f'/usr/local/mad/dataset/{path}/record.json'):
-            with open(f'/usr/local/mad/dataset/{path}/record.json') as json_file:
-                file_dict[path] = json.load(json_file, object_hook=object_hook)
+            while True:
+                try:
+                    with open(f'/usr/local/mad/dataset/{path}/record.json') as json_file:
+                        file_dict[path] = json.load(json_file, object_hook=object_hook)
+                except json.decoder.JSONDecodeError:
+                    continue
+                break
 
     stream = dict()
     for kind in {'Background_PC',}:

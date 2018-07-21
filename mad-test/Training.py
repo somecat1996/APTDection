@@ -551,7 +551,7 @@ def main(unused):
                 group_dict[T].append(dict(
                     is_malicious=1,
                     type=temp_data["type"],
-                    filename=name + ".pcap",
+                    filename=name,
                 ))
             else:
                 Clean.append(temp_dict)
