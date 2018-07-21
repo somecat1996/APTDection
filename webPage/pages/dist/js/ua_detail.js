@@ -5,8 +5,8 @@ var count = 0;
 var S = 0;
 var flag = 1;
 $("#results-display").ready(function() {
-    // $.getJSON ("testFiles/UA.json", function (data) {
-    $.getJSON ("/report/UA.json", function (data) {
+    $.getJSON ("testFiles/ua_detail.json", function (data) {
+    // $.getJSON ("/report/UA.json", function (data) {
         S = data.length;
         // $.each(data, function (i, item) {
         //     $.getJSON(item, function (data) {

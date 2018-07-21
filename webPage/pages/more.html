@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-	<title>MAD|恶意服务器</title>
+	<title>MAD|更多</title>
 
 	<!-- Favicon -->
 	<link rel="shortcut icon" href="../img/favicon.png">
@@ -46,7 +46,7 @@
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="well well-lg card-view">
-							<h1 class="panel-title txt-dark text-center">恶意服务器</h1>
+							<h1 class="panel-title txt-dark text-center">更多</h1>
 							<div class="row mt-25">
 								<div class="col-sm-1 col-xs-0 mt-15"></div>
 								<div class="col-sm-2 col-xs-6 mt-15">
@@ -68,13 +68,13 @@
 									</button>
 								</div>
 								<div class="col-sm-2 col-xs-6 mt-15">
-									<button class="btn btn-default btn-rounded btn-block disabled">
+									<button class="btn btn-success btn-rounded btn-block btn-anim" onclick="window.location='more.html'">
+										<i class="glyphicon glyphicon-cloud"></i>
 										<span class="btn-text">恶意服务器</span>
 									</button>
 								</div>
 								<div class="col-sm-2 col-xs-6 mt-15">
-									<button class="btn btn-warning btn-rounded btn-block btn-anim" onclick="window.location='more.html'">
-										<i class="ti-more-alt"></i>
+									<button class="btn btn-default btn-rounded btn-block disabled">
 										<span class="btn-text">更多</span>
 									</button>
 								</div>
@@ -84,35 +84,89 @@
 					</div>
 				</div>
 
-				<!-- Row -->
-				<div class="row">
-					<div class="col-sm-12">
-						<div class="panel panel-default card-view">
-							<div class="panel-wrapper collapse in">
-								<div class="panel-body">
-									<div class="table-wrap">
-										<div class="table-responsive">
-											<table id="datable_1" class="table table-hover display  pb-30">
-												<thead>
-													<tr>
-														<th>IP地址</th>
-														<th>类型</th>
-														<th>首次活动时间</th>
-														<th>最后活动时间</th>
-														<th>内部通信IP信息</th>
-													</tr>
-												</thead>
-												<tbody id="results-display">
-												</tbody>
-											</table>
-										</div>
-									</div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="panel panel-default card-view">
+                            <div class="panel-heading">
+                                <div class="pull-left">
+                                    <h6 class="panel-title txt-dark">论文下载</h6>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div  class="panel-wrapper collapse in">
+                                <div  class="panel-body">
+                                    <p class="text-muted">点击下方按钮下载<code>PDF</code>格式论文。</p>
+                                    <div class="row mt-25">
+                                        <div class="col-sm-12 col-xs-12 mt-15">
+                                            <a href="testFiles/基于流量的自反馈恶意软件监测系统.pdf"><button class="btn btn-success btn-rounded btn-block btn-anim"><i class="fa fa-download"></i><span class="btn-text">下载</span></button></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+					<div class="col-md-10">
+						<div class="panel panel-default border-panel card-view">
+							<div class="panel-heading">
+								<div class="pull-left">
+									<h6 class="panel-title txt-dark">C and D</h6>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+							<div  class="panel-wrapper collapse in">
+								<div  class="panel-body">
+									<p></p>
 								</div>
 							</div>
 						</div>
 					</div>
+					<div class="col-md-2">
+						<div class="panel panel-default card-view">
+							<div class="panel-heading">
+								<div class="pull-left">
+									<h6 class="panel-title txt-dark text-center">小组成员</h6>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+							<div class="panel-wrapper collapse in">
+								<div  class="panel-body">
+									<!-- START carousel-->
+									<div id="carousel-example-captions" data-ride="carousel" class="carousel slide">
+										<ol class="carousel-indicators">
+										   <li data-target="#carousel-example-captions" data-slide-to="0" class="active"></li>
+										   <li data-target="#carousel-example-captions" data-slide-to="1"></li>
+										   <li data-target="#carousel-example-captions" data-slide-to="2"></li>
+										   <li data-target="#carousel-example-captions" data-slide-to="3"></li>
+										</ol>
+										<div role="listbox" class="carousel-inner">
+										   <div class="item active">
+											   <h6 class="text-center">王林</h6>
+											   <img src="../img/sliderImg1.jpg" alt="First slide image">
+										   </div>
+										   <div class="item">
+											   <h6 class="text-center">肖佳伟</h6>
+											   <img src="../img/sliderImg2.jpg" alt="Second slide image">
+										   </div>
+										   <div class="item">
+											   <h6 class="text-center">刘运卓</h6>
+											   <img src="../img/sliderImg3.jpg" alt="Third slide image">
+										   </div>
+										   <div class="item">
+											   <h6 class="text-center">尹凯涛</h6>
+											   <img src="../img/sliderImg4.jpg" alt="Third slide image">
+										   </div>
+										</div>
+										<a href="#carousel-example-captions" role="button" data-slide="prev" class="left carousel-control"> <span aria-hidden="true" class="fa fa-angle-left"></span> <span class="sr-only">Previous</span> </a> <a href="#carousel-example-captions" role="button" data-slide="next" class="right carousel-control"> <span aria-hidden="true" class="fa fa-angle-right"></span> <span class="sr-only">Next</span> </a>
+									</div>
+									<!-- END carousel-->
+								</div>
+							</div>
+						</div>
+				   </div>
 				</div>
-				<!-- /Row -->
 
 			</div>
 

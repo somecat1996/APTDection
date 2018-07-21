@@ -1,0 +1,39 @@
+[
+  {
+    "time": "2018-03-01",
+    "benign": 458,
+    "malicious": 0
+  },{
+    "time": "2018-03-02",
+    "benign": 428,
+    "malicious": 1
+  },{
+    "time": "2018-03-03",
+    "benign": 399,
+    "malicious": 2
+  },{
+    "time": "2018-03-04",
+    "benign": 478,
+    "malicious": 8
+  },{
+    "time": "2018-03-05",
+    "benign": 245,
+    "malicious": 7
+  },{
+    "time": "2018-03-06",
+    "benign": 542,
+    "malicious": 5
+  },{
+    "time": "2018-03-07",
+    "benign": 465,
+    "malicious": 6
+  },{
+    "time": "2018-03-08",
+    "benign": 476,
+    "malicious": 10
+  },{
+    "time": "2018-03-09",
+    "benign": 499,
+    "malicious": 12
+  }
+]

@@ -1,9 +1,11 @@
 /**
  * Created by lenovo on 2018/7/18.
  */
-$("#results-display").ready(function() {
-    $.getJSON ("/report/innerIP.json", function (data) {
-        var count = data.length;
+var count = 0;
+$(function() {
+    $.getJSON ("testFiles/innerIP.json", function (data) {
+    // $.getJSON ("/report/innerIP.json", function (data) {
+        count = data.length;
         // $.each(data, function (i, item) {
         //     $.getJSON(item, function (data) {
         $.each(data, function (i, item) {
@@ -43,7 +45,7 @@ $("#results-display").ready(function() {
             A();
         });
         function A() {
-            if(count-1==0){
+            if(count-1===0){
                 $('#datable_1').DataTable();
             }
             else {}

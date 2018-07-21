@@ -2635,6 +2635,7 @@ a#toggle_mobile_nav {
   pointer-events: none; }
 
 .page-wrapper {
+  margin-left: 225px;
   background: #eee;
   padding: 70px 20px;
   position: relative;
@@ -7143,7 +7144,8 @@ ul.inbox-nav li a:hover, ul.inbox-nav li.active a, ul.inbox-nav li a:focus {
     .slide-nav-toggle .fixed-sidebar-left .right-nav-text {
       opacity: 1; }
   .slide-nav-toggle .page-wrapper {
-    margin-left: 0; }
+    margin-left: 0;
+    left: 225px; }
   .slide-nav-toggle .navbar.navbar-inverse.navbar-fixed-top .nav-header {
     width: 225px; }
     .slide-nav-toggle .navbar.navbar-inverse.navbar-fixed-top .nav-header .logo-wrap .brand-text {
@@ -7196,6 +7198,7 @@ ul.inbox-nav li a:hover, ul.inbox-nav li.active a, ul.inbox-nav li a:focus {
       .slide-nav-toggle .fixed-sidebar-left .side-nav li .user-profile .dropdown {
         display: block; }
   .slide-nav-toggle .page-wrapper {
+    left: 225px;
     margin-left: 0; }
   .slide-nav-toggle.sidebar-hover .navbar.navbar-inverse.navbar-fixed-top .nav-header {
     width: 100%; }
