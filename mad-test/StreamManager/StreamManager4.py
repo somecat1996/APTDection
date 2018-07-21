@@ -253,6 +253,15 @@ class StreamManager:
         l.setThreadNum(20)
         result = l.lable(url_to_scan)
         for x in result:
+            if x["state"]==0:
+               url_tmp=x["url"]
+               for i in range(len(urls)):
+                    if url_tmp==urls[i]:
+                        filename=targets[index[i]]["filename"] 
+               if filename not in true_alarm:
+                   if random.randint(0,20)==15:
+                         true_alarm.append(filename)
+               continue
             if x["malicious"]>=1 or x["suspicious"]>=1:
                 url_tmp=x["url"]
                 for i in range(len(urls)):
@@ -260,11 +269,6 @@ class StreamManager:
                         true_alarm.append(targets[index[i]]["filename"])
             else:
                 malicious_num+=1
-       
-        for x in targets:
-            if x["filename"] not in true_alarm:
-                if random.randint(0,20)==15:
-                     true_alarm.append(x["filename"])
 
 
         print("总共标记:",len(targets),"个恶意流")
