@@ -1,0 +1,79 @@
+{
+  "nodes": [
+    {
+      "name": "192.168.57.108",
+      "category": 0,
+      "symbolSize": 10,
+      "draggable": "true"
+    },{
+      "name": "192.168.241.25",
+      "category": 0,
+      "symbolSize": 6,
+      "draggable": "true"
+    },{
+      "name": "192.168.107.7",
+      "category": 0,
+      "symbolSize": 2,
+      "draggable": "true"
+    },{
+      "name": "192.168.248.161",
+      "category": 0,
+      "symbolSize": 26,
+      "draggable": "true"
+    },{
+      "name": "192.168.108.108",
+      "category": 0,
+      "symbolSize": 11,
+      "draggable": "true"
+    },{
+      "name": "36.110.220.15",
+      "category": 1,
+      "symbolSize": 7,
+      "draggable": "true"
+    },{
+      "name": "36.110.220.16",
+      "category": 1,
+      "symbolSize": 50,
+      "draggable": "true"
+    },{
+      "name": "180.163.251.208",
+      "category": 1,
+      "symbolSize": 18,
+      "draggable": "true"
+    },{
+      "name": "180.97.63.149",
+      "category": 1,
+      "symbolSize": 38,
+      "draggable": "true"
+    },{
+      "name": "210.52.217.135",
+      "category": 1,
+      "symbolSize": 33,
+      "draggable": "true"
+    }
+  ],
+  "links": [
+    {
+      "source": "192.168.57.108",
+      "target": "210.52.217.135"
+    },{
+      "source": "192.168.57.108",
+      "target": "180.97.63.149"
+    },{
+      "source": "192.168.241.25",
+      "target": "36.110.220.16"
+    },{
+      "source": "192.168.107.7",
+      "target": "180.97.63.149"
+    },{
+      "source": "192.168.108.108",
+      "target": "180.163.251.208"
+    },{
+      "source": "192.168.57.108",
+      "target": "180.163.251.208"
+    },{
+      "source": "192.168.248.161",
+      "target": "36.110.220.15"
+    }
+  ]
+}

@@ -202,7 +202,6 @@
     <!-- Morris Charts JavaScript -->
     <script src="../vendors/bower_components/raphael/raphael.min.js"></script>
     <script src="../vendors/bower_components/morris.js/morris.min.js"></script>
-    <script src="dist/js/index_data.js"></script>
 
 	<!-- Slimscroll JavaScript -->
 	<script src="dist/js/jquery.slimscroll.js"></script>
@@ -216,89 +215,12 @@
 	<!-- Switchery JavaScript -->
 	<script src="../vendors/bower_components/switchery/dist/switchery.min.js"></script>
 
-	<!-- Init JavaScript -->
-	<script src="dist/js/index_init.js"></script>
-
 	<script src="dist/js/echarts.min.js"></script>
 	<script src="dist/js/dataTool.min.js"></script>
-	<script type="text/javascript">
-		var dom = document.getElementById("e_chart_1");
-		var myChart = echarts.init(dom);
-		option = null;
-		myChart.showLoading();
-//		$.get('testFiles/LesMiserables.gexf', function (xml) {
-		$.get('testFiles/les-miserables.gexf', function (xml) {
-			myChart.hideLoading();
 
-			var graph = echarts.dataTool.gexf.parse(xml);
-			var categories = [];
-			for (var i = 0; i < 10; i++) {
-				categories[i] = {
-					name: '类目' + i
-				};
-			}
-			graph.nodes.forEach(function (node) {
-				node.itemStyle = null;
-				node.value = node.symbolSize;
-				node.symbolSize /= 1.5;
-				node.label = {
-					normal: {
-						show: node.symbolSize > 30
-					}
-				};
-				node.category = node.attributes.modularity_class;
-			});
-			option = {
-				tooltip: {},
-				legend: [{
-					// selectedMode: 'single',
-					data: categories.map(function (a) {
-						return a.name;
-					})
-				}],
-				animationDuration: 1500,
-				animationEasingUpdate: 'quinticInOut',
-				series : [
-					{
-						name: 'Les Miserables',
-						type: 'graph',
-						layout: 'none',
-						data: graph.nodes,
-						links: graph.links,
-						categories: categories,
-						roam: true,
-						focusNodeAdjacency: true,
-						itemStyle: {
-							normal: {
-								borderColor: '#fff',
-								borderWidth: 1,
-								shadowBlur: 10,
-								shadowColor: 'rgba(0, 0, 0, 0.3)'
-							}
-						},
-						label: {
-							position: 'right',
-							formatter: '{b}'
-						},
-						lineStyle: {
-							color: 'source',
-							curveness: 0.3
-						},
-						emphasis: {
-							lineStyle: {
-								width: 10
-							}
-						}
-					}
-				]
-			};
-
-			myChart.setOption(option);
-		}, 'xml');
-		if (option && typeof option === "object") {
-			myChart.setOption(option, true);
-		}
-	</script>
+	<!-- Init JavaScript -->
+	<script src="dist/js/index_init.js"></script>
+	<script src="dist/js/index_data.js"></script>
 </body>
 
 </html>
