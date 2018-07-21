@@ -37,7 +37,7 @@ def dump_stream(labels, *, path):
         json.dump(file_dict, json_file, cls=JSONEncoder)
 
 
-def load_stream(*, root):
+def load_stream():
     file_dict = collections.defaultdict(dict)
     for path in os.listdir('/usr/local/mad/dataset'):
         if os.path.isfile(f'/usr/local/mad/dataset/{path}/record.json'):
@@ -52,7 +52,7 @@ def load_stream(*, root):
     stream = dict()
     for kind in {'Background_PC',}:
         stream[kind] = collections.defaultdict(list)
-        dat_files = os.listdir(f'/usr/local/mad/retrain/dataset/{kind}/1')
+        dat_files = os.listdir(f'/usr/local/mad/retrain/{kind}/1')
         for file in dat_files:
             stem = pathlib.Path(file).stem
             path, name = stem.split('_', 1)
@@ -61,7 +61,7 @@ def load_stream(*, root):
                 file['is_malicious'] = 1
                 stream[kind][file['ipua']].append(file)
 
-        dat_files = os.listdir(f'/usr/local/mad/retrain/dataset/{kind}/0')
+        dat_files = os.listdir(f'/usr/local/mad/retrain/{kind}/0')
         for file in dat_files:
             stem = pathlib.Path(file).stem
             path, name = stem.split('_', 1)
@@ -69,9 +69,6 @@ def load_stream(*, root):
             if file:
                 file['is_malicious'] = 0
                 stream[kind][file['ipua']].append(file)
-
-    with open(os.path.join(root, 'stream.json'), 'w') as file:
-        json.dump(stream, file, cls=JSONEncoder)
 
     return stream
 

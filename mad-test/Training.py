@@ -634,7 +634,7 @@ def main(unused):
         end = time.time()
         print(end)
         print('Running time: %s Seconds' % (end - start))
-        retrain_index = load_stream(root=DataPath)
+        retrain_index = load_stream()
         # if os.path.isfile("/usr/local/mad/retrain/stream.json"):
         #     while True:
         #         try:
@@ -651,15 +651,16 @@ def main(unused):
             name = stem+"_"+item["name"]
             retrain_index[T][item["ipua"]].append(item)
             shutil.copy(os.path.join(DataPath, T, "0", item["name"]+".dat"),
-                        os.path.join("/usr/local/mad/retrain/dataset", T, str(flag), name+".dat"))
+                        os.path.join("/usr/local/mad/retrain", T, str(flag), name+".dat"))
             # print('src:', os.path.join(DataPath, T, "0", item["name"]+".dat"))
             # print('dst:', os.path.join("/usr/local/mad/retrain/dataset", T, str(flag), name+".dat"))
             # print('src:', os.path.join(DataPath, "stream", item["name"]+".pcap"))
             # print('dst:', os.path.join("/usr/local/mad/retrain/stream", T, str(flag), name+".pcap"))
             # shutil.copy(os.path.join(DataPath, "stream", item["name"]+".pcap"),
             #             os.path.join("/usr/local/mad/retrain/stream", T, str(flag), name+".pcap"))
-        with open("/usr/local/mad/retrain/stream.json", 'w') as file:
+        with open(os.path.join(DataPath, "stream.json"), 'w') as file:
             json.dump(retrain_index, file, cls=JSONEncoder)
+        shutil.copy(os.path.join(DataPath, "stream.json"), '/usr/local/mad/retrain/stream.json')
         report = list()
         report.extend(Clean)
         report.extend(Malicious)
