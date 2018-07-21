@@ -394,7 +394,8 @@ def run_cnn(*, path, retrain=False):
     # run CNN subprocess
     for kind in {'Background_PC',}:
         cmd = [sys.executable, shlex.quote(os.path.join(ROOT, 'Training.py')),
-                path, f'/usr/local/mad/model/{kind}', MODE_DICT.get(mode), kind, str(PID)]
+                str(path), f'/usr/local/mad/model/{kind}/', MODE_DICT.get(mode), kind, str(PID)]
+        # print(cmd) ###
         subprocess.run(cmd)
 
     # things to do when retrain
