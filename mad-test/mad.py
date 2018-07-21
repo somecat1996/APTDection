@@ -79,7 +79,7 @@ COUNT = -1
 PID = os.getpid()   # PID
 ROOT = os.path.dirname(os.path.abspath(__file__))
                     # file root path
-MODE = 3            # 1-initialisation; 2-migration; 3-prediction; 4-adaptation
+MODE = 3            # 1-initialisation; 2-migration; 3-prediction; 4-adaptation; 5-regeneration
 PATH = NotImplemented
                     # path of original data
 IFACE = 'eth0'      # sniff interface
@@ -189,7 +189,7 @@ def make_worker(*args):
     # do initialisation or migration first
     # then, keep on with prediction (if need)
     start_worker()
-    if MODE == 2:
+    if MODE in (2, 5):
         MODE = 3
         return make_worker()
 
@@ -232,14 +232,16 @@ def start_worker():
 
     # and make dataset for each flow in accordance with the group
     # using PyPCAPKit with its reassembly interface
-    make_dataset(group, fp, path=path)
+    if MODE != 5:
+        make_dataset(group, fp, path=path)
 
     milestone_3 = time.time()
     print(f'Dumped for {milestone_3-milestone_2} seconds')
 
     # and now, time for the neural network
     # reports should be placed in a certain directory
-    run_cnn(path=path)
+    if MODE != 5:
+        run_cnn(path=path)
 
     milestone_4 = time.time()
     print(f'Predicted for {milestone_4-milestone_3} seconds')
@@ -251,8 +253,11 @@ def start_worker():
 
     # finally, remove used temporary dataset files
     # but record files should be reserved for further usage
-    for name in {'Background_PC', 'stream'}: ###
-        shutil.rmtree(os.path.join(path, name)) ###
+    for name in {'Background_PC', 'stream'}:
+        try:
+            shutil.rmtree(os.path.join(path, name))
+        except FileNotFoundError:
+            print(f"FileNotFoundError: [Errno 2] No such file or directory: '{os.path.join(path, name)}'")
 
     milestone_5 = time.time()
     print(f'Worked for {milestone_5-milestone_0} seconds')
