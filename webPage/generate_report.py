@@ -2,10 +2,38 @@ import os
 import json
 import time as _time
 import random
+import ast
+from user_agents import parse as _parse
 
 
 STEP = 1209600/587.0
 START = int(_time.mktime(_time.strptime('2018-07-11 0:0:0', "%Y-%m-%d %H:%M:%S")))
+
+
+def parse(ua):
+    info = _parse(ua)
+
+    _list = str(info).split(' / ')
+
+    _type = list()
+    if ua.is_mobile:
+        _type.append('Mobile')
+    if ua.is_tablet:
+        _type.append('Tablet')
+    if ua.is_touch_capable:
+        _type.append('Touch Capable')
+    if ua.is_pc:
+        _type.append('PC')
+    if ua.is_bot:
+        _type.append('Bot')
+
+    return dict(
+        device=_list[0],
+        os=_list[1],
+        browser=_list[2],
+        type=' / '.join(_type),
+    )
+
 
 def readReportList(path):
     with open(os.path.join(path, "index.json"), 'r') as f:
@@ -112,11 +140,11 @@ def writeUA(index):
     for count, file in enumerate(index):
         tmp_data = json.load(open("/usr/local/mad" + file, 'r'))
         for i in tmp_data:
-            name = i['UA']
+            name = ast.literal_eval(f"""b'{i['UA']}'""").decode()
             type = i['is_malicious']
             # time = i['time']
             time = _time.strftime("%Y-%m-%d %H:%M:%S", _time.localtime(START + count * STEP + random.random() * STEP))
-            info = i['info']
+            info = parse(name)
             src = i['srcIP']
             dst = i['dstIP']
             if type:
@@ -167,11 +195,11 @@ def writeInnerIP(index):
     for count, file in enumerate(index):
         tmp_data = json.load(open("/usr/local/mad" + file, 'r'))
         for i in tmp_data:
-            name = i['UA']
+            name = ast.literal_eval(f"""b'{i['UA']}'""").decode()
             type = i['is_malicious']
             # time = i['time']
             time = _time.strftime("%Y-%m-%d %H:%M:%S", _time.localtime(START + count * STEP + random.random() * STEP))
-            info = i['info']
+            info = parse(name)
             src = i['srcIP']
             if type:
                 flag = True
@@ -222,7 +250,7 @@ def writeOuterIP(index):
     for count, file in enumerate(index):
         tmp_data = json.load(open("/usr/local/mad" + file, 'r'))
         for i in tmp_data:
-            name = i['UA']
+            name = ast.literal_eval(f"""b'{i['UA']}'""").decode()
             type = i['is_malicious']
             # time = i['time']
             time = _time.strftime("%Y-%m-%d %H:%M:%S", _time.localtime(START + count * STEP + random.random() * STEP))

@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="72f023dd-9e1c-48f0-a389-44fc3943046d" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webPage/generate_report.py" afterPath="$PROJECT_DIR$/webPage/generate_report.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webPage/pages/dist/js/inner_detail.js" afterPath="$PROJECT_DIR$/webPage/pages/dist/js/inner_detail.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webPage/pages/dist/js/ua_detail.js" afterPath="$PROJECT_DIR$/webPage/pages/dist/js/ua_detail.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -27,21 +29,11 @@
       <file leaf-file-name="generate_report.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/webPage/generate_report.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4212">
-              <caret line="174" column="28" lean-forward="false" selection-start-line="174" selection-start-column="28" selection-end-line="174" selection-end-column="28" />
+            <state relative-caret-position="-364">
+              <caret line="13" column="21" lean-forward="true" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UA.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webPage/pages/testFiles/UA.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="108" lean-forward="false" selection-start-line="0" selection-start-column="87" selection-end-line="0" selection-end-column="108" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -59,7 +51,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>full</find>
       <find>footable_3</find>
       <find>modal</find>
       <find>body</find>
@@ -89,6 +80,7 @@
       <find>focusNodeAdjacency</find>
       <find>focusNodeAdjacency: function</find>
       <find>child.trigger('emphasis');</find>
+      <find>name</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -142,9 +134,9 @@
         <option value="$PROJECT_DIR$/webPage/pages/dist/js/outer_detail.js" />
         <option value="$PROJECT_DIR$/webPage/pages/outer_detail.html" />
         <option value="$PROJECT_DIR$/webPage/pages/ua_detail.html" />
+        <option value="$PROJECT_DIR$/webPage/modify_time.py" />
         <option value="$PROJECT_DIR$/webPage/pages/dist/js/ua_detail.js" />
         <option value="$PROJECT_DIR$/webPage/pages/dist/js/inner_detail.js" />
-        <option value="$PROJECT_DIR$/webPage/modify_time.py" />
         <option value="$PROJECT_DIR$/webPage/generate_report.py" />
       </list>
     </option>
@@ -243,6 +235,54 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="testFiles" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="APTDection" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="APTDection" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webPage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pages" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dist" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="APTDection" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="APTDection" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webPage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pages" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dist" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -583,13 +623,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webPage/pages/testFiles/loss.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="372">
-          <caret line="0" column="16158" lean-forward="false" selection-start-line="0" selection-start-column="16158" selection-end-line="0" selection-end-column="16158" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/vectormap-data.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="466">
@@ -799,43 +832,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/index_map.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="10" column="22" lean-forward="false" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#42#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/inner_data.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="8" column="19" lean-forward="false" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#42#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webPage/geoip.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#26#37#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/inner_detail.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
-          <caret line="19" column="34" lean-forward="false" selection-start-line="19" selection-start-column="34" selection-end-line="19" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#42#0" expanded="false" />
-            <marker date="1532246591088" expanded="true" signature="1900:1914" ph="..." />
           </folding>
         </state>
       </provider>
@@ -859,40 +861,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/ua_detail.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="45" column="30" lean-forward="false" selection-start-line="45" selection-start-column="30" selection-end-line="45" selection-end-column="30" />
-          <folding>
-            <marker date="1532246485837" expanded="true" signature="2365:2379" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webPage/pages/ua_detail.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="274">
           <caret line="99" column="62" lean-forward="false" selection-start-line="99" selection-start-column="62" selection-end-line="99" selection-end-column="62" />
           <folding>
             <element signature="n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webPage/pages/testFiles/ua_detail.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1364">
-          <caret line="68" column="7" lean-forward="false" selection-start-line="68" selection-start-column="7" selection-end-line="68" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/outer_detail.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="30" column="24" lean-forward="false" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
-          <folding>
-            <marker date="1532246486061" expanded="true" signature="1458:1472" ph="..." />
           </folding>
         </state>
       </provider>
@@ -939,10 +913,77 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/webPage/pages/testFiles/ua_detail.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="48" column="24" lean-forward="true" selection-start-line="42" selection-start-column="6" selection-end-line="48" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/ua_detail.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="15" column="123" lean-forward="true" selection-start-line="15" selection-start-column="123" selection-end-line="15" selection-end-column="123" />
+          <folding>
+            <marker date="1532268897222" expanded="true" signature="2367:2381" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/inner_data.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="8" column="19" lean-forward="false" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#42#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/index_map.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="32">
+          <caret line="3" column="14" lean-forward="true" selection-start-line="3" selection-start-column="14" selection-end-line="4" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#42#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/inner_detail.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="19" column="41" lean-forward="false" selection-start-line="19" selection-start-column="41" selection-end-line="19" selection-end-column="41" />
+          <folding>
+            <element signature="e#0#42#0" expanded="false" />
+            <marker date="1532268922941" expanded="true" signature="1917:1931" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webPage/pages/testFiles/loss.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="402">
+          <caret line="0" column="16158" lean-forward="false" selection-start-line="0" selection-start-column="16158" selection-end-line="0" selection-end-column="16158" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/outer_detail.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="960">
+          <caret line="30" column="24" lean-forward="false" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
+          <folding>
+            <marker date="1532246486061" expanded="true" signature="1458:1472" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/webPage/generate_report.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4212">
-          <caret line="174" column="28" lean-forward="false" selection-start-line="174" selection-start-column="28" selection-end-line="174" selection-end-column="28" />
+        <state relative-caret-position="-364">
+          <caret line="13" column="21" lean-forward="true" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
