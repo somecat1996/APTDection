@@ -62,7 +62,7 @@ def writeConnection(index):
                     Connection["nodes"].append({
                         "name": src,
                         "category": 0,
-                        "symbolSize": 1,
+                        "symbolSize": 10,
                         "draggable": "true"
                     })
                 if flag2:
