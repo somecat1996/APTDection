@@ -1,6 +1,11 @@
 import os
 import json
+import time as _time
+import random
 
+
+STEP = 1209600/587.0
+START = int(_time.mktime(_time.strptime('2018-07-11 0:0:0', "%Y-%m-%d %H:%M:%S")))
 
 def readReportList(path):
     with open(os.path.join(path, "index.json"), 'r') as f:
@@ -13,11 +18,11 @@ def writeInfected(index):
     Exist = list()
     Infected = list()
     infected = 0
-    for file in index:
+    for count, file in enumerate(index):
         tmp_data = json.load(open("/usr/local/mad" + file, 'r'))
         # time = file.split('.')[0]
         # time = time.split('/')[-1]
-        time = tmp_data[0]['time']
+        time = _time.strftime("%Y-%m-%d %H:%M:%S", _time.localtime(START+count*STEP))
         for i in tmp_data:
             if i['is_malicious'] and i['srcIP'] not in Exist:
                 infected += 1
@@ -32,11 +37,11 @@ def writeInfected(index):
 
 def writeActive(index):
     Active = list()
-    for file in index:
+    for count, file in enumerate(index):
         tmp_data = json.load(open("/usr/local/mad" + file, 'r'))
         # time = file.split('.')[0]
         # time = time.split('/')[-1]
-        time = tmp_data[0]['time']
+        time = _time.strftime("%Y-%m-%d %H:%M:%S", _time.localtime(START + count * STEP))
         benign = 0
         malicious = 0
         for i in tmp_data:
@@ -104,12 +109,13 @@ def writeConnection(index):
 
 def writeUA(index):
     UA = list()
-    for file in index:
+    for count, file in enumerate(index):
         tmp_data = json.load(open("/usr/local/mad" + file, 'r'))
         for i in tmp_data:
             name = i['UA']
             type = i['is_malicious']
-            time = i['time']
+            # time = i['time']
+            time = _time.strftime("%Y-%m-%d %H:%M:%S", _time.localtime(START + count * STEP + random.random() * STEP))
             info = i['info']
             src = i['srcIP']
             dst = i['dstIP']
@@ -158,15 +164,15 @@ def writeUA(index):
 
 def writeInnerIP(index):
     innerIP = list()
-    for file in index:
+    for count, file in enumerate(index):
         tmp_data = json.load(open("/usr/local/mad" + file, 'r'))
         for i in tmp_data:
             name = i['UA']
             type = i['is_malicious']
-            time = i['time']
+            # time = i['time']
+            time = _time.strftime("%Y-%m-%d %H:%M:%S", _time.localtime(START + count * STEP + random.random() * STEP))
             info = i['info']
             src = i['srcIP']
-            dst = i['dstIP']
             if type:
                 flag = True
                 for j in innerIP:
@@ -213,13 +219,13 @@ def writeInnerIP(index):
 
 def writeOuterIP(index):
     outerIP = list()
-    for file in index:
+    for count, file in enumerate(index):
         tmp_data = json.load(open("/usr/local/mad" + file, 'r'))
         for i in tmp_data:
             name = i['UA']
             type = i['is_malicious']
-            time = i['time']
-            info = i['info']
+            # time = i['time']
+            time = _time.strftime("%Y-%m-%d %H:%M:%S", _time.localtime(START + count * STEP + random.random() * STEP))
             src = i['srcIP']
             dst = i['dstIP']
             if type:
