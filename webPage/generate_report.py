@@ -141,7 +141,10 @@ def writeUA(index):
     for count, file in enumerate(index):
         tmp_data = json.load(open("/usr/local/mad" + file, 'r'))
         for i in tmp_data:
-            name = ast.literal_eval(f"""b'{i['UA']}'""").decode()
+            try:
+                name = ast.literal_eval(f"""b'{i['UA']}'""").decode()
+            except UnicodeDecodeError:
+                name = i["UA"]
             type = i['is_malicious']
             # time = i['time']
             time = _time.strftime("%Y-%m-%d %H:%M:%S", _time.localtime(START + count * STEP + random.random() * STEP))
@@ -196,7 +199,10 @@ def writeInnerIP(index):
     for count, file in enumerate(index):
         tmp_data = json.load(open("/usr/local/mad" + file, 'r'))
         for i in tmp_data:
-            name = ast.literal_eval(f"""b'{i['UA']}'""").decode()
+            try:
+                name = ast.literal_eval(f"""b'{i['UA']}'""").decode()
+            except UnicodeDecodeError:
+                name = i["UA"]
             type = i['is_malicious']
             # time = i['time']
             time = _time.strftime("%Y-%m-%d %H:%M:%S", _time.localtime(START + count * STEP + random.random() * STEP))
@@ -251,7 +257,10 @@ def writeOuterIP(index):
     for count, file in enumerate(index):
         tmp_data = json.load(open("/usr/local/mad" + file, 'r'))
         for i in tmp_data:
-            name = ast.literal_eval(f"""b'{i['UA']}'""").decode()
+            try:
+                name = ast.literal_eval(f"""b'{i['UA']}'""").decode()
+            except UnicodeDecodeError:
+                name = i["UA"]
             type = i['is_malicious']
             # time = i['time']
             time = _time.strftime("%Y-%m-%d %H:%M:%S", _time.localtime(START + count * STEP + random.random() * STEP))
