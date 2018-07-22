@@ -16,15 +16,15 @@ def parse(ua):
     _list = str(info).split(' / ')
 
     _type = list()
-    if ua.is_mobile:
+    if info.is_mobile:
         _type.append('Mobile')
-    if ua.is_tablet:
+    if info.is_tablet:
         _type.append('Tablet')
-    if ua.is_touch_capable:
+    if info.is_touch_capable:
         _type.append('Touch Capable')
-    if ua.is_pc:
+    if info.is_pc:
         _type.append('PC')
-    if ua.is_bot:
+    if info.is_bot:
         _type.append('Bot')
 
     return dict(
@@ -45,8 +45,9 @@ def readReportList(path):
 def writeInfected(index):
     Exist = list()
     Infected = list()
-    infected = 0
+    # infected = 0
     for count, file in enumerate(index):
+        infected = 0
         tmp_data = json.load(open("/usr/local/mad" + file, 'r'))
         # time = file.split('.')[0]
         # time = time.split('/')[-1]
