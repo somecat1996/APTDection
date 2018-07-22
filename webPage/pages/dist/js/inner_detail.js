@@ -36,8 +36,8 @@ $(function() {
                 UATable + "</div><div class=\"modal-footer\">" +
                 "<button type=\"button\" class=\"btn btn-danger text-left\" data-dismiss=\"modal\">Close</button>" +
                 "</div></div></div></div>";
-            UATable = "<tr><td><button class='btn btn-default' id='" + item.IP.replace(/\./g,"_") + "'>" + item.IP +
-                "</button></td><td>" + item.total +
+            UATable = "<tr><td>" + item.IP +
+                "</td><td>" + item.total +
                 "</td><td>" + item.malicious +
                 "</td><td>" + UATable + "</td></tr>";
             $("#results-display").append(UATable);
