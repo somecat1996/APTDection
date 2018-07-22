@@ -10,6 +10,8 @@ import os
 import requests
 
 
+TOKEN = 'a5b4675abed361'
+
 with open('/usr/local/mad/report/Background_PC/index.json') as file:
     filelist = json.load(file)
 
@@ -29,7 +31,7 @@ for count, ip in enumerate(sorted(set(ipset))):
         print(count+1, ip, 'private address')
         continue
     # latlng = geocoder.ip(ip).latlng
-    r = requests.get(f'http://ipinfo.io/{ip}?token=a5b4675abed361')
+    r = requests.get(f'http://ipinfo.io/{ip}?token={TOKEN}')
     j = r.json()
     l = j.split(',')
     latlng = (float(l[0]), float(l[1]))
@@ -50,7 +52,7 @@ while resip:
             print('failed', ip, count)
         count += 1
         # latlng = geocoder.ip(ip).latlng
-        r = requests.get(f'http://ipinfo.io/{ip}?token=a5b4675abed361')
+        r = requests.get(f'http://ipinfo.io/{ip}?token={TOKEN}')
         j = r.json()
         l = j.split(',')
         latlng = (float(l[0]), float(l[1]))
