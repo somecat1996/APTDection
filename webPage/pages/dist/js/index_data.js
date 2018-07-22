@@ -3,7 +3,8 @@
  */
 $(function() {
 	"use strict";
-	$.getJSON ("testFiles/infected_computer.json", function (data) {
+	$.getJSON ("/report/infected_computer.json", function (data) {
+	// $.getJSON ("testFiles/infected_computer.json", function (data) {
         LineChartData(
             'infected_computer',
             data,
@@ -14,7 +15,8 @@ $(function() {
             ['#f73414']
         );
     });
-	$.getJSON ("testFiles/active_software.json", function (data) {
+	$.getJSON ("/report/active_software.json", function (data) {
+	// $.getJSON ("testFiles/active_software.json", function (data) {
         LineChartData(
             'active_software',
             data,
@@ -25,7 +27,9 @@ $(function() {
             ['#76c880', '#f73414']
         );
     });
-	$.getJSON ("testFiles/loss.json", function (data) {
+	$.getJSON ("/report/loss.json", function (data) {
+	// $.getJSON ("testFiles/loss.json", function (data) {
+	    data.forEach(function(node){node.loss=1-node.loss;})
         LineChartData(
             'loss',
             data,
@@ -41,7 +45,8 @@ $(function() {
     var myChart = echarts.init(dom);
     var option = null;
     myChart.showLoading();
-    $.getJSON('testFiles/connection.json', function (data) {
+    $.getJSON('/report/connection.json', function (data) {
+    // $.getJSON('testFiles/connection.json', function (data) {
         myChart.hideLoading();
 
         var categories = [
@@ -67,7 +72,7 @@ $(function() {
                     return a.name;
                 })
             }],
-            edgeLength: [20, 100],
+            edgeLength: [50, 100],
             animationDuration: 1500,
             animationEasingUpdate: 'quinticInOut',
             series : [

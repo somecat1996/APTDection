@@ -2,8 +2,8 @@
  * Created by lenovo on 2018/7/18.
  */
 $("#results-display").ready(function() {
-    $.getJSON ("testFiles/outerIP.json", function (data) {
-    // $.getJSON ("/report/outerIP.json", function (data) {
+    // $.getJSON ("testFiles/outerIP.json", function (data) {
+    $.getJSON ("/report/outerIP.json", function (data) {
         var count = data.length;
         // $.each(data, function (i, item) {
         //     $.getJSON(item, function (data) {

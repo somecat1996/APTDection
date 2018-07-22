@@ -3,8 +3,8 @@
  */
 var count = 0;
 $(function() {
-    $.getJSON ("testFiles/innerIP.json", function (data) {
-    // $.getJSON ("/report/innerIP.json", function (data) {
+    // $.getJSON ("testFiles/innerIP.json", function (data) {
+    $.getJSON ("/report/innerIP.json", function (data) {
         count = data.length;
         // $.each(data, function (i, item) {
         //     $.getJSON(item, function (data) {
@@ -36,8 +36,8 @@ $(function() {
                 UATable + "</div><div class=\"modal-footer\">" +
                 "<button type=\"button\" class=\"btn btn-danger text-left\" data-dismiss=\"modal\">Close</button>" +
                 "</div></div></div></div>";
-            UATable = "<tr><td>" + item.IP +
-                "</td><td>" + item.total +
+            UATable = "<tr><td><button class='btn btn-default' id='" + item.IP.replace(/\./g,"_") + "'>" + item.IP +
+                "</button></td><td>" + item.total +
                 "</td><td>" + item.malicious +
                 "</td><td>" + UATable + "</td></tr>";
             $("#results-display").append(UATable);
@@ -61,3 +61,6 @@ $(function() {
 // $(document).ready(function() {
 //     $('#datable_1').DataTable();
 // });
+function Click() {
+    myChart.dispatchAction({type: 'focusNodeAdjacency',linkIndex: 0});
+}
