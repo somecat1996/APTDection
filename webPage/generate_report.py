@@ -225,3 +225,5 @@ if __name__ == "__main__":
     writeInnerIP(index)
     writeUA(index)
     writeOuterIP(index)
+    writeInfected(index)
+    writeConnection(index)

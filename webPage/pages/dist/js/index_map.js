@@ -3,7 +3,8 @@
  */
 $(function() {
 	"use strict";
-	$.getJSON ("testFiles/server_map.json", function (data) {
+	$.getJSON ("/report/server_map.json", function (data) {
+	// $.getJSON ("testFiles/server_map.json", function (data) {
         $('#world_map_marker_1').vectorMap(
             {
                 map: 'world_mill_en',

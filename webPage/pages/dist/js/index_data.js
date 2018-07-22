@@ -72,7 +72,7 @@ $(function() {
                     return a.name;
                 })
             }],
-            edgeLength: [50, 100],
+            edgeLength: [100, 200],
             animationDuration: 1500,
             animationEasingUpdate: 'quinticInOut',
             series : [
