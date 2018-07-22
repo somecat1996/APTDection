@@ -15,6 +15,7 @@ def writeInfected(index):
     for file in index:
         tmp_data = json.load(open("/usr/local/mad" + file, 'r'))
         time = file.split('.')[0]
+        time = time.split('/')[-1]
         for i in tmp_data:
             if i['is_malicious']:
                 infected += 1
