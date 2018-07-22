@@ -35,14 +35,14 @@ $("#results-display").ready(function() {
                 Table + "</div><div class=\"modal-footer\">" +
                 "<button type=\"button\" class=\"btn btn-danger text-left\" data-dismiss=\"modal\">Close</button>" +
                 "</div></div></div></div>";
-            var type;
-            if(item.type===1){
-                type = "<span class=\"label label-danger\">恶意</span>";
-            }else{
-                type = "<span class=\"label label-success\">良性</span>";
-            }
+            // var type;
+            // if(item.type===1){
+            //     type = "<span class=\"label label-danger\">恶意</span>";
+            // }else{
+            //     type = "<span class=\"label label-success\">良性</span>";
+            // }
             Table = "<tr><td>" + item.name +
-                "</td><td>" + type +
+                // "</td><td>" + type +
                 "</td><td>" + item.stime +
                 "</td><td>" + item.etime +
                 "</td><td>" + Table + "</td></tr>";
