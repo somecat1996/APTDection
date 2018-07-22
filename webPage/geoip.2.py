@@ -2,12 +2,12 @@ import ast
 import json
 
 geoip = list()
-with open('temp.txt') as file:
+with open('server_map.txt') as file:
     for line in file:
         _, ip, latlng = line.strip().split(' ', 2)
         try:
             geoip.append(dict(
-                ip=ip, 
+                name=ip, 
                 latLng=ast.literal_eval(latlng),
             ))
         except SyntaxError:
