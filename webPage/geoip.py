@@ -44,6 +44,9 @@ for count, ip in enumerate(sorted(set(ipset))):
     if latlng is None:
         resip.append((ip, 0))
 
+with open('server_map.json', 'w') as file:
+    json.dump(geoip, file)
+
 while resip:
     temp = copy.deepcopy(resip)
     resip = list()
@@ -65,5 +68,8 @@ while resip:
         if latlng is None:
             resip.append((ip, count))
 
-with open('/usr/local/mad/report/server_map.json') as file:
+    with open('/usr/local/mad/report/server_map.json', 'w') as file:
+        json.dump(geoip, file)
+
+with open('/usr/local/mad/report/server_map.json', 'w') as file:
     json.dump(geoip, file)

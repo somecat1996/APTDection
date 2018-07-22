@@ -20,6 +20,7 @@ nohup.out*
 *.icloud
 
 !data.json
+!server_map.json
 
 __pycache__/
 
