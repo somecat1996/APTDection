@@ -10,6 +10,7 @@ def readReportList(path):
 
 
 def writeInfected(index):
+    Exist = list()
     Infected = list()
     infected = 0
     for file in index:
@@ -17,8 +18,9 @@ def writeInfected(index):
         time = file.split('.')[0]
         time = time.split('/')[-1]
         for i in tmp_data:
-            if i['is_malicious']:
+            if i['is_malicious'] and i['srcIP'] not in Exist:
                 infected += 1
+                Exist.append(i['srcIP'])
         Infected.append({
             "time": time,
             "infected": infected
