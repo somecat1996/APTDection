@@ -15,8 +15,9 @@ def writeInfected(index):
     infected = 0
     for file in index:
         tmp_data = json.load(open("/usr/local/mad" + file, 'r'))
-        time = file.split('.')[0]
-        time = time.split('/')[-1]
+        # time = file.split('.')[0]
+        # time = time.split('/')[-1]
+        time = tmp_data[0]['time']
         for i in tmp_data:
             if i['is_malicious'] and i['srcIP'] not in Exist:
                 infected += 1
@@ -31,11 +32,11 @@ def writeInfected(index):
 
 def writeActive(index):
     Active = list()
-    infected = 0
     for file in index:
         tmp_data = json.load(open("/usr/local/mad" + file, 'r'))
-        time = file.split('.')[0]
-        time = time.split('/')[-1]
+        # time = file.split('.')[0]
+        # time = time.split('/')[-1]
+        time = tmp_data[0]['time']
         benign = 0
         malicious = 0
         for i in tmp_data:
@@ -94,7 +95,7 @@ def writeConnection(index):
                     Connection["nodes"].append({
                         "name": dst,
                         "category": 1,
-                        "symbolSize": 1,
+                        "symbolSize": 10,
                         "draggable": "true"
                     })
     with open("connection.json", 'w') as f:
