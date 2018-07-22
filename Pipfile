@@ -16,6 +16,7 @@ numpy = "*"
 scipy = "*"
 pandas = "*"
 matplotlib = "*"
+geocoder = "*"
 
 [dev-packages]
 
