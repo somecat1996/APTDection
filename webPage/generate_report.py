@@ -251,3 +251,4 @@ if __name__ == "__main__":
     writeOuterIP(index)
     writeInfected(index)
     writeConnection(index)
+    writeActive(index)
