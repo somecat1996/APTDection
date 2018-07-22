@@ -15,7 +15,7 @@ $("#results-display").ready(function() {
             var info = item.info;
             var Table = "<div class=\"row\"><div class=\"col-md-12\"><h5 class='text-center'>User Agent信息</h5></div></div>"
             Table = Table + "<hr><div class=\"row\"><div class=\"col-md-6\"><h6 class=\"text-center\">类型</h6><p class=\"text-center\">" + info.type + "</p></div><div class=\"col-md-6\"><h6 class=\"text-center\">设备</h6><p class=\"text-center\">" + info.device + "</p></div></div>" +
-                "<div class=\"row\"><div class=\"col-md-6\"><h6 class=\"text-center\">操作系统</h6><p class=\"text-center\">" + info.os + "</p></div><div class=\"col-md-6\"><h6 class=\"text-center\">名称</h6><p class=\"text-center\">" + info.browser + "</p></div></div>";
+                "<div class=\"row\"><div class=\"col-md-6\"><h6 class=\"text-center\">操作系统</h6><p class=\"text-center\">" + info.os + "</p></div><div class=\"col-md-6\"><h6 class=\"text-center\">软件</h6><p class=\"text-center\">" + info.browser + "</p></div></div>";
             Table = Table + "<div class=\"row\"><div class=\"col-md-12\"><h5 class='text-center'>通信详细信息</h5></div></div>"
             var connection = ''
             for(let i=0;i<item.connection.length;i++){
