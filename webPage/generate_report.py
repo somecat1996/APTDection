@@ -27,6 +27,29 @@ def writeInfected(index):
         json.dump(Infected, f)
 
 
+def writeActive(index):
+    Active = list()
+    infected = 0
+    for file in index:
+        tmp_data = json.load(open("/usr/local/mad" + file, 'r'))
+        time = file.split('.')[0]
+        time = time.split('/')[-1]
+        benign = 0
+        malicious = 0
+        for i in tmp_data:
+            if i['is_malicious']:
+                malicious += 1
+            else:
+                benign += 1
+        Active.append({
+            "time": time,
+            "benign": benign,
+            "malicious": malicious
+        })
+    with open("active_software.json", 'w') as f:
+        json.dump(Active, f)
+
+
 def writeConnection(index):
     Connection = {
         "nodes": [],
