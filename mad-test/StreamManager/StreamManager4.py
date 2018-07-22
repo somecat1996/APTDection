@@ -361,7 +361,10 @@ class StreamManager:
                     except:
                         pass
                 if not got_uri:
-                    ttt = re.findall(pattern1, s)[0]
+                    if re.match(pattern1,s):
+                        ttt = re.findall(pattern1, s)[0]
+                    else:
+                        ttt=""
                     if not re.findall(pattern2, ttt):
                         ttt = ttt.strip(" HTTP")
                     else:

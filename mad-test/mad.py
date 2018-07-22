@@ -155,6 +155,8 @@ def main(*, iface=None, mode=None, path=None, file=None):
     # start procedure
     make_worker()
     while True:
+        # if FILE is not NotImplemented \ ###
+        #     and COUNT >= len(FILE): break ###
         time.sleep(100_000_000)
 
 
@@ -182,7 +184,7 @@ def make_worker(*args):
     if MODE == 3:
         if FILE is not NotImplemented:
             COUNT += 1
-            if COUNT == len(FILE):
+            if COUNT >= len(FILE):
                 return
         return multiprocessing.Process(target=start_worker).start()
 

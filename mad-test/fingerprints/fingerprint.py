@@ -328,7 +328,10 @@ class FingerprintGenerator():
         """
         # Approximation of size for POST for efficiency reasons.
         if "Content-Length" in current_req:
-            outgoing_info+=int(current_req["Content-Length"])
+            try:
+                outgoing_info+=int(current_req["Content-Length"])
+            except:
+                outgoing_info+=100
 
         outgoing_info += self._levenshtein_distance(current_req["uri"], old_req["uri"])
 
