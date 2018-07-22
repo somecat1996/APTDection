@@ -33,7 +33,7 @@ for count, ip in enumerate(sorted(set(ipset))):
     latlng = geocoder.ip(ip).latlng
     # try:
     #     r = requests.get(f'http://ipinfo.io/{ip}?token={TOKEN}')
-    #     j = r.json()
+    #     j = r.json()['loc']
     #     l = j.split(',')
     #     latlng = (float(l[0]), float(l[1]))
     # except requests.exceptions.ConnectionError:
@@ -60,7 +60,7 @@ while resip:
         latlng = geocoder.ip(ip).latlng
         # try:
         #     r = requests.get(f'http://ipinfo.io/{ip}?token={TOKEN}')
-        #     j = r.json()
+        #     j = r.json()['loc']
         #     l = j.split(',')
         #     latlng = (float(l[0]), float(l[1]))
         # except requests.exceptions.ConnectionError:

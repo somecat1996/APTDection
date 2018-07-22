@@ -6,7 +6,7 @@ import ipaddress
 import json
 # import os
 
-# import geocoder
+import geocoder
 import requests
 
 
@@ -33,19 +33,19 @@ with open('/usr/local/mad/report/server_map.json', 'w') as file:
         json.dump(geoip, file)
 
 resip = list()
-for count, ip in enumerate(ipset[142:]):
+for count, ip in enumerate(ipset[166:]):
     if ipaddress.ip_address(ip).is_private:
-        print(count+142, ip, 'private address')
+        print(count+167, ip, 'private address')
         continue
-    # latlng = geocoder.ip(ip).latlng
-    try:
-        r = requests.get(f'http://ipinfo.io/{ip}?token={TOKEN}')
-        j = r.json()
-        l = j.split(',')
-        latlng = (float(l[0]), float(l[1]))
-    except requests.exceptions.ConnectionError:
-        latlng = None
-    print(count+1, ip, latlng) ###
+    latlng = geocoder.ip(ip).latlng
+    # try:
+    #     r = requests.get(f'http://ipinfo.io/{ip}?token={TOKEN}')
+    #     j = r.json()['loc']
+    #     l = j.split(',')
+    #     latlng = (float(l[0]), float(l[1]))
+    # except requests.exceptions.ConnectionError:
+    #     latlng = None
+    print(count+167, ip, latlng) ###
     if latlng:
         geoip.append(dict(
             name=ip,
@@ -64,14 +64,14 @@ while resip:
         if count > 100:
             print('failed', ip, count)
         count += 1
-        # latlng = geocoder.ip(ip).latlng
-        try:
-            r = requests.get(f'http://ipinfo.io/{ip}?token={TOKEN}')
-            j = r.json()
-            l = j.split(',')
-            latlng = (float(l[0]), float(l[1]))
-        except requests.exceptions.ConnectionError:
-            latlng = None
+        latlng = geocoder.ip(ip).latlng
+        # try:
+        #     r = requests.get(f'http://ipinfo.io/{ip}?token={TOKEN}')
+        #     j = r.json()['loc']
+        #     l = j.split(',')
+        #     latlng = (float(l[0]), float(l[1]))
+        # except requests.exceptions.ConnectionError:
+        #     latlng = None
         print('retry', ip, latlng) ###
         if latlng:
             geoip.append(dict(
