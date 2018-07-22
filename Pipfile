@@ -17,6 +17,9 @@ scipy = "*"
 pandas = "*"
 matplotlib = "*"
 geocoder = "*"
+pyyaml = "*"
+ua-parser = "*"
+user-agents = "*"
 
 [dev-packages]
 
