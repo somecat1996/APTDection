@@ -47,10 +47,10 @@ def writeConnection(index):
                 for node in Connection["nodes"]:
                     if node["name"] == src:
                         flag1 = False
-                        node["symbolSize"] = node["symbolSize"] + 1 if node["symbolSize"] < 50 else 50
+                        node["symbolSize"] = node["symbolSize"] + 0.1 if node["symbolSize"] < 20 else 20
                     if node["name"] == dst:
                         flag2 = False
-                        node["symbolSize"] = node["symbolSize"] + 1 if node["symbolSize"] < 50 else 50
+                        node["symbolSize"] = node["symbolSize"] + 0.1 if node["symbolSize"] < 20 else 20
                 if flag:
                     Connection["links"].append({
                         "source": src,
