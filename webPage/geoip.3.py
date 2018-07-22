@@ -38,10 +38,13 @@ for count, ip in enumerate(ipset[142:]):
         print(count+142, ip, 'private address')
         continue
     # latlng = geocoder.ip(ip).latlng
-    r = requests.get(f'http://ipinfo.io/{ip}?token={TOKEN}')
-    j = r.json()
-    l = j.split(',')
-    latlng = (float(l[0]), float(l[1]))
+    try:
+        r = requests.get(f'http://ipinfo.io/{ip}?token={TOKEN}')
+        j = r.json()
+        l = j.split(',')
+        latlng = (float(l[0]), float(l[1]))
+    except requests.exceptions.ConnectionError:
+        latlng = None
     print(count+1, ip, latlng) ###
     if latlng:
         geoip.append(dict(
@@ -62,10 +65,13 @@ while resip:
             print('failed', ip, count)
         count += 1
         # latlng = geocoder.ip(ip).latlng
-        r = requests.get(f'http://ipinfo.io/{ip}?token={TOKEN}')
-        j = r.json()
-        l = j.split(',')
-        latlng = (float(l[0]), float(l[1]))
+        try:
+            r = requests.get(f'http://ipinfo.io/{ip}?token={TOKEN}')
+            j = r.json()
+            l = j.split(',')
+            latlng = (float(l[0]), float(l[1]))
+        except requests.exceptions.ConnectionError:
+            latlng = None
         print('retry', ip, latlng) ###
         if latlng:
             geoip.append(dict(
