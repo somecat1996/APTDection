@@ -171,7 +171,7 @@ def writeUA(index):
                                 elif time > k['etime']:
                                     j['etime'] = time
                                 flag1 = False
-                                k["connection"].apprnd({
+                                k["connection"].append({
                                     "time": time,
                                     "url": url
                                 })
