@@ -22,9 +22,13 @@ $("#results-display").ready(function() {
                 connections = connections + "<hr>"
                 connections = connections + "<div class=\"row\"><div class=\"col-md-6\"><h6 class=\"text-center\">本地主机</h6><p class=\"text-center\">" + item.connections[j].src + "</p></div><div class=\"col-md-6\"><h6 class=\"text-center\">恶意服务器</h6><p class=\"text-center\">" + item.connections[j].dst + "</p></div></div>";
                 connections = connections + "<div class=\"row\"><div class=\"col-md-6\"><h6 class=\"text-center\">首次活动时间</h6><p class=\"text-center\">" + item.connections[j].stime + "</p></div><div class=\"col-md-6\"><h6 class=\"text-center\">最后活动时间</h6><p class=\"text-center\">" + item.connections[j].etime + "</p></div></div>";
-                var connection = item.connections.connection;
+                var connection = item.connections[j].connection;
                 for(let k=0;k<connection.length;k++){
-                    connections = connections + "<div class=\"row\"><div class=\"col-md-6\"><h6 class=\"text-center\">连接时间</h6><p class=\"text-center\">" + connection[k].time + "</p></div><div class=\"col-md-6\"><h6 class=\"text-center\">最后活动时间</h6><p class=\"text-center\">" + item.connections[k].etime + "</p></div></div>";
+                    connections = connections + "<div class=\"row\"><div class=\"col-md-6\"><h6 class=\"text-center\">连接时间</h6><p class=\"text-center\">" + connection[k].time + "</p></div><div class=\"col-md-6\"><h6 class=\"text-center\">连接地址</h6>";
+                    for(let l=0;l<connection[k].url;l++){
+                        connections = connections + "<p class=\"text-center\">" + connection[k].url[l] + "</p>";
+                    }
+                    connections = connections + "</div></div>";
                 }
             }
             Table = Table + connections;

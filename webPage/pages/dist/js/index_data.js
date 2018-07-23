@@ -29,7 +29,7 @@ $(function() {
     });
 	$.getJSON ("/mad/loss.json", function (data) {
 	// $.getJSON ("testFiles/loss.json", function (data) {
-	//     data.forEach(function(node){node.loss=1-node.loss;});
+	    data.forEach(function(node){node.loss=1-node.loss;});
         LineChartData(
             'loss',
             data,
