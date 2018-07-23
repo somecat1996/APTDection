@@ -58,8 +58,8 @@ def writeInfected(index):
         # time = time.split('/')[-1]
         time = _time.strftime("%Y-%m-%d %H:%M:%S", _time.localtime(START+count*STEP))
         for i in tmp_data:
-            if not i['detected_by_cnn']:
-                continue
+            # if not i['detected_by_cnn']:
+            #     continue
             if i['is_malicious'] and i['srcIP'] not in Exist:
                 infected += 1
                 Exist.append(i['srcIP'])
@@ -81,8 +81,8 @@ def writeActive(index):
         benign = 0
         malicious = 0
         for i in tmp_data:
-            if not i['detected_by_cnn']:
-                continue
+            # if not i['detected_by_cnn']:
+            #     continue
             if i['is_malicious']:
                 malicious += 1
             else:
@@ -104,8 +104,8 @@ def writeConnection(index):
     for file in index:
         tmp_data = json.load(open("/usr/local/mad" + file, 'r'))
         for i in tmp_data:
-            if not i['detected_by_cnn']:
-                continue
+            # if not i['detected_by_cnn']:
+            #     continue
             src = i['srcIP']
             dst = i['dstIP']
             if i['is_malicious']:
