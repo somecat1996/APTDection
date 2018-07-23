@@ -17,13 +17,17 @@ $("#results-display").ready(function() {
             Table = Table + "<hr><div class=\"row\"><div class=\"col-md-6\"><h6 class=\"text-center\">类型</h6><p class=\"text-center\">" + info.type + "</p></div><div class=\"col-md-6\"><h6 class=\"text-center\">设备</h6><p class=\"text-center\">" + info.device + "</p></div></div>" +
                 "<div class=\"row\"><div class=\"col-md-6\"><h6 class=\"text-center\">操作系统</h6><p class=\"text-center\">" + info.os + "</p></div><div class=\"col-md-6\"><h6 class=\"text-center\">软件</h6><p class=\"text-center\">" + info.browser + "</p></div></div>";
             Table = Table + "<div class=\"row\"><div class=\"col-md-12\"><h5 class='text-center'>通信详细信息</h5></div></div>"
-            var connection = ''
-            for(let i=0;i<item.connection.length;i++){
-                connection = connection + "<hr>"
-                connection = connection + "<div class=\"row\"><div class=\"col-md-6\"><h6 class=\"text-center\">本地主机</h6><p class=\"text-center\">" + item.connection[i].src + "</p></div><div class=\"col-md-6\"><h6 class=\"text-center\">恶意服务器</h6><p class=\"text-center\">" + item.connection[i].dst + "</p></div></div>";
-                connection = connection + "<div class=\"row\"><div class=\"col-md-6\"><h6 class=\"text-center\">首次活动时间</h6><p class=\"text-center\">" + item.connection[i].stime + "</p></div><div class=\"col-md-6\"><h6 class=\"text-center\">最后活动时间</h6><p class=\"text-center\">" + item.connection[i].etime + "</p></div></div>";
+            var connections = ''
+            for(let j=0;j<item.connections.length;j++){
+                connections = connections + "<hr>"
+                connections = connections + "<div class=\"row\"><div class=\"col-md-6\"><h6 class=\"text-center\">本地主机</h6><p class=\"text-center\">" + item.connections[j].src + "</p></div><div class=\"col-md-6\"><h6 class=\"text-center\">恶意服务器</h6><p class=\"text-center\">" + item.connections[j].dst + "</p></div></div>";
+                connections = connections + "<div class=\"row\"><div class=\"col-md-6\"><h6 class=\"text-center\">首次活动时间</h6><p class=\"text-center\">" + item.connections[j].stime + "</p></div><div class=\"col-md-6\"><h6 class=\"text-center\">最后活动时间</h6><p class=\"text-center\">" + item.connections[j].etime + "</p></div></div>";
+                var connection = item.connections.connection;
+                for(let k=0;k<connection.length;k++){
+                    connections = connections + "<div class=\"row\"><div class=\"col-md-6\"><h6 class=\"text-center\">连接时间</h6><p class=\"text-center\">" + connection[k].time + "</p></div><div class=\"col-md-6\"><h6 class=\"text-center\">最后活动时间</h6><p class=\"text-center\">" + item.connections[k].etime + "</p></div></div>";
+                }
             }
-            Table = Table + connection;
+            Table = Table + connections;
             Table = "<p data-toggle=\"modal\" data-target=\".modal" + count.toString() + "\">详细信息</p>" +
                 "<div class=\"modal fade modal" + count.toString() + "\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"gridSystemModalLabel\" aria-hidden=\"true\" style=\"display: none;\">" +
                 "<div class=\"modal-dialog modal-lg\">" +

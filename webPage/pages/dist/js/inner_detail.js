@@ -18,6 +18,10 @@ $(function() {
                     "<div class=\"row\"><div class=\"col-md-6\"><h6 class=\"text-center\">类型</h6><p class=\"text-center\">" + info.type +	"</p></div><div class=\"col-md-6\"><h6 class=\"text-center\">设备</h6><p class=\"text-center\">" + info.device + "</p></div></div>" +
                     "<div class=\"row\"><div class=\"col-md-6\"><h6 class=\"text-center\">操作系统</h6><p class=\"text-center\">" + info.os + "</p></div><div class=\"col-md-6\"><h6 class=\"text-center\">软件</h6><p class=\"text-center\">" + info.browser + "</p></div></div>" +
                     "<div class=\"row\"><div class=\"col-md-6\"><h6 class=\"text-center\">首次活动时间</h6><p class=\"text-center\">" + UA[i].stime + "</p></div><div class=\"col-md-6\"><h6 class=\"text-center\">最后活动时间</h6><p class=\"text-center\">" + UA[i].etime + "</p></div></div>";
+                var connections = UA.connection
+                for(let j=0;j<connections.length;j++){
+                    UATable = UATable + "<div class=\"row\"><div class=\"col-md-6\"><h6 class=\"text-center\">连接时间</h6><p class=\"text-center\">" + connection[k].time + "</p></div><div class=\"col-md-6\"><h6 class=\"text-center\">最后活动时间</h6><p class=\"text-center\">" + item.connections[k].etime + "</p></div></div>";
+                }
                 if(i<UA.length-1){
                     UATable = UATable + "<hr>";
                 }

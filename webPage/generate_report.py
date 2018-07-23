@@ -151,6 +151,7 @@ def writeUA(index):
             info = parse(name)
             src = i['srcIP']
             dst = i['dstIP']
+            url = i['malicious_url']
             if type:
                 flag = True
                 for j in UA:
@@ -161,19 +162,27 @@ def writeUA(index):
                         elif time > j['etime']:
                             j['etime'] = time
                         flag1 = True
-                        for k in j['connection']:
+                        for k in j['connections']:
                             if src == k['src'] and dst == k['dst']:
                                 if time < k['stime']:
                                     j['stime'] = time
                                 elif time > k['etime']:
                                     j['etime'] = time
                                 flag1 = False
+                                k["connection"].apprnd({
+                                    "time": time,
+                                    "url": url
+                                })
                         if flag1:
-                            j['connection'].append({
+                            j['connections'].append({
                                 "src": src,
                                 "dst": dst,
                                 "stime": time,
-                                "etime": time
+                                "etime": time,
+                                "connection": [{
+                                    "time": time,
+                                    "url": url
+                                }]
                             })
                         break
                 if flag:
@@ -183,11 +192,15 @@ def writeUA(index):
                         "stime": time,
                         "etime": time,
                         "info": info,
-                        "connection": [{
+                        "connections": [{
                             "src": src,
                             "dst": dst,
                             "stime": time,
-                            "etime": time
+                            "etime": time,
+                            "connection": [{
+                                "time": time,
+                                "url": url
+                            }]
                         }]
                     })
     with open("UA.json", 'w') as f:
@@ -208,6 +221,7 @@ def writeInnerIP(index):
             time = _time.strftime("%Y-%m-%d %H:%M:%S", _time.localtime(START + count * STEP + random.random() * STEP))
             info = parse(name)
             src = i['srcIP']
+            url = i["malicious_url"]
             if type:
                 flag = True
                 for j in innerIP:
@@ -221,6 +235,10 @@ def writeInnerIP(index):
                                     k['stime'] = time
                                 elif time > k['etime']:
                                     k['etime'] = time
+                                k["connection"].append({
+                                    "time": time,
+                                    "url": url
+                                })
                         if flag2:
                             j["total"] += 1
                             if type == 1:
@@ -230,7 +248,11 @@ def writeInnerIP(index):
                                 "stime": time,
                                 "etime": time,
                                 "type": type,
-                                "info": info
+                                "info": info,
+                                "connection": [{
+                                    "time": time,
+                                    "url": url
+                                }]
                             })
                         break
                 if flag:
@@ -244,7 +266,11 @@ def writeInnerIP(index):
                                 "stime": time,
                                 "etime": time,
                                 "type": type,
-                                "info": info
+                                "info": info,
+                                "connection": [{
+                                    "time": time,
+                                    "url": url
+                                }]
                             }
                         ]
                     })
@@ -266,6 +292,7 @@ def writeOuterIP(index):
             time = _time.strftime("%Y-%m-%d %H:%M:%S", _time.localtime(START + count * STEP + random.random() * STEP))
             src = i['srcIP']
             dst = i['dstIP']
+            url = i["malicious_url"]
             if type:
                 flag = True
                 for j in outerIP:
@@ -282,12 +309,20 @@ def writeOuterIP(index):
                                     k['stime'] = time
                                 elif time > k['etime']:
                                     k['etime'] = time
+                                k['connection'].append({
+                                    "time": time,
+                                    "url": url
+                                })
                         if flag2:
                             j['inner'].append({
                                 "IP": src,
                                 "UA": name,
                                 "stime": time,
-                                "etime": time
+                                "etime": time,
+                                "connection": [{
+                                    "time": time,
+                                    "url": url
+                                }]
                             })
                         break
                 if flag:
@@ -300,8 +335,12 @@ def writeOuterIP(index):
                             "IP": src,
                             "UA": name,
                             "stime": time,
-                            "etime": time
+                            "etime": time,
+                            "connection": [{
+                                "time": time,
+                                "url": url
                             }]
+                        }]
                     })
     with open("outerIP.json", 'w') as f:
         json.dump(outerIP, f)
