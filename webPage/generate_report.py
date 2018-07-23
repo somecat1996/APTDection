@@ -153,7 +153,7 @@ def writeUA(index):
             info = parse(name)
             src = i['srcIP']
             dst = i['dstIP']
-            url = i['malicious_url']
+            url = i.get('malicious_url', i['url'])
             if type:
                 flag = True
                 for j in UA:
@@ -223,7 +223,7 @@ def writeInnerIP(index):
             time = _time.strftime("%Y-%m-%d %H:%M:%S", _time.localtime(START + count * STEP + random.random() * STEP))
             info = parse(name)
             src = i['srcIP']
-            url = i["malicious_url"]
+            url = i.get('malicious_url', i['url'])
             if type:
                 flag = True
                 for j in innerIP:
@@ -294,7 +294,7 @@ def writeOuterIP(index):
             time = _time.strftime("%Y-%m-%d %H:%M:%S", _time.localtime(START + count * STEP + random.random() * STEP))
             src = i['srcIP']
             dst = i['dstIP']
-            url = i["malicious_url"]
+            url = i.get('malicious_url', i['url'])
             if type:
                 flag = True
                 for j in outerIP:
