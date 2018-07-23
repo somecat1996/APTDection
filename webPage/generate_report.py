@@ -350,6 +350,29 @@ def writeOuterIP(index):
     with open("outerIP.json", 'w') as f:
         json.dump(outerIP, f)
 
+
+def writeExport(index):
+    Export = list()
+    for count, file in enumerate(index):
+        tmp_data = json.load(open("/usr/local/mad" + file, 'r'))
+        for i in tmp_data:
+            if i['is_malicious']:
+                time = _time.strftime("%Y-%m-%d %H:%M:%S", _time.localtime(START + count * STEP + random.random() * STEP))
+                src = i['srcIP']
+                dst = i['dstIP']
+                srcPort = i['srcPort']
+                dstPort = i['dstPort']
+                Export.append({
+                    "time": time,
+                    "src": src,
+                    "dst": dst,
+                    "srcPort": srcPort,
+                    "dstPort": dstPort
+                })
+    with open("export.json", 'w') as f:
+        json.dump(Export, f)
+
+
 if __name__ == "__main__":
     index = readReportList("./Background_PC")
     writeInnerIP(index)
@@ -358,3 +381,4 @@ if __name__ == "__main__":
     writeInfected(index)
     writeConnection(index)
     writeActive(index)
+    writeExport(index)
