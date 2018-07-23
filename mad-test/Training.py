@@ -7,6 +7,7 @@ import ipaddress
 import json
 import os
 import pathlib
+import pprint ###
 import shutil
 import signal
 import sys
@@ -14,9 +15,10 @@ import time
 
 import numpy as np
 import tensorflow as tf
+from user_agents import parse as _parse
 
 from make_stream import *
-from useragents.useragents import parse
+# from useragents.useragents import parse
 from StreamManager.StreamManager4 import *
 
 
@@ -89,6 +91,33 @@ def object_hook(obj):
             return bytes.fromhex(obj['val'])
         raise ParseError(f'unknown {_spec_type}')
     return obj
+
+
+def parse(ua):
+    info = _parse(ua)
+
+    _list = str(info).split(' / ')
+
+    _type = list()
+    if info.is_mobile:
+        _type.append('Mobile')
+    if info.is_tablet:
+        _type.append('Tablet')
+    if info.is_touch_capable:
+        _type.append('Touch Capable')
+    if info.is_pc:
+        _type.append('PC')
+    if info.is_bot:
+        _type.append('Bot')
+
+    _dict = dict(
+        device=_list[0],
+        os=_list[1],
+        browser=_list[2],
+        type=' / '.join(_type) or 'Other',
+    )
+    pprint.pprint(_dict) ###
+    return _dict
 
 
 def ReadDictionary(path, T):
@@ -404,7 +433,7 @@ def main(unused):
     elif mode == "predict":
         start = time.time()
         print(start)
-        useragents = parse()
+        # useragents = parse()
         # files = [os.path.join(DataPath, x) for x in os.listdir(DataPath) if os.path.isfile(DataPath + x)]
         # index = dataset(*files, mode=2)
         with open(os.path.join(DataPath, 'filter.json'), 'r') as file:
@@ -474,8 +503,8 @@ def main(unused):
                     time=dt.datetime.fromtimestamp(float(tstamp)).isoformat(),
                     name=name,
                     ipua=filedict["ipua"],
-                    info=useragents.get(filedict["UA"],
-                            dict(desc=None, type=None, comment=None, link=(None, None)))
+                    info=parse(temp_data["UA"]),
+                    detected_by_cnn=False,
                 ))
         Clean = []
         print('is_clean:', isClean) ###
@@ -517,8 +546,8 @@ def main(unused):
                     time=dt.datetime.fromtimestamp(float(tstamp)).isoformat(),
                     name=name,
                     ipua=ipua,
-                    info=useragents.get(filedict["UA"],
-                            dict(desc=None, type=None, comment=None, link=(None, None)))
+                    info=parse(temp_data["UA"]),
+                    detected_by_cnn=False,
                 ))
         # print("detected by CNN: ")
         CNNClean = list()
@@ -549,8 +578,8 @@ def main(unused):
                 time=dt.datetime.fromtimestamp(float(tstamp)).isoformat(),
                 name=name,
                 ipua=temp_data["ipua"],
-                info=useragents.get(temp_data["UA"],
-                        dict(desc=None, type=None, comment=None, link=(None, None)))
+                info=parse(temp_data["UA"]),
+                detected_by_cnn=True,
             )
             if kind == 1:
                 CNNMalicious.append(temp_dict)
@@ -617,7 +646,7 @@ def main(unused):
         #     for j in val:
         #         shutil.copy(os.path.join(datasetPath, "Background_PC/0/"+j[:-4]+"dat"), retrainPath)
         stem = pathlib.Path(DataPath).name
-        val = StreamManager(NotImplemented, DataPath).validate(group_dict)
+        val, url = StreamManager(NotImplemented, DataPath).validate(group_dict)
         loss = 1 - (len(val)/sum(predicted_classes) if sum(predicted_classes) else 1.0)
         # print('### Testing:', len(val), val, sum(predicted_classes), predicted_classes) ###
         loss_record = list()
@@ -654,6 +683,11 @@ def main(unused):
         for item in CNNMalicious:
             flag = int(item["name"]+".pcap" in val)
             item["is_malicious"] = flag
+            if flag:
+                ind = val.index(item["name"]+".pcap")
+                item["malicious_url"] = url[ind]
+            else:
+                item["malicious_url"] = None
             name = stem+"_"+item["name"]
             retrain_index[T][item["ipua"]].append(item)
             shutil.copy(os.path.join(DataPath, T, "0", item["name"]+".dat"),
@@ -672,7 +706,7 @@ def main(unused):
         report.extend(Malicious)
         report.extend(CNNClean)
         report.extend(CNNMalicious)
-        __import__('pprint').pprint(report) ###
+        pprint.pprint(report) ###
         with open(f"/usr/local/mad/report/{T}/{stem}.json", 'w') as file:
             json.dump(report, file, cls=JSONEncoder)
         report_index = list(map(lambda name: f"/report/{T}/{name}",
