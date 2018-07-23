@@ -25,9 +25,7 @@ $("#results-display").ready(function() {
                 var connection = item.connections[j].connection;
                 for(let k=0;k<connection.length;k++){
                     connections = connections + "<div class=\"row\"><div class=\"col-md-6\"><h6 class=\"text-center\">连接时间</h6><p class=\"text-center\">" + connection[k].time + "</p></div><div class=\"col-md-6\"><h6 class=\"text-center\">连接地址</h6>";
-                    for(let l=0;l<connection[k].url;l++){
-                        connections = connections + "<p class=\"text-center\">" + connection[k].url[l] + "</p>";
-                    }
+                    connections = connections + "<p class=\"text-center\">" + connection[k].url + "</p>";
                     connections = connections + "</div></div>";
                 }
             }
