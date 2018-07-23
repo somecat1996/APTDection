@@ -6,7 +6,10 @@ import ast
 from user_agents import parse as _parse
 
 
-STEP = 1209600/587.0
+with open(os.path.join("./Background_PC", "index.json"), 'r') as f:
+    index = json.load(f)
+NUM = len(index)
+STEP = 1209600/NUM
 START = int(_time.mktime(_time.strptime('2018-07-11 0:0:0', "%Y-%m-%d %H:%M:%S")))
 
 
