@@ -234,8 +234,8 @@ class StreamManager:
         malicious_num=0
         for i in range(len(targets)):
             filename=targets[i]["filename"]
-            url=self.GetUrl(filename)
-            if url=="none":
+            url=self.GetUrls(filename)
+            if len(url)==0:
                 malicious_num+=1
             else:
                 urls.append(url)
@@ -243,11 +243,16 @@ class StreamManager:
 
         if not urls:
             print("无内容需要验证")
-            return []
+            return [],[]
         else:
-            url_to_scan=list(set(urls))
+            urls_temp=[]
+            for x in urls:
+                for y in x:
+                    urls_temp.append(y)
+            url_to_scan=list(set(urls_temp))
 
         true_alarm=[]
+        true_malicious_urls=[]        
 
         l = Datalabler()
         l.setThreadNum(20)
@@ -256,17 +261,21 @@ class StreamManager:
             if x["state"]==0:
                url_tmp=x["url"]
                for i in range(len(urls)):
-                    if url_tmp==urls[i]:
+                    if url_tmp in urls[i]:
                         filename=targets[index[i]]["filename"] 
                if filename not in true_alarm:
                    if random.randint(1,20)==15:
                          true_alarm.append(filename)
+                         true_malicious_urls.append(url_tmp)
                continue
             if x["malicious"]>=1 or x["suspicious"]>=1:
                 url_tmp=x["url"]
                 for i in range(len(urls)):
-                    if url_tmp==urls[i]:
-                        true_alarm.append(targets[index[i]]["filename"])
+                    if url_tmp in urls[i]:
+                        filename=targets[index[i]]["filename"]
+                        if filename not in true_alarm:
+                            true_alarm.append(targets[index[i]]["filename"])
+                            true_malicious_urls.append(url_tmp)
             else:
                 malicious_num+=1
 
@@ -274,7 +283,7 @@ class StreamManager:
         print("总共标记:",len(targets),"个恶意流")
         print("virustotal检测出的误报恶意流个数为:",malicious_num)
 
-        return true_alarm
+        return true_alarm,true_malicious_urls
 
     def extractIP(self,ipUA):
         raw=ipUA.split()
@@ -408,6 +417,39 @@ class StreamManager:
             packet =dpkt_next(source)
         f.close()
         return uri_tmp
+
+    def GetUrls(self,filename):
+        filepath=self.datapath+"/stream/"+filename
+        pattern1= "/.*?HTTP"
+        pattern2="/.*?\\?"
+        pattern3="Host.*?\\\\r"
+
+        f=open(filepath,"rb")
+        source = dpkt.pcap.Reader(f)
+        packet = dpkt_next(source)
+        uri_tmp=[]
+        while packet:
+            s=packet_to_str(packet)
+            ptr = ".*(GET|POST|HEAD).*HTTP.*"
+            if re.match(ptr, s):
+                if re.match(pattern1,s):
+                    ttt = re.findall(pattern1, s)[0]
+                else:
+                    ttt = ""
+                if not re.findall(pattern2, ttt):
+                    ttt = ttt.strip(" HTTP")
+                else:
+                    ttt = re.findall(pattern2, ttt)[0].strip("?")
+                try:
+                    uri = re.findall(pattern3, s)[0].strip("\\r").strip("Host: ") + ttt
+                    uri_tmp.append(re.sub("http://", "", uri))
+                except:
+                    packet = dpkt_next(source)
+                    continue
+            packet =dpkt_next(source)
+        f.close()
+        return uri_tmp
+
 
     def isLocalIP(self,IP):
         local=["10\\..*","192\\.168\\..*","172\\.16\\..*","172\\.17\\..*","172\\.18\\..*","172\\.19\\..*"

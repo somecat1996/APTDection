@@ -9,6 +9,7 @@ oldFiles/*
 deprecated/
 webPage/app.py
 
+*.swo
 *.swp
 *.out
 nohup.out*

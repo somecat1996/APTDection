@@ -27,12 +27,14 @@ def parse(ua):
     if info.is_bot:
         _type.append('Bot')
 
-    return dict(
+    _dict = dict(
         device=_list[0],
         os=_list[1],
         browser=_list[2],
-        type=' / '.join(_type),
+        type=' / '.join(_type) or 'Other',
     )
+    __import__('pprint').pprint(_dict) ###
+    return _dict
 
 
 def readReportList(path):
