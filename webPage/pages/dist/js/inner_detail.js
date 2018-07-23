@@ -20,6 +20,7 @@ $(function() {
                     "<div class=\"row\"><div class=\"col-md-6\"><h6 class=\"text-center\">首次活动时间</h6><p class=\"text-center\">" + UA[i].stime + "</p></div><div class=\"col-md-6\"><h6 class=\"text-center\">最后活动时间</h6><p class=\"text-center\">" + UA[i].etime + "</p></div></div>";
                 var connections = UA[i].connection;
                 for(let j=0;j<connections.length;j++){
+                    UATable = UATable + "<hr>"
                     var connection = connections[j];
                     UATable = UATable + "<div class=\"row\"><div class=\"col-md-6\"><h6 class=\"text-center\">连接时间</h6><p class=\"text-center\">" + connections[j].time + "</p></div><div class=\"col-md-6\"><h6 class=\"text-center\">连接地址</h6>";
                     UATable = UATable + "<p class=\"text-center\">" + connection.url + "</p>";
