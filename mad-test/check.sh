@@ -2,7 +2,7 @@
 
 grep="grep --color=auto"
 
-FILE="07211730.out"
+FILE="07231340.out"
 
 ps -aux | $grep mad
 
@@ -16,4 +16,4 @@ tail $FILE ; echo
 
 $grep "loss\:" $FILE | tail | $grep "loss\:"
 
-$grep Traceback $FILE # -c
+$grep Traceback $FILE -c

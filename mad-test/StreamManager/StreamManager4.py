@@ -243,7 +243,7 @@ class StreamManager:
 
         if not urls:
             print("无内容需要验证")
-            return []
+            return [],[]
         else:
             urls_temp=[]
             for x in urls:

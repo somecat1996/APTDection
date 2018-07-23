@@ -503,7 +503,7 @@ def main(unused):
                     time=dt.datetime.fromtimestamp(float(tstamp)).isoformat(),
                     name=name,
                     ipua=filedict["ipua"],
-                    info=parse(temp_data["UA"]),
+                    info=parse(filedict["UA"]),
                     detected_by_cnn=False,
                 ))
         Clean = []
@@ -546,7 +546,7 @@ def main(unused):
                     time=dt.datetime.fromtimestamp(float(tstamp)).isoformat(),
                     name=name,
                     ipua=ipua,
-                    info=parse(temp_data["UA"]),
+                    info=parse(filedict["UA"]),
                     detected_by_cnn=False,
                 ))
         # print("detected by CNN: ")
