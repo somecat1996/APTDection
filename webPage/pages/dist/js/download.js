@@ -15,9 +15,10 @@ $(function() {
             A();
         });
         function A() {
-            if(count-1==0){
+            if (count - 1 == 0) {
                 $('#datable_1').DataTable();
             }
             else {}
+        }
     });
 });
