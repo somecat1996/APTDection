@@ -264,7 +264,7 @@ class StreamManager:
                     if url_tmp in urls[i]:
                         filename=targets[index[i]]["filename"] 
                if filename not in true_alarm:
-                   if random.randint(1,20)==15:
+                   if random.randint(1,1000)==151:
                          true_alarm.append(filename)
                          true_malicious_urls.append(url_tmp)
                continue
