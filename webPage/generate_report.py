@@ -152,8 +152,8 @@ def writeUA(index):
     for count, file in enumerate(index):
         tmp_data = json.load(open("/usr/local/mad" + file, 'r'))
         for i in tmp_data:
-            if not i['detected_by_cnn']:
-                continue
+            # if not i['detected_by_cnn']:
+            #     continue
             try:
                 name = ast.literal_eval(f"""b'{i['UA']}'""").decode()
             except UnicodeDecodeError:
@@ -165,6 +165,7 @@ def writeUA(index):
             src = i['srcIP']
             dst = i['dstIP']
             url = i.get('malicious_url', [i['url']])
+            detected_by_cnn = i['detected_by_cnn']
             if type:
                 flag = True
                 for j in UA:
@@ -184,7 +185,8 @@ def writeUA(index):
                                 flag1 = False
                                 k["connection"].append({
                                     "time": time,
-                                    "url": url
+                                    "url": url,
+                                    "detected_by_cnn": detected_by_cnn
                                 })
                         if flag1:
                             j['connections'].append({
@@ -194,7 +196,8 @@ def writeUA(index):
                                 "etime": time,
                                 "connection": [{
                                     "time": time,
-                                    "url": url
+                                    "url": url,
+                                    "detected_by_cnn": detected_by_cnn
                                 }]
                             })
                         break
@@ -212,7 +215,8 @@ def writeUA(index):
                             "etime": time,
                             "connection": [{
                                 "time": time,
-                                "url": url
+                                "url": url,
+                                "detected_by_cnn": detected_by_cnn
                             }]
                         }]
                     })
@@ -225,8 +229,8 @@ def writeInnerIP(index):
     for count, file in enumerate(index):
         tmp_data = json.load(open("/usr/local/mad" + file, 'r'))
         for i in tmp_data:
-            if not i['detected_by_cnn']:
-                continue
+            # if not i['detected_by_cnn']:
+            #     continue
             try:
                 name = ast.literal_eval(f"""b'{i['UA']}'""").decode()
             except UnicodeDecodeError:
@@ -237,6 +241,7 @@ def writeInnerIP(index):
             info = parse(name)
             src = i['srcIP']
             url = i.get('malicious_url', [i['url']])
+            detected_by_cnn = i['detected_by_cnn']
             if type:
                 flag = True
                 for j in innerIP:
@@ -252,7 +257,8 @@ def writeInnerIP(index):
                                     k['etime'] = time
                                 k["connection"].append({
                                     "time": time,
-                                    "url": url
+                                    "url": url,
+                                    "detected_by_cnn": detected_by_cnn
                                 })
                         if flag2:
                             j["total"] += 1
@@ -266,7 +272,8 @@ def writeInnerIP(index):
                                 "info": info,
                                 "connection": [{
                                     "time": time,
-                                    "url": url
+                                    "url": url,
+                                    "detected_by_cnn": detected_by_cnn
                                 }]
                             })
                         break
@@ -284,7 +291,8 @@ def writeInnerIP(index):
                                 "info": info,
                                 "connection": [{
                                     "time": time,
-                                    "url": url
+                                    "url": url,
+                                    "detected_by_cnn": detected_by_cnn
                                 }]
                             }
                         ]
@@ -298,8 +306,8 @@ def writeOuterIP(index):
     for count, file in enumerate(index):
         tmp_data = json.load(open("/usr/local/mad" + file, 'r'))
         for i in tmp_data:
-            if not i['detected_by_cnn']:
-                continue
+            # if not i['detected_by_cnn']:
+            #     continue
             try:
                 name = ast.literal_eval(f"""b'{i['UA']}'""").decode()
             except UnicodeDecodeError:
@@ -310,6 +318,7 @@ def writeOuterIP(index):
             src = i['srcIP']
             dst = i['dstIP']
             url = i.get('malicious_url', [i['url']])
+            detected_by_cnn = i['detected_by_cnn']
             if type:
                 flag = True
                 for j in outerIP:
@@ -328,7 +337,8 @@ def writeOuterIP(index):
                                     k['etime'] = time
                                 k['connection'].append({
                                     "time": time,
-                                    "url": url
+                                    "url": url,
+                                    "detected_by_cnn": detected_by_cnn
                                 })
                         if flag2:
                             j['inner'].append({
@@ -338,7 +348,8 @@ def writeOuterIP(index):
                                 "etime": time,
                                 "connection": [{
                                     "time": time,
-                                    "url": url
+                                    "url": url,
+                                    "detected_by_cnn": detected_by_cnn
                                 }]
                             })
                         break
@@ -355,7 +366,8 @@ def writeOuterIP(index):
                             "etime": time,
                             "connection": [{
                                 "time": time,
-                                "url": url
+                                "url": url,
+                                "detected_by_cnn": detected_by_cnn
                             }]
                         }]
                     })
@@ -368,8 +380,8 @@ def writeExport(index):
     for count, file in enumerate(index):
         tmp_data = json.load(open("/usr/local/mad" + file, 'r'))
         for i in tmp_data:
-            if not i['detected_by_cnn']:
-                continue
+            # if not i['detected_by_cnn']:
+            #     continue
             if i['is_malicious']:
                 try:
                     name = ast.literal_eval(f"""b'{i['UA']}'""").decode()

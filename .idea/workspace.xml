@@ -4,8 +4,10 @@
     <list default="true" id="72f023dd-9e1c-48f0-a389-44fc3943046d" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webPage/generate_report.py" afterPath="$PROJECT_DIR$/webPage/generate_report.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webPage/pages/dist/js/download.js" afterPath="$PROJECT_DIR$/webPage/pages/dist/js/download.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webPage/pages/more.html" afterPath="$PROJECT_DIR$/webPage/pages/more.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webPage/pages/dist/js/inner_detail.js" afterPath="$PROJECT_DIR$/webPage/pages/dist/js/inner_detail.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webPage/pages/dist/js/outer_detail.js" afterPath="$PROJECT_DIR$/webPage/pages/dist/js/outer_detail.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webPage/pages/dist/js/ua_detail.js" afterPath="$PROJECT_DIR$/webPage/pages/dist/js/ua_detail.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webPage/pages/outer_detail.html" afterPath="$PROJECT_DIR$/webPage/pages/outer_detail.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,52 +22,42 @@
       <file leaf-file-name="generate_report.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webPage/generate_report.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="256">
-              <caret line="388" column="30" lean-forward="false" selection-start-line="388" selection-start-column="30" selection-end-line="388" selection-end-column="30" />
+            <state relative-caret-position="134">
+              <caret line="369" column="51" lean-forward="false" selection-start-line="369" selection-start-column="51" selection-end-line="369" selection-end-column="66" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="outer_detail.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="outer_detail.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/outer_detail.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="672">
-              <caret line="21" column="17" lean-forward="true" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
+            <state relative-caret-position="406">
+              <caret line="25" column="20" lean-forward="true" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
               <folding>
-                <marker date="1532396746463" expanded="true" signature="2021:2035" ph="..." />
+                <marker date="1532422655855" expanded="true" signature="2486:2500" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="download.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/download.js">
+      <file leaf-file-name="outer_detail.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/webPage/pages/outer_detail.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="416">
-              <caret line="21" column="32" lean-forward="false" selection-start-line="21" selection-start-column="32" selection-end-line="21" selection-end-column="32" />
+            <state relative-caret-position="256">
+              <caret line="97" column="63" lean-forward="false" selection-start-line="97" selection-start-column="63" selection-end-line="97" selection-end-column="63" />
               <folding>
-                <element signature="e#0#42#0" expanded="false" />
+                <element signature="n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="export-table-data.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/export-table-data.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="10" column="8" lean-forward="false" selection-start-line="5" selection-start-column="4" selection-end-line="10" selection-end-column="8" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="more.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="more.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webPage/pages/more.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="265" column="47" lean-forward="true" selection-start-line="265" selection-start-column="47" selection-end-line="265" selection-end-column="47" />
+            <state relative-caret-position="280">
+              <caret line="271" column="40" lean-forward="false" selection-start-line="271" selection-start-column="40" selection-end-line="271" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -74,11 +66,23 @@
       <file leaf-file-name="inner_detail.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/inner_detail.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="416">
-              <caret line="27" column="17" lean-forward="true" selection-start-line="20" selection-start-column="16" selection-end-line="27" selection-end-column="17" />
+            <state relative-caret-position="182">
+              <caret line="23" column="52" lean-forward="true" selection-start-line="23" selection-start-column="52" selection-end-line="31" selection-end-column="49" />
               <folding>
                 <element signature="e#0#42#0" expanded="false" />
-                <marker date="1532347499537" expanded="true" signature="2536:2550" ph="..." />
+                <marker date="1532422582023" expanded="true" signature="3007:3021" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ua_detail.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/ua_detail.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="338">
+              <caret line="28" column="182" lean-forward="false" selection-start-line="28" selection-start-column="182" selection-end-line="28" selection-end-column="182" />
+              <folding>
+                <marker date="1532422581907" expanded="true" signature="3431:3445" ph="..." />
               </folding>
             </state>
           </provider>
@@ -175,16 +179,16 @@
         <option value="$PROJECT_DIR$/webPage/modify_time.py" />
         <option value="$PROJECT_DIR$/webPage/pages/dist/js/index_data.js" />
         <option value="$PROJECT_DIR$/webPage/pages/testFiles/innerIP.json" />
-        <option value="$PROJECT_DIR$/webPage/pages/dist/js/ua_detail.js" />
-        <option value="$PROJECT_DIR$/webPage/pages/dist/js/inner_detail.js" />
         <option value="$PROJECT_DIR$/webPage/pages/index.html" />
         <option value="$PROJECT_DIR$/webPage/pages/inner_detail.html" />
-        <option value="$PROJECT_DIR$/webPage/pages/outer_detail.html" />
         <option value="$PROJECT_DIR$/webPage/pages/ua_detail.html" />
-        <option value="$PROJECT_DIR$/webPage/pages/dist/js/outer_detail.js" />
-        <option value="$PROJECT_DIR$/webPage/generate_report.py" />
         <option value="$PROJECT_DIR$/webPage/pages/dist/js/download.js" />
         <option value="$PROJECT_DIR$/webPage/pages/more.html" />
+        <option value="$PROJECT_DIR$/webPage/generate_report.py" />
+        <option value="$PROJECT_DIR$/webPage/pages/outer_detail.html" />
+        <option value="$PROJECT_DIR$/webPage/pages/dist/js/ua_detail.js" />
+        <option value="$PROJECT_DIR$/webPage/pages/dist/js/inner_detail.js" />
+        <option value="$PROJECT_DIR$/webPage/pages/dist/js/outer_detail.js" />
       </list>
     </option>
   </component>
@@ -646,6 +650,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="502">
           <caret line="438" column="0" lean-forward="true" selection-start-line="438" selection-start-column="0" selection-end-line="438" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -880,13 +885,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/ua_detail.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="27" column="95" lean-forward="false" selection-start-line="27" selection-start-column="95" selection-end-line="27" selection-end-column="95" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webPage/modify_time.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -919,6 +917,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-446">
           <caret line="5" column="13" lean-forward="true" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -943,13 +942,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webPage/pages/outer_detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="48" column="81" lean-forward="false" selection-start-line="48" selection-start-column="81" selection-end-line="48" selection-end-column="81" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webPage/pages/ua_detail.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="178">
@@ -957,29 +949,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webPage/generate_report.py">
+    <entry file="file://$PROJECT_DIR$/webPage/pages/more.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="388" column="30" lean-forward="false" selection-start-line="388" selection-start-column="30" selection-end-line="388" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/inner_detail.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="27" column="17" lean-forward="true" selection-start-line="20" selection-start-column="16" selection-end-line="27" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#42#0" expanded="false" />
-            <marker date="1532347499537" expanded="true" signature="2536:2550" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/export-table-data.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="10" column="8" lean-forward="false" selection-start-line="5" selection-start-column="4" selection-end-line="10" selection-end-column="8" />
+        <state relative-caret-position="280">
+          <caret line="271" column="40" lean-forward="false" selection-start-line="271" selection-start-column="40" selection-end-line="271" selection-end-column="40" />
           <folding />
         </state>
       </provider>
@@ -994,21 +967,60 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/outer_detail.js">
+    <entry file="file://$PROJECT_DIR$/webPage/generate_report.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="672">
-          <caret line="21" column="17" lean-forward="true" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
+        <state relative-caret-position="134">
+          <caret line="369" column="51" lean-forward="false" selection-start-line="369" selection-start-column="51" selection-end-line="369" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/export-table-data.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="32">
+          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webPage/pages/outer_detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="97" column="63" lean-forward="false" selection-start-line="97" selection-start-column="63" selection-end-line="97" selection-end-column="63" />
           <folding>
-            <marker date="1532396746463" expanded="true" signature="2021:2035" ph="..." />
+            <element signature="n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webPage/pages/more.html">
+    <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/ua_detail.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="265" column="47" lean-forward="true" selection-start-line="265" selection-start-column="47" selection-end-line="265" selection-end-column="47" />
-          <folding />
+        <state relative-caret-position="338">
+          <caret line="28" column="182" lean-forward="false" selection-start-line="28" selection-start-column="182" selection-end-line="28" selection-end-column="182" />
+          <folding>
+            <marker date="1532422581907" expanded="true" signature="3431:3445" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/inner_detail.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="23" column="52" lean-forward="true" selection-start-line="23" selection-start-column="52" selection-end-line="31" selection-end-column="49" />
+          <folding>
+            <element signature="e#0#42#0" expanded="false" />
+            <marker date="1532422582023" expanded="true" signature="3007:3021" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webPage/pages/dist/js/outer_detail.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="406">
+          <caret line="25" column="20" lean-forward="true" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
+          <folding>
+            <marker date="1532422655855" expanded="true" signature="2486:2500" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>

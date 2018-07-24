@@ -24,9 +24,14 @@ $("#results-display").ready(function() {
                 connections = connections + "<div class=\"row\"><div class=\"col-md-6\"><h6 class=\"text-center\">首次活动时间</h6><p class=\"text-center\">" + item.connections[j].stime + "</p></div><div class=\"col-md-6\"><h6 class=\"text-center\">最后活动时间</h6><p class=\"text-center\">" + item.connections[j].etime + "</p></div></div>";
                 var connection = item.connections[j].connection;
                 for(let k=0;k<connection.length;k++){
-                    connections = connections + "<div class=\"row\"><div class=\"col-md-6\"><h6 class=\"text-center\">连接时间</h6><p class=\"text-center\">" + connection[k].time + "</p></div><div class=\"col-md-6\"><h6 class=\"text-center\">连接地址</h6>";
-                    connections = connections + "<p class=\"text-center\">" + connection[k].url + "</p>";
-                    connections = connections + "</div></div>";
+                    connections = connections + "<div class=\"row\"><div class=\"col-md-4\"><h6 class=\"text-center\">连接时间</h6><p class=\"text-center\">" + connection[k].time + "</p></div>";
+                    if(connection[k].detected_by_cnn){
+                        connections = connections + "<div class=\"col-md-4\"><h6 class=\"text-center\">检测手段</h6><p class=\"text-center\"><span class=\"label label-danger\">CNN</span></p></div>";
+                    }else{
+                        connections = connections + "<div class=\"col-md-4\"><h6 class=\"text-center\">检测手段</h6><p class=\"text-center\"><span class=\"label label-warning\">指纹</span></p></div>";
+                    }
+                    connections = connections + "<div class=\"col-md-4\"><h6 class=\"text-center\">连接地址</h6><p class=\"text-center\">" + connection[k].url + "</p></div>";
+                    connections = connections + "</div>";
                 }
             }
             Table = Table + connections;

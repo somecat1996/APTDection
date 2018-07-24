@@ -22,9 +22,14 @@ $(function() {
                 for(let j=0;j<connections.length;j++){
                     UATable = UATable + "<hr>"
                     var connection = connections[j];
-                    UATable = UATable + "<div class=\"row\"><div class=\"col-md-6\"><h6 class=\"text-center\">连接时间</h6><p class=\"text-center\">" + connections[j].time + "</p></div><div class=\"col-md-6\"><h6 class=\"text-center\">连接地址</h6>";
-                    UATable = UATable + "<p class=\"text-center\">" + connection.url + "</p>";
-                    UATable = UATable + "</div></div>";
+                    UATable = UATable + "<div class=\"row\"><div class=\"col-md-4\"><h6 class=\"text-center\">连接时间</h6><p class=\"text-center\">" + connection.time + "</p></div>";
+                    if(connection.detected_by_cnn){
+                        UATable = UATable + "<div class=\"col-md-4\"><h6 class=\"text-center\">检测手段</h6><p class=\"text-center\"><span class=\"label label-danger\">CNN</span></p></div>";
+                    }else{
+                        UATable = UATable + "<div class=\"col-md-4\"><h6 class=\"text-center\">检测手段</h6><p class=\"text-center\"><span class=\"label label-warning\">指纹</span></p></div>";
+                    }
+                    UATable = UATable + "<div class=\"col-md-4\"><h6 class=\"text-center\">连接地址</h6><p class=\"text-center\">" + connection.url + "</p></div>";
+                    UATable = UATable + "</div>";
                 }
                 if(i<UA.length-1){
                     UATable = UATable + "<hr>";
