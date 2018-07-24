@@ -11,6 +11,5 @@ $(function() {
                 "</td><td>" + item.UA +
                 "</td><td>" + item.time + "</td></tr>");
         });
-        }
     });
 });
