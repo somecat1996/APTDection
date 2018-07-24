@@ -464,6 +464,7 @@ def main(unused):
         #         group_data[name] = [file, ipua]
         # print("detected by fingerprint:")
         Malicious = []
+        group_dict = {T: []}
         print('is_malicious:', isMalicious) ###
         for ipua in isMalicious:
             # print('ipua:', ipua, group[T].get(ipua, list())) ###
@@ -505,6 +506,11 @@ def main(unused):
                     ipua=filedict["ipua"],
                     info=parse(filedict["UA"]),
                     detected_by_cnn=False,
+                ))
+                group_dict[T].append(dict(
+                    is_malicious=1,
+                    type=filedict["type"],
+                    filename=name + ".pcap",
                 ))
         Clean = []
         print('is_clean:', isClean) ###
@@ -549,6 +555,15 @@ def main(unused):
                     info=parse(filedict["UA"]),
                     detected_by_cnn=False,
                 ))
+        val, url = StreamManager(NotImplemented, DataPath).validate(group_dict)
+        for item in Malicious:
+            flag = int(item["name"]+".pcap" in val)
+            item["is_malicious"] = flag
+            if flag:
+                ind = val.index(item["name"]+".pcap")
+                item["malicious_url"] = url[ind]
+            else:
+                item["malicious_url"] = None
         # print("detected by CNN: ")
         CNNClean = list()
         CNNMalicious = list()
