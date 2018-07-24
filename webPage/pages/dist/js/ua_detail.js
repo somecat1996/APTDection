@@ -31,7 +31,7 @@ $("#results-display").ready(function() {
                     }else{
                         connections = connections + "<div class=\"col-md-6\"><h6 class=\"text-center\">检测手段</h6><p class=\"text-center\"><span class=\"label label-warning\">指纹</span></p></div></div>";
                     }
-                    connections = connections + "<div class=\"col-md-12\"><h6 class=\"text-center\">连接地址</h6><p class=\"text-center\">" + connection[k].url + "</p></div></div>";
+                    connections = connections + "<div class=\"row\"><div class=\"col-md-12\"><h6 class=\"text-center\">连接地址</h6><p class=\"text-center\">" + connection[k].url + "</p></div></div>";
                 }
             }
             Table = Table + connections;
