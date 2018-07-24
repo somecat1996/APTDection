@@ -371,6 +371,10 @@ def writeExport(index):
             if not i['detected_by_cnn']:
                 continue
             if i['is_malicious']:
+                try:
+                    name = ast.literal_eval(f"""b'{i['UA']}'""").decode()
+                except UnicodeDecodeError:
+                    name = i["UA"]
                 time = _time.strftime("%Y-%m-%d %H:%M:%S", _time.localtime(START + count * STEP + random.random() * STEP))
                 src = i['srcIP']
                 dst = i['dstIP']
@@ -378,10 +382,11 @@ def writeExport(index):
                 dstPort = i['dstPort']
                 Export.append({
                     "time": time,
-                    "src": src,
-                    "dst": dst,
+                    "srcIP": src,
+                    "dstIP": dst,
                     "srcPort": srcPort,
-                    "dstPort": dstPort
+                    "dstPort": dstPort,
+                    "UA": name
                 })
     with open("export.json", 'w') as f:
         json.dump(Export, f)
