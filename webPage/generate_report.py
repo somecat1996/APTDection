@@ -340,6 +340,8 @@ def writeOuterIP(index):
                                     "url": url,
                                     "detected_by_cnn": detected_by_cnn
                                 })
+                                flag2 = False
+                                break
                         if flag2:
                             j['inner'].append({
                                 "IP": src,
