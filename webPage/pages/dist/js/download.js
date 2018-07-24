@@ -3,7 +3,6 @@
  */
 $(function() {
     $.getJSON("/report/export.json", function (data) {
-        var count = data.length;
         $.each(data, function (i, item) {
             $("#results-display").append("<tr><td>" + item.srcIP +
                 "</td><td>" + item.srcPort +
@@ -11,14 +10,7 @@ $(function() {
                 "</td><td>" + item.dstPort +
                 "</td><td>" + item.UA +
                 "</td><td>" + item.time + "</td></tr>");
-            count--;
-            A();
         });
-        function A() {
-            if (count - 1 == 0) {
-                $('#datable_1').DataTable();
-            }
-            else {}
         }
     });
 });
