@@ -284,8 +284,10 @@ class FingerprintGenerator():
         pattern1 = "/.*?HTTP"
         pattern2 = "/.*?\\?"
         pattern3 = "Host.*?\\\\r"
-
-        ttt = re.findall(pattern1, http_request)[0]
+        try:
+            ttt = re.findall(pattern1, http_request)[0]
+        except:
+            ttt = ""
         if not re.findall(pattern2, ttt):
             ttt = ttt.strip(" HTTP")
         else:

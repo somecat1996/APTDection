@@ -370,9 +370,9 @@ class StreamManager:
                     except:
                         pass
                 if not got_uri:
-                    if re.match(pattern1,s):
+                    try:
                         ttt = re.findall(pattern1, s)[0]
-                    else:
+                    except:
                         ttt=""
                     if not re.findall(pattern2, ttt):
                         ttt = ttt.strip(" HTTP")
@@ -402,7 +402,10 @@ class StreamManager:
             s=packet_to_str(packet)
             ptr = ".*(GET|POST|HEAD).*HTTP.*"
             if re.match(ptr, s):
-                ttt = re.findall(pattern1, s)[0]
+                try:
+                    ttt = re.findall(pattern1, s)[0]
+                except:
+                    ttt = ""
                 if not re.findall(pattern2, ttt):
                     ttt = ttt.strip(" HTTP")
                 else:
@@ -432,9 +435,9 @@ class StreamManager:
             s=packet_to_str(packet)
             ptr = ".*(GET|POST|HEAD).*HTTP.*"
             if re.match(ptr, s):
-                if re.match(pattern1,s):
+                try:
                     ttt = re.findall(pattern1, s)[0]
-                else:
+                except:
                     ttt = ""
                 if not re.findall(pattern2, ttt):
                     ttt = ttt.strip(" HTTP")
