@@ -23,11 +23,11 @@ from StreamManager.StreamManager4 import *
 with open('data.json') as file:
     data = json.load(file)
 
-with open('/usr/local/mad/report/Background_PC/index.json') as file:
+with open('/usr/local/mad/report/index.json.0') as file:
     index = json.load(file)
 
 for count, filename in enumerate(sorted(index)):
-    if filename > '2018-07-24T01:58:12.321071.json':    break
+    # if filename > '2018-07-24T01:58:12.321071.json':    break
 
     with open(filename) as file:
         report = json.load(file)
@@ -61,4 +61,3 @@ for count, filename in enumerate(sorted(index)):
         json.dump(report, filename)
 
     shutil.rmtree(f'{path}/stream')
-
