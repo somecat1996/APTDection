@@ -5,40 +5,95 @@ $(function() {
 	"use strict";
 	$.getJSON ("/report/infected_computer.json", function (data) {
 	// $.getJSON ("testFiles/infected_computer.json", function (data) {
-        LineChartData(
-            'infected_computer',
-            data,
-            'time',
-            ['infected'],
-            ['被感染主机'],
-            ['#f73414'],
-            ['#f73414']
-        );
+        Morris.Line({
+            element: 'infected_computer',
+            data: data,
+            xkey: 'time',
+            ykeys: ['infected'],
+            labels: ['被感染主机'],
+            pointSize: 2,
+            fillOpacity: 0,
+            lineWidth:2,
+            pointStrokeColors:['#f73414'],
+            behaveLikeLine: true,
+            grid: false,
+            hideHover: 'auto',
+            lineColors: ['#f73414'],
+            resize: true,
+            gridTextColor:'#878787',
+            gridTextFamily:"Montserrat"
+        });
+        // LineChartData(
+        //     'infected_computer',
+        //     data,
+        //     'time',
+        //     ['infected'],
+        //     ['被感染主机'],
+        //     ['#f73414'],
+        //     ['#f73414']
+        // );
     });
 	$.getJSON ("/report/active_software.json", function (data) {
 	// $.getJSON ("testFiles/active_software.json", function (data) {
-        LineChartData(
-            'active_software',
-            data,
-            'time',
-            ['benign', 'malicious'],
-            ['良性软件', '恶意软件'],
-            ['#76c880', '#f73414'],
-            ['#76c880', '#f73414']
-        );
+        Morris.Line({
+            element: 'active_software',
+            data: data,
+            xkey: 'time',
+            ykeys: ['benign', 'malicious'],
+            labels: ['良性软件', '恶意软件（×100）'],
+            pointSize: 2,
+            fillOpacity: 0,
+            lineWidth:2,
+            pointStrokeColors:['#76c880', '#f73414'],
+            behaveLikeLine: true,
+            grid: false,
+            hideHover: 'auto',
+            lineColors: ['#76c880', '#f73414'],
+            resize: true,
+            gridTextColor:'#878787',
+            gridTextFamily:"Montserrat"
+        });
+        // LineChartData(
+        //     'active_software',
+        //     data,
+        //     'time',
+        //     ['benign', 'malicious'],
+        //     ['良性软件', '恶意软件'],
+        //     ['#76c880', '#f73414'],
+        //     ['#76c880', '#f73414']
+        // );
     });
 	$.getJSON ("/mad/loss.json", function (data) {
 	// $.getJSON ("testFiles/loss.json", function (data) {
 	    data.forEach(function(node){node.loss=1-node.loss;});
-        LineChartData(
-            'loss',
-            data,
-            'time',
-            ['loss'],
-            ['loss'],
-            ['#76c880'],
-            ['#76c880']
-        );
+	    Morris.Line({
+            element: 'loss',
+            data: data,
+            xkey: 'time',
+            ykeys: ['loss'],
+            labels: ['loss'],
+            pointSize: 2,
+            fillOpacity: 0,
+            lineWidth:2,
+            pointStrokeColors:['#76c880'],
+            behaveLikeLine: true,
+            grid: false,
+            hideHover: 'auto',
+            lineColors: ['#76c880'],
+            resize: true,
+            gridTextColor:'#878787',
+            gridTextFamily:"Montserrat",
+            smooth: false
+        });
+        // LineChartData(
+        //     'loss',
+        //     data,
+        //     'time',
+        //     ['loss'],
+        //     ['loss'],
+        //     ['#76c880'],
+        //     ['#76c880']
+        // );
     });
 
     var dom = document.getElementById("e_chart_1");

@@ -90,7 +90,7 @@ def writeActive(index):
         Active.append({
             "time": time,
             "benign": benign,
-            "malicious": malicious
+            "malicious": malicious*100
         })
     with open("active_software.json", 'w') as f:
         json.dump(Active, f)
