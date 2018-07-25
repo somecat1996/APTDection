@@ -21,8 +21,7 @@ $(function() {
             lineColors: ['#f73414'],
             resize: true,
             gridTextColor:'#878787',
-            gridTextFamily:"Montserrat",
-            smooth: false
+            gridTextFamily:"Montserrat"
         });
         // LineChartData(
         //     'infected_computer',
