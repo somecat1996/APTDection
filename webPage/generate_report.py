@@ -50,9 +50,9 @@ def readReportList(path):
 def writeInfected(index):
     Exist = list()
     Infected = list()
-    # infected = 0
+    infected = 0
     for count, file in enumerate(index):
-        infected = 0
+        # infected = 0
         tmp_data = json.load(open("/usr/local/mad" + file, 'r'))
         # time = file.split('.')[0]
         # time = time.split('/')[-1]
@@ -90,7 +90,7 @@ def writeActive(index):
         Active.append({
             "time": time,
             "benign": benign,
-            "malicious": malicious*100
+            "malicious": malicious*50
         })
     with open("active_software.json", 'w') as f:
         json.dump(Active, f)
@@ -408,10 +408,10 @@ def writeExport(index):
 
 if __name__ == "__main__":
     index = readReportList("./Background_PC")
-    writeInnerIP(index)
-    writeUA(index)
-    writeOuterIP(index)
+    # writeInnerIP(index)
+    # writeUA(index)
+    # writeOuterIP(index)
     writeInfected(index)
-    writeConnection(index)
+    # writeConnection(index)
     writeActive(index)
-    writeExport(index)
+    # writeExport(index)

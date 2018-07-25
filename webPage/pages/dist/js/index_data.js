@@ -21,7 +21,8 @@ $(function() {
             lineColors: ['#f73414'],
             resize: true,
             gridTextColor:'#878787',
-            gridTextFamily:"Montserrat"
+            gridTextFamily:"Montserrat",
+            smooth: false
         });
         // LineChartData(
         //     'infected_computer',
@@ -40,7 +41,7 @@ $(function() {
             data: data,
             xkey: 'time',
             ykeys: ['benign', 'malicious'],
-            labels: ['良性软件', '恶意软件（×100）'],
+            labels: ['良性软件', '恶意软件（×50）'],
             pointSize: 2,
             fillOpacity: 0,
             lineWidth:2,
@@ -51,7 +52,8 @@ $(function() {
             lineColors: ['#76c880', '#f73414'],
             resize: true,
             gridTextColor:'#878787',
-            gridTextFamily:"Montserrat"
+            gridTextFamily:"Montserrat",
+            smooth: false
         });
         // LineChartData(
         //     'active_software',
