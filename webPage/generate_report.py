@@ -179,9 +179,9 @@ def writeUA(index):
                         for k in j['connections']:
                             if src == k['src'] and dst == k['dst']:
                                 if time < k['stime']:
-                                    j['stime'] = time
+                                    k['stime'] = time
                                 elif time > k['etime']:
-                                    j['etime'] = time
+                                    k['etime'] = time
                                 flag1 = False
                                 k["connection"].append({
                                     "time": time,
@@ -406,12 +406,279 @@ def writeExport(index):
         json.dump(Export, f)
 
 
+def writeAll(index):
+    infected = 0
+    Exist = list()
+    Infected = list()
+    Active = list()
+    Connection = {
+        "nodes": [],
+        "links": []
+    }
+    UA = list()
+    innerIP = list()
+    outerIP = list()
+    Export = list()
+    for count, file in enumerate(index):
+        benign = 0
+        malicious = 0
+        tmp_data = json.load(open("/usr/local/mad" + file, 'r'))
+        time_frame = _time.strftime("%Y-%m-%d %H:%M:%S", _time.localtime(START + count * STEP))
+        for i in tmp_data:
+            is_malicious = i['is_malicious']
+            try:
+                name = ast.literal_eval(f"""b'{i['UA']}'""").decode()
+            except UnicodeDecodeError:
+                name = i["UA"]
+            info = i['info']
+            src = i['srcIP']
+            dst = i['dstIP']
+            url = i.get('malicious_url', [i['url']])
+            detected_by_cnn = i['detected_by_cnn']
+            time_flow = _time.strftime("%Y-%m-%d %H:%M:%S", _time.localtime(START + count * STEP + random.random() * STEP))
+            if is_malicious:
+                srcPort = i['srcPort']
+                dstPort = i['dstPort']
+                Export.append({
+                    "time": time_flow,
+                    "srcIP": src,
+                    "dstIP": dst,
+                    "srcPort": srcPort,
+                    "dstPort": dstPort,
+                    "UA": name
+                })
+                malicious += 1
+                if src not in Exist:
+                    infected += 1
+                    Exist.append(src)
+                flag_haslink = True
+                flag_hassrc = True
+                flag_hasdst = True
+                flag_hasUA = True
+                flag_hasinner = True
+                flag_hasouter = True
+                for j in outerIP:
+                    if dst == j['IP']:
+                        flag_hasouter = False
+                        if time_flow < j['stime']:
+                            j['stime'] = time_flow
+                        elif time_flow > j['etime']:
+                            j['etime'] = time_flow
+                        flag_outerhasconnection = True
+                        for k in j['inner']:
+                            if src == k['IP'] and name == k['UA']:
+                                if time_flow < k['stime']:
+                                    k['stime'] = time_flow
+                                elif time_flow > k['etime']:
+                                    k['etime'] = time_flow
+                                k['connection'].append({
+                                    "time": time_flow,
+                                    "url": url,
+                                    "detected_by_cnn": detected_by_cnn
+                                })
+                                flag_outerhasconnection = False
+                                break
+                        if flag_outerhasconnection:
+                            j['inner'].append({
+                                "IP": src,
+                                "UA": name,
+                                "stime": time_flow,
+                                "etime": time_flow,
+                                "connection": [{
+                                    "time": time_flow,
+                                    "url": url,
+                                    "detected_by_cnn": detected_by_cnn
+                                }]
+                            })
+                        break
+                if flag_hasouter:
+                    outerIP.append({
+                        "IP": dst,
+                        "type": type,
+                        "stime": time_flow,
+                        "etime": time_flow,
+                        "inner": [{
+                            "IP": src,
+                            "UA": name,
+                            "stime": time_flow,
+                            "etime": time_flow,
+                            "connection": [{
+                                "time": time_flow,
+                                "url": url,
+                                "detected_by_cnn": detected_by_cnn
+                            }]
+                        }]
+                    })
+                for j in innerIP:
+                    if src == j['IP']:
+                        flag_hasinner = False
+                        flag_innerhasUA = True
+                        for k in j['UA']:
+                            if name == k['name'] and type == k['type']:
+                                flag_innerhasUA = False
+                                if time_flow < k['stime']:
+                                    k['stime'] = time_flow
+                                elif time_flow > k['etime']:
+                                    k['etime'] = time_flow
+                                k["connection"].append({
+                                    "time": time_flow,
+                                    "url": url,
+                                    "detected_by_cnn": detected_by_cnn
+                                })
+                        if flag_innerhasUA:
+                            j["total"] += 1
+                            if type == 1:
+                                j["malicious"] += 1
+                            j['UA'].append({
+                                "name": name,
+                                "stime": time_flow,
+                                "etime": time_flow,
+                                "type": type,
+                                "info": info,
+                                "connection": [{
+                                    "time": time_flow,
+                                    "url": url,
+                                    "detected_by_cnn": detected_by_cnn
+                                }]
+                            })
+                        break
+                if flag_hasinner:
+                    innerIP.append({
+                        "IP": src,
+                        "total": 1,
+                        "malicious": type,
+                        "UA": [
+                            {
+                                "name": name,
+                                "stime": time_flow,
+                                "etime": time_flow,
+                                "type": type,
+                                "info": info,
+                                "connection": [{
+                                    "time": time_flow,
+                                    "url": url,
+                                    "detected_by_cnn": detected_by_cnn
+                                }]
+                            }
+                        ]
+                    })
+                for j in UA:
+                    if name == j['name'] and type == j['type']:
+                        flag_hasUA = False
+                        if time_flow < j['stime']:
+                            j['stime'] = time_flow
+                        elif time_flow > j['etime']:
+                            j['etime'] = time_flow
+                        flag_UAhasconnection = True
+                        for k in j['connections']:
+                            if src == k['src'] and dst == k['dst']:
+                                if time_flow < k['stime']:
+                                    k['stime'] = time_flow
+                                elif time_flow > k['etime']:
+                                    k['etime'] = time_flow
+                                    flag_UAhasconnection = False
+                                k["connection"].append({
+                                    "time": time_flow,
+                                    "url": url,
+                                    "detected_by_cnn": detected_by_cnn
+                                })
+                        if flag_UAhasconnection:
+                            j['connections'].append({
+                                "src": src,
+                                "dst": dst,
+                                "stime": time_flow,
+                                "etime": time_flow,
+                                "connection": [{
+                                    "time": time_flow,
+                                    "url": url,
+                                    "detected_by_cnn": detected_by_cnn
+                                }]
+                            })
+                        break
+                if flag_hasUA:
+                    UA.append({
+                        "name": name,
+                        "type": type,
+                        "stime": time_flow,
+                        "etime": time_flow,
+                        "info": info,
+                        "connections": [{
+                            "src": src,
+                            "dst": dst,
+                            "stime": time_flow,
+                            "etime": time_flow,
+                            "connection": [{
+                                "time": time_flow,
+                                "url": url,
+                                "detected_by_cnn": detected_by_cnn
+                            }]
+                        }]
+                    })
+                for link in Connection["links"]:
+                    if link["source"] == src and link["target"] == dst:
+                        link["value"] += 1
+                        flag_haslink = False
+                for node in Connection["nodes"]:
+                    if node["name"] == src:
+                        flag_hassrc = False
+                        node["symbolSize"] = node["symbolSize"] + 0.1 if node["symbolSize"] < 20 else 20
+                    if node["name"] == dst:
+                        flag_hasdst = False
+                        node["symbolSize"] = node["symbolSize"] + 0.1 if node["symbolSize"] < 20 else 20
+                if flag_haslink:
+                    Connection["links"].append({
+                        "source": src,
+                        "target": dst,
+                        "value": 1
+                    })
+                if flag_hassrc:
+                    Connection["nodes"].append({
+                        "name": src,
+                        "category": 0,
+                        "symbolSize": 10,
+                        "draggable": "true"
+                    })
+                if flag_hasdst:
+                    Connection["nodes"].append({
+                        "name": dst,
+                        "category": 1,
+                        "symbolSize": 10,
+                        "draggable": "true"
+                    })
+            else:
+                benign += 1
+        Infected.append({
+            "time": time_frame,
+            "infected": infected
+        })
+        Active.append({
+            "time": time_frame,
+            "benign": benign,
+            "malicious": malicious*50
+        })
+    with open("infected_computer.json", 'w') as f:
+        json.dump(Infected, f)
+    with open("active_software.json", 'w') as f:
+        json.dump(Active, f)
+    with open("connection.json", 'w') as f:
+        json.dump(Connection, f)
+    with open("UA.json", 'w') as f:
+        json.dump(UA, f)
+    with open("innerIP.json", 'w') as f:
+        json.dump(innerIP, f)
+    with open("outerIP.json", 'w') as f:
+        json.dump(outerIP, f)
+    with open("export.json", 'w') as f:
+        json.dump(Export, f)
+
+
 if __name__ == "__main__":
     index = readReportList("./Background_PC")
     # writeInnerIP(index)
     # writeUA(index)
     # writeOuterIP(index)
-    writeInfected(index)
+    # writeInfected(index)
     # writeConnection(index)
-    writeActive(index)
+    # writeActive(index)
     # writeExport(index)
+    writeAll(index)
