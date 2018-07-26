@@ -494,7 +494,7 @@ def writeAll(index):
                 if flag_hasouter:
                     outerIP.append({
                         "IP": dst,
-                        "type": type,
+                        "type": is_malicious,
                         "stime": time_flow,
                         "etime": time_flow,
                         "inner": [{
@@ -514,7 +514,7 @@ def writeAll(index):
                         flag_hasinner = False
                         flag_innerhasUA = True
                         for k in j['UA']:
-                            if name == k['name'] and type == k['type']:
+                            if name == k['name'] and is_malicious == k['type']:
                                 flag_innerhasUA = False
                                 if time_flow < k['stime']:
                                     k['stime'] = time_flow
@@ -527,13 +527,13 @@ def writeAll(index):
                                 })
                         if flag_innerhasUA:
                             j["total"] += 1
-                            if type == 1:
+                            if is_malicious == 1:
                                 j["malicious"] += 1
                             j['UA'].append({
                                 "name": name,
                                 "stime": time_flow,
                                 "etime": time_flow,
-                                "type": type,
+                                "type": is_malicious,
                                 "info": info,
                                 "connection": [{
                                     "time": time_flow,
@@ -546,13 +546,13 @@ def writeAll(index):
                     innerIP.append({
                         "IP": src,
                         "total": 1,
-                        "malicious": type,
+                        "malicious": is_malicious,
                         "UA": [
                             {
                                 "name": name,
                                 "stime": time_flow,
                                 "etime": time_flow,
-                                "type": type,
+                                "type": is_malicious,
                                 "info": info,
                                 "connection": [{
                                     "time": time_flow,
@@ -563,7 +563,7 @@ def writeAll(index):
                         ]
                     })
                 for j in UA:
-                    if name == j['name'] and type == j['type']:
+                    if name == j['name'] and is_malicious == j['type']:
                         flag_hasUA = False
                         if time_flow < j['stime']:
                             j['stime'] = time_flow
@@ -598,7 +598,7 @@ def writeAll(index):
                 if flag_hasUA:
                     UA.append({
                         "name": name,
-                        "type": type,
+                        "type": is_malicious,
                         "stime": time_flow,
                         "etime": time_flow,
                         "info": info,
