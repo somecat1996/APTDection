@@ -14,7 +14,7 @@ $("#results-display").ready(function() {
             var Table = "<div class=\"row\"><div class=\"col-md-12\"><h5 class='text-center'>User Agent信息</h5></div></div>"
             Table = Table + "<hr><div class=\"row\"><div class=\"col-md-6\"><h6 class=\"text-center\">类型</h6><p class=\"text-center\">" + info.type + "</p></div><div class=\"col-md-6\"><h6 class=\"text-center\">设备</h6><p class=\"text-center\">" + info.device + "</p></div></div>" +
                 "<div class=\"row\"><div class=\"col-md-6\"><h6 class=\"text-center\">操作系统</h6><p class=\"text-center\">" + info.os + "</p></div><div class=\"col-md-6\"><h6 class=\"text-center\">软件</h6><p class=\"text-center\">" + info.browser + "</p></div></div>" +
-                "<div class=\"row\"><div class=\"col-md-12\"><h6 class=\"text-center\">恶意服务器</h6><p class=\"text-center\">" + info.dst + "</p></div></div>";
+                "<div class=\"row\"><div class=\"col-md-12\"><h6 class=\"text-center\">恶意服务器</h6><p class=\"text-center\">" + item.dst + "</p></div></div>";
             Table = Table + "<div class=\"row\"><div class=\"col-md-12\"><h5 class='text-center'>通信详细信息</h5></div></div>"
             var connections = ''
             for(let j=0;j<item.connections.length;j++){
@@ -60,7 +60,7 @@ $("#results-display").ready(function() {
             A();
         });
         function A() {
-            if(count-1===0){
+            if(count-1<=0){
                 $('#datable_1').DataTable();
             }
             else {}
