@@ -563,7 +563,7 @@ def writeAll(index):
                         ]
                     })
                 for j in UA:
-                    if name == j['name'] and is_malicious == j['type']:
+                    if name == j['name'] and is_malicious == j['type'] and dst == j['dst']:
                         flag_hasUA = False
                         if time_flow < j['stime']:
                             j['stime'] = time_flow
@@ -571,7 +571,7 @@ def writeAll(index):
                             j['etime'] = time_flow
                         flag_UAhasconnection = True
                         for k in j['connections']:
-                            if src == k['src'] and dst == k['dst']:
+                            if src == k['src']:
                                 if time_flow < k['stime']:
                                     k['stime'] = time_flow
                                 elif time_flow > k['etime']:
@@ -585,7 +585,6 @@ def writeAll(index):
                         if flag_UAhasconnection:
                             j['connections'].append({
                                 "src": src,
-                                "dst": dst,
                                 "stime": time_flow,
                                 "etime": time_flow,
                                 "connection": [{
@@ -601,10 +600,10 @@ def writeAll(index):
                         "type": is_malicious,
                         "stime": time_flow,
                         "etime": time_flow,
+                        "dst": dst,
                         "info": info,
                         "connections": [{
                             "src": src,
-                            "dst": dst,
                             "stime": time_flow,
                             "etime": time_flow,
                             "connection": [{
