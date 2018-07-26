@@ -1,14 +1,11 @@
 /**
  * Created by lenovo on 2018/7/20.
  */
-var count = 0;
-var S = 0;
-var flag = 1;
 $("#results-display").ready(function() {
     // $.getJSON ("testFiles/UA.json", function (data) {
     //     console.log(data);
     $.getJSON ("/report/UA.json", function (data) {
-        S = data.length;
+        var count = data.length;
         // $.each(data, function (i, item) {
         //     $.getJSON(item, function (data) {
         $.each(data, function (i, item) {
@@ -59,13 +56,20 @@ $("#results-display").ready(function() {
                 "</td><td>" + item.etime +
                 "</td><td>" + Table + "</td></tr>";
             $("#results-display").append(Table);
-            if(S===count){flag=0;}
+            count--;
+            A();
         });
+        function A() {
+            if(count-1===0){
+                $('#datable_1').DataTable();
+            }
+            else {}
+        }
     });
     //     });
     // });
 });
-window.onload = function() {
-    while(flag===1){}
-    $('#datable_1').DataTable();
-}
+// window.onload = function() {
+//     while(flag===1){}
+//     $('#datable_1').DataTable();
+// }
