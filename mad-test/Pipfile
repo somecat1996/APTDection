@@ -1,0 +1,22 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+dpkt = "*"
+requests = "*"
+scapy = "*"
+tensorflow = "*"
+user-agents = "*"
+
+[dev-packages]
+pycodestyle = "*"
+pylint = "*"
+rope = "*"
+
+[requires]
+python_version = "3.6"
+
+[pipenv]
+allow_prereleases = true
